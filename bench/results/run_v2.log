@@ -1,0 +1,9 @@
+harness_v2_apertus70b 3 109.8s
+harness_v2_apertus70b 4 ERROR LLMError: swiss-ai/apertus-v1.5-70b returned invalid JSON twice in step '10 applicability check': Expecting ',' delimite
+harness_v2_apertus70b 1 135.4s
+harness_v2_apertus70b 2 150.9s
+harness_v2_apertus70b 6 79.5s
+harness_v2_apertus70b 5 103.1s
+harness_v2_apertus70b 7 85.2s
+harness_v2_apertus70b 8 93.8s
+harness_v2_apertus70b 9 100.6s

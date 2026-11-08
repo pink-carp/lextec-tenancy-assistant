@@ -1,0 +1,733 @@
+[
+  {
+    "case_no": 1,
+    "file": "hack the law-9.md",
+    "prompt": "Hi, I am Cristina and I found mold in my apartment. I live in a 3-room flat in Zurich and moved in about two years ago. Last month I noticed black spots on the wall behind the bed in the bedroom, and now it is also starting in the corner near the window. It smells bad.\n\nI told my landlord’s property manager about it by phone, and he said it’s because I don’t ventilate enough and that I should just wipe it with vinegar. But I do open the windows every morning!\n\nI took a few photos on my phone. I’m so angry that I’m thinking of just paying less rent this month, maybe 30%, until they fix it. Or should I move out? I can’t afford a lawyer. What are my rights and what should I do now?",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 1 - lane 1 or 2",
+    "expected_lane_note": "Header says 'lane 1 or 2' but the team's answer assigns Lane 2 -> expected 2; Lane 1 not listed as acceptable.",
+    "acceptable_lanes": [
+      2
+    ],
+    "gold_articles": [
+      "OR 257d",
+      "OR 256",
+      "OR 259a",
+      "OR 259d",
+      "OR 259g",
+      "OR 259h",
+      "OR 259b"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "PD190002"
+    ],
+    "gold_questions": [],
+    "deadline_facts": [
+      "No deadline, notice, court or termination step is reported.",
+      "Set concrete deadlines. Given the spread and smell, request an inspection within a few days and set a reasonable deadline for remedying the problem.",
+      "The appropriate repair deadline depends on the extent and necessary work; ask for immediate protective measures if a full repair takes longer.",
+      "If you want to use the official rent-deposit procedure below, your letter must also expressly warn that you will deposit future rent with the designated authority if the repair deadline expires without remedy.",
+      "Under Art. 257d OR, a residential landlord can send a written payment demand giving at least 30 days, with a termination warning, and then terminate if the arrears remain unpaid.",
+      "Give a reasonable written repair deadline and warn of depositing future rent if it expires without remedy.",
+      "Submit your repair and rent-reduction claims to the conciliation authority within 30 days of the due date of the first deposited rent."
+    ]
+  },
+  {
+    "case_no": 2,
+    "file": "hack the law-10.md",
+    "prompt": "I lost my job two months ago and couldn’t pay the rent for two months. Today I received a registered letter from my landlord. It says I have to pay the arrears or they will terminate my lease. I have two children. I don’t understand what this means. Will we have to leave the apartment? What should I do?",
+    "expected_lane": 3,
+    "expected_lane_raw": "CASE 2: lane 3",
+    "expected_lane_note": "",
+    "acceptable_lanes": [
+      3
+    ],
+    "gold_articles": [
+      "OR 257d",
+      "OR 272a",
+      "OR 266n",
+      "OR 273",
+      "OR 266l",
+      "OR 266o"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "BGE 119 II 147",
+      "4A_333/2022"
+    ],
+    "gold_questions": [
+      {
+        "text": "Is the letter only a payment demand, or also a termination form or court papers? What end date does it state, and when exactly did you receive it or pick it up?",
+        "source": "list",
+        "line": 21
+      },
+      {
+        "text": "Are you married or in a registered partnership, and did your spouse receive a separate letter?",
+        "source": "list",
+        "line": 24
+      },
+      {
+        "text": "What exact amount is claimed, and what have you paid so far?",
+        "source": "list",
+        "line": 25
+      },
+      {
+        "text": "Only a payment demand, or also a termination form or court papers?",
+        "source": "table",
+        "line": 53
+      },
+      {
+        "text": "Lease, rent ledger, months claimed, ancillary charges, bank statements and previous payments.",
+        "source": "table",
+        "line": 54
+      },
+      {
+        "text": "Exact letter: amount claimed, payment period and express warning of termination.",
+        "source": "table",
+        "line": 55
+      },
+      {
+        "text": "Does it allow at least 30 days? Does it state a fixed end date?",
+        "source": "table",
+        "line": 56
+      },
+      {
+        "text": "Actual delivery/collection date, envelope, postal tracking and collection notice.",
+        "source": "table",
+        "line": 57
+      },
+      {
+        "text": "Is the tenant married or in a registered partnership, and is this the family home? Were separate notices delivered?",
+        "source": "table",
+        "line": 58
+      },
+      {
+        "text": "Exact shortfall, available funds, unemployment benefits, pending applications and expected payment dates.",
+        "source": "table",
+        "line": 59
+      },
+      {
+        "text": "Existing deferral, instalment agreement or waiver; exact written terms.",
+        "source": "table",
+        "line": 60
+      }
+    ],
+    "deadline_facts": [
+      "WHAT the chatbot would need to ask for the evaluation (lane 1-3) to understand what the urgency is regarding to the deadline:",
+      "A payment deadline is running.",
+      "Unemployment, hardship and children do not suspend the deadline.",
+      "The deadline, amount claimed and payments made are unknown.",
+      "If the payment deadline ends within a few days and funds are missing: at least Level 3, with urgent referral.",
+      "If a termination form or notice of enforcement is mentioned: switch to the termination track (30-day deadline to contest, Art. 273 OR).",
+      "Article 257d of the Swiss Code of Obligations (OR) is the governing provision. It allows termination for unpaid rent or ancillary charges, but requires a two-stage procedure: first a written payment demand with a termination warning, then a separate termination if the arrears remain unpaid after the deadline.",
+      "Unemployment, financial hardship and having children do not suspend the payment deadline. Moreover, Article 272a(1)(a) OR excludes a judicial extension of the tenancy (Erstreckung) following a valid termination under Article 257d.",
+      "The practical priority is therefore to secure payment or an express agreement with the landlord before the deadline expires, while checking the demand’s validity.",
+      "Determines which deadline and response apply.",
+      "Exact letter: amount claimed, payment period and express warning of termination.",
+      "Length of payment period",
+      "Does it allow at least 30 days?",
+      "For residential premises, the statutory minimum is 30 days.",
+      "The deadline is linked to receipt, not simply the letter’s date.",
+      "Not collecting registered mail does not prevent the deadline from running.",
+      "In BGE 119 II 147, the Federal Supreme Court held that receipt governs the start of the payment period.",
+      "For an uncollected registered payment demand, receipt is generally deemed to occur on the last day of the seven-day collection period.",
+      "Do not automatically apply the same receipt calculation to a subsequent termination notice; have its deadline checked separately.",
+      "The landlord must give the residential tenant a written deadline of at least 30 days, coupled with a termination warning.",
+      "Negotiations, a social-assistance application or a promise to pay do not automatically stop the deadline.",
+      "If the arrears are not settled within the period, the landlord may terminate with at least 30 days’ notice to the end of a month under Article 257d(2) OR.",
+      "The tenancy does not end automatically when the payment deadline expires. The landlord must take the second step.",
+      "In 4A_333/2022, the Federal Supreme Court reiterated the statutory periods and examined whether termination had been issued after the payment period."
+    ]
+  },
+  {
+    "case_no": 3,
+    "file": "hack the law-11.md",
+    "prompt": "Hey, I’m Luca, 23, I live in a 2-room flat in Zurich, which I rent since last year. I’m an apprentice-turned-junior employee and money has been tight. I missed rent in September and October because my hours got cut. Last week I got a registered letter from the property management. I didn’t pick it up at first, and when I did, it was a lot of legal text and it says something about “Kündigung” if I don’t pay. My friend says this means I’m getting evicted.\n\nMy parents live in the same city and my dad said he can help, but I don’t want to ask him because we had an argument about me moving out. I’m also not sure if I should just ignore the letter, because I’m going to get paid at the end of the month anyway.\n\nCan they really throw me out? How long do I have? What can I do?",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 3: should be lane 2 as more information is needed -> information hinting at no flagging regarding existential crisis",
+    "expected_lane_note": "Title: 'should be lane 2'; the team itself calls it a borderline call (same legal stage as Case 2 but Lane 2: funds expected, no children, no deadline evident). Acceptable [2] only.",
+    "acceptable_lanes": [
+      2
+    ],
+    "gold_articles": [
+      "OR 257d",
+      "OR 272a",
+      "OR 266l",
+      "OR 273"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "BGE 119 II 147"
+    ],
+    "gold_questions": [
+      {
+        "text": "What exactly does the letter say about payment, termination and any move-out date? Paste the wording with personal details removed.",
+        "source": "list",
+        "line": 34
+      },
+      {
+        "text": "What are the letter’s date, the first attempted delivery date, the collection deadline and the date you actually collected it?",
+        "source": "list",
+        "line": 36
+      },
+      {
+        "text": "How much does the letter demand, for which months, and what rent payments have you made since?",
+        "source": "list",
+        "line": 37
+      },
+      {
+        "text": "Is this a payment demand with a termination warning, or a termination notice already?",
+        "source": "list",
+        "line": 38
+      },
+      {
+        "text": "What is the document? A payment warning, a termination on an official form, or both? What deadline and termination date does it state?",
+        "source": "list",
+        "line": 83
+      },
+      {
+        "text": "When was it received legally? First delivery attempt, collection-period expiry and actual collection date—not merely the date printed on the letter.",
+        "source": "list",
+        "line": 84
+      },
+      {
+        "text": "What precisely is outstanding? Amount, months, service charges, extra fees and subsequent payments. Has November rent also become due and remained unpaid?",
+        "source": "list",
+        "line": 85
+      },
+      {
+        "text": "Can the demanded arrears be cleared in time? Exact salary date, available funds and possible bridge funding.",
+        "source": "list",
+        "line": 86
+      },
+      {
+        "text": "Who is named on the lease? Is Luca the only tenant, or are there co-tenants?",
+        "source": "list",
+        "line": 90
+      },
+      {
+        "text": "Is this a marital or registered-partnership family home? If so, separate-notification requirements need checking.",
+        "source": "list",
+        "line": 91
+      },
+      {
+        "text": "Were there earlier warnings, terminations or payment agreements? The current letter may not be the first legal step.",
+        "source": "list",
+        "line": 92
+      },
+      {
+        "text": "Has any court correspondence arrived? Court deadlines require separate immediate attention.",
+        "source": "list",
+        "line": 93
+      },
+      {
+        "text": "If termination has already occurred, were the warning, service, payment deadline, termination form and termination date legally correct? These determine possible grounds for challenge.",
+        "source": "list",
+        "line": 94
+      }
+    ],
+    "deadline_facts": [
+      "High: the letter has not been seen, and the deadline, amount, months and delivery dates are unknown.",
+      "A payment deadline is probably running.",
+      "The letter arrived last week, and a valid residential demand gives at least 30 days from receipt (Art. 257d(1) OR).",
+      "That points to a deadline roughly at the end of November or early December, provisional.",
+      "No imminent deadline is evident. If the letter is a standard demand received last week, the earliest deadline is probably still a few weeks away.",
+      "What are the letter’s date, the first attempted delivery date, the collection deadline and the date you actually collected it?",
+      "Legal steps and deadlines",
+      "Under Art. 257d(1) OR, the landlord must give a written payment deadline of at least 30 days, with an express warning of termination.",
+      "If the arrears remain unpaid when that deadline expires, Art. 257d(2) OR permits termination with at least 30 days’ notice to the end of a month.",
+      "Under Art. 273(1) OR, a termination challenge must reach the conciliation authority within 30 days after receipt.",
+      "These are separate deadlines, not a guaranteed “60 days from today”. Zurich Courts explain the judicial eviction process; the City of Zurich identifies the Stadtammannamt as the authority carrying out enforcement.",
+      "Not indefinitely. For an Art. 257d payment warning, BGE 119 II 147 establishes that receipt normally occurs when the registered letter is collected within the seven-day postal collection period.",
+      "If it is not collected within that period, receipt is generally deemed to occur on its last day.",
+      "The payment period is counted from the following day.",
+      "The same decision confirms that the landlord must wait until the payment deadline expires before issuing termination.",
+      "Because the delivery and collection dates are missing, the exact payment deadline and earliest lawful termination date cannot yet be calculated.",
+      "Keep the letter, all enclosures, envelope and postal tracking information. Establish the deadline immediately.",
+      "If the demand is correct, arrange full payment before the deadline. Pay early enough for the landlord to receive it, identify the months being paid and keep proof.",
+      "Obtain written confirmation that they agree to defer termination while you comply; a request alone does not extend the deadline.",
+      "If an actual termination has arrived, seek urgent advice and protect the 30-day challenge deadline. For a flat in the City of Zurich, the relevant body is the rental conciliation authority at Bezirksgericht Zürich; Zurich Courts provide the authority directory.",
+      "Waiting for month-end salary is safe only if it allows timely full payment, or the landlord has expressly agreed otherwise. Payment after the deadline does not automatically remove the landlord’s right to terminate under Art. 257d OR.",
+      "What deadline and termination date does it state?",
+      "When was it received legally? First delivery attempt, collection-period expiry and actual collection date—not merely the date printed on the letter.",
+      "Has any court correspondence arrived? Court deadlines require separate immediate attention.",
+      "If termination has already occurred, were the warning, service, payment deadline, termination form and termination date legally correct? These determine possible grounds for challenge."
+    ]
+  },
+  {
+    "case_no": 4,
+    "file": "hack the law-12.md",
+    "prompt": "Hi, I’m Sandro and I moved out of my flat in Winterthur four months ago. The handover was fine, the property manager just said he would still look everything over. My deposit (3 months’ rent) is at the bank, but they won’t release it because the landlord won’t sign. He also no longer answers my emails. Can he just do that? I need the money for my new place.",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 4 - lane 2 needing more information",
+    "expected_lane_note": "",
+    "acceptable_lanes": [
+      2
+    ],
+    "gold_articles": [
+      "OR 257e",
+      "OR 267",
+      "OR 267a",
+      "ZPO 113"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "MG170019"
+    ],
+    "gold_questions": [
+      {
+        "text": "What was the official end date of your lease, and on what date was the handover?",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "Was a handover protocol made and signed by both of you? What does it say about damage, cleaning or other problems? If there was none, what was said at the handover?",
+        "source": "list",
+        "line": 8
+      },
+      {
+        "text": "Have the landlord or property manager told you, in writing or in person, about any damage, cleaning, unpaid rent or a utility statement? If yes, what, when and how much?",
+        "source": "list",
+        "line": 9
+      }
+    ],
+    "deadline_facts": [
+      "No deadline is running against Sandro, his housing is not at risk, and the open questions decide how strong his position is.",
+      "No deadline, notice, summons or enforcement step reported.",
+      "One time-sensitive point exists: the landlord’s one-year window to pursue a claim (Art. 257e(3) OR), counted from the legal end of the tenancy.",
+      "Four months have probably passed, so it runs to roughly mid-2027, provisional.",
+      "There is also a one-year fallback: if the landlord has not legally pursued a claim against you within one year after the tenancy ended, you can demand repayment directly from the bank without his signature.",
+      "The Zurich Tenancy Court’s decision MG170019 interprets “immediately” as within a few working days after return and places the burden of proving timely notification on the landlord.",
+      "Demand signature of the bank’s release form within 14 days.",
+      "The 14 days is a practical deadline you set, not a statutory release period.",
+      "Keep track of the one-year date. If no claim has been legally pursued within that year, ask the bank for repayment under Art. 257e(3) OR and provide evidence of when the tenancy ended."
+    ]
+  },
+  {
+    "case_no": 5,
+    "file": "hack the law-13.md",
+    "prompt": "Hello I am Greta. I now live for 25 years in my 3-room flat in Uster. I want to get a cat as a mental support animal, as my husband passed away last month. Now the property management has told me that the house rules say “pets are prohibited” and I can’t keep any at all. Is that even allowed? We’ve already promised to take the cat.",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 5 - should be lane 2 but depends on information given maybe mention mental support organisation",
+    "expected_lane_note": "Title: 'should be lane 2 but depends on information given, maybe mention mental support organisation'.",
+    "acceptable_lanes": [
+      2
+    ],
+    "gold_articles": [
+      "OR 1",
+      "OR 269d"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [],
+    "gold_questions": [
+      {
+        "text": "What does your signed lease say about pets and the house rules, and were those rules supplied when you signed?",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "Will the cat live entirely indoors?",
+        "source": "list",
+        "line": 8
+      },
+      {
+        "text": "Has a doctor or therapist recommended the cat for your mental health?",
+        "source": "list",
+        "line": 9
+      },
+      {
+        "text": "Original lease, pet clause, incorporated house rules and later amendments",
+        "source": "table",
+        "line": 14
+      },
+      {
+        "text": "Indoor-only or free-roaming cat; any proposed cat flap or balcony net",
+        "source": "table",
+        "line": 15
+      },
+      {
+        "text": "Exact refusal, its date, and whether it includes a warning or termination",
+        "source": "table",
+        "line": 16
+      },
+      {
+        "text": "Whether the cat is already in the flat and the promised handover date",
+        "source": "table",
+        "line": 17
+      },
+      {
+        "text": "Any doctor’s or therapist’s recommendation",
+        "source": "table",
+        "line": 18
+      },
+      {
+        "text": "Previous permission for animals in your flat, or known exceptions in the building",
+        "source": "table",
+        "line": 19
+      },
+      {
+        "text": "Who is named as tenant—you, your husband, or both",
+        "source": "table",
+        "line": 20
+      }
+    ],
+    "deadline_facts": []
+  },
+  {
+    "case_no": 6,
+    "file": "hack the law-14.md",
+    "prompt": "Hello, I am Maria and I don’t know what to do. Together with my husband and four kids we live in our apartment in Zurich-Altstetten. My husband works in a warehouse, I clean part-time. We already receive premium subsidies. Last week a letter came from the property management saying our rent will go up by 280 francs from January. We currently pay 1,850. I didn’t read the letter closely because we were so shocked. We can’t afford this and we’re afraid of losing the flat. Do we just have to accept it?",
+    "expected_lane": 3,
+    "expected_lane_raw": "CASE 6 - lane 3",
+    "expected_lane_note": "",
+    "acceptable_lanes": [
+      3
+    ],
+    "gold_articles": [
+      "OR 269d",
+      "OR 270b",
+      "OR 269",
+      "OR 269a"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [],
+    "gold_questions": [
+      {
+        "text": "What exactly does the letter say as the reason for the increase (for example reference interest rate, inflation, higher costs, renovation or yield)? Paste the wording, including any percentages, figures or dates it mentions.",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "Exact date and circumstances of receipt: when was it delivered or collected, and by whom? Keep the envelope and any postal collection slip.",
+        "source": "list",
+        "line": 36
+      },
+      {
+        "text": "Complete notice: all pages, attachments and any canton-approved form—not just the covering letter.",
+        "source": "list",
+        "line": 37
+      },
+      {
+        "text": "Stated reasons and calculation: reference interest rate, inflation, increased operating costs, renovations, or another basis?",
+        "source": "list",
+        "line": 38
+      },
+      {
+        "text": "Exact effective date: which January and which day?",
+        "source": "list",
+        "line": 39
+      },
+      {
+        "text": "Any termination or payment warning: is one included, or has a separate notice arrived?",
+        "source": "list",
+        "line": 40
+      },
+      {
+        "text": "Lease and amendments: ordinary, indexed or stepped rent; contractual notice period and termination dates.",
+        "source": "list",
+        "line": 44
+      },
+      {
+        "text": "Rent breakdown: current and proposed net rent, ancillary charges and any parking or other separate charges.",
+        "source": "list",
+        "line": 45
+      },
+      {
+        "text": "Previous adjustments: last increase or reduction, relevant notices, and the calculation bases underlying the current rent.",
+        "source": "list",
+        "line": 46
+      },
+      {
+        "text": "Tenant identities: who signed the lease, and to whom was the increase addressed?",
+        "source": "list",
+        "line": 47
+      },
+      {
+        "text": "Any claimed improvements: what work occurred, when, and how does management explain the allocation?",
+        "source": "list",
+        "line": 48
+      },
+      {
+        "text": "Payment position: any arrears, current payment difficulties or existing tenancy dispute?",
+        "source": "list",
+        "line": 52
+      },
+      {
+        "text": "Support needs: household income and essential expenses, existing benefits, tenancy-association membership or legal-expenses insurance, and whether German-language assistance is needed.",
+        "source": "list",
+        "line": 53
+      }
+    ],
+    "deadline_facts": [
+      "Under Art. 270b OR, a tenant can challenge an abusive increase before the tenancy conciliation authority within 30 days of notification—not 30 days before it takes effect in January.",
+      "Because the notice reportedly arrived last week, the deadline may still be open.",
+      "Obtain first: deadline and notice validity",
+      "Lease and amendments: ordinary, indexed or stepped rent; contractual notice period and termination dates.",
+      "Do not delay deadline protection while collecting the full financial information.",
+      "establish and protect the 30-day challenge deadline;",
+      "Do not wait for management’s reply if the deadline is approaching."
+    ]
+  },
+  {
+    "case_no": 7,
+    "file": "hack the law-15.md",
+    "prompt": "We’re a family with two small children (1 and 4 years old) in Zurich-Oerlikon. The heating hasn’t worked for ten days and it’s only 14 degrees in the flat. We phoned the property management twice and a technician came once, but nothing has changed. Now they say there are supply problems with the spare part. We don’t know what to do and feel completely helpless. Our youngest already has a cold. Are we allowed to pay less rent?",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 7 probably lane 2, if landlord doesn’t react reevaluation probably to lane 3",
+    "expected_lane_note": "Title: 'probably lane 2, if landlord doesn't react reevaluation probably to lane 3' -> expected 2; acceptable alternative: 3.",
+    "acceptable_lanes": [
+      2,
+      3
+    ],
+    "gold_articles": [
+      "OR 256",
+      "OR 259a",
+      "OR 259d",
+      "OR 257d",
+      "OR 259g",
+      "OR 259h",
+      "OR 259e",
+      "OR 259b"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "BGE 142 III 557",
+      "PD140009"
+    ],
+    "gold_questions": [
+      {
+        "text": "Has the property management offered anything in the meantime, such as electric heaters, a temporary heating solution, or other accommodation? What exactly did they offer, and did they say who pays the extra electricity?",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "What does your lease say about heating (included in the extra costs or paid separately), and what is the exact date your rent is due each month? Have you already paid this month’s rent?",
+        "source": "list",
+        "line": 8
+      },
+      {
+        "text": "Exact breakdown date and first notification date",
+        "source": "table",
+        "line": 70
+      },
+      {
+        "text": "What you told management, and any written response",
+        "source": "table",
+        "line": 71
+      },
+      {
+        "text": "Temperatures by room and time; any working temporary heaters",
+        "source": "table",
+        "line": 72
+      },
+      {
+        "text": "Monthly net rent, separate charges and next rent due date",
+        "source": "table",
+        "line": 73
+      },
+      {
+        "text": "Names of the contractual landlord and all tenants",
+        "source": "table",
+        "line": 74
+      },
+      {
+        "text": "Additional expenses and any medical assessment",
+        "source": "table",
+        "line": 75
+      }
+    ],
+    "deadline_facts": [
+      "But do not simply deduct an amount from your next rent payment. The safest approach is to demand repair and a retrospective reduction in writing, while continuing to pay—or following the formal rent-deposit procedure explained below.",
+      "The reduction runs from when the landlord or its management learned of the defect until the impairment is remedied. Your first telephone call can establish that knowledge; a written complaint is not a prerequisite for starting the reduction period.",
+      "The Federal Supreme Court confirmed in BGE 142 III 557 that a reduction can also be claimed retrospectively, even after repair.",
+      "The reduction applies to the affected period—not automatically to the entire month.",
+      "Given ten days at 14°C, requesting an effective interim solution within 24 hours of receipt is a reasonable practical starting point—not a statutory deadline or a guaranteed judicial finding.",
+      "Claim a retrospective rent reduction expressly, from the earliest date management knew until normal use is restored.",
+      "Once the evidence is assembled, specify the percentage and period claimed.",
+      "First set a reasonable written deadline for remedying the defect and threaten official deposit if it expires without remedy.",
+      "Bring your claims before the conciliation authority within 30 days of the due date of the first deposited rent.",
+      "Missing that deadline causes the deposited funds to fall to the landlord.",
+      "Establishes the reduction period.",
+      "Demand urgent temporary heating and claim a retrospective reduction now; preserve payment discipline while you enforce those rights."
+    ]
+  },
+  {
+    "case_no": 8,
+    "file": "hack the law-16.md",
+    "prompt": "My name is Fatima and I’ve lived in a flat in Zurich-Wiedikon for six years. Three weeks ago I emailed the property management that there is mould in the bathroom and water standing in the cellar. Last week a termination for the end of March arrived by registered mail, without any reason. I’ve never caused problems and always paid on time. I think this is because of my report. Can I fight it? I didn’t fully understand the deadline.",
+    "expected_lane": 3,
+    "expected_lane_raw": "CASE 8 - lane 3",
+    "expected_lane_note": "",
+    "acceptable_lanes": [
+      3
+    ],
+    "gold_articles": [
+      "OR 271a",
+      "OR 273",
+      "OR 266l",
+      "OR 266m",
+      "OR 266n",
+      "OR 266o",
+      "OR 271"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "4A_345/2007",
+      "LF190080"
+    ],
+    "gold_questions": [
+      {
+        "text": "Has the property management replied to your email or taken any action (inspection, repair, contractor visit)? What exactly did they say or do, and when?",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "Is the lease for an unlimited or fixed period, what notice period and termination dates does it state, and is the end of March the first possible date under it?",
+        "source": "list",
+        "line": 8
+      },
+      {
+        "text": "Do other tenants in the building also have a termination?",
+        "source": "list",
+        "line": 9
+      },
+      {
+        "text": "On what exact date was the notice handed to you? If you collected it, when was the collection slip delivered and when was collection first possible?",
+        "source": "table",
+        "line": 37
+      },
+      {
+        "text": "Have you already submitted a challenge to the conciliation authority? If so, when and how?",
+        "source": "table",
+        "line": 38
+      },
+      {
+        "text": "Can you provide every page of the termination notice, including attachments?",
+        "source": "table",
+        "line": 39
+      },
+      {
+        "text": "What exact termination date—including the year—is stated, and what does your lease say about notice periods and permitted termination dates?",
+        "source": "table",
+        "line": 40
+      },
+      {
+        "text": "Who is named as tenant in the lease? Is this the family home you share with a spouse or registered partner, and did each receive a separate notice?",
+        "source": "table",
+        "line": 41
+      },
+      {
+        "text": "Can you provide the original defect email and all replies? Did you ask for repairs, an inspection or a rent reduction?",
+        "source": "table",
+        "line": 42
+      },
+      {
+        "text": "Did management make threats, express annoyance or link your complaint to moving out? Are there witnesses or messages?",
+        "source": "table",
+        "line": 50
+      },
+      {
+        "text": "Has management mentioned renovation, sale, owner occupation or any other reason, either before or after your email? Were other flats terminated too?",
+        "source": "table",
+        "line": 51
+      },
+      {
+        "text": "Were there any earlier warnings, payment disputes or other disagreements?",
+        "source": "table",
+        "line": 52
+      },
+      {
+        "text": "Have you had earlier conciliation or court proceedings with the landlord, or a documented settlement of a disputed tenancy claim?",
+        "source": "table",
+        "line": 53
+      },
+      {
+        "text": "What photographs, inspection reports or witnesses document the mould and water? Has management blamed ventilation or refused access?",
+        "source": "table",
+        "line": 54
+      },
+      {
+        "text": "Would moving cause particular hardship—because of health, children, finances or difficulty finding another flat—and what searches have you made?",
+        "source": "table",
+        "line": 55
+      }
+    ],
+    "deadline_facts": [
+      "Is the lease for an unlimited or fixed period, what notice period and termination dates does it state, and is the end of March the first possible date under it?",
+      "The urgent issue is the 30-day deadline: under Art. 273(1) OR, the challenge must be submitted to the tenancy conciliation authority within 30 days after receipt—not within 30 days before the March termination date.",
+      "Do not wait for all the evidence before protecting that deadline.",
+      "Objective: retain the flat and understand the challenge deadline.",
+      "Establishes the start of the 30-day deadline.",
+      "Establishes whether the deadline has been protected.",
+      "A defect report alone does not automatically create a three-year protected period.",
+      "No need to investigate unrelated personal details or commission a mould report before protecting the deadline.",
+      "That request does not suspend the challenge deadline.",
+      "Deadline and immediate next step",
+      "The 30-day period starts the day after legally effective receipt.",
+      "Do not assume that the seven-day postal collection period extends the challenge deadline.",
+      "If the deadline may already have passed, urgently assess formal invalidity rather than assuming every route is closed."
+    ]
+  },
+  {
+    "case_no": 9,
+    "file": "hack the law-17.md",
+    "prompt": "Hello, my boyfriend and I have lived together for three years in a 3-room flat in Schlieren, and we both signed the lease. We’ve now split up. He moved in with his parents last week and no longer wants to pay anything. I have our 2-year-old daughter with me. The property management has already asked why only part of the rent is arriving. I don’t know whether I can stay in the flat alone and who is liable for what. He says he has given notice.",
+    "expected_lane": 2,
+    "expected_lane_raw": "CASE 9 - lane 2",
+    "expected_lane_note": "Title says lane 2; the team text ends 'Lane recommendation: B with escalation tripwires' (Route B = Lane 2, moved from an earlier Route C = Lane 3), with triggers that flip to C/Lane 3 (Art. 257d demand or termination notice).",
+    "acceptable_lanes": [
+      2
+    ],
+    "gold_articles": [
+      "OR 544",
+      "OR 144",
+      "OR 266l",
+      "ZGB 121",
+      "OR 148",
+      "ZGB 285",
+      "OR 257d",
+      "OR 273",
+      "OR 272a"
+    ],
+    "gold_articles_missing_in_corpus": [],
+    "gold_decisions": [
+      "BGE 140 III 491"
+    ],
+    "gold_questions": [
+      {
+        "text": "Did you sign his notice or authorise him to terminate the lease for both of you?",
+        "source": "list",
+        "line": 7
+      },
+      {
+        "text": "What is the most formal communication you have received from property management about the unpaid rent?",
+        "source": "list",
+        "line": 8
+      },
+      {
+        "text": "Can you share the lease and any notice or rent-arrears letter, including the dates you received them?",
+        "source": "list",
+        "line": 9
+      },
+      {
+        "text": "What does the lease say about the tenants, the notice period, the termination dates and the rent due date? Are you both named as tenants on the same lease, and is there a fixed term?",
+        "source": "list",
+        "line": 10
+      },
+      {
+        "text": "What is your own income, and does it cover the full rent alone? Do you receive child support, family allowances, or any other support, and does your ex-partner have any obligation to your daughter that has already been discussed or agreed?",
+        "source": "list",
+        "line": 11
+      }
+    ],
+    "deadline_facts": [
+      "What does the lease say about the tenants, the notice period, the termination dates and the rent due date?",
+      "Do not assume negotiations suspend a deadline.",
+      "Check every letter carefully. Under Art. 257d OR, the landlord can give a written payment deadline of at least 30 days, with a threat of termination.",
+      "If the arrears are not paid within that deadline, it can terminate a residential lease with at least 30 days’ notice to the end of a month.",
+      "If a landlord’s termination arrives, obtain advice immediately. Under Art. 273 OR, a challenge normally must reach the tenancy conciliation authority within 30 days of receipt.",
+      "No fixed deadline is running yet. There’s no Art. 257d OR payment demand and no termination notice, only a partial rent shortfall and a management inquiry."
+    ]
+  }
+]

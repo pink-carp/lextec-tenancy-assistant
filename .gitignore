@@ -1,0 +1,19 @@
+# secrets
+.env
+# local environment
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# copyrighted commentary (Schulthess, Orell Füssli) — keep out of the public repo
+case 1 - legal commentary/
+corpus/commentary_chunks.jsonl
+# team working files not meant for publication
+*.docx
+or pdf 66-86.pdf
+.tools/
+# papers and slides supplied for the challenge (third-party copyright)
+PermitBot.pdf
+LexTec_Hackathon.pptx.pdf
+.claude/
+.vercel

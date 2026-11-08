@@ -1,0 +1,9 @@
+.venv
+.tools
+.env
+corpus/fedlex
+bench/results/*/
+case 1 - legal commentary
+*.docx
+*.pdf
+tests

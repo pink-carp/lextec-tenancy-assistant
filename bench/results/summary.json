@@ -1,0 +1,1298 @@
+{
+ "harness_apertus70b": [
+  {
+   "case": 1,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 9,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.86,
+   "gold_found": [
+    "OR 256",
+    "OR 259a",
+    "OR 259b",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [
+    "OR 257d"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 3,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 119.8,
+   "cost_usd": 0.0633,
+   "harness_removed_by_checks": 2,
+   "harness_questions_dropped": 2
+  },
+  {
+   "case": 2,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 4,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 257d",
+    "OR 266n",
+    "OR 272a"
+   ],
+   "gold_missed": [
+    "OR 266l",
+    "OR 266o",
+    "OR 273"
+   ],
+   "claims": {
+    "supported": 1,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.6666666666666666,
+   "seconds": 10.7,
+   "cost_usd": 0.0532,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 0
+  },
+  {
+   "case": 3,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 2,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 272a"
+   ],
+   "gold_missed": [
+    "OR 273"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.15384615384615385,
+   "seconds": 97.1,
+   "cost_usd": 0.0581,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 2
+  },
+  {
+   "case": 4,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 1,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.25,
+   "gold_found": [
+    "OR 257e"
+   ],
+   "gold_missed": [
+    "OR 267",
+    "OR 267a",
+    "ZPO 113"
+   ],
+   "claims": {
+    "supported": 2,
+    "conditional": 1,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 83.9,
+   "cost_usd": 0.0479,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 6
+  },
+  {
+   "case": 5,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 5,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.0,
+   "gold_found": [],
+   "gold_missed": [
+    "OR 1",
+    "OR 269d"
+   ],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 94.6,
+   "cost_usd": 0.056,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 6
+  },
+  {
+   "case": 6,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 8,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 269a",
+    "OR 269d"
+   ],
+   "gold_missed": [
+    "OR 269",
+    "OR 270b"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.38461538461538464,
+   "seconds": 71.5,
+   "cost_usd": 0.0507,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 2
+  },
+  {
+   "case": 7,
+   "expected": [
+    2,
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 256",
+    "OR 257d",
+    "OR 259a",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [
+    "OR 259b",
+    "OR 259e"
+   ],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 118.8,
+   "cost_usd": 0.0674,
+   "harness_removed_by_checks": 3,
+   "harness_questions_dropped": 4
+  },
+  {
+   "case": 8,
+   "expected": [
+    3
+   ],
+   "lane": 2,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 10,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.57,
+   "gold_found": [
+    "OR 266l",
+    "OR 266n",
+    "OR 271",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266m",
+    "OR 266o",
+    "OR 271a"
+   ],
+   "claims": {
+    "supported": 1,
+    "conditional": 0,
+    "partly": 3,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 103.9,
+   "cost_usd": 0.061,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 1
+  },
+  {
+   "case": 9,
+   "expected": [
+    2
+   ],
+   "lane": 3,
+   "lane_ok": false,
+   "under_escalated": false,
+   "over_escalated": true,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.33,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 272a"
+   ],
+   "gold_missed": [
+    "OR 144",
+    "OR 148",
+    "OR 273",
+    "OR 544",
+    "ZGB 121",
+    "ZGB 285"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.4,
+   "seconds": 111.2,
+   "cost_usd": 0.0612,
+   "harness_removed_by_checks": 5,
+   "harness_questions_dropped": 3
+  }
+ ],
+ "harness_final_apertus70b": [
+  {
+   "case": 1,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.57,
+   "gold_found": [
+    "OR 256",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [
+    "OR 257d",
+    "OR 259a",
+    "OR 259b"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 85.3,
+   "cost_usd": 0.056,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 2
+  },
+  {
+   "case": 2,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 5,
+   "articles_invalid": [],
+   "decisions_mentioned": 1,
+   "decisions_invalid": [],
+   "gold_recall": 0.67,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 266n",
+    "OR 266o"
+   ],
+   "gold_missed": [
+    "OR 272a",
+    "OR 273"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.3333333333333333,
+   "seconds": 78.7,
+   "cost_usd": 0.0619,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 1
+  },
+  {
+   "case": 3,
+   "expected": [
+    2
+   ],
+   "lane": 3,
+   "lane_ok": false,
+   "under_escalated": false,
+   "over_escalated": true,
+   "articles_mentioned": 8,
+   "articles_invalid": [
+    "OR 274g"
+   ],
+   "decisions_mentioned": 1,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 272a"
+   ],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.23076923076923078,
+   "seconds": 99.8,
+   "cost_usd": 0.0667,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 0
+  },
+  {
+   "case": 4,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 1,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.0,
+   "gold_found": [],
+   "gold_missed": [
+    "OR 257e",
+    "OR 267",
+    "OR 267a",
+    "ZPO 113"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 63.8,
+   "cost_usd": 0.0502,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 7
+  },
+  {
+   "case": 5,
+   "expected": [
+    2
+   ],
+   "lane": 3,
+   "lane_ok": false,
+   "under_escalated": false,
+   "over_escalated": true,
+   "articles_mentioned": 3,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.0,
+   "gold_found": [],
+   "gold_missed": [
+    "OR 1",
+    "OR 269d"
+   ],
+   "claims": {
+    "supported": 2,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.3333333333333333,
+   "seconds": 22.6,
+   "cost_usd": 0.0578,
+   "harness_removed_by_checks": 4,
+   "harness_questions_dropped": 3
+  },
+  {
+   "case": 6,
+   "expected": [
+    3
+   ],
+   "lane": 2,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 10,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 269",
+    "OR 269d",
+    "OR 270b"
+   ],
+   "gold_missed": [
+    "OR 269a"
+   ],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.3076923076923077,
+   "seconds": 83.7,
+   "cost_usd": 0.0624,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 1
+  },
+  {
+   "case": 7,
+   "expected": [
+    2,
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 8,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 256",
+    "OR 259b",
+    "OR 259d",
+    "OR 259g"
+   ],
+   "gold_missed": [
+    "OR 257d",
+    "OR 259a",
+    "OR 259e",
+    "OR 259h"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 2,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 84.7,
+   "cost_usd": 0.0612,
+   "harness_removed_by_checks": 0,
+   "harness_questions_dropped": 2
+  },
+  {
+   "case": 8,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.57,
+   "gold_found": [
+    "OR 266l",
+    "OR 266n",
+    "OR 271",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266m",
+    "OR 266o",
+    "OR 271a"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 98.0,
+   "cost_usd": 0.0651,
+   "harness_removed_by_checks": 1,
+   "harness_questions_dropped": 0
+  },
+  {
+   "case": 9,
+   "expected": [
+    2
+   ],
+   "lane": 3,
+   "lane_ok": false,
+   "under_escalated": false,
+   "over_escalated": true,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 1,
+   "decisions_invalid": [],
+   "gold_recall": 0.22,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l"
+   ],
+   "gold_missed": [
+    "OR 144",
+    "OR 148",
+    "OR 272a",
+    "OR 273",
+    "OR 544",
+    "ZGB 121",
+    "ZGB 285"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 2,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.6,
+   "seconds": 100.9,
+   "cost_usd": 0.0716,
+   "harness_removed_by_checks": 6,
+   "harness_questions_dropped": 2
+  }
+ ],
+ "plain_apertus70b": [
+  {
+   "case": 1,
+   "expected": [
+    2
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 13,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 1.0,
+   "gold_found": [
+    "OR 256",
+    "OR 257d",
+    "OR 259a",
+    "OR 259b",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 2,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 44.3,
+   "cost_usd": 0.0197
+  },
+  {
+   "case": 2,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 4,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.33,
+   "gold_found": [
+    "OR 257d",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266l",
+    "OR 266n",
+    "OR 266o",
+    "OR 272a"
+   ],
+   "claims": {
+    "supported": 5,
+    "conditional": 1,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.6666666666666666,
+   "seconds": 35.5,
+   "cost_usd": 0.019
+  },
+  {
+   "case": 3,
+   "expected": [
+    2
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 4,
+   "articles_invalid": [],
+   "decisions_mentioned": 1,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 272a"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 1
+   },
+   "question_coverage": 0.5384615384615384,
+   "seconds": 35.4,
+   "cost_usd": 0.0191
+  },
+  {
+   "case": 4,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 3,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.25,
+   "gold_found": [
+    "OR 257e"
+   ],
+   "gold_missed": [
+    "OR 267",
+    "OR 267a",
+    "ZPO 113"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 3,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 24.9,
+   "cost_usd": 0.0176
+  },
+  {
+   "case": 5,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 1"
+   ],
+   "gold_missed": [
+    "OR 269d"
+   ],
+   "claims": {
+    "supported": 2,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 4,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.6666666666666666,
+   "seconds": 30.8,
+   "cost_usd": 0.0187
+  },
+  {
+   "case": 6,
+   "expected": [
+    3
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 5,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.75,
+   "gold_found": [
+    "OR 269",
+    "OR 269d",
+    "OR 270b"
+   ],
+   "gold_missed": [
+    "OR 269a"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.23076923076923078,
+   "seconds": 27.2,
+   "cost_usd": 0.0182
+  },
+  {
+   "case": 7,
+   "expected": [
+    2,
+    3
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.62,
+   "gold_found": [
+    "OR 256",
+    "OR 257d",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [
+    "OR 259a",
+    "OR 259b",
+    "OR 259e"
+   ],
+   "claims": {
+    "supported": 2,
+    "conditional": 0,
+    "partly": 3,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 31.8,
+   "cost_usd": 0.0189
+  },
+  {
+   "case": 8,
+   "expected": [
+    3
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 5,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.57,
+   "gold_found": [
+    "OR 266n",
+    "OR 271",
+    "OR 271a",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266l",
+    "OR 266m",
+    "OR 266o"
+   ],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 27.0,
+   "cost_usd": 0.0181
+  },
+  {
+   "case": 9,
+   "expected": [
+    2
+   ],
+   "lane": 1,
+   "lane_ok": false,
+   "under_escalated": true,
+   "over_escalated": false,
+   "articles_mentioned": 13,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.33,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 144",
+    "OR 148",
+    "OR 272a",
+    "OR 544",
+    "ZGB 121",
+    "ZGB 285"
+   ],
+   "claims": {
+    "supported": 2,
+    "conditional": 0,
+    "partly": 2,
+    "not_supported": 3,
+    "not_applicable": 1,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.6,
+   "seconds": 36.3,
+   "cost_usd": 0.0199
+  }
+ ],
+ "plain_nemotron120b": [
+  {
+   "case": 1,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 10,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 1.0,
+   "gold_found": [
+    "OR 256",
+    "OR 257d",
+    "OR 259a",
+    "OR 259b",
+    "OR 259d",
+    "OR 259g",
+    "OR 259h"
+   ],
+   "gold_missed": [],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 2,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 25.3,
+   "cost_usd": 0.0126
+  },
+  {
+   "case": 2,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 4,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.33,
+   "gold_found": [
+    "OR 257d",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266l",
+    "OR 266n",
+    "OR 266o",
+    "OR 272a"
+   ],
+   "claims": {
+    "supported": 5,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 2,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 0.7,
+   "cost_usd": 0.0119
+  },
+  {
+   "case": 3,
+   "expected": [
+    2
+   ],
+   "lane": 3,
+   "lane_ok": false,
+   "under_escalated": false,
+   "over_escalated": true,
+   "articles_mentioned": 2,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 257d",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266l",
+    "OR 272a"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 48.3,
+   "cost_usd": 0.0112
+  },
+  {
+   "case": 4,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 2,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.5,
+   "gold_found": [
+    "OR 257e",
+    "OR 267a"
+   ],
+   "gold_missed": [
+    "OR 267",
+    "ZPO 113"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.0,
+   "seconds": 19.6,
+   "cost_usd": 0.0123
+  },
+  {
+   "case": 5,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 4,
+   "articles_invalid": [],
+   "decisions_mentioned": 1,
+   "decisions_invalid": [],
+   "gold_recall": 0.0,
+   "gold_found": [],
+   "gold_missed": [
+    "OR 1",
+    "OR 269d"
+   ],
+   "claims": {
+    "supported": 0,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 4
+   },
+   "question_coverage": 0.3333333333333333,
+   "seconds": 27.5,
+   "cost_usd": 0.0123
+  },
+  {
+   "case": 6,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 9,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 1.0,
+   "gold_found": [
+    "OR 269",
+    "OR 269a",
+    "OR 269d",
+    "OR 270b"
+   ],
+   "gold_missed": [],
+   "claims": {
+    "supported": 4,
+    "conditional": 0,
+    "partly": 0,
+    "not_supported": 1,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.38461538461538464,
+   "seconds": 17.8,
+   "cost_usd": 0.0126
+  },
+  {
+   "case": 7,
+   "expected": [
+    2,
+    3
+   ],
+   "error": "LLMError: aisingapore/Nemotron-SEA-LION-v4.8-120B-A12B returned invalid JSON twice in step 'plain': Unterminated string starting at: line 1 column 3704 (char 3703) (finish_reason=length, 3000 tokens, ends with: 's of landlord’s non-response or refusal\"}, {\"action\": \"Challenge termination or request extension (if termination notice')"
+  },
+  {
+   "case": 8,
+   "expected": [
+    3
+   ],
+   "lane": 3,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 8,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.43,
+   "gold_found": [
+    "OR 266l",
+    "OR 271a",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 266m",
+    "OR 266n",
+    "OR 266o",
+    "OR 271"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 1,
+    "not_supported": 0,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": null,
+   "seconds": 15.5,
+   "cost_usd": 0.0124
+  },
+  {
+   "case": 9,
+   "expected": [
+    2
+   ],
+   "lane": 2,
+   "lane_ok": true,
+   "under_escalated": false,
+   "over_escalated": false,
+   "articles_mentioned": 7,
+   "articles_invalid": [],
+   "decisions_mentioned": 0,
+   "decisions_invalid": [],
+   "gold_recall": 0.33,
+   "gold_found": [
+    "OR 257d",
+    "OR 266l",
+    "OR 273"
+   ],
+   "gold_missed": [
+    "OR 144",
+    "OR 148",
+    "OR 272a",
+    "OR 544",
+    "ZGB 121",
+    "ZGB 285"
+   ],
+   "claims": {
+    "supported": 3,
+    "conditional": 0,
+    "partly": 2,
+    "not_supported": 3,
+    "not_applicable": 0,
+    "no_valid_citation": 0
+   },
+   "question_coverage": 0.2,
+   "seconds": 61.0,
+   "cost_usd": 0.0135
+  }
+ ]
+}

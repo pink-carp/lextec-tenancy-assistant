@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tenancy Information Assistant</title>
+<style>
+  :root { --ink:#1b1b1b; --muted:#5a5a5a; --line:#c9c9c9; --bg:#ffffff; --panel:#f4f4f2; --accent:#1d4f91;
+          --warn:#8a5a00; --warnbg:#fff4dc; --bad:#9b1c1c; --badbg:#fdeaea; --ok:#1f6b33; --okbg:#e7f4ea; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+  header { border-bottom:3px solid var(--accent); padding:14px 16px; }
+  header h1 { margin:0; font-size:22px; }
+  header p { margin:2px 0 0; color:var(--muted); font-size:15px; }
+  main { max-width: 980px; margin: 0 auto; padding: 16px; }
+  h2 { font-size:20px; margin:28px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  h3 { font-size:17px; margin:18px 0 6px; }
+  .note { background:var(--panel); border-left:4px solid var(--accent); padding:10px 12px; margin:10px 0; font-size:15px; }
+  .warn { background:var(--warnbg); border-left:4px solid var(--warn); padding:10px 12px; margin:10px 0; }
+  .bad { background:var(--badbg); border-left:4px solid var(--bad); padding:10px 12px; margin:10px 0; }
+  .ok { background:var(--okbg); border-left:4px solid var(--ok); padding:10px 12px; margin:10px 0; }
+  textarea, input[type=text], input[type=date], input[type=number], select { font:inherit; width:100%; padding:8px; border:1px solid #8a8a8a; border-radius:3px; background:#fff; }
+  textarea { min-height:150px; }
+  label { display:block; font-weight:600; margin:10px 0 4px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; } .row > * { flex:1 1 240px; }
+  button { font:inherit; padding:9px 16px; border-radius:3px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  button.secondary { background:#fff; color:var(--accent); }
+  button:disabled { opacity:.5; cursor:default; }
+  .card { border:1px solid var(--line); border-radius:4px; padding:10px 12px; margin:8px 0; background:#fff; }
+  .card .src { color:var(--muted); font-size:14px; margin-top:4px; }
+  .tag { display:inline-block; font-size:13px; padding:1px 7px; border:1px solid var(--line); border-radius:10px; margin-right:4px; background:var(--panel); }
+  .tag.disputed { border-color:var(--warn); background:var(--warnbg); }
+  .tag.inferred { border-color:#888; }
+  .chip { display:inline-block; font-size:13px; padding:1px 7px; margin:2px 4px 2px 0; border:1px solid var(--accent); color:var(--accent); border-radius:3px; cursor:pointer; background:#fff; }
+  table { border-collapse:collapse; width:100%; font-size:15px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); }
+  .lane { font-size:22px; font-weight:700; padding:12px; border:2px solid var(--accent); border-radius:4px; margin:10px 0; }
+  .lane3 { border-color:var(--bad); } .lane2 { border-color:var(--warn); } .lane1 { border-color:var(--ok); }
+  .muted { color:var(--muted); font-size:14px; }
+  .hidden { display:none; }
+  .steps li { margin:4px 0; } .steps li.done { color:var(--ok); } .steps li.now { font-weight:700; }
+  dialog { max-width:760px; width:92vw; border:1px solid var(--line); border-radius:4px; }
+  .cols { display:grid; grid-template-columns: 1fr 1fr; gap:16px; } @media (max-width:760px){ .cols { grid-template-columns: 1fr; } }
+  .chk { font-weight:400; display:flex; gap:8px; align-items:flex-start; margin:4px 0; }
+  .chk input { margin-top:5px; }
+  @media print { header, .noprint, button { display:none !important; } body { font-size:13px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tenancy information assistant</h1>
+  <p>For social workers in the canton of Zurich · residential tenancy · <strong>legal information, not legal advice</strong></p>
+</header>
+<main>
+
+<section id="s1">
+  <div class="note"><strong>What this tool does:</strong> it reads your description of a tenancy problem, asks the follow-up
+  questions that matter, finds the relevant articles and court decisions, calculates deadlines, and suggests a lane:
+  information (1), information with open questions (2) or referral to a specialist (3). <strong>What it does not do:</strong>
+  give legal advice, decide disputes, or replace your professional judgement. You stay responsible for what you pass on.
+  Please do not type names or ID numbers; give the municipality instead of the street address.</div>
+  <p class="muted noprint">Try an example from the legal team: <select id="ex" style="width:auto"><option value="">—</option></select>
+     · <a href="/benchmark">Benchmark results</a></p>
+  <label for="desc">Describe your client's situation in your own words</label>
+  <textarea id="desc" placeholder="e.g. My client received a registered letter today saying..."></textarea>
+  <div class="row">
+    <div><label for="lang">Client's language (for the handout)</label>
+      <select id="lang"><option>English</option><option>German</option><option>French</option><option>Italian</option>
+        <option>Albanian</option><option>Arabic</option><option>Portuguese</option><option>Spanish</option><option>Tamil</option>
+        <option>Tigrinya</option><option>Turkish</option><option>Ukrainian</option><option>Somali</option><option>Russian</option></select></div>
+  </div>
+  <label class="chk"><input type="checkbox" id="consent"> The client knows that an AI tool is used, and that the case data is deleted when the case ends.</label>
+  <p><button id="go">Analyse</button> <span id="s1msg" class="muted"></span></p>
+</section>
+
+<section id="s2" class="hidden">
+  <h2>Step 2 · Check what was understood</h2>
+  <div id="urgent"></div>
+  <h3>Facts</h3><p class="muted">Each fact shows the sentence it came from. Correct anything that is wrong.</p>
+  <div id="facts"></div>
+  <div id="disputesWrap"></div>
+  <h3>Dates that may start a deadline</h3><div id="events"></div>
+  <h3>Legal issues identified</h3><div id="issues"></div>
+  <h3>Warning signs</h3><p class="muted">Untick anything that does not apply.</p><div id="signals"></div>
+  <h3>Personal vulnerability</h3>
+  <p class="muted">Your rating, 1 (none) to 10 (extreme). Indicators to consider: children or minors, pregnancy or single parent,
+  violence or coercion, disability or access difficulties, exploitation or dependency, severe financial hardship, language or
+  literacy barriers. It changes the support offered, never the legal analysis.</p>
+  <div class="row"><div><input type="range" id="vuln" min="1" max="10" value="5"> <strong id="vulnv">5</strong> <span id="vulnsrc" class="muted"></span></div></div>
+  <div id="scope"></div>
+  <p><button id="toQ">Confirm and show questions</button> <span id="s2msg" class="muted"></span></p>
+</section>
+
+<section id="s3" class="hidden">
+  <h2>Step 3 · Ask your client</h2>
+  <p class="muted">Urgent questions first. "I don't know" and "Can't get this" are always fine: unknown never counts as "no".</p>
+  <div id="questions"></div>
+  <p><button id="moreQ" class="secondary hidden">Show more questions</button></p>
+  <div id="dropped"></div>
+  <p><button id="toA">Assess</button> <span id="s3msg" class="muted"></span></p>
+</section>
+
+<section id="s4" class="hidden">
+  <h2>Working</h2>
+  <ol class="steps" id="steps"><li>Calculating deadlines</li><li>Checking the lane against the framework</li><li>Writing the assessment</li><li>Checking every citation</li></ol>
+  <p class="muted" id="timer"></p>
+</section>
+
+<section id="s5" class="hidden">
+  <h2>Result for the social worker</h2>
+  <div id="result"></div>
+  <div class="noprint">
+    <p><button id="hout">Client handout</button> <button id="brf" class="secondary">Expert brief</button>
+       <button id="aud" class="secondary">Download audit trail</button> <button id="ovr" class="secondary">Change lane</button>
+       <button id="upd" class="secondary">Update answers and reassess</button> <button id="end" class="secondary">End case (delete data)</button></p>
+  </div>
+  <div id="extra"></div>
+</section>
+
+<dialog id="dlg"><div id="dlgbody"></div><p><button onclick="dlg.close()">Close</button></p></dialog>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let C = null, STATE = null, SOURCES = {}, QS = [], SHOW = 5, VULN_TOUCHED = false;
+
+// The browser holds the case (STATE) and sends it back with each step; the server stores nothing.
+function code() { try { return sessionStorage.getItem("accessCode") || ""; } catch (e) { return ""; } }
+async function send(path, opts) {
+  let r = await fetch(path, {...opts, headers: {...(opts.headers || {}), "X-Access-Code": code()}});
+  if (r.status === 401) {
+    const c = prompt("Access code for this demo:");
+    try { sessionStorage.setItem("accessCode", c || ""); } catch (e) {}
+    r = await fetch(path, {...opts, headers: {...(opts.headers || {}), "X-Access-Code": c || ""}});
+  }
+  if (!r.ok) { const t = await r.text(); throw new Error(t.slice(0, 300)); }
+  const j = await r.json();
+  if (j.state) STATE = j.state;
+  return j;
+}
+async function api(path, body) {
+  return send(path, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+}
+function busy(btn, msgEl, on, text) { btn.disabled = on; msgEl.textContent = on ? text : ""; }
+function chip(id) { return `<span class="chip" onclick="showSrc('${esc(id).replace(/'/g, "\\'")}')">${esc(id)}</span>`; }
+function showSrc(id) {
+  const s = SOURCES[id];
+  $("#dlgbody").innerHTML = s ? `<h3>${esc(id)}</h3><p>${esc(s.text)}</p><p class="muted">${s.version ? "Official text, version of " + esc(s.version) + ". " : ""}<a href="${esc(s.url)}" target="_blank" rel="noopener">Open the source</a></p>`
+                              : `<p>${esc(id)}</p>`;
+  $("#dlg").showModal();
+}
+function sentencesOf(ids) { return (ids || []).map(i => `“${esc(C.sentences[i - 1] || "")}”`).join(" "); }
+
+// ---------------- step 1
+send("/api/examples", {method: "GET"}).then(xs => {
+  $("#ex").innerHTML += xs.map(x => `<option value="${x.case_no}">Case ${x.case_no}: ${esc(x.prompt.slice(0, 50))}…</option>`).join("");
+  $("#ex").onchange = () => { const x = xs.find(y => y.case_no == $("#ex").value); if (x) $("#desc").value = x.prompt; };
+});
+$("#go").onclick = async () => {
+  if (!$("#consent").checked) { $("#s1msg").textContent = "Please confirm the client has been informed."; return; }
+  busy($("#go"), $("#s1msg"), true, "Reading the description (about 20–30 seconds)…");
+  try {
+    C = await api("/api/case", {description: $("#desc").value, client_language: $("#lang").value});
+    renderUnderstanding(); $("#s2").classList.remove("hidden"); $("#s2").scrollIntoView({behavior:"smooth"});
+  } catch (e) { $("#s1msg").textContent = "Error: " + e.message; }
+  busy($("#go"), $("#s1msg"), false);
+};
+
+function renderUnderstanding() {
+  const u = C.understanding;
+  const urg = C.signals.filter(s => s.index === "urgency" && ["current","future"].includes(s.tense));
+  $("#urgent").innerHTML = urg.length ? `<div class="warn"><strong>A deadline may be running.</strong> Ask first: on what date did the client receive the letter or notice, and how (registered mail, collection slip)?</div>` : "";
+  $("#facts").innerHTML = C.facts.map((f, i) => `<div class="card"><span class="tag">${esc(f.heading.replace("_"," "))}</span>
+     ${f.status === "inferred" ? '<span class="tag inferred">inferred – please check</span>' : `<span class="tag">${esc(f.status)}</span>`}
+     <textarea data-fact="${i}" style="min-height:44px">${esc(f.statement)}</textarea>
+     <div class="src">Source: ${f.sentences.length ? sentencesOf(f.sentences) : "not stated directly in the description"}</div></div>`).join("");
+  $("#disputesWrap").innerHTML = C.disputes.length ? `<h3>Disputed facts</h3>` + C.disputes.map(d => `<div class="card"><span class="tag disputed">Disputed</span> <strong>${esc(d.topic)}</strong>
+     <div class="cols"><div><span class="muted">Client says</span><br>${esc(d.client_position)}</div><div><span class="muted">${esc(d.other_party)} says (as reported by the client)</span><br>${esc(d.other_position)}</div></div>
+     <div class="src">Evidence that could settle it: ${esc(d.evidence_that_could_settle_it)}. The tool does not decide disputes.</div></div>`).join("") : "";
+  $("#events").innerHTML = (C.events || []).length ? C.events.map(e => `<div class="card">${esc(e.event)} — <strong>${e.precision === "exact" ? esc(e.date) : e.precision === "estimate" ? "between " + esc(e.date_from) + " and " + esc(e.date_to) + " (estimate)" : "date unknown"}</strong>
+     <div class="src">${sentencesOf(e.sentences)}</div></div>`).join("") : "<p class='muted'>None identified.</p>";
+  $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)}<br>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}
+     <div class="src">${esc(i.why)}</div></div>`).join("") +
+     `<p class="muted">Related articles added by code (cross-references and exceptions): ${Object.entries(C.articles_expanded || {}).filter(([k,v]) => v !== "chosen by the AI").map(([k,v]) => esc(k) + " (" + esc(v) + ")").join("; ") || "none"}</p>`;
+  $("#signals").innerHTML = C.signals.map((s, i) => `<label class="chk"><input type="checkbox" data-sig="${i}" ${s.confirmed !== false ? "checked" : ""}>
+     <span><strong>${esc(s.index)}</strong>: ${esc(s.description)} <span class="muted">(${esc(s.tense)}; concerns ${esc(s.concerns.replace("_"," "))}) ${sentencesOf(s.sentences)}</span></span></label>`).join("");
+  $("#vuln").value = C.vulnerability_score; $("#vulnv").textContent = C.vulnerability_score;
+  $("#vulnsrc").textContent = "Suggested: " + C.vulnerability_source + ". Please set your own rating.";
+  $("#vuln").oninput = () => { VULN_TOUCHED = true; $("#vulnv").textContent = $("#vuln").value; $("#vulnsrc").textContent = "your rating"; };
+  const sc = u.scope;
+  $("#scope").innerHTML = sc.tenancy_related === "no" ? `<div class="bad">This does not appear to be a tenancy problem. The service covers residential tenancy in the canton of Zurich only.</div>`
+    : sc.canton_zurich === "no" ? `<div class="warn">This service covers the canton of Zurich only. Federal tenancy law applies everywhere, but contacts and court details here are for Zurich.</div>`
+    : (sc.other_areas_of_law || []).length ? `<div class="note">Other areas of law involved: ${sc.other_areas_of_law.map(esc).join(", ")}. This raises the complexity.</div>` : "";
+}
+
+// ---------------- step 2 -> 3
+$("#toQ").onclick = async () => {
+  document.querySelectorAll("[data-fact]").forEach(t => C.facts[+t.dataset.fact].statement = t.value);
+  document.querySelectorAll("[data-sig]").forEach(c => C.signals[+c.dataset.sig].confirmed = c.checked);
+  busy($("#toQ"), $("#s2msg"), true, "Preparing questions (about 20–30 seconds)…");
+  try {
+    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null});
+    QS = r.questions; SOURCES = r.sources; renderQuestions(r.dropped_questions);
+    $("#s3").classList.remove("hidden"); $("#s3").scrollIntoView({behavior:"smooth"});
+  } catch (e) { $("#s2msg").textContent = "Error: " + e.message; }
+  busy($("#toQ"), $("#s2msg"), false);
+};
+
+function inputFor(q) {
+  const n = `a_${q.id}`;
+  if (q.input_type === "date") return `<input type="date" id="${n}">`;
+  if (q.input_type === "number") return `<input type="number" id="${n}">`;
+  if (q.input_type === "yes_no_unknown") return `<select id="${n}"><option value="">—</option><option>yes</option><option>no</option></select>`;
+  if (q.input_type === "choice") return `<select id="${n}"><option value="">—</option>${(q.options||[]).map(o => `<option>${esc(o)}</option>`).join("")}</select>`;
+  if (q.input_type === "upload") return `<input type="file" id="f_${q.id}" accept=".pdf,image/*"> <button class="secondary" onclick="uploadDoc('${q.id}')">Read document</button>
+     <div id="up_${q.id}"></div>
+     <details><summary>Answer instead</summary>${(q.answer_instead||[]).map((t,i) => `<label>${esc(t)}</label><input type="text" id="${n}_${i}">`).join("") || `<input type="text" id="${n}">`}
+     <p class="muted">Answers given instead of a document are recorded as the client's statement, not documented.</p></details>`;
+  return `<input type="text" id="${n}">`;
+}
+function renderQuestions(dropped) {
+  $("#questions").innerHTML = QS.map((q, i) => `<div class="card ${i >= SHOW ? "hidden more" : ""}"><span class="tag">${esc(q.priority)}</span> <strong>${esc(q.question)}</strong>
+     <div style="margin:6px 0">${inputFor(q)}</div>
+     <label class="chk"><input type="radio" name="st_${q.id}" value="answered" checked> answer above</label>
+     <label class="chk"><input type="radio" name="st_${q.id}" value="dont_know"> I don't know</label>
+     <label class="chk"><input type="radio" name="st_${q.id}" value="cant_get"> Can't get this</label>
+     <div class="src"><strong>Why we ask:</strong> ${esc(q.why_we_ask)}<br>Legal basis: ${q.legal_basis.map(chip).join("")}${q.added_by ? " · added by the completeness check" : ""}</div></div>`).join("");
+  $("#moreQ").classList.toggle("hidden", QS.length <= SHOW);
+  $("#dropped").innerHTML = (dropped || []).length ? `<details class="muted"><summary>${dropped.length} question(s) removed by the question check</summary>${dropped.map(d => `<p>${esc(d.question)} — ${esc(d.reason)}</p>`).join("")}</details>` : "";
+}
+$("#moreQ").onclick = () => { document.querySelectorAll(".more").forEach(e => e.classList.remove("hidden")); $("#moreQ").classList.add("hidden"); };
+
+async function uploadDoc(qid) {
+  const f = $(`#f_${qid}`).files[0]; if (!f) return;
+  const box = $(`#up_${qid}`); box.innerHTML = "<p class='muted'>Reading…</p>";
+  const fd = new FormData(); fd.append("file", f);
+  fd.append("state", JSON.stringify(STATE));
+  let r;
+  try { r = await send(`/api/case/upload`, {method: "POST", body: fd}); }
+  catch (e) { box.innerHTML = `<div class="bad">The document could not be read (${esc(e.message)}).</div>`; return; }
+  box.dataset.name = f.name;
+  box.innerHTML = `${r.warning ? `<div class="warn">${esc(r.warning)}</div>` : ""}<p class="muted">Read by: ${esc(r.method)}. Check the text against the paper and correct it before using it.</p>
+     <textarea id="doctext_${qid}">${esc(r.text)}</textarea><button class="secondary" onclick="useDoc('${qid}')">Text is correct – use it</button>
+     <p class="muted">Note: photos are sent to the AI service as images; personal details in them are not masked.</p>`;
+}
+async function useDoc(qid) {
+  const name = $(`#up_${qid}`).dataset.name || "document";
+  await api(`/api/case/document`, {state: STATE, name, text: $(`#doctext_${qid}`).value});
+  $(`#up_${qid}`).innerHTML = `<div class="ok">Document added as documented evidence.</div>`;
+  document.querySelector(`input[name=st_${qid}][value=answered]`).checked = true;
+}
+
+function collectAnswers() {
+  return QS.map(q => {
+    const st = document.querySelector(`input[name=st_${q.id}]:checked`).value;
+    let v = "";
+    if (q.input_type === "upload") {
+      v = (q.answer_instead || []).map((t, i) => { const el = $(`#a_${q.id}_${i}`); return el && el.value ? `${t} ${el.value}` : ""; }).filter(Boolean).join("; ");
+      if (!v && $(`#a_${q.id}`)) v = $(`#a_${q.id}`).value;
+      if ($(`#up_${q.id}`) && $(`#up_${q.id}`).textContent.includes("Document added")) v = v || "document uploaded";
+    } else { const el = $(`#a_${q.id}`); v = el ? el.value : ""; }
+    return {question_id: q.id, value: v, status: st === "answered" && !v ? "dont_know" : st};
+  });
+}
+
+// ---------------- step 3 -> 5
+let OVERRIDE = null;
+async function runAssess() {
+  $("#s4").classList.remove("hidden"); $("#s4").scrollIntoView({behavior:"smooth"});
+  const items = [...document.querySelectorAll("#steps li")]; let k = 0, t0 = Date.now();
+  items.forEach(li => li.className = ""); items[0].className = "now";
+  const tick = setInterval(() => { const s = Math.round((Date.now() - t0) / 1000); $("#timer").textContent = s + " s";
+    const nk = Math.min(items.length - 1, Math.floor(s / 18)); if (nk !== k) { items[k].className = "done"; k = nk; items[k].className = "now"; } }, 500);
+  try {
+    const r = await api(`/api/case/assess`, {state: STATE, answers: collectAnswers(), override: OVERRIDE});
+    Object.assign(C, r); SOURCES = r.sources; renderResult(); OVERRIDE = null;
+    $("#s5").classList.remove("hidden"); $("#s5").scrollIntoView({behavior:"smooth"});
+  } catch (e) { $("#timer").textContent = "Error: " + e.message; }
+  clearInterval(tick); items.forEach(li => li.className = "done");
+}
+$("#toA").onclick = runAssess;
+$("#upd").onclick = () => $("#s3").scrollIntoView({behavior:"smooth"});
+
+function renderResult() {
+  const s = C.screen, lane = C.lane;
+  const laneName = {1: "Lane 1: information and next steps", 2: "Lane 2: information, some facts still needed", 3: "Lane 3: please involve a specialist"}[lane];
+  const groups = {referral: "Referral", immediate: "Immediate step", now: "Can be done now", needs_clarification: "Needs clarification first"};
+  const dl = Object.fromEntries(C.deadlines.map(d => [d.id, d]));
+  const ct = Object.fromEntries(C.contacts.map(c => [c.id, c]));
+  const facts = C.facts.map(f => `<li>${esc(f.statement)} <span class="tag ${f.status === "inferred" ? "inferred" : ""}">${f.status === "reported" ? "client's account" : f.status === "documented" ? "document" : "inferred – check"}</span></li>`).join("");
+  const removed = C.verification.removed || [];
+  $("#result").innerHTML = `
+   ${C.scope_note ? `<div class="warn">${esc(C.scope_note)}</div>` : ""}
+   <div class="lane lane${lane}">${laneName}</div>
+   <p>${esc(s.lane_explanation)}</p>
+   <p class="muted">Rule applied: ${esc(C.lane_rule)}</p>
+   ${C.verification.unverifiable ? `<div class="bad">Most legal statements could not be verified. Rely on the referral and contacts, not on the legal explanation.</div>` : ""}
+   <table><tr><th>Index</th><th>Level</th><th>Why</th></tr>${["urgency","severity","complexity","vulnerability","information"].map(k =>
+      `<tr><td>${{urgency:"Legal urgency",severity:"Severity of consequences",complexity:"Legal complexity",vulnerability:"Personal vulnerability",information:"Information uncertainty"}[k]}</td><td>${esc(C.indices[k])}</td><td>${(C.index_reasons[k]||[]).map(esc).join("<br>")}</td></tr>`).join("")}</table>
+   <h3>A. Action recommendations</h3>
+   ${s.actions.map(a => `<div class="card"><span class="tag">${esc(groups[a.group] || a.group)}</span> <strong>${esc(a.what)}</strong>
+      <div class="src">Who: ${esc(a.who.replace("_"," "))} · When: ${esc(a.when)}${a.deadline_ids.filter(x => dl[x]).map(x => ` · ${esc(dl[x].action)}: <strong>${dl[x].earliest ? esc(dl[x].earliest) : "date not yet known"}</strong>${dl[x].precautionary ? " (precautionary planning date)" : ""}`).join("")}
+      ${a.depends_on ? "<br>Depends on: " + esc(a.depends_on) : ""}${a.contact_ids.filter(x => ct[x]).map(x => "<br>Contact: " + esc(ct[x].name)).join("")}<br>${a.sources.map(chip).join("")}</div></div>`).join("")}
+   <h3>Deadlines (calculated by code)</h3>
+   ${C.deadlines.length ? C.deadlines.map(d => `<div class="card"><strong>${esc(d.action)}</strong> — ${d.earliest ? `<strong>${esc(d.earliest)}</strong>${d.latest && d.latest !== d.earliest ? " to " + esc(d.latest) : ""}${d.precautionary ? ' <span class="tag disputed">precautionary planning date, not a verified legal deadline</span>' : ""}` : "<em>not yet determinable</em>"}
+      <span class="muted">(${esc(d.who_must_act)} must act)</span>${d.condition ? ` <span class="tag disputed">applies only if: ${esc(d.condition)}</span>` : ""}${d.check === "supported" ? ' <span class="tag">✓ checked against source</span>' : ""}<br>${d.legal_basis.map(chip).join("")}
+      <details><summary class="muted">How this was calculated</summary><ol>${d.steps.map(x => "<li>" + esc(x) + "</li>").join("")}</ol></details></div>`).join("") : "<p class='muted'>No running deadline identified.</p>"}
+   <h3>Contacts (from the legal team's list — please verify before passing on)</h3>
+   ${C.contacts.length ? C.contacts.map(c => `<div class="card"><strong>${esc(c.name)}</strong> <span class="muted">${esc(c.reason_rule)}</span><br>
+      ${esc(c.address || "")} ${(c.phones||[]).map(p => esc(p.label) + ": " + esc(p.number)).join(" · ")} ${c.email ? "· " + esc(c.email) : ""} ${c.url ? `· <a href="${esc(c.url)}" target="_blank" rel="noopener">website</a>` : ""}
+      <div class="src">${esc(c.description || "").slice(0, 300)}${c.cost_note ? " " + esc(c.cost_note) : ""}</div></div>`).join("") : "<p class='muted'>None selected.</p>"}
+   <h3>B. Case summary (neutral overview)</h3>
+   <p>${esc(s.situation)}</p>
+   <p><strong>Facts</strong></p><ul>${facts}</ul>
+   ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
+   ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}
+      ${r.check === "supported" ? '<span class="tag">✓ checked against source</span>' : r.check === "conditional" ? `<span class="tag disputed">applies only if: ${esc(r.condition)}</span>` : r.check === "partly" ? '<span class="tag disputed">partly supported</span>' : ""}</li>`).join("")}</ul>
+      <p class="muted">${esc(i.application)}</p>`).join("")}
+   ${s.open_points.length ? `<p><strong>Open points</strong></p><ul>${s.open_points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+   <h3>C. Lane assessment</h3>
+   <p>${esc(C.lane_rule)} Vulnerability: ${esc(C.vulnerability_score)}/10 (${esc(C.vulnerability_source)}).</p>
+   <details><summary>Verification: ${removed.length} statement(s) removed, ${(C.dropped_deadlines||[]).length} deadline(s) rejected, ${(C.verification.warnings||[]).length} warning(s)</summary>
+      ${removed.map(r => `<p class="muted"><strong>Removed (${esc(r.where)}):</strong> ${esc(r.sentence)}<br>Reason: ${esc(r.reason)}</p>`).join("") || "<p class='muted'>Nothing removed.</p>"}
+      ${(C.verification.warnings||[]).map(w => `<p class="muted"><strong>Warning:</strong> ${esc(w.claim)} — ${esc(w.reason)}</p>`).join("")}
+      ${(C.dropped_deadlines||[]).map(d => `<p class="muted"><strong>Deadline not shown:</strong> ${esc(d.action)} — ${esc(d.reason)}</p>`).join("")}</details>`;
+}
+
+// ---------------- extras
+$("#hout").onclick = async () => {
+  $("#extra").innerHTML = "<p class='muted'>Writing the handout (about 20–40 seconds)…</p>";
+  try {
+    const r = (await api(`/api/case/handout`, {state: STATE, language: $("#lang").value})).handout;
+    const en = r.English, lang = Object.keys(r).find(k => k !== "English"), tr = lang ? r[lang] : null;
+    const block = (h, title, isTr) => `<div><h3>${esc(title)}</h3>
+      ${h.act_now ? `<div class="bad"><strong>${isTr ? "" : "Act now: "}</strong>${esc(h.act_now)}</div>` : ""}
+      <p>${esc(h.summary)}</p><p><strong>${isTr ? "" : "What to do"}</strong></p><ul>${(isTr ? h.actions : h.actions.map(a => a.text)).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+      ${h.questions.length ? `<p><strong>${isTr ? "" : "Please find out"}</strong></p><ol>${h.questions.map(q => `<li>${esc(q.text)}<br><span class="muted">${esc(q.why)} ${esc(q.helpful_document)}</span><br>Answer: ______________________ ☐ I don't know ☐ I cannot obtain this</li>`).join("")}</ol>` : ""}
+      ${h.uncertain ? `<p class="muted">${esc(h.uncertain)}</p>` : ""}</div>`;
+    $("#extra").innerHTML = `<h2>Client handout</h2><p class="muted noprint">Legal information, not legal advice. The left column is for you, so you know exactly what the client receives.</p>
+      <div class="cols">${block(en, "English", false)}${tr ? block(tr, lang + " (machine translation – check dates with the client)", true) : ""}</div>
+      <h3>Contacts</h3><ul>${en.contacts.map(c => `<li>${esc(c.name)} ${(c.phones||[]).map(p => esc(p.number)).join(", ")} ${c.address ? "· " + esc(c.address) : ""}</li>`).join("")}</ul>
+      ${tr && tr.check.numbers_changed_or_missing.length ? `<div class="warn noprint">Check the translation: these numbers differ from the English version: ${tr.check.numbers_changed_or_missing.map(esc).join(", ")}</div>` : ""}
+      <p class="noprint"><button onclick="window.print()">Print</button></p>`;
+  } catch (e) { $("#extra").innerHTML = `<div class="bad">${esc(e.message)}</div>`; }
+};
+$("#brf").onclick = async () => {
+  $("#extra").innerHTML = "<p class='muted'>Writing the expert brief (about 20 seconds)…</p>";
+  try {
+    const b = (await api(`/api/case/brief`, {state: STATE})).brief;
+    $("#extra").innerHTML = `<h2>Expert brief</h2><p><strong>Review status:</strong> ${esc(b.review_status)}</p>
+      <h3>1. Immediate concern and reason for referral</h3><ul><li><strong>Main issue:</strong> ${esc(b.main_issue)}</li><li><strong>Escalation trigger:</strong> ${esc(b.escalation_trigger)}</li>
+      <li><strong>Potential deadlines:</strong> ${b.deadlines.map(d => `${esc(d.action)}: ${esc(d.date)}${d.precautionary ? " (precautionary)" : ""}`).join("; ") || "not established"}</li><li><strong>Immediate risk:</strong> ${esc(b.immediate_risk)}</li></ul>
+      <h3>2. Client's objective and context</h3><p>${esc(b.objective_and_context)}</p>
+      <h3>3. Key facts and chronology</h3><ul>${b.chronology.map(c => `<li>${esc(c.date)} — ${esc(c.event)} (${esc(c.source)})</li>`).join("")}</ul>
+      <ul>${b.facts.map(f => `<li>${esc(f.statement)} — <em>${esc(f.status)}</em></li>`).join("")}${b.disputed.map(d => `<li>${esc(d)} — <em>disputed</em></li>`).join("")}</ul>
+      <h3>4. Preliminary legal assessment</h3><p>${esc(b.preliminary_assessment)}</p>
+      <h3>5. Evidence and outstanding questions</h3><p><strong>Available:</strong> ${b.evidence_available.map(esc).join(", ")}</p><p><strong>Missing:</strong></p><ul>${b.missing.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
+      <h3>6. Action already taken and decision needed</h3><p><strong>Already done:</strong> ${esc(b.already_done)}</p><p><strong>Lawyer asked to assess:</strong> ${esc(b.lawyer_asked_to_assess)}</p>
+      <p class="noprint"><button onclick="window.print()">Print</button></p>`;
+  } catch (e) { $("#extra").innerHTML = `<div class="bad">${esc(e.message)}</div>`; }
+};
+$("#aud").onclick = () => {  // built in the browser from the case it holds
+  const data = {...STATE, note: "Audit trail. Contains client information: handle it like a case note."};
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], {type: "application/json"}));
+  a.download = `audit_${STATE.id}.json`; a.click();
+};
+$("#ovr").onclick = () => {
+  $("#dlgbody").innerHTML = `<h3>Change the lane</h3><p class="muted">Your professional judgement can override the rules. The reason is recorded in the audit trail.</p>
+    <select id="ovl"><option value="1">Lane 1</option><option value="2">Lane 2</option><option value="3">Lane 3</option></select>
+    <label>Reason</label><input type="text" id="ovr_r"><p><button id="ovgo">Apply and reassess</button></p>`;
+  $("#dlg").showModal();
+  $("#ovgo").onclick = () => { OVERRIDE = {lane: +$("#ovl").value, reason: $("#ovr_r").value || "no reason given"}; $("#dlg").close(); runAssess(); };
+};
+$("#end").onclick = () => { STATE = null; C = null; location.reload(); };  // nothing is stored on the server
+</script>
+</body>
+</html>

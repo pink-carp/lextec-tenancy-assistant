@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark Results</title>
+<style>
+  body { margin:0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#1b1b1b; background:#fff; }
+  header { border-bottom:3px solid #1d4f91; padding:14px 16px; } header h1 { margin:0; font-size:22px; }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  table { border-collapse:collapse; width:100%; font-size:15px; margin:10px 0 24px; }
+  th, td { border:1px solid #c9c9c9; padding:6px 8px; text-align:left; vertical-align:top; } th { background:#f4f4f2; }
+  td.num { text-align:right; } .good { background:#e7f4ea; } .bad { background:#fdeaea; }
+  .muted { color:#5a5a5a; font-size:14px; } .wrap { overflow-x:auto; }
+</style>
+</head>
+<body>
+<header><h1>Benchmark: the legal team's 9 example cases</h1></header>
+<main>
+<p class="muted">All systems get the legal team's documents (legal_workflow.md, escalation.md, output.md, deadlines.md) and
+the full official tenancy law. Baselines answer in one call without the harness. Expected lanes and articles come from the
+legal team's files and were never shown to any system. Claim support is rated by an independent judge model against the
+official text of the cited article. <a href="/">Back to the tool</a></p>
+<div class="wrap"><table id="agg"></table></div>
+<h2>Lane per case</h2>
+<div class="wrap"><table id="lanes"></table></div>
+<h2>Stability: lane decision over three runs</h2>
+<p class="muted">The same configuration run three times. Even at temperature 0 the hosted model's output varies slightly between runs, which can flip borderline cases. "failed" in runs 2 and 3 of the baselines means the API credit ran out during the night (HTTP 402), not a model failure.</p>
+<div class="wrap"><table id="stab"></table></div>
+<div class="wrap"><table id="stabcases"></table></div>
+<div id="notes" class="muted"></div>
+<script>
+const NAMES = {harness_final_apertus70b: "Harness · Apertus 70B (final)", harness_v3_apertus70b: "Harness · Apertus 70B (round 3)", harness_v2_apertus70b: "Harness · Apertus 70B (round 2)", harness_apertus70b: "Harness · Apertus 70B (round 1)",
+               plain_apertus70b: "Plain · Apertus 70B", plain_nemotron120b: "Plain · Nemotron 120B"};
+const order = ["harness_final_apertus70b", "harness_apertus70b", "plain_apertus70b", "plain_nemotron120b"];
+fetch("/api/benchmark").then(r => r.json()).then(D => { const S = D.summary || {}, L = D.lanes || {};
+  const systems = order.filter(s => S[s]);
+  const pct = x => isFinite(x) ? Math.round(100 * x) + "%" : "–";
+  const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : NaN;
+  const rows = systems.map(s => {
+    const R = S[s], ok = R.filter(r => !r.error), n = R.length;
+    const claims = ok.map(r => r.claims || {}); const sum = k => claims.reduce((x, c) => x + (c[k] || 0), 0);
+    const totalClaims = ["supported","conditional","partly","not_supported","not_applicable","no_valid_citation"].reduce((x, k) => x + sum(k), 0);
+    const art = ok.reduce((x, r) => x + r.articles_mentioned, 0), artBad = ok.reduce((x, r) => x + r.articles_invalid.length, 0);
+    const dec = ok.reduce((x, r) => x + r.decisions_mentioned, 0), decBad = ok.reduce((x, r) => x + r.decisions_invalid.length, 0);
+    return {s, n, errors: n - ok.length,
+      lane: ok.filter(r => r.lane_ok).length + " / " + n, under: ok.filter(r => r.under_escalated).length, over: ok.filter(r => r.over_escalated).length,
+      artValid: art ? pct(1 - artBad / art) + ` (${art - artBad}/${art})` : "–", decValid: dec ? pct(1 - decBad / dec) + ` (${dec - decBad}/${dec})` : "none cited",
+      recall: pct(avg(ok.filter(r => r.gold_recall != null).map(r => r.gold_recall))),
+      supported: totalClaims ? pct((sum("supported") + sum("conditional")) / totalClaims) : "–",
+      unsupported: totalClaims ? pct((sum("not_supported") + sum("not_applicable") + sum("no_valid_citation")) / totalClaims) : "–",
+      coverage: pct(avg(ok.filter(r => r.question_coverage != null).map(r => r.question_coverage))),
+      secs: Math.round(avg(ok.map(r => r.seconds))) + " s", cost: "$" + avg(ok.map(r => r.cost_usd)).toFixed(3)};
+  });
+  const cols = [["lane","Correct lane"],["under","Under-escalated (missed referral)"],["over","Over-escalated"],["artValid","Article citations that exist"],
+                ["decValid","Court decisions that exist"],["recall","Recall of the team's articles"],["supported","Legal claims supported by cited text"],
+                ["unsupported","Claims unsupported / not applicable / invalid citation"],["coverage","Team's follow-up questions covered"],
+                ["secs","Time per case"],["cost","Cost per case"],["errors","Failed runs"]];
+  document.getElementById("agg").innerHTML = `<tr><th>Metric</th>${rows.map(r => `<th>${NAMES[r.s] || r.s}</th>`).join("")}</tr>` +
+    cols.map(([k, t]) => `<tr><td>${t}</td>${rows.map(r => `<td class="num">${r[k]}</td>`).join("")}</tr>`).join("");
+  const cases = [...new Set(systems.flatMap(s => S[s].map(r => r.case)))].sort((a, b) => a - b);
+  document.getElementById("lanes").innerHTML = `<tr><th>Case</th><th>Expected</th>${systems.map(s => `<th>${NAMES[s] || s}</th>`).join("")}</tr>` +
+    cases.map(c => { const any = S[systems[0]].find(r => r.case === c) || {};
+      return `<tr><td>${c}</td><td>${(any.expected || []).join(" or ")}</td>${systems.map(s => { const r = S[s].find(x => x.case === c);
+        return !r ? "<td>–</td>" : r.error ? `<td class="bad">failed</td>` : `<td class="${r.lane_ok ? "good" : "bad"}">${r.lane}</td>`; }).join("")}</tr>`; }).join("");
+  const LN = {harness_final_apertus70b: "Harness · Apertus 70B", plain_apertus70b: "Plain · Apertus 70B", plain_nemotron120b: "Plain · Nemotron 120B"};
+  const lk = Object.keys(L);
+  if (lk.length) {
+    document.getElementById("stab").innerHTML = `<tr><th>System</th><th>Correct lane per run</th><th>Missed referrals (all runs)</th><th>Over-escalations (all runs)</th><th>Failed runs</th></tr>` +
+      lk.map(k => { const R = L[k].runs; return `<tr><td>${LN[k] || k}</td><td>${R.map(r => r.correct + "/9").join(" · ")}</td><td class="num">${R.reduce((x, r) => x + r.under, 0)}</td><td class="num">${R.reduce((x, r) => x + r.over, 0)}</td><td class="num">${R.reduce((x, r) => x + r.failed, 0)}</td></tr>`; }).join("");
+    const exp = Object.fromEntries((S[systems[0]] || []).map(r => [r.case, r.expected]));
+    document.getElementById("stabcases").innerHTML = `<tr><th>Case</th><th>Expected</th>${lk.map(k => `<th>${LN[k] || k} (3 runs)</th>`).join("")}</tr>` +
+      Object.keys(L[lk[0]].per_case).map(c => `<tr><td>${c}</td><td>${(exp[c] || []).join(" or ")}</td>${lk.map(k => `<td>${L[k].per_case[c].join(" · ")}</td>`).join("")}</tr>`).join("");
+  }
+  document.getElementById("notes").innerHTML = "The final harness was adjusted after seeing earlier results on these same 9 cases (rules, prompts, checks), so its scores are not an independent estimate; fresh cases are needed for that. The judge is Nemotron 120B, which also judges its own baseline answers. Time and cost are per case for the full pipeline; some harness calls may have been served from the provider's cache.";
+});
+</script>
+</main>
+</body>
+</html>
