@@ -5,7 +5,7 @@ import base64
 import json
 import re
 import io
-from datetime import date
+from datetime import date  # noqa: F401
 
 from . import checks
 from .llm import ask_json, chat
@@ -29,7 +29,7 @@ def apply_answers(case, answers):
         ev = events.get(q.get("dates_event"))
         if a.get("status") == "answered" and q["input_type"] == "date" and _d(a.get("value")):
             if ev is None:  # the question dates an event the AI had not recorded: add it, and link it
-                ev = {"id": f"E{len(events) + 1}", "event": q["question"], "sentences": [],
+                ev = {"id": f"L{len(events) + 1}", "event": q["question"], "sentences": [],
                       "precision": "unknown", "date": "", "date_from": "", "date_to": ""}
                 case.setdefault("events", []).append(ev)
                 events[ev["id"]] = ev
@@ -40,7 +40,14 @@ def apply_answers(case, answers):
         elif ev is not None and "original" in ev:  # answer withdrawn: back to what the description said
             ev.update(ev.pop("original"))
             ev.pop("source", None)
+        # a yes/no answer about a deciding event updates that event (as the client's statement)
+        k = q.get("event_id")
+        if k and k in case.get("event_status", {}) and a.get("status") == "answered" and a["value"].lower() in ("yes", "no"):
+            case["event_status"][k] = {**case["event_status"][k], "answer": "A" if a["value"].lower() == "yes" else "B",
+                                       "source": "client's answer"}
     case["answers"] = clean
+    from . import events
+    events.derive(case)
     return case
 
 

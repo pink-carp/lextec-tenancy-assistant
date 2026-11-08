@@ -83,6 +83,8 @@
   <div id="facts"></div>
   <div id="disputesWrap"></div>
   <h3>Dates that may start a deadline</h3><div id="events"></div>
+  <h3>Deciding facts</h3><p class="muted">These facts decide which rules can apply. The AI's reading is pre-filled with the client's sentence it relied on. Please check each one: a wrong answer here changes everything that follows.</p>
+  <div id="evtable"></div>
   <h3>Legal issues identified</h3><div id="issues"></div>
   <h3>Warning signs</h3><p class="muted">Untick anything that does not apply.</p><div id="signals"></div>
   <h3>Personal vulnerability</h3>
@@ -202,6 +204,11 @@ function renderUnderstanding() {
   $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)} <span class="muted">(${i.source === "safety net" ? "added by the checklist of rules for this situation" : "found by the AI"})</span>
      <details><summary>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}</summary>
      ${i.articles.map(a => `<p><strong>Art. ${esc(a.replace("OR ", ""))} OR</strong> (plain-language summary, reviewed against the official text): ${esc((i.summaries || {})[a] || "")}</p>`).join("")}</details></div>`).join("");
+  const EV = C.event_status || {}, NAMES = C.event_names || {};
+  $("#evtable").innerHTML = `<table><tr><th>Fact</th><th>Answer</th><th>Based on</th></tr>${Object.keys(EV).filter(k => EV[k].source !== "code").map(k =>
+    `<tr><td>${esc(NAMES[k] || k)}</td><td><select data-ev="${esc(k)}">${[["A","yes"],["B","no / only threatened or planned"],["C","not said / unknown"]].map(([v,l]) =>
+      `<option value="${v}" ${EV[k].answer === v ? "selected" : ""}>${l}</option>`).join("")}</select></td>
+     <td class="muted">${EV[k].quote ? quoted(EV[k].quote) : "—"}${EV[k].note ? `<br><span class="tag disputed">${esc(EV[k].note)}</span>` : ""}</td></tr>`).join("")}</table>`;
   $("#signals").innerHTML = C.signals.map((s, i) => `<label class="chk"><input type="checkbox" data-sig="${i}" ${s.confirmed !== false ? "checked" : ""}>
      <span><strong>${esc({urgency:"Urgency",severity:"Severity",complexity:"Complexity",vulnerability:"Vulnerability"}[s.index] || s.index)}</strong>: ${esc(s.description)} <span class="muted">${quoted(s.quote)}</span></span></label>`).join("");
   $("#vuln").value = C.vulnerability_score; $("#vulnv").textContent = C.vulnerability_score;
@@ -219,7 +226,8 @@ $("#toQ").onclick = async () => {
   document.querySelectorAll("[data-sig]").forEach(c => C.signals[+c.dataset.sig].confirmed = c.checked);
   $("#toQ").disabled = true; const stop = timed($("#s2msg"), "Preparing questions (usually 5–20 seconds)…");
   try {
-    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null});
+    const evs = {}; document.querySelectorAll("[data-ev]").forEach(x => evs[x.dataset.ev] = x.value);
+    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null, events: evs});
     stop(); $("#s2msg").textContent = "";
     QS = r.questions; SOURCES = r.sources; C.provisional_lane = r.provisional_lane; renderQuestions(r.dropped_questions);
     $("#s3").classList.remove("hidden"); $("#s3").scrollIntoView({behavior:"smooth"});
@@ -245,7 +253,7 @@ function renderQuestions(dropped) {
      <label class="chk"><input type="radio" name="st_${q.id}" value="answered" checked> answer above</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="dont_know"> I don't know</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="cant_get"> Can't get this</label>
-     <div class="src">${q.why_we_ask ? `<strong>Why we ask:</strong> ${esc(q.why_we_ask)}<br>` : ""}Legal basis: ${q.legal_basis.map(chip).join("")}${q.added_by ? " · from the fixed checklist" : ""}</div></div>`).join("");
+     <div class="src">${q.why_we_ask ? `<strong>Why we ask:</strong> ${esc(q.why_we_ask)}<br>` : ""}${q.legal_basis.length ? "Legal basis: " + q.legal_basis.map(chip).join("") : ""}</div></div>`).join("");
   $("#moreQ").classList.toggle("hidden", QS.length <= SHOW);
   $("#dropped").innerHTML = (dropped || []).length ? `<details class="muted"><summary>${dropped.length} question(s) removed by the question check</summary>${dropped.map(d => `<p>${esc(d.question)} — ${esc(d.reason)}</p>`).join("")}</details>` : "";
 }
@@ -320,7 +328,7 @@ function renderResult() {
       `<tr><td>${{urgency:"Legal urgency",severity:"Severity of consequences",complexity:"Legal complexity",vulnerability:"Personal vulnerability",information:"Information uncertainty"}[k]}</td><td>${esc(C.indices[k])}</td><td>${(C.index_reasons[k]||[]).map(esc).join("<br>")}</td></tr>`).join("")}</table>
    <h3>A. Action recommendations</h3>
    ${s.actions.map(a => `<div class="card"><span class="tag">${esc(groups[a.group] || a.group)}</span> <strong>${esc(a.what)}</strong>
-      <div class="src">Who: ${esc(a.who.replace("_"," "))} · When: ${esc(a.when)}${a.deadline_ids.filter(x => dl[x]).map(x => ` · ${esc(dl[x].action)}: <strong>${dl[x].earliest ? esc(dl[x].earliest) : "date not yet known"}</strong>${dl[x].precautionary ? " (precautionary planning date)" : ""}`).join("")}
+      <div class="src">Who: ${esc(a.who.replace("_"," "))}${a.deadline_ids.filter(x => dl[x]).map(x => ` · ${esc(dl[x].action)}: <strong>${dl[x].earliest ? esc(dl[x].earliest) : "date not yet known"}</strong>${dl[x].precautionary ? " (precautionary planning date)" : ""}`).join("")}
       ${a.depends_on ? "<br>Depends on: " + esc(a.depends_on) : ""}${a.contact_ids.filter(x => ct[x]).map(x => "<br>Contact: " + esc(ct[x].name)).join("")}<br>${a.sources.map(chip).join("")}</div></div>`).join("")}
    <h3>Deadlines (calculated by code)</h3>
    ${C.deadlines.length ? C.deadlines.map(d => `<div class="card"><strong>${esc(d.action)}</strong> — ${d.earliest ? `<strong>${esc(d.earliest)}</strong>${d.latest && d.latest !== d.earliest ? " to " + esc(d.latest) : ""}${d.precautionary ? ' <span class="tag disputed">precautionary planning date, not a verified legal deadline</span>' : ""}` : "<em>not yet determinable</em>"}
@@ -334,11 +342,11 @@ function renderResult() {
    <p>${esc(s.situation)}</p>
    <p><strong>Facts</strong></p><ul>${facts}</ul>
    ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
-   <h3>Relevant law (plain-language summaries, reviewed against the official text)</h3>
-   <p class="muted">These summaries say what each rule says in general. Whether it applies to your client depends on the facts; the open questions above help to find out.</p>
-   ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}
-      ${r.check === "conditional" ? `<span class="tag disputed">applies only if: ${esc(r.condition)}</span>` : ""}</li>`).join("")}</ul>
-      ${i.application ? `<p class="muted">${esc(i.application)}</p>` : ""}`).join("")}
+   <h3>What this means for the client</h3>
+   <p class="muted">Written by the AI for this case and checked sentence by sentence against the official text; sentences that failed a check were removed (see "Verification" below). Click a reference to read the official text.</p>
+   ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`
+      : `<p class="muted">No statement passed the checks for this issue. ${i.articles.map(a => chip(a.replace("OR ", "OR Art. "))).join("")}</p>`}
+      <details class="muted"><summary>The rules in general (plain-language summary of the official text)</summary><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}</li>`).join("")}</ul></details>`).join("")}
    ${s.open_points.length ? `<p><strong>Open points</strong></p><ul>${s.open_points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
    <h3>C. Lane assessment</h3>
    <p>${esc(C.lane_rule)} Vulnerability: ${esc(C.vulnerability_score)}/10 (${esc(C.vulnerability_source)}).</p>

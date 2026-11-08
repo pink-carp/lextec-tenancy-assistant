@@ -18,10 +18,10 @@ from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
-from . import checks, contacts, corpus, guidance, scoring
+from . import checks, contacts, corpus, events, guidance, scoring, writer
 from .dates import parse_when
 from .deadlines import DeadlineSpec, compute_deadline
-from .llm import ask_json, chat
+from .llm import ask_json
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -256,7 +256,7 @@ def understand(case):
                              ("topic", "client_position", "other_party", "other_position", "evidence_that_could_settle_it")}})
 
     # documents and dates
-    docs, events = [], []
+    docs, timeline = [], []
     for dd in (out["documents"].get("documents") or [])[:4]:
         if not isinstance(dd, dict):
             continue
@@ -269,13 +269,13 @@ def understand(case):
         if when_words and not grounded(when_words, text):
             when_words = ""
         w = parse_when(when_words, today) if when_words else parse_when(cw, today)
-        doc = {"id": f"E{len(events) + 1}", "doc_type": dtype, "event": f"{DOC_LABEL[dtype].capitalize()} received",
+        doc = {"id": f"L{len(timeline) + 1}", "doc_type": dtype, "event": f"{DOC_LABEL[dtype].capitalize()} received",
                "client_words": cw, "sender": dd.get("sender", "unknown"), "when_words": when_words,
                "precision": w["precision"], "date": w["date_from"].isoformat() if w["precision"] == "exact" else "",
                "date_from": w["date_from"].isoformat() if w["date_from"] else "",
                "date_to": w["date_to"].isoformat() if w["date_to"] else "", "explanation": w["explanation"]}
         docs.append(doc)
-        events.append(doc)
+        timeline.append(doc)
     hh = out["documents"].get("household") or {}
     household = {"married_or_registered_partner": _enum(hh.get("married_or_registered_partner"), ["yes", "no", "unknown"], "unknown"),
                  "children_in_household": _enum(hh.get("children_in_household"), ["yes", "no", "unknown"], "unknown")}
@@ -307,8 +307,9 @@ def understand(case):
     dg = vv.get("immediate_danger") or {}
     danger = dg.get("stated") == "yes" and grounded(dg.get("quote", ""), text)
 
-    # issues and articles: AI choice + safety net + guards
-    issues = []
+    # issues and articles: the AI's choice is kept; the safety net and guards are applied by assemble_issues(),
+    # again after the social worker has confirmed the deciding facts
+    ai_issues = []
     for i in (out["issues"].get("issues") or [])[:5]:
         if not isinstance(i, dict) or not i.get("issue"):
             continue
@@ -318,47 +319,7 @@ def understand(case):
             k = f"OR {m.group(1)}" if m else None
             if k and k in corpus.by_article() and k not in arts:
                 arts.append(k)
-        issues.append({"issue": i["issue"], "articles": arts, "source": "AI"})
-    # consistency: the documents step has the stricter rule (a threat is a payment demand, not a termination)
-    terminated = any(d["doc_type"] in ("termination_by_landlord", "notice_given_by_tenant_or_cotenant") for d in docs)
-    if not terminated and any(d["doc_type"] == "payment_demand_with_termination_warning" for d in docs):
-        if any(s["situation"] == "termination" for s in situations):
-            log.append("'termination' dropped: the letter is a payment demand with a termination warning, not a termination")
-        situations = [s for s in situations if s["situation"] != "termination"]
-    terminated = terminated or any(s["situation"] in ("termination", "co_tenant_left_or_gave_notice") for s in situations)
-    sit_names = {s["situation"] for s in situations}
-    for d in docs:
-        if d["doc_type"] in DOC_SAFETY_NET:
-            sit_names.add(DOC_SAFETY_NET[d["doc_type"]][0])
-    has_defect = bool(sit_names & {"defect_in_flat", "no_heating_water_or_power", "neighbour_disturbance"})
-    for iss in issues:
-        before = list(iss["articles"])
-        if not has_defect:
-            iss["articles"] = [a for a in iss["articles"] if a not in DEFECT_ARTICLES]
-        if household["married_or_registered_partner"] == "no":
-            iss["articles"] = [a for a in iss["articles"] if a not in SPOUSE_ARTICLES]
-        if not terminated:
-            iss["articles"] = [a for a in iss["articles"] if a not in TERMINATION_CHALLENGE_ARTICLES]
-        if before != iss["articles"]:
-            log.append(f"Guard removed {sorted(set(before) - set(iss['articles']))} from '{iss['issue']}'")
-    issues = [i for i in issues if i["articles"]]
-    covered = {a for i in issues for a in i["articles"]}
-    for s in sorted(sit_names):
-        need = [a for a in SAFETY_NET.get(s, []) if a in corpus.by_article()]
-        if household["married_or_registered_partner"] == "no":
-            need = [a for a in need if a not in SPOUSE_ARTICLES]
-        missing = [a for a in need if a not in covered]
-        if missing:
-            issues.append({"issue": SITUATION_LABEL[s], "articles": missing, "source": "safety net"})
-            covered |= set(missing)
-    for it in intents:
-        need = [a for a in INTENT_SAFETY_NET.get(it["intent"], []) if a not in covered]
-        if need:
-            issues.append({"issue": "What the client plans: " + it["intent"].replace("_", " "), "articles": need, "source": "safety net"})
-            covered |= set(need)
-    for iss in issues:
-        iss["summaries"] = {a: article_summary(a) for a in iss["articles"]}
-
+        ai_issues.append({"issue": i["issue"], "articles": arts, "source": "AI"})
     # warning signs (shown in step 2, confirmable)
     signals = []
     kind_of = {"termination_by_landlord": "termination_notice", "court_or_conciliation_document": "court_or_enforcement_step",
@@ -394,10 +355,11 @@ def understand(case):
     if {"violence_threats_or_coercion", "exploitation_or_dependency"} & {v["indicator"] for v in vind}:
         score = 9
     case.update({
-        "understanding": {"issues": issues, "scope": scope, "topics": _topics(vind, areas, cannot_pay),
+        "ai_issues": ai_issues,
+        "understanding": {"issues": [], "scope": scope, "topics": _topics(vind, areas, cannot_pay),
                           "immediate_danger": danger, "client_gender": gender, "household": household,
                           "documents_mentioned": [{"document": d["client_words"]} for d in docs]},
-        "facts": facts, "disputes": disputes, "events": events, "documents": docs, "intents": intents,
+        "facts": facts, "disputes": disputes, "events": timeline, "documents": docs, "intents": intents,
         "situations": situations, "signals": signals, "vulnerability_indicators": [v["indicator"] for v in vind],
         "vulnerability_score": score,
         "vulnerability_source": (f"suggested from {n_v} indicator(s) stated in the description"
@@ -405,7 +367,63 @@ def understand(case):
                                  + "; please confirm or change"),
         "municipality": (sit.get("scope") or {}).get("municipality", ""),
     })
+    assemble_issues(case)  # first pass: the articles in question decide which events need asking
+    arts = [a for i in case["understanding"]["issues"] for a in i["articles"]]
+    events.prefill(case, only=events.needed_for(arts))  # one closed call per event, confirmed in step 2
+    assemble_issues(case)
     deadlines(case)  # no AI involved: available already for the provisional lane
+    return case
+
+
+def assemble_issues(case):
+    """AI-chosen articles + safety net, with guards from the deciding events (confirmed ones once step 2 is done).
+    A guard removes articles whose event has clearly NOT happened; unknown events keep them (as 'open')."""
+    log = case["log"]
+    ev = {k: v.get("answer") for k, v in case.get("event_status", {}).items()}
+    hh = case["understanding"]["household"]
+    no = lambda k: ev.get(k) == "B"
+    married_no = no("E8") or (not ev.get("E8") and hh.get("married_or_registered_partner") == "no")
+    terminated_no = no("E1") and no("E2")
+    docs, situations, intents = case.get("documents", []), case.get("situations", []), case.get("intents", [])
+    sit_names = {s["situation"] for s in situations}
+    for d in docs:
+        if d["doc_type"] in DOC_SAFETY_NET:
+            sit_names.add(DOC_SAFETY_NET[d["doc_type"]][0])
+    # a payment demand that threatens termination is not a termination (unless one is confirmed)
+    threat_only = any(d["doc_type"] == "payment_demand_with_termination_warning" for d in docs) and not any(
+        d["doc_type"] in ("termination_by_landlord", "notice_given_by_tenant_or_cotenant") for d in docs)
+    if terminated_no or (threat_only and ev.get("E1") != "A" and ev.get("E2") != "A"):
+        sit_names.discard("termination")
+        terminated_no = True
+    defect_no = no("E4") and not (sit_names & {"defect_in_flat", "no_heating_water_or_power", "neighbour_disturbance"})
+
+    def guard(arts, label):
+        keep = [a for a in arts if not (defect_no and a in DEFECT_ARTICLES) and not (married_no and a in SPOUSE_ARTICLES)
+                and not (terminated_no and a in TERMINATION_CHALLENGE_ARTICLES)]
+        if keep != arts:
+            log.append(f"Guard removed {sorted(set(arts) - set(keep))} from '{label}' (event has not happened)")
+        return keep
+
+    issues = []
+    for i in case.get("ai_issues", []):
+        arts = guard(i["articles"], i["issue"])
+        if arts:
+            issues.append({**i, "articles": arts})
+    covered = {a for i in issues for a in i["articles"]}
+    for s in sorted(sit_names):
+        need = guard([a for a in SAFETY_NET.get(s, []) if a in corpus.by_article() and a not in covered], s)
+        if need:
+            issues.append({"issue": SITUATION_LABEL[s], "articles": need, "source": "safety net"})
+            covered |= set(need)
+    for it in intents:
+        need = guard([a for a in INTENT_SAFETY_NET.get(it["intent"], []) if a not in covered], it["intent"])
+        if need:
+            issues.append({"issue": "What the client is considering: " + it["intent"].replace("_", " "),
+                           "articles": need, "source": "safety net"})
+            covered |= set(need)
+    for iss in issues:
+        iss["summaries"] = {a: article_summary(a) for a in iss["articles"]}
+    case["understanding"]["issues"] = issues[:6]
     return case
 
 
@@ -427,8 +445,10 @@ def _topics(vind, areas, cannot_pay):
     return t
 
 
-def confirm(case, facts=None, signals=None, vulnerability_score=None):
-    """Step 3: the social worker's corrections replace the AI's reading."""
+def confirm(case, facts=None, signals=None, vulnerability_score=None, event_edits=None):
+    """Step 3: the social worker's corrections replace the AI's reading; issues are rebuilt from the confirmed events."""
+    events.confirm(case, event_edits)
+    assemble_issues(case)
     if facts is not None:
         for f in facts:
             f["statement"] = mask(f["statement"])[0]
@@ -461,7 +481,6 @@ def gather_sources(case):
                             "summary": summaries().get(p["id"], {}).get("summary", "")}
     bases = [pid for d in case.get("deadlines", []) for pid in d["legal_basis"]]  # always citable
     bases += [pid for q in case.get("questions", []) for pid in q.get("legal_basis", [])]
-    bases += [pid for _, src in STANDARD_WARNINGS.values() for pid in src]
     for pid in bases:
         p = corpus.by_id().get(pid)
         if p:
@@ -493,134 +512,19 @@ def facts_block(case):
 
 # ---------------------------------------------------------------- step 5: questions (one small call per issue)
 
-_LEGALISH = re.compile(r"\b(must|required|requirement|valid|invalid|void|null|entitled|obliged|law|legal|statut|article|art\.)", re.I)
-
-
-def _date_question(e):
-    doc = DOC_LABEL.get(e.get("doc_type", ""), "letter")
-    said = f'You said "{e["when_words"]}". ' if e.get("when_words") else ""
-    basis = {"payment_demand_with_termination_warning": "OR Art. 257d Abs. 1", "termination_by_landlord": "OR Art. 273 Abs. 1",
-             "rent_increase_notice": "OR Art. 270b Abs. 1"}.get(e.get("doc_type"), "")
-    return {"question": f"{said}On what exact date did you receive the {doc}? If it came by registered mail and you "
-                        "collected it later, please also give the date on the collection slip.",
-            "purpose": "Time limits are counted from the day the letter was received, so we need the exact date.",
-            "legal_basis": [basis] if basis else [], "input_type": "date", "priority": "urgent",
-            "dates_event": e["id"], "answer_instead": [], "options": [], "added_by": "code (date check)"}
-
-
-# Facts every document of this type needs checked, whatever the AI asks (draft list for the legal team's review).
-# Each entry: (question, input_type, legal basis, condition on the case or None)
-DOC_QUESTIONS = {
-    "payment_demand_with_termination_warning": [
-        ("What payment deadline does the letter state, and what amount does it ask you to pay?", "short_text", "OR Art. 257d Abs. 1", None),
-        ("Can you pay the full amount before that deadline (including with help from others or social services)?", "yes_no_unknown", "OR Art. 257d Abs. 1", None),
-        ("Please upload a photo of the letter, if you have it.", "upload", "OR Art. 257d Abs. 1", None),
-    ],
-    "termination_by_landlord": [
-        ("Was the termination sent on the official form approved by the canton?", "yes_no_unknown", "OR Art. 266l Abs. 2", None),
-        ("On what date does the termination say the tenancy ends?", "date", "OR Art. 266c", None),
-        ("Please upload a photo of the termination letter, if you have it.", "upload", "OR Art. 266l Abs. 2", None),
-    ],
-    "rent_increase_notice": [
-        ("Was the rent increase sent on the official form, and does it give a reason?", "yes_no_unknown", "OR Art. 269d Abs. 1", None),
-        ("From what date should the new rent apply?", "date", "OR Art. 269d Abs. 1", None),
-    ],
-}
-SPOUSE_QUESTION = ("Are you married or in a registered partnership, and does your spouse or partner live in the flat?",
-                   "yes_no_unknown", "OR Art. 266n")
-
-
-def _fixed(question, input_type, basis, why):
-    return {"question": question, "purpose": why, "legal_basis": [basis], "input_type": input_type,
-            "priority": "core", "dates_event": "none", "answer_instead": [], "options": [], "added_by": "code (document checklist)"}
-
-
-def document_questions(case):
+def _articles(case):
     out = []
-    for e in case.get("events", []):
-        for q, it, basis, _ in DOC_QUESTIONS.get(e.get("doc_type"), []):
-            if q not in [x["question"] for x in out]:
-                out.append(_fixed(q, it, basis, "The answer is needed to check the letter you received."))
-    hh = case["understanding"].get("household", {})
-    spouse_rule = any(e.get("doc_type") in ("payment_demand_with_termination_warning", "termination_by_landlord")
-                      for e in case.get("events", []))
-    if spouse_rule and hh.get("married_or_registered_partner") == "unknown":
-        q, it, basis = SPOUSE_QUESTION
-        out.append(_fixed(q, it, basis, "For married couples and registered partners, special rules apply to such letters."))
+    for iss in case["understanding"]["issues"]:
+        out += [a for a in iss["articles"] if a not in out]
     return out
 
 
 def questions(case):
-    text = "\n".join(case["sentences"])
-    issues = case["understanding"]["issues"]
-    known = facts_block(case)
-
-    def per_issue(iss):
-        law = "\n".join(f"[{p['id']}] {p['text']}" for a in iss["articles"] for p in corpus.by_article().get(a, []))
-        prompt = ("A social worker is helping a client with a Swiss tenancy problem. Below are the client's words, what "
-                  "is known, and the law for ONE legal issue. Write the follow-up questions (max 3) whose answers are "
-                  "needed to apply THIS law to THIS client. Rules: one fact per question, plain words, addressed to the "
-                  "client ('you'); do not ask what is already known; never ask for a legal opinion; 'purpose' = why the "
-                  "answer matters, in everyday words, WITHOUT stating any legal rule; 'article' = the paragraph ID it "
-                  "serves; 'priority' = urgent (needed to date a running deadline or rule out a serious risk), core, or "
-                  "helpful; 'input_type' = date, yes_no_unknown, number, short_text or upload.\n"
-                  'Answer JSON only: {"questions": [{"question": "...", "purpose": "...", "article": "OR Art. 257d Abs. 1", '
-                  '"priority": "core", "input_type": "short_text"}]}\n\n'
-                  f"ISSUE: {iss['issue']}\nLAW:\n{law}\n\nKNOWN:\n{known}\n\nCLIENT'S WORDS:\n{text}")
-        try:
-            return ask_json(prompt, trace=case["trace"], step="5 questions per issue", max_tokens=600).get("questions") or []
-        except Exception:
-            return []
-
-    with ThreadPoolExecutor(4) as ex:
-        per = list(ex.map(per_issue, issues))
-    cands = []
-    for iss, qs in zip(issues, per):
-        for q in qs[:3]:
-            if not isinstance(q, dict) or not q.get("question"):
-                continue
-            pid = str(q.get("article", ""))
-            basis = [pid] if pid in case["sources"] else [p["id"] for a in iss["articles"][:1] for p in corpus.by_article().get(a, [])[:1]]
-            purpose = q.get("purpose", "")
-            if _LEGALISH.search(purpose):  # no legal rules in AI-written 'why' texts; the article summary explains the law
-                purpose = ""
-            cands.append({"question": mask(q["question"])[0], "purpose": purpose, "legal_basis": basis,
-                          "priority": _enum(q.get("priority"), ["urgent", "core", "helpful"], "core"),
-                          "input_type": _enum(q.get("input_type"), ["date", "yes_no_unknown", "number", "short_text", "upload"], "short_text"),
-                          "options": [], "answer_instead": [], "dates_event": "none", "issue": iss["issue"]})
-    # code: an exact date is needed for every document that starts a time limit, plus the document checklist
-    fixed = [_date_question(e) for e in case.get("events", [])
-             if e.get("doc_type") in ("payment_demand_with_termination_warning", "termination_by_landlord", "rent_increase_notice")
-             and e["precision"] != "exact"] + document_questions(case)
-    # the AI does not ask again for a receipt date the code already has or asks for
-    if any(e.get("doc_type") in DOC_QUESTIONS for e in case.get("events", [])):
-        cands = [q for q in cands if not (q["input_type"] == "date" and re.search(r"\b(receiv|collect|got|arriv)", q["question"], re.I))]
-    # one editing pass: remove duplicates and questions the client already answered
-    if len(cands) > 1:
-        listing = "\n".join(f"{n + 1}. {q['question']}" for n, q in enumerate(cands))
-        asked = "\n".join(f"- {q['question']}" for q in fixed) or "none"
-        try:
-            keep = ask_json("Below are candidate follow-up questions for a client, questions already being asked, and the "
-                            "client's own words. Return the numbers of the candidate questions to ask, best first (max 6): "
-                            "drop duplicates (keep the clearest), drop questions that repeat an already-asked question, and "
-                            "drop questions the client's words already answer. Keep questions about unknown facts.\n"
-                            'Answer JSON only: {"keep": [1, 3]}\n\nCANDIDATES:\n' + listing + "\n\nALREADY ASKED:\n" + asked
-                            + "\n\nCLIENT'S WORDS:\n" + text,
-                            trace=case["trace"], step="5b question editor", max_tokens=200).get("keep") or []
-            keep = [int(k) for k in keep if str(k).isdigit() and 1 <= int(k) <= len(cands)]
-        except Exception:
-            keep = []
-        if keep:
-            dropped = [q for n, q in enumerate(cands) if n + 1 not in keep]
-            case["dropped_questions"] = [{"question": q["question"], "reason": "duplicate or already answered"} for q in dropped]
-            cands = [cands[k - 1] for k in dict.fromkeys(keep)]
-    qs = fixed + cands
-    order = {"urgent": 0, "core": 1, "helpful": 2}
-    qs.sort(key=lambda q: order[q["priority"]])  # stable: code questions stay ahead within a priority
-    for i, q in enumerate(qs[:10]):
-        q["id"] = f"Q{i + 1}"
-        q["why_we_ask"] = q.pop("purpose")
-    case["questions"] = qs[:10]
+    """Step 5: Apertus writes one question per fact that decides the rules at issue (see writer.questions)."""
+    arts = _articles(case)
+    st = writer.statuses(case, arts)
+    qs, dropped = writer.questions(case, arts, st)
+    case["questions"], case["dropped_questions"], case["statuses"] = qs, dropped, st
     return case
 
 
@@ -760,17 +664,6 @@ def provisional_lane(case):
 
 # ---------------------------------------------------------------- step 9: write (actions + one note per issue)
 
-STANDARD_WARNINGS = {
-    "reduce_or_withhold_rent": ("Do not pay less rent on your own. Unpaid rent can lead to a payment demand and "
-                                "termination (Art. 257d OR). The lawful way is to set the landlord a written deadline to "
-                                "repair and, if it passes, to deposit the rent with the designated office (Art. 259g OR).",
-                                ["OR Art. 257d Abs. 1", "OR Art. 259g Abs. 1"]),
-    "ignore_the_letter": ("Do not ignore the letter: the time limits run from the day it was received.", []),
-    "wait_before_paying": ("Paying after the deadline in the letter may not prevent a termination (Art. 257d OR): "
-                           "check now whether the full amount can be paid before that date.", ["OR Art. 257d Abs. 2"]),
-}
-
-
 def lane_explanation(case):
     """Built by code from the lane rule and the reasons of the indices that are not low."""
     parts = [case["lane_rule"]]
@@ -778,100 +671,6 @@ def lane_explanation(case):
         if case["indices"].get(k) in ("medium", "high"):
             parts.append(f"{k.capitalize()} {case['indices'][k]}: " + "; ".join(case["index_reasons"][k]))
     return " ".join(p if p.endswith(".") else p + "." for p in parts)
-
-
-def write(case):
-    issues = case["understanding"]["issues"]
-    dl_ids = [d["id"] for d in case.get("deadlines", [])]
-    ct = {c["id"]: c["name"] for c in case.get("contacts", [])}
-    issue_txt = "\n".join(f"{n + 1}. {i['issue']}: " + " | ".join(f"{a}: {i['summaries'].get(a, '')}" for a in i["articles"])
-                          for n, i in enumerate(issues))
-    dl_txt = "\n".join(f"{d['id']}: {d['action']} — " + (f"earliest {d['earliest']}" if d.get("earliest") else "date not yet known")
-                       for d in case.get("deadlines", [])) or "none"
-    prompt = "\n\n".join([
-        SYSTEM_ROLE, f"Today's date is {case['today']}.",
-        "TASK: Write the social worker's action list and short neutral notes.\n"
-        "- actions (max 5): concrete next steps, most urgent first. who = client, social_worker or professional. Lane 3: "
-        "the first action is the referral. Refer to deadlines and contacts only by their IDs; do not write dates. Say when "
-        "an action depends on an open question. Do not repeat the legal rules; they are shown separately.\n"
-        "- situation: two neutral sentences on the client's situation and goal (no advice, no legal rules).\n"
-        'Answer JSON only: {"situation": "...", "actions": [{"what": "...", "who": "client", "when": "...", '
-        '"group": "referral|immediate|now|needs_clarification", "deadline_ids": ["D1"], "contact_ids": ["mieterverband_zuerich"], '
-        '"depends_on": ""}]}',
-        "ISSUES (with plain summaries of the governing articles):\n" + issue_txt,
-        "FACTS:\n" + facts_block(case),
-        f"LANE {case['lane']} ({case['lane_rule']}). Index levels: " + json.dumps(case["indices"]),
-        "DEADLINES (calculated by code):\n" + dl_txt,
-        "CONTACTS (chosen by rule):\n" + ("\n".join(f"{k}: {v}" for k, v in ct.items()) or "none"),
-    ])
-    out = ask_json(prompt, trace=case["trace"], step="9 write", max_tokens=1000)
-    actions = []
-    for it in case.get("intents", []):  # fixed, reviewed warnings come first when the client plans something risky
-        if it["intent"] in STANDARD_WARNINGS:
-            txt, src = STANDARD_WARNINGS[it["intent"]]
-            actions.append({"group": "immediate", "what": txt, "who": "client", "when": "now", "deadline_ids": [],
-                            "contact_ids": [], "depends_on": "", "sources": [s for s in src if s in case["sources"]] or src,
-                            "standard": True})
-    for a in (out.get("actions") or [])[:5]:
-        if isinstance(a, dict) and a.get("what"):
-            actions.append({"group": _enum(a.get("group"), ["referral", "immediate", "now", "needs_clarification"], "now"),
-                            "what": str(a["what"]), "who": _enum(a.get("who"), ["client", "social_worker", "professional"], "social_worker"),
-                            "when": str(a.get("when", "")), "deadline_ids": [x for x in a.get("deadline_ids") or [] if x in dl_ids],
-                            "contact_ids": [x for x in a.get("contact_ids") or [] if x in ct], "depends_on": str(a.get("depends_on", "")),
-                            "sources": []})
-    for n, a in enumerate(actions):
-        a["id"] = f"A{n + 1}"
-    screen_issues = []
-    for n, iss in enumerate(issues):
-        rules = []
-        for a in iss["articles"]:
-            pids = [p["id"] for p in corpus.by_article().get(a, [])]
-            rules.append({"statement": f"{a.replace('OR ', 'Art. ')} OR: {iss['summaries'].get(a, '')}",
-                          "sources": [p for p in pids if p in case["sources"]][:3] or pids[:1], "check": "reviewed summary"})
-        # Approval A (2026-11-08): no AI-written legal application per issue; tests showed wrong rules in these notes
-        screen_issues.append({"issue": iss["issue"], "rules": rules, "application": "",
-                              "articles": iss["articles"], "source": iss.get("source")})
-    case["screen"] = {"situation": str(out.get("situation", "")), "actions": actions, "issues": screen_issues,
-                      "open_points": [], "lane_explanation": lane_explanation(case)}
-    return case
-
-
-# ---------------------------------------------------------------- step 10: verify (code + per-claim checks)
-
-def check_claims(claims, facts_text, trace=None, model=None, max_tokens=300):
-    """Applicability check. claims = [(statement, [(source_id, source_text), ...]), ...].
-    One short plain-text call per claim, in parallel. Returns {n: verdict} (1-based)."""
-    system = ("You are a strict checker of legal statements for Swiss tenancy law. First copy the decisive words of "
-              "the CITED text, then decide: 'supported' if the cited text states the CLAIM; 'partly' if only part is "
-              "supported; 'not_supported' if the cited text does not say it; 'not_applicable' if the cited rule "
-              "exists but does not apply to these FACTS; 'conditional' if it applies only if an unknown fact is true. "
-              "Judge by meaning. Answer in exactly four lines:\nEVIDENCE: <decisive words>\nVERDICT: <supported|"
-              "conditional|partly|not_supported|not_applicable>\nCONDITION: <unknown fact, or none>\nREASON: <one short sentence>")
-    verdict_rx = re.compile(r"VERDICT:\s*\**\s*(supported|conditional|partly|not_supported|not_applicable)", re.I)
-    kw = {"model": model} if model else {}
-
-    def field(name, text):
-        m = re.search(rf"{name}:\s*(.+)", text)
-        return m.group(1).strip() if m else ""
-
-    def one(item):
-        st, srcs = item
-        cited = " | ".join(f"[{sid}] {txt[:1500]}" for sid, txt in srcs)
-        try:
-            text = chat([{"role": "user", "content": f"{system}\n\nFACTS:\n{facts_text}\n\nCLAIM: {st}\nCITED: {cited}"}],
-                        max_tokens=max_tokens, trace=trace, step="10 applicability check", **kw)
-        except Exception:
-            return None
-        m = verdict_rx.search(text)
-        if not m:
-            return None
-        cond = field("CONDITION", text)
-        return {"evidence": field("EVIDENCE", text), "verdict": m.group(1).lower(),
-                "condition": "" if cond.lower() in ("none", "-", "n/a", "") else cond, "reason": field("REASON", text)}
-
-    with ThreadPoolExecutor(4) as ex:
-        results = list(ex.map(one, claims))
-    return {n + 1: {"claim": n + 1, **v} for n, v in enumerate(results) if v}
 
 
 def allowed_dates(case):
@@ -888,55 +687,69 @@ def allowed_dates(case):
     return {x for x in out if x} | checks.mentioned_dates(facts_block(case))
 
 
+def write(case):
+    """Step 9: one Apertus call per issue (note) and one for the actions and situation, all gated by code statuses."""
+    arts = _articles(case)
+    st = writer.statuses(case, arts)
+    issues = case["understanding"]["issues"]
+    with ThreadPoolExecutor(4) as ex:
+        fut = ex.submit(writer.actions, case, arts, st)
+        # AI notes applying the law: off. Measured 2026-11-08 (11 cases, blind Claude judge): even gated by confirmed
+        # events and checked twice, about 1 in 4 shown legal sentences was wrong. Switch: writer.SHOW_NOTES.
+        notes = list(ex.map(lambda i: writer.note(i, st, case), issues)) if writer.SHOW_NOTES else [([], [], None)] * len(issues)
+        situation, acts, act_dropped = fut.result()
+    screen_issues, dropped = [], list(act_dropped)
+    for iss, (kept, drop, err) in zip(issues, notes):
+        dropped += [{**d, "where": iss["issue"]} for d in drop]
+        screen_issues.append({"issue": iss["issue"], "articles": iss["articles"], "source": iss.get("source"),
+                              "sentences": kept, "error": err,
+                              "rules": [{"statement": f"{a.replace('OR ', 'Art. ')} OR: {iss['summaries'].get(a, '')}",
+                                         "sources": [p["id"] for p in corpus.by_article().get(a, [])][:3],
+                                         "check": "reviewed summary"} for a in iss["articles"]]})
+    for n, a in enumerate(acts):
+        a["id"] = f"A{n + 1}"
+        a["sources"] = a.pop("basis", [])
+        a["when"] = ""
+    case["statuses"] = st
+    case["screen"] = {"situation": situation, "actions": acts, "issues": screen_issues, "open_points": [],
+                      "lane_explanation": lane_explanation(case)}
+    case["write_dropped"] = dropped
+    return case
+
+
 def verify(case, applicability=True):
-    removed, warnings = [], []
+    """Step 10: code checks (unknown articles and dates) and the two Apertus checks on every legal sentence."""
+    removed = list(case.get("write_dropped", []))
     law_articles = {s["article"] for s in case["sources"].values() if s["type"] == "law"}
     ok_dates = allowed_dates(case)
-    facts_text = facts_block(case)
     scr = case["screen"]
-
-    def cl(text, where):
-        return checks.clean_text(text, law_articles, [], ok_dates, where, removed)
-
-    scr["situation"] = cl(scr["situation"], "situation")
+    scr["situation"] = checks.clean_text(scr["situation"], law_articles, [], ok_dates, "situation", removed)
     for a in scr["actions"]:
-        if not a.get("standard"):
-            a["what"] = cl(a["what"], f"action {a['id']}")
-            a["when"] = cl(a["when"], f"action {a['id']} timing")
+        a["what"] = checks.clean_text(a["what"], law_articles, [], ok_dates, f"action {a['id']}", removed)
+    items = []
     for n, iss in enumerate(scr["issues"]):
-        iss["application"] = cl(iss["application"], f"issue {n + 1} note")
-    # every AI-written sentence that makes a legal point is checked against that issue's official text
-    claims, where = [], []
-    for n, iss in enumerate(scr["issues"]):
-        if iss["application"]:
-            srcs = [(p["id"], p["text"]) for a in iss["articles"] for p in corpus.by_article().get(a, [])]
-            claims.append((iss["application"], srcs))
-            where.append(("issue", n))
-    all_srcs = [(pid, s["text"]) for pid, s in list(case["sources"].items())[:12]]
-    for n, a in enumerate(scr["actions"]):
-        if not a.get("standard") and checks.mentioned_articles(a["what"]):
-            claims.append((a["what"], all_srcs))
-            where.append(("action", n))
-    if applicability and claims:
-        verdicts = check_claims(claims, facts_text, case["trace"])
-        for k, (kind, n) in enumerate(where):
-            v = verdicts.get(k + 1)
-            target = scr["issues"][n] if kind == "issue" else scr["actions"][n]
-            field = "application" if kind == "issue" else "what"
-            if not v:  # could not be checked: not shown (accuracy over completeness)
-                removed.append({"where": f"{kind} {n + 1}", "sentence": target[field], "reason": "could not be checked"})
-                target[field] = ""
-            elif v["verdict"] in ("not_supported", "not_applicable"):
-                removed.append({"where": f"{kind} {n + 1}", "sentence": target[field],
-                                "reason": f"applicability check: {v['verdict'].replace('_', ' ')} — {v['reason']}"})
-                target[field] = ""
-            elif v["verdict"] == "conditional" and kind == "issue":
-                target["condition"] = v.get("condition") or v["reason"]
-            elif v["verdict"] == "partly":
-                warnings.append({"claim": target[field], "reason": v["reason"]})
+        for s in iss["sentences"]:
+            s["text"] = checks.clean_text(s["text"], law_articles, [], ok_dates, f"issue {n + 1}", removed)
+            if s["text"]:
+                items.append(({"text": s["text"], "para": s["para"]}, ("issue", n, s)))
+    for a in scr["actions"]:
+        if a["what"] and a["sources"]:
+            items.append(({"text": a["what"], "para": a["sources"][0]}, ("action", None, a)))
+    checked = 0
+    if applicability and items:
+        kept, rem = writer.check([it for it, _ in items], case)
+        checked = len(items)
+        bad = {r["sentence"] for r in rem}
+        removed += rem
+        for it, (kind, n, obj) in items:
+            if it["text"] in bad:
+                if kind == "issue":
+                    scr["issues"][n]["sentences"].remove(obj)
+                else:
+                    obj["what"] = ""
     scr["actions"] = [a for a in scr["actions"] if a["what"]]
-    case["verification"] = {"removed": removed, "warnings": warnings, "rules_checked": len(claims),
-                            "rules_total": len(claims), "unverifiable": False}
+    case["verification"] = {"removed": removed, "warnings": [], "rules_checked": checked, "rules_total": checked,
+                            "unverifiable": False}
     return case
 
 

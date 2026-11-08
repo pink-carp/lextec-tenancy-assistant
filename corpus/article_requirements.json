@@ -1,0 +1,2516 @@
+{
+  "_meta": {
+    "source": "corpus/law_paragraphs.jsonl — official German text of OR Art. 253-273c (Fedlex, version 2026-10-01) plus OR Art. 143 and 544",
+    "date": "2026-11-08",
+    "method": "Pass 1: one entry drafted per paragraph from the German text and its internal cross-references only. Pass 2: each German paragraph re-read against its entry; every change is listed in review_log. Where the text allowed a wider or narrower gate, the narrower one was taken and the note says so.",
+    "status": "Claude-built, checked by a second Claude pass; not reviewed by a lawyer",
+    "fields": {
+      "needs_all": "every listed event must be confirmed for the paragraph to apply",
+      "needs_any": "at least one listed event must be confirmed (if the list is non-empty)",
+      "excludes": "rules this paragraph switches off: the named paragraph/article does not apply when 'when' holds",
+      "premises": "all = any rented thing; residential_and_business = Wohn- und/oder Geschäftsräume; business_only = Geschäftsräume; other = another limit, stated at the start of note ('Premises: ...')",
+      "deciding_facts": "client facts that decide whether/how the paragraph applies once its events are confirmed",
+      "general": "true = definition or general rule needing no event",
+      "no_gate": "general=false with empty needs_all and needs_any = no menu event gates it; relevance turns on deciding_facts only"
+    }
+  },
+  "events": {
+    "E1": "The landlord (or a new owner) has given notice of termination of the tenancy.",
+    "E2": "The tenant, or one of several co-tenants, has given notice of termination or has decided to give it.",
+    "E3": "The landlord has set a written payment deadline threatening termination if the arrears are not paid (Art. 257d Abs. 1).",
+    "E4": "The rented property has a defect, or the tenant is disturbed in its contractual use (including by a third party claiming a right to it).",
+    "E5": "The landlord has given notice of a rent increase or of another unilateral change to the lease at the tenant's expense (e.g. new ancillary costs, reduced services).",
+    "E6": "The tenant has returned the property / moved out.",
+    "E7": "The tenancy has ended (by notice, expiry of a fixed term, agreement or otherwise).",
+    "E8": "The tenant is married or in a registered partnership and the rented flat serves as the family home.",
+    "E9": "The tenant is behind with rent or ancillary costs that are already due.",
+    "E10": "The payment deadline set under Art. 257d has passed without full payment.",
+    "E11": "The tenant wants to sublet or has sublet all or part of the property, or the client is a subtenant.",
+    "E12": "The property has been sold or has otherwise changed owner (incl. loss in debt-enforcement or bankruptcy proceedings, or a limited real right equivalent to a change of owner), or such a transfer is under way.",
+    "E13": "The tenant has provided a security deposit (cash or securities).",
+    "E14": "The lease is fixed-term (it ends on an agreed date without notice).",
+    "E15": "The tenant shares the lease with one or more co-tenants.",
+    "E16": "An extension of the tenancy (Erstreckung) has been granted by the authority or agreed between the parties.",
+    "E17": "The tenant has died (the heirs are dealing with the lease).",
+    "E18": "The tenant has been declared bankrupt after taking over the property.",
+    "E19": "The landlord carries out or has announced works, renovations, changes or viewings of the property.",
+    "E20": "The tenant is about to take over or has recently taken over the property (start of the tenancy).",
+    "E21": "The landlord has sent a written warning (Mahnung) about the tenant's lack of care or consideration (e.g. noise, damage, nuisance)."
+  },
+  "paragraphs": {
+    "OR Art. 253": {
+      "para": "OR Art. 253",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition of the lease contract ('Durch den Mietvertrag verpflichtet sich ...')."
+    },
+    "OR Art. 253a Abs. 1": {
+      "para": "OR Art. 253a Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether other things (parking space, cellar, furniture) were let together with the flat"
+      ],
+      "general": true,
+      "note": "Scope rule: Wohn-/Geschäftsraum rules also cover 'Sachen, die der Vermieter zusammen mit diesen Räumen ... überlässt'."
+    },
+    "OR Art. 253a Abs. 2": {
+      "para": "OR Art. 253a Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 253a-273c (rules on Wohn- und Geschäftsräume)",
+          "when": "the object is a holiday flat rented for at most three months"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the object is a holiday flat rented for three months or less"
+      ],
+      "general": true,
+      "note": "'gelten nicht für Ferienwohnungen, die für höchstens drei Monate gemietet werden'."
+    },
+    "OR Art. 253a Abs. 3": {
+      "para": "OR Art. 253a Abs. 3",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Delegation to the Federal Council ('Der Bundesrat erlässt die Ausführungsvorschriften'), i.e. the VMWG; no client facts."
+    },
+    "OR Art. 253b Abs. 1": {
+      "para": "OR Art. 253b Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the contract is a non-agricultural lease (Pacht) or another contract mainly about letting premises for payment"
+      ],
+      "general": true,
+      "note": "Extends Art. 269 ff. 'sinngemäss' to 'nichtlandwirtschaftliche Pacht- und andere Verträge'."
+    },
+    "OR Art. 253b Abs. 2": {
+      "para": "OR Art. 253b Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 269-270e",
+          "when": "the flat is luxurious or a single-family house with six or more living rooms (kitchen not counted)"
+        }
+      ],
+      "premises": "other",
+      "deciding_facts": [
+        "number of living rooms excluding the kitchen",
+        "whether the flat or house is luxurious"
+      ],
+      "general": true,
+      "note": "Premises: luxury Wohnungen / Einfamilienhäuser with six or more rooms (residential only). 'gelten nicht für die Miete von luxuriösen Wohnungen und Einfamilienhäusern mit sechs oder mehr Wohnräumen'."
+    },
+    "OR Art. 253b Abs. 3": {
+      "para": "OR Art. 253b Abs. 3",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 270-270e (contesting rents)",
+          "when": "the housing was publicly subsidised and its rent is controlled by an authority"
+        }
+      ],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the flat is publicly subsidised housing whose rent is controlled by an authority"
+      ],
+      "general": true,
+      "note": "Premises: 'Wohnräume' only (subsidised housing). 'Die Bestimmungen über die Anfechtung missbräuchlicher Mietzinse gelten nicht für Wohnräume, deren Bereitstellung von der öffentlichen Hand gefördert wurde'."
+    },
+    "OR Art. 254": {
+      "para": "OR Art. 254",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether getting or keeping the lease was made conditional on another obligation (e.g. buying furniture, taking an insurance) not directly linked to using the flat"
+      ],
+      "general": false,
+      "note": "No menu event; only relevant if a coupling deal exists ('Koppelungsgeschäft ... ist nichtig, wenn der Abschluss oder die Weiterführung des Mietvertrags davon abhängig gemacht wird')."
+    },
+    "OR Art. 255 Abs. 1": {
+      "para": "OR Art. 255 Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition: 'kann befristet oder unbefristet sein'."
+    },
+    "OR Art. 255 Abs. 2": {
+      "para": "OR Art. 255 Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the lease states an end date on which it ends without notice"
+      ],
+      "general": true,
+      "note": "Definition of fixed-term: 'wenn es ohne Kündigung mit Ablauf der vereinbarten Dauer endigen soll'."
+    },
+    "OR Art. 255 Abs. 3": {
+      "para": "OR Art. 255 Abs. 3",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition: 'Die übrigen Mietverhältnisse gelten als unbefristet'."
+    },
+    "OR Art. 256 Abs. 1": {
+      "para": "OR Art. 256 Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E4",
+        "E20"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date the property was handed over versus the agreed date",
+        "what the defect is and whether it affects the agreed use"
+      ],
+      "general": false,
+      "note": "Landlord must hand over 'zum vereinbarten Zeitpunkt in einem ... tauglichen Zustand' and keep it so; only matters with a defect (E4) or a handover problem (E20). Narrower reading than treating it as a general rule."
+    },
+    "OR Art. 256 Abs. 2": {
+      "para": "OR Art. 256 Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E4",
+        "E20"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the lease contains a clause shifting maintenance duties onto the tenant",
+        "whether that clause is in pre-formulated general terms"
+      ],
+      "general": false,
+      "note": "Deviating clauses to the tenant's detriment are void in 'vorformulierten allgemeinen Geschäftsbedingungen' (lit. a, any lease) or 'Mietverträgen über Wohn- oder Geschäftsräume' (lit. b)."
+    },
+    "OR Art. 256a Abs. 1": {
+      "para": "OR Art. 256a Abs. 1",
+      "needs_all": [
+        "E20"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether a return protocol was made when the previous tenancy ended",
+        "whether the tenant asked to see it at handover"
+      ],
+      "general": false,
+      "note": "'bei der Übergabe der Sache' to 'dem neuen Mieter auf dessen Verlangen'."
+    },
+    "OR Art. 256a Abs. 2": {
+      "para": "OR Art. 256a Abs. 2",
+      "needs_all": [
+        "E20"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant has asked for the previous tenant's rent"
+      ],
+      "general": false,
+      "note": "'Ebenso kann der Mieter verlangen, dass ihm die Höhe des Mietzinses des vorangegangenen Mietverhältnisses mitgeteilt wird' — no time limit in the text; gated to the start of the tenancy as the narrower reading (it serves the initial-rent challenge, Art. 270)."
+    },
+    "OR Art. 256b": {
+      "para": "OR Art. 256b",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "General allocation: 'Der Vermieter trägt die mit der Sache verbundenen Lasten und öffentlichen Abgaben'."
+    },
+    "OR Art. 257": {
+      "para": "OR Art. 257",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition of rent ('Der Mietzins ist das Entgelt ...')."
+    },
+    "OR Art. 257a Abs. 1": {
+      "para": "OR Art. 257a Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition of ancillary costs ('Die Nebenkosten sind das Entgelt ...')."
+    },
+    "OR Art. 257a Abs. 2": {
+      "para": "OR Art. 257a Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "which ancillary costs the lease specifically lists"
+      ],
+      "general": true,
+      "note": "'Der Mieter muss die Nebenkosten nur bezahlen, wenn er dies mit dem Vermieter besonders vereinbart hat'."
+    },
+    "OR Art. 257b Abs. 1": {
+      "para": "OR Art. 257b Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Definition for 'Wohn- und Geschäftsräume': Nebenkosten are 'die tatsächlichen Aufwendungen des Vermieters'."
+    },
+    "OR Art. 257b Abs. 2": {
+      "para": "OR Art. 257b Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant has received an ancillary-cost statement and asked to see the receipts"
+      ],
+      "general": true,
+      "note": "'Der Vermieter muss dem Mieter auf Verlangen Einsicht in die Belege gewähren'."
+    },
+    "OR Art. 257c": {
+      "para": "OR Art. 257c",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "payment date agreed in the lease or customary locally"
+      ],
+      "general": true,
+      "note": "Default due date 'am Ende jedes Monats', unless 'ein anderer Zeitpunkt vereinbart oder ortsüblich ist'."
+    },
+    "OR Art. 257d Abs. 1": {
+      "para": "OR Art. 257d Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E3",
+        "E9"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date the payment demand was received",
+        "amount and deadline stated in the letter",
+        "whether the demand was in writing and threatened termination",
+        "whether the amounts claimed were already due rent or ancillary costs",
+        "whether the arrears arose after the tenant took over the property"
+      ],
+      "general": false,
+      "note": "'nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand'; deadline 'mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage' (30-day rule limited to Wohn-/Geschäftsräume)."
+    },
+    "OR Art. 257d Abs. 2": {
+      "para": "OR Art. 257d Abs. 2",
+      "needs_all": [
+        "E3"
+      ],
+      "needs_any": [
+        "E10",
+        "E1"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether full payment arrived within the deadline",
+        "date of the landlord's termination and the end date it names",
+        "whether the termination respects at least 30 days to the end of a month"
+      ],
+      "general": false,
+      "note": "'Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter ... kündigen' — needs the deadline letter and either its expiry or a termination; 30 days to month-end for Wohn-/Geschäftsräume, otherwise 'fristlos'."
+    },
+    "OR Art. 257e Abs. 1": {
+      "para": "OR Art. 257e Abs. 1",
+      "needs_all": [
+        "E13"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "form of the deposit (cash or securities)",
+        "whether it is held in a bank savings account or deposit in the tenant's name"
+      ],
+      "general": false,
+      "note": "'Leistet der Mieter von Wohn- oder Geschäftsräumen eine Sicherheit in Geld oder in Wertpapieren'."
+    },
+    "OR Art. 257e Abs. 2": {
+      "para": "OR Art. 257e Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E13",
+        "E20"
+      ],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "deposit amount compared with the monthly rent"
+      ],
+      "general": false,
+      "note": "Premises: 'Wohnräume' only. 'höchstens drei Monatszinse'. Applies to the demand ('verlangen'), so also at the start of the tenancy (E20)."
+    },
+    "OR Art. 257e Abs. 3": {
+      "para": "OR Art. 257e Abs. 3",
+      "needs_all": [
+        "E13"
+      ],
+      "needs_any": [
+        "E6",
+        "E7",
+        "E9"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the tenancy ended",
+        "whether the landlord has started legal action (payment order or court) within one year of the end",
+        "whether both parties have agreed to release the deposit"
+      ],
+      "general": false,
+      "note": "Release only 'mit Zustimmung beider Parteien' or on a 'rechtskräftigen Zahlungsbefehl' / 'Gerichtsurteil'; tenant may claim it back if no claim 'innert einem Jahr nach Beendigung des Mietverhältnisses'. Sentence 1 is not limited to the end of the tenancy, hence E9 as well."
+    },
+    "OR Art. 257e Abs. 4": {
+      "para": "OR Art. 257e Abs. 4",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Delegation: 'Die Kantone können ergänzende Bestimmungen erlassen'."
+    },
+    "OR Art. 257f Abs. 1": {
+      "para": "OR Art. 257f Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": true,
+      "note": "General duty: 'Der Mieter muss die Sache sorgfältig gebrauchen'."
+    },
+    "OR Art. 257f Abs. 2": {
+      "para": "OR Art. 257f Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [],
+      "general": true,
+      "note": "Premises: 'unbewegliche Sache' (includes flats). Duty of 'Rücksicht' towards 'Hausbewohner und Nachbarn'."
+    },
+    "OR Art. 257f Abs. 3": {
+      "para": "OR Art. 257f Abs. 3",
+      "needs_all": [],
+      "needs_any": [
+        "E21",
+        "E1"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord sent a written warning and what it complained of",
+        "whether the conduct continued after the warning",
+        "whether continuing the tenancy is unbearable for the landlord or other residents",
+        "termination date and the period it gives"
+      ],
+      "general": false,
+      "note": "'Verletzt der Mieter trotz schriftlicher Mahnung ... seine Pflicht ... weiter'; 30 days to month-end 'bei Wohn- und Geschäftsräumen', otherwise 'fristlos'."
+    },
+    "OR Art. 257f Abs. 4": {
+      "para": "OR Art. 257f Abs. 4",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E21"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant is accused of intentionally causing serious damage to the property"
+      ],
+      "general": false,
+      "note": "'Der Vermieter von Wohn- oder Geschäftsräumen kann jedoch fristlos kündigen, wenn der Mieter vorsätzlich der Sache schweren Schaden zufügt'."
+    },
+    "OR Art. 257g Abs. 1": {
+      "para": "OR Art. 257g Abs. 1",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant has reported the defect to the landlord and when"
+      ],
+      "general": false,
+      "note": "'Der Mieter muss Mängel, die er nicht selber zu beseitigen hat, dem Vermieter melden'."
+    },
+    "OR Art. 257g Abs. 2": {
+      "para": "OR Art. 257g Abs. 2",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether and when the defect was reported",
+        "what damage arose from late or missing reporting"
+      ],
+      "general": false,
+      "note": "'Unterlässt der Mieter die Meldung, so haftet er für den Schaden'."
+    },
+    "OR Art. 257h Abs. 1": {
+      "para": "OR Art. 257h Abs. 1",
+      "needs_all": [
+        "E19"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "purpose of the works (removing defects, preventing damage)"
+      ],
+      "general": false,
+      "note": "'Der Mieter muss Arbeiten an der Sache dulden, wenn sie zur Beseitigung von Mängeln ... notwendig sind'."
+    },
+    "OR Art. 257h Abs. 2": {
+      "para": "OR Art. 257h Abs. 2",
+      "needs_all": [
+        "E19"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "purpose of the viewing (maintenance, sale, re-letting)"
+      ],
+      "general": false,
+      "note": "Viewings 'soweit dies für den Unterhalt, den Verkauf oder die Wiedervermietung notwendig ist'."
+    },
+    "OR Art. 257h Abs. 3": {
+      "para": "OR Art. 257h Abs. 3",
+      "needs_all": [
+        "E19"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "how far in advance works or viewings were announced",
+        "how the works affect the tenant's use (for rent reduction / damages)"
+      ],
+      "general": false,
+      "note": "Landlord must announce 'rechtzeitig' and take account of tenant's interests; reserves Art. 259d/259e."
+    },
+    "OR Art. 258 Abs. 1": {
+      "para": "OR Art. 258 Abs. 1",
+      "needs_all": [
+        "E20"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the property was handed over on the agreed date",
+        "whether defects at handover exclude or seriously impair the agreed use"
+      ],
+      "general": false,
+      "note": "'Übergibt der Vermieter die Sache nicht zum vereinbarten Zeitpunkt oder mit Mängeln ...' -> Art. 107-109."
+    },
+    "OR Art. 258 Abs. 2": {
+      "para": "OR Art. 258 Abs. 2",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 258 Abs. 1",
+          "when": "the tenant took over the property despite the defects and insists on proper performance"
+        }
+      ],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the defect existed at handover",
+        "whether the tenant took over the property despite it and insists on proper performance"
+      ],
+      "general": false,
+      "note": "'Übernimmt der Mieter die Sache trotz dieser Mängel ... kann er nur die Ansprüche geltend machen' of Art. 259a-259i."
+    },
+    "OR Art. 258 Abs. 3": {
+      "para": "OR Art. 258 Abs. 3",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the defect existed at handover",
+        "how seriously it affects use"
+      ],
+      "general": false,
+      "note": "259a-259i also for minor defects at handover ('wenn die Sache bei der Übergabe Mängel hat')."
+    },
+    "OR Art. 259": {
+      "para": "OR Art. 259",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the defect can be fixed by small cleaning or repairs under local custom"
+      ],
+      "general": false,
+      "note": "'Mängel, die durch kleine ... Reinigungen oder Ausbesserungen behoben werden können' at the tenant's cost."
+    },
+    "OR Art. 259a Abs. 1": {
+      "para": "OR Art. 259a Abs. 1",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "what the defect or disturbance is and since when",
+        "whether the tenant caused it",
+        "whether it is a small repair the tenant must do (Art. 259)",
+        "whether the landlord has been told"
+      ],
+      "general": false,
+      "note": "'Entstehen an der Sache Mängel ... oder wird der Mieter im vertragsgemässen Gebrauch der Sache gestört'."
+    },
+    "OR Art. 259a Abs. 2": {
+      "para": "OR Art. 259a Abs. 2",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [],
+      "general": false,
+      "note": "Premises: 'unbewegliche Sache' (includes flats). Rent may be deposited ('hinterlegen')."
+    },
+    "OR Art. 259b": {
+      "para": "OR Art. 259b",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord knows of the defect",
+        "whether a reasonable deadline to fix it has passed",
+        "how severely the defect affects use"
+      ],
+      "general": false,
+      "note": "'Kennt der Vermieter einen Mangel und beseitigt er ihn nicht innert angemessener Frist': immediate termination (serious) or substitute repair (minor)."
+    },
+    "OR Art. 259c": {
+      "para": "OR Art. 259c",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 259a Abs. 1 lit. a",
+          "when": "the landlord provides a full replacement for the defective thing within a reasonable time"
+        }
+      ],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord offered a full replacement within a reasonable time"
+      ],
+      "general": false,
+      "note": "'keinen Anspruch auf Beseitigung des Mangels, wenn der Vermieter ... vollwertigen Ersatz leistet'."
+    },
+    "OR Art. 259d": {
+      "para": "OR Art. 259d",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date the landlord learned of the defect",
+        "extent of the impairment",
+        "whether and when the defect was fixed"
+      ],
+      "general": false,
+      "note": "Reduction 'vom Zeitpunkt, in dem er vom Mangel erfahren hat, bis zur Behebung'."
+    },
+    "OR Art. 259e": {
+      "para": "OR Art. 259e",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "damage the tenant suffered from the defect (costs, damaged belongings)",
+        "whether the landlord can show no fault"
+      ],
+      "general": false,
+      "note": "'Hat der Mieter durch den Mangel Schaden erlitten'."
+    },
+    "OR Art. 259f": {
+      "para": "OR Art. 259f",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether a third party claims a right to the property that conflicts with the tenant's",
+        "whether the tenant notified the landlord"
+      ],
+      "general": false,
+      "note": "'Erhebt ein Dritter einen Anspruch auf die Sache' — a disturbance of use, hence E4."
+    },
+    "OR Art. 259g Abs. 1": {
+      "para": "OR Art. 259g Abs. 1",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the tenant set the landlord a reasonable deadline in writing",
+        "whether the deposit was threatened and then announced in writing",
+        "which cantonal office accepts rent deposits"
+      ],
+      "general": false,
+      "note": "Premises: 'Mieter einer unbeweglichen Sache' (includes flats). Written deadline and written announcement required."
+    },
+    "OR Art. 259g Abs. 2": {
+      "para": "OR Art. 259g Abs. 2",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether rent has actually been deposited following Abs. 1"
+      ],
+      "general": false,
+      "note": "Premises: unbewegliche Sache (follows Abs. 1). 'Mit der Hinterlegung gelten die Mietzinse als bezahlt'."
+    },
+    "OR Art. 259h Abs. 1": {
+      "para": "OR Art. 259h Abs. 1",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "due date of the first deposited rent",
+        "whether the tenant filed claims with the conciliation authority within 30 days of it"
+      ],
+      "general": false,
+      "note": "Premises: unbewegliche Sache (rent deposit). '... nicht innert 30 Tagen seit Fälligkeit des ersten hinterlegten Mietzinses bei der Schlichtungsbehörde geltend gemacht'."
+    },
+    "OR Art. 259h Abs. 2": {
+      "para": "OR Art. 259h Abs. 2",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the tenant has announced a rent deposit"
+      ],
+      "general": false,
+      "note": "Premises: unbewegliche Sache. Landlord may claim 'zu Unrecht hinterlegten Mietzinse' once deposit announced."
+    },
+    "OR Art. 259i": {
+      "para": "OR Art. 259i",
+      "needs_all": [
+        "E4"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [],
+      "general": false,
+      "note": "Premises: unbewegliche Sache (rent-deposit procedure). 'Das Verfahren richtet sich nach der ZPO'."
+    },
+    "OR Art. 260 Abs. 1": {
+      "para": "OR Art. 260 Abs. 1",
+      "needs_all": [
+        "E19"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "what renovations or changes the landlord plans",
+        "whether they are reasonable for the tenant",
+        "whether the tenancy has been terminated"
+      ],
+      "general": false,
+      "note": "Only 'wenn sie für den Mieter zumutbar sind und wenn das Mietverhältnis nicht gekündigt ist'."
+    },
+    "OR Art. 260 Abs. 2": {
+      "para": "OR Art. 260 Abs. 2",
+      "needs_all": [
+        "E19"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "how the works affect the tenant's use (for rent reduction / damages)"
+      ],
+      "general": false,
+      "note": "'auf die Interessen des Mieters Rücksicht nehmen'; reserves Art. 259d/259e."
+    },
+    "OR Art. 260a Abs. 1": {
+      "para": "OR Art. 260a Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant has made or plans renovations or changes",
+        "whether the landlord consented in writing"
+      ],
+      "general": false,
+      "note": "No menu event; only relevant if the tenant changes the property ('nur vornehmen, wenn der Vermieter schriftlich zugestimmt hat')."
+    },
+    "OR Art. 260a Abs. 2": {
+      "para": "OR Art. 260a Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord consented to the tenant's changes",
+        "whether restoring the original state was agreed in writing"
+      ],
+      "general": false,
+      "note": "Restoration only 'wenn dies schriftlich vereinbart worden ist'."
+    },
+    "OR Art. 260a Abs. 3": {
+      "para": "OR Art. 260a Abs. 3",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E6",
+        "E7"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant's consented changes add considerable value at the end",
+        "any written compensation agreement"
+      ],
+      "general": false,
+      "note": "'bei Beendigung des Mietverhältnisses ... einen erheblichen Mehrwert' — needs the end of the tenancy to be pending or past."
+    },
+    "OR Art. 261 Abs. 1": {
+      "para": "OR Art. 261 Abs. 1",
+      "needs_all": [
+        "E12"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date of the sale or transfer",
+        "whether the lease was concluded before it"
+      ],
+      "general": false,
+      "note": "'Veräussert der Vermieter die Sache nach Abschluss des Mietvertrags ... geht das Mietverhältnis ... auf den Erwerber über'."
+    },
+    "OR Art. 261 Abs. 2": {
+      "para": "OR Art. 261 Abs. 2",
+      "needs_all": [
+        "E12"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the new owner claims urgent own need for himself, close relatives or in-laws",
+        "statutory notice period and termination date applied"
+      ],
+      "general": false,
+      "note": "lit. a 'bei Wohn- und Geschäftsräumen' (urgent own need); lit. b other things. Gated on E12; a termination itself is not required to discuss the risk."
+    },
+    "OR Art. 261 Abs. 3": {
+      "para": "OR Art. 261 Abs. 3",
+      "needs_all": [
+        "E12",
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "earliest date the original lease allowed termination",
+        "damage caused by the earlier termination"
+      ],
+      "general": false,
+      "note": "'Kündigt der neue Eigentümer früher, als es der Vertrag ... gestattet hätte, so haftet dieser' (the former landlord)."
+    },
+    "OR Art. 261 Abs. 4": {
+      "para": "OR Art. 261 Abs. 4",
+      "needs_all": [
+        "E12"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": false,
+      "note": "'Vorbehalten bleiben die Bestimmungen über die Enteignung' — expropriation has no menu event; gated on E12 as the narrower reading."
+    },
+    "OR Art. 261a": {
+      "para": "OR Art. 261a",
+      "needs_all": [
+        "E12"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord granted a third party a limited real right (e.g. usufruct) amounting to a change of owner"
+      ],
+      "general": false,
+      "note": "'... ein beschränktes dingliches Recht einräumt und dies einem Eigentümerwechsel gleichkommt'."
+    },
+    "OR Art. 261b Abs. 1": {
+      "para": "OR Art. 261b Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the lease is annotated in the land register"
+      ],
+      "general": true,
+      "note": "Premises: Grundstück (includes flats). 'kann verabredet werden, dass das Verhältnis im Grundbuch vorgemerkt wird' — option, no event."
+    },
+    "OR Art. 261b Abs. 2": {
+      "para": "OR Art. 261b Abs. 2",
+      "needs_all": [
+        "E12"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 261 Abs. 2",
+          "when": "the lease is annotated in the land register (the new owner must let the tenant use the property as agreed)"
+        }
+      ],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the lease is annotated in the land register"
+      ],
+      "general": false,
+      "note": "Premises: Grundstück (includes flats). 'jeder neue Eigentümer dem Mieter gestatten muss, das Grundstück entsprechend dem Mietvertrag zu gebrauchen'. The exclusion of Art. 261 Abs. 2 is inferred from this effect; the text has no explicit cross-reference."
+    },
+    "OR Art. 262 Abs. 1": {
+      "para": "OR Art. 262 Abs. 1",
+      "needs_all": [
+        "E11"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord has consented to the sublease"
+      ],
+      "general": false,
+      "note": "'mit Zustimmung des Vermieters ganz oder teilweise untervermieten'."
+    },
+    "OR Art. 262 Abs. 2": {
+      "para": "OR Art. 262 Abs. 2",
+      "needs_all": [
+        "E11"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant disclosed the sublease terms",
+        "sublease rent compared with main rent",
+        "what disadvantages the landlord claims"
+      ],
+      "general": false,
+      "note": "Refusal only on the three listed grounds ('kann die Zustimmung nur verweigern, wenn')."
+    },
+    "OR Art. 262 Abs. 3": {
+      "para": "OR Art. 262 Abs. 3",
+      "needs_all": [
+        "E11"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "how the subtenant uses the property"
+      ],
+      "general": false,
+      "note": "'Der Mieter haftet dem Vermieter dafür, dass der Untermieter die Sache nicht anders gebraucht'."
+    },
+    "OR Art. 263 Abs. 1": {
+      "para": "OR Art. 263 Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether the tenant of business premises wants to transfer the lease to a third party"
+      ],
+      "general": false,
+      "note": "'Der Mieter von Geschäftsräumen kann das Mietverhältnis ... auf einen Dritten übertragen'. No menu event."
+    },
+    "OR Art. 263 Abs. 2": {
+      "para": "OR Art. 263 Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "the landlord's reason for refusing the transfer"
+      ],
+      "general": false,
+      "note": "Business premises (follows Abs. 1). 'nur aus wichtigem Grund verweigern'."
+    },
+    "OR Art. 263 Abs. 3": {
+      "para": "OR Art. 263 Abs. 3",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether the landlord consented to the transfer"
+      ],
+      "general": false,
+      "note": "Business premises. 'tritt der Dritte anstelle des Mieters'."
+    },
+    "OR Art. 263 Abs. 4": {
+      "para": "OR Art. 263 Abs. 4",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "date of the transfer and the earliest contractual/legal end date"
+      ],
+      "general": false,
+      "note": "Business premises. Joint liability 'höchstens aber für zwei Jahre'."
+    },
+    "OR Art. 264 Abs. 1": {
+      "para": "OR Art. 264 Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E2",
+        "E6"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant's notice respects the notice period and date",
+        "whether the tenant proposed a replacement tenant who is solvent, acceptable and willing to take over on the same terms"
+      ],
+      "general": false,
+      "note": "'Gibt der Mieter die Sache zurück, ohne Kündigungsfrist oder -termin einzuhalten'. E2 included because the early exit is usually decided before the return."
+    },
+    "OR Art. 264 Abs. 2": {
+      "para": "OR Art. 264 Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E2",
+        "E6"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "earliest date the tenancy ends or could be ended under the lease or law"
+      ],
+      "general": false,
+      "note": "Otherwise rent is owed 'bis zu dem Zeitpunkt, in dem das Mietverhältnis ... endet oder beendet werden kann'."
+    },
+    "OR Art. 264 Abs. 3": {
+      "para": "OR Art. 264 Abs. 3",
+      "needs_all": [],
+      "needs_any": [
+        "E2",
+        "E6"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord re-let the property or refused a suitable replacement"
+      ],
+      "general": false,
+      "note": "Landlord must credit savings and what he gains 'oder absichtlich zu gewinnen unterlassen hat'."
+    },
+    "OR Art. 265": {
+      "para": "OR Art. 265",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the lease contains an advance waiver of set-off"
+      ],
+      "general": true,
+      "note": "'können nicht im Voraus auf das Recht verzichten, ... zu verrechnen'."
+    },
+    "OR Art. 266 Abs. 1": {
+      "para": "OR Art. 266 Abs. 1",
+      "needs_all": [
+        "E14"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "agreed end date of the lease"
+      ],
+      "general": false,
+      "note": "'endet das Mietverhältnis ohne Kündigung mit Ablauf dieser Dauer'."
+    },
+    "OR Art. 266 Abs. 2": {
+      "para": "OR Art. 266 Abs. 2",
+      "needs_all": [
+        "E14"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 266 Abs. 1",
+          "when": "the parties tacitly continued the tenancy after the agreed end (it becomes open-ended)"
+        }
+      ],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the tenant stayed and rent was accepted after the agreed end date"
+      ],
+      "general": false,
+      "note": "'Setzen die Parteien das Mietverhältnis stillschweigend fort, so gilt es als unbefristetes Mietverhältnis'."
+    },
+    "OR Art. 266a Abs. 1": {
+      "para": "OR Art. 266a Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the lease is open-ended",
+        "notice period and termination dates agreed in the lease"
+      ],
+      "general": false,
+      "note": "Open-ended lease ('unbefristete') with statutory 'Fristen und Termine' unless longer agreed."
+    },
+    "OR Art. 266a Abs. 2": {
+      "para": "OR Art. 266a Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date notice was received and the end date it names"
+      ],
+      "general": false,
+      "note": "'Halten die Parteien die Frist oder den Termin nicht ein, so gilt die Kündigung für den nächstmöglichen Termin'."
+    },
+    "OR Art. 266b": {
+      "para": "OR Art. 266b",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "local customary termination dates"
+      ],
+      "general": false,
+      "note": "Premises: 'unbewegliche Sachen und Fahrnisbauten' (flats are governed by the special rule Art. 266c). Three months."
+    },
+    "OR Art. 266c": {
+      "para": "OR Art. 266c",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "local customary termination dates",
+        "date notice was received"
+      ],
+      "general": false,
+      "note": "Premises: 'Wohnungen' only. 'mit einer Frist von drei Monaten auf einen ortsüblichen Termin'."
+    },
+    "OR Art. 266d": {
+      "para": "OR Art. 266d",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "local customary termination dates"
+      ],
+      "general": false,
+      "note": "'Bei der Miete von Geschäftsräumen ... sechs Monaten'."
+    },
+    "OR Art. 266e": {
+      "para": "OR Art. 266e",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the object is a furnished room or a separately let parking space"
+      ],
+      "general": false,
+      "note": "Premises: 'möblierten Zimmern und von gesondert vermieteten Einstellplätzen'. Two weeks to end of a one-month period."
+    },
+    "OR Art. 266f": {
+      "para": "OR Art. 266f",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [],
+      "general": false,
+      "note": "Premises: 'beweglichen Sachen' only. Three days."
+    },
+    "OR Art. 266g Abs. 1": {
+      "para": "OR Art. 266g Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "what important reason is invoked",
+        "why continuing the contract is unbearable for that party"
+      ],
+      "general": false,
+      "note": "'Aus wichtigen Gründen, welche die Vertragserfüllung ... unzumutbar machen'."
+    },
+    "OR Art. 266g Abs. 2": {
+      "para": "OR Art. 266g Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the termination was made for important reasons (Abs. 1)"
+      ],
+      "general": false,
+      "note": "'Der Richter bestimmt die vermögensrechtlichen Folgen der vorzeitigen Kündigung'."
+    },
+    "OR Art. 266h Abs. 1": {
+      "para": "OR Art. 266h Abs. 1",
+      "needs_all": [
+        "E18"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord set the tenant and the bankruptcy administration a reasonable written deadline for security"
+      ],
+      "general": false,
+      "note": "'Fällt der Mieter nach Übernahme der Sache in Konkurs'."
+    },
+    "OR Art. 266h Abs. 2": {
+      "para": "OR Art. 266h Abs. 2",
+      "needs_all": [
+        "E18"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether security was provided within the deadline"
+      ],
+      "general": false,
+      "note": "'Erhält der Vermieter innert dieser Frist keine Sicherheit, so kann er fristlos kündigen'."
+    },
+    "OR Art. 266i": {
+      "para": "OR Art. 266i",
+      "needs_all": [
+        "E17"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "date of death",
+        "who the heirs are"
+      ],
+      "general": false,
+      "note": "'Stirbt der Mieter, so können seine Erben ... kündigen'."
+    },
+    "OR Art. 266k": {
+      "para": "OR Art. 266k",
+      "needs_all": [
+        "E2"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "other",
+      "deciding_facts": [
+        "whether the rented movable is for private use and let by a commercial lessor"
+      ],
+      "general": false,
+      "note": "Premises: movable thing for private use rented from a commercial lessor."
+    },
+    "OR Art. 266l Abs. 1": {
+      "para": "OR Art. 266l Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the notice was given in writing"
+      ],
+      "general": false,
+      "note": "'Vermieter und Mieter von Wohn- und Geschäftsräumen müssen schriftlich kündigen'."
+    },
+    "OR Art. 266l Abs. 2": {
+      "para": "OR Art. 266l Abs. 2",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the landlord's termination used the official cantonal form stating how to contest it or request an extension"
+      ],
+      "general": false,
+      "note": "'Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist'."
+    },
+    "OR Art. 266m Abs. 1": {
+      "para": "OR Art. 266m Abs. 1",
+      "needs_all": [
+        "E8",
+        "E2"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the spouse expressly consented to the tenant's notice"
+      ],
+      "general": false,
+      "note": "'Dient die gemietete Sache als Wohnung der Familie, kann ein Ehegatte ... nur mit der ausdrücklichen Zustimmung des anderen kündigen'."
+    },
+    "OR Art. 266m Abs. 2": {
+      "para": "OR Art. 266m Abs. 2",
+      "needs_all": [
+        "E8",
+        "E2"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether consent could not be obtained or was refused without good reason"
+      ],
+      "general": false,
+      "note": "'... so kann er den Richter anrufen'."
+    },
+    "OR Art. 266m Abs. 3": {
+      "para": "OR Art. 266m Abs. 3",
+      "needs_all": [
+        "E8",
+        "E2"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant is in a registered partnership"
+      ],
+      "general": false,
+      "note": "'gilt bei eingetragenen Partnerschaften sinngemäss'."
+    },
+    "OR Art. 266n": {
+      "para": "OR Art. 266n",
+      "needs_all": [
+        "E8"
+      ],
+      "needs_any": [
+        "E1",
+        "E3"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the termination or payment-deadline notice was delivered separately to the spouse or registered partner"
+      ],
+      "general": false,
+      "note": "'... sind dem Mieter und seinem Ehegatten, seiner eingetragenen Partnerin oder seinem eingetragenen Partner separat zuzustellen'. Family-home condition taken from the heading '2. Wohnung der Familie'."
+    },
+    "OR Art. 266o": {
+      "para": "OR Art. 266o",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the notice was in writing",
+        "whether the landlord used the official form",
+        "whether spouse consent / separate delivery requirements were met"
+      ],
+      "general": false,
+      "note": "'Die Kündigung ist nichtig, wenn sie den Artikeln 266l–266n nicht entspricht'."
+    },
+    "OR Art. 267 Abs. 1": {
+      "para": "OR Art. 267 Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E6",
+        "E7"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "condition of the property compared with normal contractual use"
+      ],
+      "general": false,
+      "note": "'Der Mieter muss die Sache in dem Zustand zurückgeben, der sich aus dem vertragsgemässen Gebrauch ergibt' — relevant once the end is pending or past."
+    },
+    "OR Art. 267 Abs. 2": {
+      "para": "OR Art. 267 Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E6",
+        "E7"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the lease requires a fixed payment at the end beyond actual damage (e.g. flat-rate cleaning or renovation fee)"
+      ],
+      "general": false,
+      "note": "Advance agreements on end-of-lease compensation beyond 'Deckung des allfälligen Schadens' are void."
+    },
+    "OR Art. 267a Abs. 1": {
+      "para": "OR Art. 267a Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E6",
+        "E7"
+      ],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether a handover inspection took place and defects were notified immediately"
+      ],
+      "general": false,
+      "note": "'Bei der Rückgabe muss der Vermieter den Zustand der Sache prüfen und Mängel ... sofort melden'."
+    },
+    "OR Art. 267a Abs. 2": {
+      "para": "OR Art. 267a Abs. 2",
+      "needs_all": [
+        "E6"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the landlord reported defects immediately at the return",
+        "whether the defects were visible on a normal inspection"
+      ],
+      "general": false,
+      "note": "'Versäumt dies der Vermieter, so verliert er seine Ansprüche'."
+    },
+    "OR Art. 267a Abs. 3": {
+      "para": "OR Art. 267a Abs. 3",
+      "needs_all": [
+        "E6"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "when the landlord discovered the hidden defect and when he reported it"
+      ],
+      "general": false,
+      "note": "Hidden defects discovered later must be reported 'sofort'."
+    },
+    "OR Art. 268 Abs. 1": {
+      "para": "OR Art. 268 Abs. 1",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "amount of overdue rent (annual and current half-year)",
+        "which movables are in the premises"
+      ],
+      "general": false,
+      "note": "'Der Vermieter von Geschäftsräumen hat ... ein Retentionsrecht'."
+    },
+    "OR Art. 268 Abs. 2": {
+      "para": "OR Art. 268 Abs. 2",
+      "needs_all": [
+        "E9",
+        "E11"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether the subtenant has paid his rent"
+      ],
+      "general": false,
+      "note": "Retention covers subtenant's items 'insoweit, als dieser seinen Mietzins nicht bezahlt hat'."
+    },
+    "OR Art. 268 Abs. 3": {
+      "para": "OR Art. 268 Abs. 3",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 268 Abs. 1",
+          "when": "the items could not be seized by the tenant's creditors"
+        }
+      ],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether the items are exempt from seizure"
+      ],
+      "general": false,
+      "note": "'Ausgeschlossen ist das Retentionsrecht an Sachen, die ... nicht gepfändet werden könnten'."
+    },
+    "OR Art. 268a Abs. 1": {
+      "para": "OR Art. 268a Abs. 1",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether items belong to third parties or were stolen/lost"
+      ],
+      "general": false,
+      "note": "Retention right of Art. 268 (Geschäftsräume only). 'Die Rechte Dritter ... gehen dem Retentionsrecht des Vermieters vor'."
+    },
+    "OR Art. 268a Abs. 2": {
+      "para": "OR Art. 268a Abs. 2",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "when the landlord learned the items belong to others",
+        "whether he terminated for the next possible date"
+      ],
+      "general": false,
+      "note": "Retention right of Art. 268 (Geschäftsräume only). Lapses unless landlord 'den Mietvertrag nicht auf den nächstmöglichen Termin kündigt'."
+    },
+    "OR Art. 268b Abs. 1": {
+      "para": "OR Art. 268b Abs. 1",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "whether the tenant plans to move out or remove items"
+      ],
+      "general": false,
+      "note": "Retention right of Art. 268 (Geschäftsräume only). 'Will der Mieter wegziehen oder die ... Sachen fortschaffen'."
+    },
+    "OR Art. 268b Abs. 2": {
+      "para": "OR Art. 268b Abs. 2",
+      "needs_all": [
+        "E9"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "business_only",
+      "deciding_facts": [
+        "date the items were removed and whether secretly or by force"
+      ],
+      "general": false,
+      "note": "Retention right of Art. 268 (Geschäftsräume only). Return 'innert zehn Tagen' with police help."
+    },
+    "OR Art. 269": {
+      "para": "OR Art. 269",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant questions the level of the rent (increase, initial rent, or reduction because costs fell)",
+        "landlord's return on the property or purchase price, if known"
+      ],
+      "general": false,
+      "note": "Abuse test 'übersetzter Ertrag' / 'offensichtlich übersetzten Kaufpreis'. No menu event gates a tenant-initiated reduction request (Art. 270a), so no event is required."
+    },
+    "OR Art. 269a": {
+      "para": "OR Art. 269a",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 269",
+          "when": "the rent falls under one of lit. a-f (local rents, cost increases, new buildings, payment plan, inflation on risk capital, framework agreements) — 'in der Regel' only"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant questions the level of the rent (increase, initial rent, or reduction because costs fell)",
+        "local comparable rents, cost increases, age of the building"
+      ],
+      "general": false,
+      "note": "'Mietzinse sind in der Regel nicht missbräuchlich, wenn sie insbesondere ...'."
+    },
+    "OR Art. 269b": {
+      "para": "OR Art. 269b",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease has an index clause",
+        "lease term (at least five years) and the index used"
+      ],
+      "general": false,
+      "note": "Index clause valid only for leases 'für mindestens fünf Jahre' with the 'Landesindex der Konsumentenpreise'."
+    },
+    "OR Art. 269c": {
+      "para": "OR Art. 269c",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease has staggered rent steps",
+        "lease term, frequency and form (CHF amount) of the steps"
+      ],
+      "general": false,
+      "note": "Valid only if lease 'für mindestens drei Jahre', max once a year, amount 'in Franken'."
+    },
+    "OR Art. 269d Abs. 1": {
+      "para": "OR Art. 269d Abs. 1",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the increase notice was received",
+        "whether it used the official cantonal form and gave reasons",
+        "whether it arrived at least ten days before the notice period began",
+        "effective date versus the next termination date"
+      ],
+      "general": false,
+      "note": "'... mindestens zehn Tage vor Beginn der Kündigungsfrist auf einem vom Kanton genehmigten Formular mitteilen und begründen'."
+    },
+    "OR Art. 269d Abs. 2": {
+      "para": "OR Art. 269d Abs. 2",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the official form was used",
+        "whether reasons were given",
+        "whether the notice threatened or gave termination"
+      ],
+      "general": false,
+      "note": "Increase 'nichtig' without form, reasons, or if combined with termination threat."
+    },
+    "OR Art. 269d Abs. 3": {
+      "para": "OR Art. 269d Abs. 3",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "what unilateral change the landlord announced (reduced services, new ancillary costs)"
+      ],
+      "general": false,
+      "note": "Abs. 1-2 apply to other unilateral changes 'zu Lasten des Mieters'."
+    },
+    "OR Art. 269d Abs. 4": {
+      "para": "OR Art. 269d Abs. 4",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the form bears only a printed/facsimile signature"
+      ],
+      "general": false,
+      "note": "'genügt eine auf mechanischem Weg nachgebildete Unterschrift'."
+    },
+    "OR Art. 269d Abs. 5": {
+      "para": "OR Art. 269d Abs. 5",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 269d Abs. 1 and Abs. 2 lit. a (official form)",
+          "when": "the increase is a step already agreed under a staggered-rent clause (Art. 269c); written form suffices"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the increase is a pre-agreed staggered step"
+      ],
+      "general": false,
+      "note": "'Für die Mitteilung von Mietzinserhöhungen, die in einer Vereinbarung nach Artikel 269c vorgesehen sind, genügt die schriftliche Form'."
+    },
+    "OR Art. 270 Abs. 1": {
+      "para": "OR Art. 270 Abs. 1",
+      "needs_all": [
+        "E20"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the tenant took over the property (30-day deadline)",
+        "whether the tenant was compelled by personal or family hardship or the local housing market",
+        "whether the initial rent is significantly higher than the previous tenant's"
+      ],
+      "general": false,
+      "note": "'innert 30 Tagen nach Übernahme der Sache'; conditions lit. a or b."
+    },
+    "OR Art. 270 Abs. 2": {
+      "para": "OR Art. 270 Abs. 2",
+      "needs_all": [
+        "E20"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the canton requires the official form for new leases",
+        "whether the tenant received that form"
+      ],
+      "general": false,
+      "note": "Cantons may make the Art. 269d form mandatory 'beim Abschluss eines neuen Mietvertrags'."
+    },
+    "OR Art. 270a Abs. 1": {
+      "para": "OR Art. 270a Abs. 1",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the calculation basis has changed significantly since the last rent setting (e.g. lower reference interest rate)",
+        "date of the last rent adjustment",
+        "next termination date"
+      ],
+      "general": false,
+      "note": "Tenant-initiated; no menu event ('wenn er Grund zur Annahme hat ... wegen einer wesentlichen Änderung der Berechnungsgrundlagen')."
+    },
+    "OR Art. 270a Abs. 2": {
+      "para": "OR Art. 270a Abs. 2",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant sent a written reduction request",
+        "whether and when the landlord replied (30 days)"
+      ],
+      "general": false,
+      "note": "Written request to landlord; then 'innert 30 Tagen die Schlichtungsbehörde anrufen'."
+    },
+    "OR Art. 270a Abs. 3": {
+      "para": "OR Art. 270a Abs. 3",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 270a Abs. 2",
+          "when": "the tenant files the reduction request together with contesting a rent increase"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [],
+      "general": false,
+      "note": "'Absatz 2 ist nicht anwendbar, wenn der Mieter gleichzeitig mit der Anfechtung einer Mietzinserhöhung ein Herabsetzungsbegehren stellt'."
+    },
+    "OR Art. 270b Abs. 1": {
+      "para": "OR Art. 270b Abs. 1",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the increase notice was received (30-day deadline)",
+        "reasons given for the increase"
+      ],
+      "general": false,
+      "note": "'innert 30 Tagen, nachdem sie ihm mitgeteilt worden ist'."
+    },
+    "OR Art. 270b Abs. 2": {
+      "para": "OR Art. 270b Abs. 2",
+      "needs_all": [
+        "E5"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the unilateral change was notified"
+      ],
+      "general": false,
+      "note": "Applies to other unilateral changes 'zu Lasten des Mieters'."
+    },
+    "OR Art. 270c": {
+      "para": "OR Art. 270c",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 270a, OR Art. 270b (full abuse review)",
+          "when": "the rent is validly indexed: only the argument that the index change does not justify the increase/reduction is allowed (initial rent challenge reserved)"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease has a valid index clause (Art. 269b)",
+        "change in the consumer price index"
+      ],
+      "general": false,
+      "note": "'... nur geltend machen, dass die ... verlangte Erhöhung oder Herabsetzung ... durch keine entsprechende Änderung des Indexes gerechtfertigt sei'."
+    },
+    "OR Art. 270d": {
+      "para": "OR Art. 270d",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 270a, OR Art. 270b",
+          "when": "the rent is a valid staggered rent (initial rent challenge reserved)"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease has a valid staggered-rent clause (Art. 269c)"
+      ],
+      "general": false,
+      "note": "'Unter Vorbehalt der Anfechtung des Anfangsmietzinses kann der Mieter gestaffelte Mietzinse nicht anfechten'."
+    },
+    "OR Art. 270e": {
+      "para": "OR Art. 270e",
+      "needs_all": [],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether a rent-contest proceeding is pending before the conciliation authority or a court"
+      ],
+      "general": false,
+      "note": "Applies 'während des Schlichtungsverfahrens ... und während des Gerichtsverfahrens'; no menu event for a pending proceeding."
+    },
+    "OR Art. 271 Abs. 1": {
+      "para": "OR Art. 271 Abs. 1",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "stated or apparent reason for the termination",
+        "date the termination was received"
+      ],
+      "general": false,
+      "note": "'Die Kündigung ist anfechtbar, wenn sie gegen den Grundsatz von Treu und Glauben verstösst'. Text covers any party's notice; gated on E1 because the client is the tenant (narrower reading)."
+    },
+    "OR Art. 271 Abs. 2": {
+      "para": "OR Art. 271 Abs. 2",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant asked for and received reasons"
+      ],
+      "general": false,
+      "note": "'Die Kündigung muss auf Verlangen begründet werden'. Gated on E1 (narrower reading, client is tenant)."
+    },
+    "OR Art. 271a Abs. 1": {
+      "para": "OR Art. 271a Abs. 1",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "reason for the termination",
+        "whether the tenant recently asserted claims against the landlord",
+        "whether the landlord wanted a rent change or unilateral change",
+        "whether a tenancy proceeding is pending or ended within the last three years and its outcome",
+        "whether the tenant's family situation changed",
+        "whether the landlord was pushing the tenant to buy the flat"
+      ],
+      "general": false,
+      "note": "'Die Kündigung durch den Vermieter ist insbesondere anfechtbar, wenn ...' lit. a-f."
+    },
+    "OR Art. 271a Abs. 2": {
+      "para": "OR Art. 271a Abs. 2",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether a written out-of-court settlement on a tenancy claim was reached within three years"
+      ],
+      "general": false,
+      "note": "Lit. e also applies to a settlement 'ausserhalb eines Schlichtungs- oder Gerichtsverfahrens' proven 'durch Schriftstücke'."
+    },
+    "OR Art. 271a Abs. 3": {
+      "para": "OR Art. 271a Abs. 3",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination is for the landlord's urgent own need for himself, close relatives or in-laws"
+        },
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination is for payment arrears under Art. 257d (deadline set and passed)"
+        },
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination is for serious breach of care and consideration (Art. 257f Abs. 3 and 4)"
+        },
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination follows a sale of the property (Art. 261)"
+        },
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination is for important reasons (Art. 266g)"
+        },
+        {
+          "para_or_article": "OR Art. 271a Abs. 1 lit. d and e",
+          "when": "the termination is because the tenant is bankrupt (Art. 266h)"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "ground stated for the termination"
+      ],
+      "general": false,
+      "note": "'Absatz 1 Buchstaben d und e sind nicht anwendbar bei Kündigungen: ...'."
+    },
+    "OR Art. 272 Abs. 1": {
+      "para": "OR Art. 272 Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "hardship the end of the tenancy would cause the tenant or family",
+        "the landlord's interests in ending it"
+      ],
+      "general": false,
+      "note": "Extension 'eines befristeten oder unbefristeten Mietverhältnisses' if 'die Beendigung ... eine Härte zur Folge hätte'. Narrower reading: tenant's own notice (E2) not included."
+    },
+    "OR Art. 272 Abs. 2": {
+      "para": "OR Art. 272 Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "circumstances of conclusion and content of the lease",
+        "length of the tenancy",
+        "personal, family and financial situation and conduct of both parties",
+        "landlord's own need and its urgency",
+        "local housing market"
+      ],
+      "general": false,
+      "note": "Balancing factors lit. a-e."
+    },
+    "OR Art. 272 Abs. 3": {
+      "para": "OR Art. 272 Abs. 3",
+      "needs_all": [
+        "E16"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "what the tenant has done to find other housing during the first extension"
+      ],
+      "general": false,
+      "note": "'Verlangt der Mieter eine zweite Erstreckung' — requires a first extension."
+    },
+    "OR Art. 272a Abs. 1": {
+      "para": "OR Art. 272a Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 272",
+          "when": "the termination is for payment arrears under Art. 257d (deadline set and passed)"
+        },
+        {
+          "para_or_article": "OR Art. 272",
+          "when": "the termination is for serious breach of care and consideration (Art. 257f Abs. 3 and 4)"
+        },
+        {
+          "para_or_article": "OR Art. 272",
+          "when": "the termination is because the tenant is bankrupt (Art. 266h)"
+        },
+        {
+          "para_or_article": "OR Art. 272",
+          "when": "the lease was expressly concluded only for the limited time until a planned renovation or demolition starts or is permitted"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "ground stated for the termination",
+        "whether the lease was concluded only until planned construction or demolition"
+      ],
+      "general": false,
+      "note": "'Die Erstreckung ist ausgeschlossen bei Kündigungen: ...' lit. a-d."
+    },
+    "OR Art. 272a Abs. 2": {
+      "para": "OR Art. 272a Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 272",
+          "when": "the landlord offers equivalent replacement housing or business premises ('in der Regel')"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the landlord offered equivalent replacement premises"
+      ],
+      "general": false,
+      "note": "'in der Regel ausgeschlossen, wenn der Vermieter ... einen gleichwertigen Ersatz ... anbietet'."
+    },
+    "OR Art. 272b Abs. 1": {
+      "para": "OR Art. 272b Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "total extension already granted"
+      ],
+      "general": false,
+      "note": "Max 'für Wohnräume um höchstens vier, für Geschäftsräume um höchstens sechs Jahre'; one or two extensions."
+    },
+    "OR Art. 272b Abs. 2": {
+      "para": "OR Art. 272b Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 272b Abs. 1 (maximum duration)",
+          "when": "the parties agree the extension themselves"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the parties agreed an extension and its terms"
+      ],
+      "general": false,
+      "note": "'Vereinbaren die Parteien eine Erstreckung ... an keine Höchstdauer gebunden'."
+    },
+    "OR Art. 272c Abs. 1": {
+      "para": "OR Art. 272c Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "what changed circumstances a party wants reflected in the extended lease"
+      ],
+      "general": false,
+      "note": "Adaptation 'im Erstreckungsentscheid' — arises in the extension proceeding, so the triggers for requesting extension also count."
+    },
+    "OR Art. 272c Abs. 2": {
+      "para": "OR Art. 272c Abs. 2",
+      "needs_all": [
+        "E16"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the extension decision changed the lease"
+      ],
+      "general": false,
+      "note": "'gilt er während der Erstreckung unverändert weiter'."
+    },
+    "OR Art. 272d": {
+      "para": "OR Art. 272d",
+      "needs_all": [
+        "E16"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "length of the extension granted",
+        "whether the decision/agreement set other notice terms"
+      ],
+      "general": false,
+      "note": "Tenant's notice during extension: one month to month-end (≤1 year) or three months to a legal date (>1 year)."
+    },
+    "OR Art. 273 Abs. 1": {
+      "para": "OR Art. 273 Abs. 1",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the termination was received (30-day deadline)"
+      ],
+      "general": false,
+      "note": "'innert 30 Tagen nach Empfang der Kündigung der Schlichtungsbehörde'. Text says 'eine Partei'; gated on E1 (client is tenant)."
+    },
+    "OR Art. 273 Abs. 2": {
+      "para": "OR Art. 273 Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "date the termination was received (open-ended lease: 30 days)",
+        "end date of the fixed-term lease (request at least 60 days before)"
+      ],
+      "general": false,
+      "note": "lit. a unbefristet: '30 Tagen nach Empfang der Kündigung'; lit. b befristet: 'spätestens 60 Tage vor Ablauf'."
+    },
+    "OR Art. 273 Abs. 3": {
+      "para": "OR Art. 273 Abs. 3",
+      "needs_all": [
+        "E16"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "end date of the first extension (request at least 60 days before)"
+      ],
+      "general": false,
+      "note": "'Das Begehren um eine zweite Erstreckung ... spätestens 60 Tage vor Ablauf der ersten'."
+    },
+    "OR Art. 273 Abs. 4": {
+      "para": "OR Art. 273 Abs. 4",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [],
+      "general": false,
+      "note": "'Das Verfahren vor der Schlichtungsbehörde richtet sich nach der ZPO' — procedure for the contest/extension requests of this article."
+    },
+    "OR Art. 273 Abs. 5": {
+      "para": "OR Art. 273 Abs. 5",
+      "needs_all": [
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether a contest of the termination was rejected"
+      ],
+      "general": false,
+      "note": "If contest rejected, authority checks extension 'von Amtes wegen'."
+    },
+    "OR Art. 273a Abs. 1": {
+      "para": "OR Art. 273a Abs. 1",
+      "needs_all": [
+        "E8",
+        "E1"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the spouse/partner wants to act in their own name"
+      ],
+      "general": false,
+      "note": "'Dient die gemietete Sache als Wohnung der Familie, so kann auch der Ehegatte des Mieters die Kündigung anfechten ...'."
+    },
+    "OR Art. 273a Abs. 2": {
+      "para": "OR Art. 273a Abs. 2",
+      "needs_all": [
+        "E8"
+      ],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether both spouses signed the extension agreement"
+      ],
+      "general": false,
+      "note": "'Vereinbarungen über die Erstreckung sind nur gültig, wenn sie mit beiden Ehegatten abgeschlossen werden'."
+    },
+    "OR Art. 273a Abs. 3": {
+      "para": "OR Art. 273a Abs. 3",
+      "needs_all": [
+        "E8"
+      ],
+      "needs_any": [
+        "E1",
+        "E14",
+        "E16"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the tenant is in a registered partnership"
+      ],
+      "general": false,
+      "note": "'gilt bei eingetragenen Partnerschaften sinngemäss'."
+    },
+    "OR Art. 273b Abs. 1": {
+      "para": "OR Art. 273b Abs. 1",
+      "needs_all": [
+        "E11"
+      ],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E7",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the main tenancy has been dissolved",
+        "end date of the main tenancy"
+      ],
+      "general": false,
+      "note": "'gilt für die Untermiete, solange das Hauptmietverhältnis nicht aufgelöst ist'; subtenancy extension only 'für die Dauer des Hauptmietverhältnisses'."
+    },
+    "OR Art. 273b Abs. 2": {
+      "para": "OR Art. 273b Abs. 2",
+      "needs_all": [
+        "E11"
+      ],
+      "needs_any": [
+        "E1",
+        "E2",
+        "E7",
+        "E14"
+      ],
+      "excludes": [
+        {
+          "para_or_article": "OR Art. 273b Abs. 1",
+          "when": "the sublease mainly aims to circumvent termination protection: the subtenant is protected regardless of the main tenancy"
+        }
+      ],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the sublease mainly serves to circumvent termination protection"
+      ],
+      "general": false,
+      "note": "'Bezweckt die Untermiete hauptsächlich die Umgehung der Vorschriften über den Kündigungsschutz'."
+    },
+    "OR Art. 273c Abs. 1": {
+      "para": "OR Art. 273c Abs. 1",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease or a later agreement contains a waiver of termination-protection rights"
+      ],
+      "general": false,
+      "note": "'Rechte, die ihm nach diesem Abschnitt zustehen' — the Kündigungsschutz section, which only bites once the tenancy is being ended."
+    },
+    "OR Art. 273c Abs. 2": {
+      "para": "OR Art. 273c Abs. 2",
+      "needs_all": [],
+      "needs_any": [
+        "E1",
+        "E14"
+      ],
+      "excludes": [],
+      "premises": "residential_and_business",
+      "deciding_facts": [
+        "whether the lease or a later agreement deviates from Art. 271-273c"
+      ],
+      "general": false,
+      "note": "'Abweichende Vereinbarungen sind nichtig'."
+    },
+    "OR Art. 143 Abs. 1": {
+      "para": "OR Art. 143 Abs. 1",
+      "needs_all": [
+        "E15"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the co-tenants declared in the lease that each is liable for the whole rent"
+      ],
+      "general": false,
+      "note": "'Solidarität ... entsteht, wenn sie erklären, dass dem Gläubiger gegenüber jeder einzeln für die Erfüllung der ganzen Schuld haften wolle'. Not a tenancy rule; in this project it matters only for co-tenants (narrower reading). The German text does not mention tenancy."
+    },
+    "OR Art. 143 Abs. 2": {
+      "para": "OR Art. 143 Abs. 2",
+      "needs_all": [
+        "E15"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": false,
+      "note": "'Ohne solche Willenserklärung entsteht Solidarität nur in den vom Gesetze bestimmten Fällen'. Not a tenancy rule; in this project it matters only for co-tenants (narrower reading). The German text does not mention tenancy."
+    },
+    "OR Art. 544 Abs. 1": {
+      "para": "OR Art. 544 Abs. 1",
+      "needs_all": [
+        "E15"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [],
+      "general": false,
+      "note": "Partnership assets 'gehören den Gesellschaftern gemeinschaftlich'. Not a tenancy rule; in this project it matters only for co-tenants (narrower reading). The German text does not mention tenancy."
+    },
+    "OR Art. 544 Abs. 2": {
+      "para": "OR Art. 544 Abs. 2",
+      "needs_all": [
+        "E15"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether a creditor of one co-tenant is pursuing that co-tenant"
+      ],
+      "general": false,
+      "note": "Creditors of a partner can claim only 'den Liquidationsanteil ihres Schuldners'. Not a tenancy rule; in this project it matters only for co-tenants (narrower reading). The German text does not mention tenancy."
+    },
+    "OR Art. 544 Abs. 3": {
+      "para": "OR Art. 544 Abs. 3",
+      "needs_all": [
+        "E15"
+      ],
+      "needs_any": [],
+      "excludes": [],
+      "premises": "all",
+      "deciding_facts": [
+        "whether the co-tenants concluded the lease jointly"
+      ],
+      "general": false,
+      "note": "Joint obligations to third parties: 'so haften sie ihm solidarisch, unter Vorbehalt anderer Vereinbarung'. Not a tenancy rule; in this project it matters only for co-tenants (narrower reading). The German text does not mention tenancy."
+    }
+  },
+  "review_log": [
+    {
+      "para": "OR Art. 253b Abs. 2",
+      "fix": "premises residential_and_business -> other: the exclusion concerns only 'luxuriösen Wohnungen und Einfamilienhäusern' (residential)."
+    },
+    {
+      "para": "OR Art. 257e Abs. 3",
+      "fix": "added E9 to needs_any: sentence 1 (bank releases only with consent, a final payment order or judgment) is not tied to the end of the tenancy and matters when the landlord wants the deposit for arrears."
+    },
+    {
+      "para": "OR Art. 259c",
+      "fix": "excludes narrowed to OR Art. 259a Abs. 1 lit. a only: the text removes only the 'Anspruch auf Beseitigung des Mangels'; extending it to Art. 259b was an inference beyond the text."
+    },
+    {
+      "para": "OR Art. 261b Abs. 1",
+      "fix": "premises all -> other: 'Bei der Miete an einem Grundstück' (immovable property; includes flats)."
+    },
+    {
+      "para": "OR Art. 261b Abs. 2",
+      "fix": "premises all -> other (Grundstück, follows Abs. 1); note now flags that the exclusion of Art. 261 Abs. 2 is inferred from the effect of the annotation, not a cross-reference in the text."
+    },
+    {
+      "para": "OR Art. 266k",
+      "fix": "single event moved from needs_any to needs_all for consistency (same meaning)."
+    },
+    {
+      "para": "OR Art. 266n",
+      "fix": "note now states that the family-home condition (E8) comes from the heading '2. Wohnung der Familie'; the sentence itself names only the spouse/registered partner."
+    },
+    {
+      "para": "OR Art. 269d Abs. 5",
+      "fix": "excluded target widened to Abs. 2 lit. a as well: if written form suffices, nullity for missing the official form cannot apply either. Reasons requirement (lit. b) left untouched (narrower reading)."
+    },
+    {
+      "para": "OR Art. 273 Abs. 4",
+      "fix": "added E16 to needs_any: the ZPO procedure also governs the second-extension request of Abs. 3."
+    },
+    {
+      "para": "OR Art. 271a Abs. 1",
+      "fix": "added missing deciding fact for lit. c ('allein um den Mieter zum Erwerb der gemieteten Wohnung zu veranlassen')."
+    },
+    {
+      "para": "OR Art. 257e Abs. 2",
+      "fix": "gate changed from needs_all [E13] to needs_any [E13, E20]: the rule limits what the landlord may 'verlangen', which happens at the start of the tenancy, before a deposit is necessarily paid."
+    }
+  ]
+}
