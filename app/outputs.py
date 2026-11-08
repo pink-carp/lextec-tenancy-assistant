@@ -2,11 +2,13 @@
 
 The handout and brief are rewritten from the verified result; they never re-analyse the case."""
 import base64
+import json
+import re
 import io
 from datetime import date
 
 from . import checks
-from .llm import chat
+from .llm import ask_json, chat
 from .pipeline import SYSTEM_ROLE, _d, allowed_dates, facts_block, mask
 
 # ---------------------------------------------------------------- answers and uploads
@@ -73,65 +75,71 @@ def read_upload(case, filename, content: bytes):
 
 
 def add_document(case, name, text):
-    """Called after the social worker confirmed the extracted text."""
+    """Called after the social worker confirmed the extracted text. Kept apart from case['documents']
+    (the letters the client mentioned), and shown to later steps as documented evidence."""
     text = mask(text)[0]
-    case.setdefault("documents", []).append({"name": name, "text": text[:6000]})
-    case.setdefault("facts", []).append({"id": f"F{len(case['facts']) + 1}", "heading": "what",
-                                         "statement": f"Document '{name}' (uploaded, text confirmed by the social worker): {text[:1500]}",
-                                         "sentences": [], "status": "documented"})
+    case.setdefault("uploaded", []).append({"name": name, "text": text[:6000]})
+    case.setdefault("facts", []).append({"id": f"F{len(case.get('facts', [])) + 1}", "heading": "what",
+                                         "statement": f"Document '{name}' uploaded; text confirmed by the social worker.",
+                                         "quote": "", "status": "documented"})
     return case
 
 
 # ---------------------------------------------------------------- handout
 
+# docs/disclosure.md section A (draft for the legal team). The data sentence uses the cautious variant because
+# the AI provider's and the host's data retention have not been verified.
+CLIENT_DISCLOSURE = (
+    "About this sheet: Your social worker made this sheet with a computer tool that uses artificial intelligence (AI). "
+    "Your social worker checked it, but it may contain mistakes. This sheet gives general legal information. It is not "
+    "legal advice and does not replace a lawyer. Our tool does not save your case. To make this sheet, your information "
+    "was sent to an AI service, which may keep data for a short time. For advice on your own case, contact a service "
+    "listed on this sheet. If a deadline is mentioned, act in time.")
+
+
+def _ids(items, key, allowed):
+    return [x for x in (items or []) if isinstance(x, dict) and x.get(key) in allowed]
+
 
 def handout(case):
     scr = case["screen"]
-    action_ids = [a["id"] for a in scr["actions"]]
-    open_q = [q for q in case.get("questions", [])
-              if q["id"] not in {a["question_id"] for a in case.get("answers", []) if a.get("status") == "answered"}]
-    q_ids = [q["id"] for q in open_q] or ["none"]
-    schema = {"type": "object", "properties": {
-        "act_now": {"type": "string", "description": "one or two sentences if something must happen urgently, else empty"},
-        "summary": {"type": "string"},
-        "actions": {"type": "array", "maxItems": 5, "items": {"type": "object", "properties": {
-            "action_id": {"type": "string", "enum": action_ids or ["none"]}, "text": {"type": "string"}},
-            "required": ["action_id", "text"]}},
-        "questions": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {
-            "question_id": {"type": "string", "enum": q_ids}, "text": {"type": "string"},
-            "why": {"type": "string"}, "helpful_document": {"type": "string"}},
-            "required": ["question_id", "text", "why", "helpful_document"]}},
-        "uncertain": {"type": "string"}},
-        "required": ["act_now", "summary", "actions", "questions", "uncertain"]}
-    dl = "\n".join(f"{d['id']}: {d['action']} — {d['earliest'].isoformat() if d.get('earliest') else 'date not yet known'}"
+    answered = {a["question_id"] for a in case.get("answers", []) if a.get("status") == "answered"}
+    open_q = [q for q in case.get("questions", []) if q["id"] not in answered]
+    dl = "\n".join(f"{d['id']}: {d['action']} - " + (d["earliest"].isoformat() if d.get("earliest") else "date not yet known")
                    + (" (precautionary planning date)" if d.get("precautionary") else "") for d in case["deadlines"])
-    system = "\n\n".join([SYSTEM_ROLE,
-        "TASK: Write the CLIENT HANDOUT from the verified assessment below, addressed directly to the client "
-        "('you'), in everyday words and short sentences. Keep exactly the same facts, dates and actions; do not add "
-        "new advice. Rewrite every action whose 'who' is the client; for social-worker actions say the social "
-        "worker will handle it, without implying it is done. Include the still-open questions with a short reason "
-        "and a helpful document. Explain unavoidable legal terms. Never present a provisional result as certain. "
-        "This is legal information, not legal advice."])
-    user = ("ASSESSMENT:\n" + str({"situation": scr["situation"], "actions": scr["actions"], "issues": scr["issues"],
-                                   "open_points": scr["open_points"], "lane": case["lane"]}) +
-            "\n\nDEADLINES:\n" + (dl or "none") + "\n\nOPEN QUESTIONS:\n" +
-            "\n".join(f"{q['id']}: {q['question']} (why: {q['why_we_ask']})" for q in open_q))
-    out = chat([{"role": "system", "content": system}, {"role": "user", "content": user}], schema=schema,
-               schema_name="handout", max_tokens=1800, trace=case["trace"], step="11 handout")
+    acts = "\n".join(f"{a['id']} (who: {a['who']}): {a['what']}" for a in scr["actions"])
+    prompt = "\n\n".join([SYSTEM_ROLE,
+        "TASK: Write the CLIENT HANDOUT from the checked assessment below, addressed directly to the client ('you'), in "
+        "everyday words and short sentences. Keep exactly the same facts, dates and actions; add no new advice and no "
+        "legal rules. Rewrite every action whose 'who' is the client; for other actions say the social worker will "
+        "handle it, without implying it is done. Include the open questions with a short reason and a helpful document. "
+        "Never present a provisional result as certain.",
+        'Answer JSON only: {"act_now": "<one or two sentences if something must happen urgently, else empty>", '
+        '"summary": "<two or three sentences>", "actions": [{"action_id": "A1", "text": "..."}], '
+        '"questions": [{"question_id": "Q1", "text": "...", "why": "...", "helpful_document": "..."}], '
+        '"uncertain": "<what is still unclear, one sentence>"}',
+        "SITUATION:\n" + scr["situation"], "ACTIONS:\n" + (acts or "none"), "DEADLINES:\n" + (dl or "none"),
+        "OPEN QUESTIONS:\n" + ("\n".join(f"{q['id']}: {q['question']} (why: {q['why_we_ask']})" for q in open_q) or "none")])
+    raw = ask_json(prompt, trace=case["trace"], step="11 handout", max_tokens=1500)
+    out = {k: str(raw.get(k) or "") for k in ("act_now", "summary", "uncertain")}
+    out["actions"] = [{"action_id": a["action_id"], "text": str(a.get("text", ""))}
+                      for a in _ids(raw.get("actions"), "action_id", {a["id"] for a in scr["actions"]})]
+    out["questions"] = [{k: str(q.get(k, "")) for k in ("question_id", "text", "why", "helpful_document")}
+                        for q in _ids(raw.get("questions"), "question_id", {q["id"] for q in open_q})]
     # code check: same actions, no new dates or law
     ok_dates = allowed_dates(case)
     arts = {s["article"] for s in case["sources"].values() if s["type"] == "law"}
-    decs = [s["label"] for s in case["sources"].values() if s["type"] == "decision"]
     removed = []
-    out["summary"] = checks.clean_text(out["summary"], arts, decs, ok_dates, "handout summary", removed)
-    out["act_now"] = checks.clean_text(out["act_now"], arts, decs, ok_dates, "handout act now", removed)
+    for k in ("summary", "act_now", "uncertain"):
+        out[k] = checks.clean_text(out[k], arts, [], ok_dates, f"handout {k}", removed)
     for a in out["actions"]:
-        a["text"] = checks.clean_text(a["text"], arts, decs, ok_dates, f"handout {a['action_id']}", removed)
+        a["text"] = checks.clean_text(a["text"], arts, [], ok_dates, f"handout {a['action_id']}", removed)
     client_actions = {a["id"] for a in scr["actions"] if a["who"] == "client"}
-    covered = {a["action_id"] for a in out["actions"]}
-    out["check"] = {"removed": removed, "client_actions_missing": sorted(client_actions - covered)}
+    out["check"] = {"removed": removed,
+                    "client_actions_missing": sorted(client_actions - {a["action_id"] for a in out["actions"]})}
     out["contacts"] = [{"name": c["name"], "phones": c.get("phones", []), "email": c.get("email"), "url": c.get("url"),
                         "address": c.get("address")} for c in case["contacts"]]
+    out["disclosure"] = CLIENT_DISCLOSURE
     case["handout"] = {"English": out}
     return out
 
@@ -139,64 +147,70 @@ def handout(case):
 def translate(case, language):
     """Translate the handout into the client's language. The English version stays next to it."""
     src = case["handout"]["English"]
-    payload = {k: src[k] for k in ("act_now", "summary", "uncertain")}
+    payload = {k: src[k] for k in ("act_now", "summary", "uncertain", "disclosure")}
     payload["actions"] = [a["text"] for a in src["actions"]]
     payload["questions"] = [{"text": q["text"], "why": q["why"], "helpful_document": q["helpful_document"]} for q in src["questions"]]
-    schema = {"type": "object", "properties": {
-        "act_now": {"type": "string"}, "summary": {"type": "string"}, "uncertain": {"type": "string"},
-        "actions": {"type": "array", "items": {"type": "string"}},
-        "questions": {"type": "array", "items": {"type": "object", "properties": {
-            "text": {"type": "string"}, "why": {"type": "string"}, "helpful_document": {"type": "string"}},
-            "required": ["text", "why", "helpful_document"]}}},
-        "required": ["act_now", "summary", "uncertain", "actions", "questions"]}
-    out = chat([{"role": "system", "content": f"Translate every string value of this JSON from English into {language}. "
-                                              "Keep names, dates, numbers, phone numbers and article citations exactly. "
-                                              "Use simple, everyday words."},
-                {"role": "user", "content": str(payload)}],
-               schema=schema, schema_name="translation", max_tokens=2000, trace=case["trace"], step=f"11 translate ({language})")
-    # code check: dates and numbers must survive translation unchanged
-    import re
+    raw = ask_json(f"Translate every string value of this JSON from English into {language}. Keep the keys, the list "
+                   "lengths, names, dates, numbers, phone numbers and article citations exactly. Use simple, everyday "
+                   "words. Answer with the translated JSON only.\n\n" + json.dumps(payload, ensure_ascii=False),
+                   trace=case["trace"], step=f"11 translate ({language})", max_tokens=2500)
+    out = {k: str(raw.get(k) or "") for k in ("act_now", "summary", "uncertain", "disclosure")}
+    out["actions"] = [str(x) for x in (raw.get("actions") or [])]
+    out["questions"] = [{k: str(q.get(k, "")) for k in ("text", "why", "helpful_document")}
+                        for q in (raw.get("questions") or []) if isinstance(q, dict)]
+    # code checks: dates and numbers must survive unchanged, and nothing may go missing
     nums = lambda t: set(re.findall(r"\d[\d.:'/-]*\d|\d", t))
-    lost = nums(str(payload)) - nums(str(out))
-    out["check"] = {"numbers_changed_or_missing": sorted(lost)}
+    lost = nums(json.dumps(payload)) - nums(json.dumps(out, ensure_ascii=False))
+    out["check"] = {"numbers_changed_or_missing": sorted(lost),
+                    "items_missing": (len(payload["actions"]) - len(out["actions"])) + (len(payload["questions"]) - len(out["questions"]))}
     case["handout"][language] = out
     return out
 
 
 # ---------------------------------------------------------------- expert brief (output.md section 7)
 
+# AI writes only the descriptive fields; the legal parts are assembled by code (approval A: less AI legal prose)
+BRIEF_FIELDS = ["main_issue", "objective_and_context", "lawyer_asked_to_assess"]
+
 
 def brief(case):
     scr = case["screen"]
-    schema = {"type": "object", "properties": {
-        "main_issue": {"type": "string"}, "escalation_trigger": {"type": "string"},
-        "immediate_risk": {"type": "string"}, "objective_and_context": {"type": "string"},
-        "preliminary_assessment": {"type": "string"}, "lawyer_asked_to_assess": {"type": "string"}},
-        "required": ["main_issue", "escalation_trigger", "immediate_risk", "objective_and_context",
-                     "preliminary_assessment", "lawyer_asked_to_assess"]}
-    system = "\n\n".join([SYSTEM_ROLE,
-        "TASK: Fill the free-text parts of an EXPERT BRIEF for a lawyer, to be read in two minutes. Use only the "
-        "verified assessment. Distinguish a possible legal argument from an established conclusion; name the "
-        "sources by their IDs. One to three sentences per field."])
-    user = str({"lane": case["lane"], "lane_rule": case["lane_rule"], "indices": case["indices"],
-                "index_reasons": case["index_reasons"], "situation": scr["situation"], "issues": scr["issues"],
-                "deadlines": [{k: d.get(k) for k in ("id", "action", "earliest", "precautionary", "legal_basis")} for d in case["deadlines"]]})
-    out = chat([{"role": "system", "content": system}, {"role": "user", "content": user}], schema=schema,
-               schema_name="brief", max_tokens=1200, trace=case["trace"], step="11 expert brief")
+    data = {"lane": case["lane"], "lane_rule": case["lane_rule"], "indices": case["indices"],
+            "index_reasons": case["index_reasons"], "situation": scr["situation"],
+            "issues": [{"issue": i["issue"], "articles": i["articles"]} for i in scr["issues"]],
+            "deadlines": [{k: d.get(k) for k in ("id", "action", "earliest", "precautionary", "legal_basis")} for d in case["deadlines"]]}
+    prompt = "\n\n".join([SYSTEM_ROLE,
+        "TASK: Fill three free-text parts of an EXPERT BRIEF for a lawyer, to be read in two minutes. Use only the "
+        "assessment and facts below. main_issue: the client's problem in one or two neutral sentences. "
+        "objective_and_context: what the client wants and the relevant personal context. lawyer_asked_to_assess: two or "
+        "three open QUESTIONS for the lawyer, phrased as questions; state no legal conclusions and no legal rules.",
+        "Answer JSON only: {" + ", ".join(f'"{k}": "..."' for k in BRIEF_FIELDS) + "}",
+        "ASSESSMENT:\n" + json.dumps(data, default=str, ensure_ascii=False), "FACTS:\n" + facts_block(case)])
+    raw = ask_json(prompt, trace=case["trace"], step="11 expert brief", max_tokens=1200)
+    ok_dates = allowed_dates(case)
+    arts = {s["article"] for s in case["sources"].values() if s["type"] == "law"}
+    removed = []
+    out = {k: checks.clean_text(str(raw.get(k) or ""), arts, [], ok_dates, f"brief {k}", removed) for k in BRIEF_FIELDS}
     answered = {a["question_id"] for a in case.get("answers", []) if a.get("status") == "answered"}
     out.update({
-        "review_status": "AI draft – not yet checked by the social worker",
+        "review_status": "AI draft - not yet checked by the social worker",
+        "escalation_trigger": case["lane_rule"],
+        "immediate_risk": "; ".join(r for k in ("urgency", "severity") if case["indices"].get(k) == "high"
+                                    for r in case["index_reasons"][k]) or "None identified by the tool.",
+        "preliminary_assessment": [{"issue": i["issue"], "articles": i["articles"],
+                                    "rules": [r["statement"] for r in i["rules"]]} for i in scr["issues"]],
+        "check": {"removed": removed},
         "facts": [{"statement": f["statement"], "status": {"reported": "reported by the client", "documented": "documented",
-                                                           "inferred": "inferred – check"}.get(f["status"], f["status"])}
+                                                           "inferred": "inferred - check"}.get(f["status"], f["status"])}
                   for f in case["facts"]],
         "disputed": [f"{d['topic']}: client says {d['client_position']}; {d['other_party']} says {d['other_position']}"
                      for d in case.get("disputes", [])],
-        "chronology": [{"date": e.get("date") or (f"{e.get('date_from')}–{e.get('date_to')}" if e.get("date_from") else "unknown"),
+        "chronology": [{"date": e.get("date") or (f"{e.get('date_from')} to {e.get('date_to')}" if e.get("date_from") else "unknown"),
                         "event": e["event"], "source": e.get("source", "client's description")} for e in case.get("events", [])],
         "deadlines": [{"action": d["action"], "date": d["earliest"].isoformat() if d.get("earliest") else "not established",
                        "precautionary": d.get("precautionary"), "basis": d["legal_basis"], "calculation": d["steps"]}
                       for d in case["deadlines"]],
-        "evidence_available": [doc["name"] for doc in case.get("documents", [])] or ["No documents seen yet"],
+        "evidence_available": [doc["name"] for doc in case.get("uploaded", [])] or ["No documents seen yet"],
         "missing": [q["question"] for q in case.get("questions", []) if q["id"] not in answered],
         "already_done": "Nothing recorded by the tool.",
     })

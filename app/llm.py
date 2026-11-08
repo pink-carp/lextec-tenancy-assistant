@@ -160,3 +160,51 @@ def chat(messages, *, schema=None, schema_name="output", model=MODEL, max_tokens
             "messages": messages, "reply": text,
         })
     return result
+
+
+def extract_json(text: str):
+    """The first complete JSON object in a free-text reply (models sometimes add prose or ``` fences)."""
+    start = text.find("{")
+    while start != -1:
+        depth, in_str, esc = 0, False, False
+        for i in range(start, len(text)):
+            ch = text[i]
+            if in_str:
+                esc = (ch == "\\" and not esc)
+                if ch == '"' and not esc:
+                    in_str = False
+                elif ch != "\\":
+                    esc = False
+                continue
+            if ch == '"':
+                in_str = True
+            elif ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    try:
+                        return json.loads(text[start:i + 1])
+                    except json.JSONDecodeError:
+                        break
+        start = text.find("{", start + 1)
+    return None
+
+
+def ask_json(prompt: str, *, trace=None, step="", max_tokens=800, model=MODEL):
+    """Free-form JSON: the model writes JSON without a forced grammar; code parses and validates.
+
+    Why: with the provider's forced JSON-schema mode the model was observed (2026-11-08) to stall in
+    whitespace and to be pushed into wrong categories; free JSON was valid in 8/8 probes at 2-5 s per call.
+    Up to 3 tries: same model with a new seed, then the older Apertus model."""
+    tries = [(model, 0.0, 7), (model, 0.3, 8), (FALLBACK_MODEL, 0.0, 7)]
+    for m, temp, seed in tries:
+        try:
+            text = chat([{"role": "user", "content": prompt}], model=m, max_tokens=max_tokens,
+                        temperature=temp, seed=seed, trace=trace, step=step)
+        except LLMError:
+            continue
+        obj = extract_json(text)
+        if isinstance(obj, dict):
+            return obj
+    raise LLMError(f"no valid JSON after 3 tries in step '{step}'")

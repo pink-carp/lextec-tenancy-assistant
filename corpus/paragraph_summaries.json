@@ -1,0 +1,1416 @@
+{
+ "_meta": {
+  "method": "Draft by Apertus 1.5 70B from the official text alone; every summary reviewed against the official German text by Claude; changes recorded",
+  "date": "2026-11-08"
+ },
+ "OR Art. 76 Abs. 1": {
+  "summary": "If a time is set for the beginning or the end of a month, this means the first or the last day of that month.",
+  "draft": "If a time is set to begin or end on the first or last day of a month, that day is the first or last day of that month.",
+  "changed": true,
+  "change_note": "Draft was circular ('set to begin or end on the first or last day ... is the first or last day')."
+ },
+ "OR Art. 76 Abs. 2": {
+  "summary": "If a time is set for the middle of a month, the fifteenth day of that month applies.",
+  "draft": "If a time is set for the middle of a month, the fifteenth day of that month applies.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 77 Abs. 1": {
+  "summary": "If an obligation is to be performed (or another legal act done) when a set period after the contract was concluded expires, the date is: 1. for a period in days, the last day of the period, not counting the day the contract was concluded; a period of 8 or 15 days means a full 8 or 15 days, not one or two weeks; 2. for a period in weeks, the day of the last week with the same weekday name as the day the contract was concluded; 3. for a period in months or a multi-month period (year, half-year, quarter), the day of the last month with the same date number as the day the contract was concluded, or the last day of that month if it has no such date. A 'half month' counts as 15 days, counted last when a period is stated as one or more months and a half.",
+  "draft": "If a contractual obligation or legal act is to occur after a specific time limit following the contract's conclusion, the deadline falls: 1. if the period is measured in days, on the last day of that period, excluding the day the contract was signed, and if the period is eight or 15 days, it means exactly eight or 15 full days rather than one or two weeks; 2. if the period is measured in weeks, on the day of the final week that corresponds in name to the day the contract was signed; 3. if the period is measured in months or a multi-month period (year, half-year, quarter-year), on the day of the final month that corresponds in number to the day the contract was signed, and if that day does not exist in the final month, on the last day of that month. The term \"half-month\" is equivalent to a 15-day period, which is counted last if a deadline includes one or more months plus a half-month.",
+  "changed": true,
+  "change_note": "'Signed' replaced by 'concluded' (the text speaks of conclusion, not signature); wording tightened."
+ },
+ "OR Art. 77 Abs. 2": {
+  "summary": "The time limit is calculated in the same way if it begins to run not from the day the contract is concluded, but from another specified point in time.",
+  "draft": "The time limit is calculated in the same way if it begins to run not from the day the contract is concluded, but from another specified point in time.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 77 Abs. 3": {
+  "summary": "If performance must occur within a specific deadline, it must be completed before that deadline expires.",
+  "draft": "If performance must occur within a specific deadline, it must be completed before that deadline expires.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 78 Abs. 1": {
+  "summary": "If the due date or the last day of a deadline falls on a Sunday or another public holiday recognized by the state at the place of performance, the next working day is considered the due date or the last day of the deadline.",
+  "draft": "If the due date or the last day of a deadline falls on a Sunday or another public holiday recognized by the state at the place of performance, the next working day is considered the due date or the last day of the deadline.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 78 Abs. 2": {
+  "summary": "The parties may agree otherwise.",
+  "draft": "No alternative agreements are excluded.",
+  "changed": true,
+  "change_note": "Draft 'No alternative agreements are excluded' was garbled; the text reserves different agreements."
+ },
+ "OR Art. 97 Abs. 1": {
+  "summary": "If an obligation is not performed at all or not properly, the debtor must pay compensation for the resulting damage unless they prove that they were not at fault in any way.",
+  "draft": "If a debtor cannot fulfill an obligation at all or properly, they must compensate for any resulting damage, unless they prove no fault of their own is attributable to them.",
+  "changed": true,
+  "change_note": "Draft said the debtor 'cannot fulfil'; the text covers any non-performance or improper performance."
+ },
+ "OR Art. 97 Abs. 2": {
+  "summary": "Enforcement is governed by the Federal Act of 11 April 1889 on Debt Enforcement and Bankruptcy and the Civil Procedure Code of 19 December 2008 (ZPO).",
+  "draft": "For enforcement, the provisions of the Federal Act of 11 April 1889 on Debt Enforcement and Bankruptcy and the Civil Procedure Act of 19 December 2008 apply.",
+  "changed": true,
+  "change_note": "Name of the ZPO corrected ('Civil Procedure Code', abbreviation added)."
+ },
+ "OR Art. 143 Abs. 1": {
+  "summary": "Several debtors become jointly and severally liable when they declare that each of them will be individually liable to the creditor for the whole debt.",
+  "draft": "Solidarity among multiple debtors arises only if each debtor declares that they will be individually liable to the creditor for the entire debt. This declaration must be made by each debtor to the creditor.",
+  "changed": true,
+  "change_note": "Removed an added sentence and the added word 'only'; named the concept (joint and several liability)."
+ },
+ "OR Art. 143 Abs. 2": {
+  "summary": "Without such a declaration, joint and several liability arises only in cases set by law.",
+  "draft": "Without such a declaration of intent, solidarity arises only in the cases prescribed by law.",
+  "changed": true,
+  "change_note": "Terminology aligned ('solidarity' -> joint and several liability)."
+ },
+ "OR Art. 144 Abs. 1": {
+  "summary": "The creditor may choose to demand the whole debt, or only part of it, from each of the jointly and severally liable debtors.",
+  "draft": "The creditor may demand either a portion or the entire amount from any one of the joint debtors. This right applies to all joint debtors collectively.",
+  "changed": true,
+  "change_note": "Removed an added sentence that was confusing ('applies to all joint debtors collectively')."
+ },
+ "OR Art. 144 Abs. 2": {
+  "summary": "All the debtors remain bound until the whole claim has been paid.",
+  "draft": "All debtors remain obligated until the entire claim is settled. This obligation applies to all debtors, including spouses or registered partners, and continues until the full amount of the claim is paid.",
+  "changed": true,
+  "change_note": "Removed invented reference to spouses or registered partners."
+ },
+ "OR Art. 148 Abs. 1": {
+  "summary": "If the legal relationship among the joint debtors does not provide otherwise, each joint debtor must assume an equal share of any payment made to the creditor.",
+  "draft": "If the legal relationship among the joint debtors does not provide otherwise, each joint debtor must assume an equal share of any payment made to the creditor.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 148 Abs. 2": {
+  "summary": "If a joint debtor pays more than their share, they are entitled to claim reimbursement for the excess amount from the other joint debtors.",
+  "draft": "If a joint debtor pays more than their share, they are entitled to claim reimbursement for the excess amount from the other joint debtors.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 148 Abs. 3": {
+  "summary": "If a co-debtor cannot provide their share, the remaining co-debtors must each bear an equal portion of that unobtainable amount.",
+  "draft": "If a co-debtor cannot provide their share, the remaining co-debtors must each bear an equal portion of that unobtainable amount.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 253": {
+  "summary": "Through a rental contract, the landlord commits to letting the tenant use a thing, and the tenant commits to paying the landlord rent for it.",
+  "draft": "Through a rental contract, the landlord commits to letting the tenant use a thing, and the tenant commits to paying the landlord rent for it.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 253a Abs. 1": {
+  "summary": "The rules on renting residential and business premises also apply to things that the landlord lets the tenant use together with those premises.",
+  "draft": "The provisions on renting residential and business premises also apply to items that the landlord provides to the tenant for use together with those premises. This applies only to items that the landlord provides to the tenant for use together with the residential or business premises.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 253a Abs. 2": {
+  "summary": "The rules on renting residential and business premises do not apply to holiday homes rented for three months or less.",
+  "draft": "They do not apply to holiday homes rented for a maximum of three months.",
+  "changed": true,
+  "change_note": "'They' replaced by what it refers to, so the summary stands alone."
+ },
+ "OR Art. 253a Abs. 3": {
+  "summary": "The Federal Council issues the implementing regulations.",
+  "draft": "The Federal Council issues the implementing regulations.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 253b Abs. 1": {
+  "summary": "The provisions on protection against abusive rents (Art. 269 ff.) apply by analogy to non-agricultural lease and other contracts that essentially govern the letting of residential or business premises for remuneration.",
+  "draft": "The provisions on protection against abusive rents (Art. 269 ff.) apply by analogy to non-agricultural lease and other contracts that essentially govern the letting of residential or business premises for remuneration.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 253b Abs. 2": {
+  "summary": "The rules protecting against abusive rents do not apply to the rental of luxury flats and single-family houses with six or more living rooms (not counting the kitchen).",
+  "draft": "They do not apply to the rental of luxurious apartments or single-family houses with six or more living rooms (excluding the kitchen).",
+  "changed": true,
+  "change_note": "'They' replaced by what it refers to, so the summary stands alone."
+ },
+ "OR Art. 253b Abs. 3": {
+  "summary": "The provisions on contesting abusive rents do not apply to residential spaces whose provision has been subsidized by the public sector and whose rents are controlled by an authority.",
+  "draft": "The provisions on contesting abusive rents do not apply to residential spaces whose provision has been subsidized by the public sector and whose rents are controlled by an authority.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 254": {
+  "summary": "A tied transaction linked to the rental of residential or business premises is void if concluding or continuing the lease is made conditional on it and the tenant thereby takes on an obligation to the landlord or a third party that is not directly connected with the use of the rented property.",
+  "draft": "A lease agreement is void if its conclusion or continuation is made dependent on a separate transaction, and the tenant thereby assumes an obligation to the landlord or a third party that is not directly related to the use of the leased property.",
+  "changed": true,
+  "change_note": "Draft said the lease is void; the text makes the tied transaction void, not the lease."
+ },
+ "OR Art. 255 Abs. 1": {
+  "summary": "The rental agreement may be for a fixed term or an indefinite term.",
+  "draft": "The rental agreement may be for a fixed term or an indefinite term.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 255 Abs. 2": {
+  "summary": "A lease is fixed-term if it is meant to end, without notice of termination, when the agreed period expires.",
+  "draft": "The lease ends automatically at the end of the agreed term without the need for a notice of termination. This applies only when the lease was agreed to be for a fixed duration.",
+  "changed": true,
+  "change_note": "Rephrased as the definition it is; removed an added sentence."
+ },
+ "OR Art. 255 Abs. 3": {
+  "summary": "All other leases are of indefinite duration.",
+  "draft": "The remaining rental agreements are considered indefinite. This applies unless the rental agreement is terminated by either party with a notice period of at least three months.",
+  "changed": true,
+  "change_note": "Removed an invented condition about a three-month notice period."
+ },
+ "OR Art. 256 Abs. 1": {
+  "summary": "The landlord must hand over the property at the agreed time in a condition fit for the intended use, and keep it in that condition.",
+  "draft": "The landlord must deliver the property at the agreed time in a condition suitable for the intended use and maintain it in that condition. This obligation applies unless otherwise agreed or required by law.",
+  "changed": true,
+  "change_note": "Removed an invented exception ('unless otherwise agreed or required by law'); Abs. 2 limits deviating agreements."
+ },
+ "OR Art. 256 Abs. 2": {
+  "summary": "Agreements that depart from this duty to the tenant's disadvantage are void if they are contained in: a. pre-formulated general terms and conditions; b. leases of residential or business premises.",
+  "draft": "Any agreement that disadvantages the tenant is void if it appears in: a. pre-formulated general terms and conditions; or b. rental contracts for residential or business premises.",
+  "changed": true,
+  "change_note": "Draft dropped that only agreements deviating from Abs. 1 are meant ('any agreement that disadvantages the tenant' was too wide)."
+ },
+ "OR Art. 256a Abs. 1": {
+  "summary": "If a return protocol was created when the previous tenancy ended, the landlord must present it to the new tenant for inspection upon handover of the property upon the new tenant's request.",
+  "draft": "If a return protocol was created when the previous tenancy ended, the landlord must present it to the new tenant for inspection upon handover of the property upon the new tenant's request.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 256a Abs. 2": {
+  "summary": "Likewise, the tenant may ask to be told the rent paid under the previous tenancy.",
+  "draft": "The tenant may request that the amount of the rent from the previous tenancy be disclosed to them. This right applies equally to the tenant.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 256b": {
+  "summary": "The landlord bears the charges and public levies connected with the property.",
+  "draft": "The landlord bears the charges and public levies associated with the property. This obligation does not apply if the lease agreement specifies that the tenant is responsible for these charges.",
+  "changed": true,
+  "change_note": "Removed an invented exception (lease making the tenant responsible)."
+ },
+ "OR Art. 257": {
+  "summary": "Rent is the payment the tenant owes the landlord for being given the use of the property.",
+  "draft": "The tenant owes the landlord rent as the consideration for the letting of the property. This obligation applies unless otherwise agreed in writing or by law.",
+  "changed": true,
+  "change_note": "Removed an invented exception ('unless otherwise agreed in writing or by law'); kept as a definition."
+ },
+ "OR Art. 257a Abs. 1": {
+  "summary": "Ancillary costs are the payment for services of the landlord or a third party that are connected with the use of the property.",
+  "draft": "The tenant must pay additional costs, which are the remuneration for services provided by the landlord or a third party that are connected to the use of the property.",
+  "changed": true,
+  "change_note": "Draft added 'The tenant must pay additional costs', which contradicts Abs. 2 (only if specially agreed); it is a definition."
+ },
+ "OR Art. 257a Abs. 2": {
+  "summary": "The tenant must pay ancillary costs only if they have been specifically agreed upon with the landlord.",
+  "draft": "The tenant must pay ancillary costs only if they have been specifically agreed upon with the landlord.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257b Abs. 1": {
+  "summary": "For residential and commercial spaces, ancillary costs are the landlord's actual expenses for services related to the use of the property, such as heating, hot water, and similar operating costs, as well as public charges resulting from the use of the property.",
+  "draft": "For residential and commercial spaces, ancillary costs are the landlord's actual expenses for services related to the use of the property, such as heating, hot water, and similar operating costs, as well as public charges resulting from the use of the property.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257b Abs. 2": {
+  "summary": "On request, the landlord must let the tenant inspect the supporting documents (receipts).",
+  "draft": "The landlord must provide the tenant with access to the documents upon request. This obligation applies only to the documents related to the rental agreement.",
+  "changed": true,
+  "change_note": "Removed an invented limitation; 'Belege' are the receipts for the ancillary costs."
+ },
+ "OR Art. 257c": {
+  "summary": "The tenant must pay the rent and any additional costs by the end of each month, or at the latest by the end of the rental period, unless another time is agreed upon or is customary in the area.",
+  "draft": "The tenant must pay the rent and any additional costs by the end of each month, or at the latest by the end of the rental period, unless another time is agreed upon or is customary in the area.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257d Abs. 1": {
+  "summary": "If the tenant falls behind in paying due rent or ancillary costs after taking possession of the property, the landlord may set a written payment deadline and threaten to terminate the lease if the deadline passes unused. This deadline must be at least ten days, and at least 30 days for residential or business premises.",
+  "draft": "If the tenant falls behind in paying due rent or ancillary costs after taking possession of the property, the landlord may set a written payment deadline and threaten to terminate the lease if the deadline passes unused. This deadline must be at least ten days, and at least 30 days for residential or business premises.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257d Abs. 2": {
+  "summary": "If the tenant does not pay within the deadline, the landlord may terminate the lease without notice; for residential and business premises, with at least 30 days' notice to the end of a month.",
+  "draft": "If the tenant fails to pay within the set timeframe, the landlord may terminate the lease immediately for residential and commercial spaces, but only after providing at least 30 days' notice ending at the end of a month.",
+  "changed": true,
+  "change_note": "Draft merged the two cases wrongly ('terminate immediately for residential premises, but only after 30 days' notice'): immediate termination applies to other things; residential/business premises need 30 days to month-end."
+ },
+ "OR Art. 257e Abs. 1": {
+  "summary": "If a tenant of residential or commercial premises provides a security deposit in money or securities, the landlord must deposit it at a bank in a savings account or a securities account in the tenant's name.",
+  "draft": "If a tenant of residential or commercial premises provides a security deposit in money or securities, the landlord must deposit it at a bank in a savings account or a securities account in the tenant's name.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257e Abs. 2": {
+  "summary": "For residential premises, the landlord may demand at most three months' rent as security.",
+  "draft": "The landlord may demand a security deposit of no more than three months' rent for rented residential space. This limit applies when the landlord requires a security deposit for the rental of residential premises.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 257e Abs. 3": {
+  "summary": "The bank may only release the security with the consent of both parties, based on a final payment order, or based on a final court judgment. If the landlord has not legally asserted any claim against the tenant within one year after the end of the tenancy, the tenant may demand the bank to return the security.",
+  "draft": "The bank may only release the security with the consent of both parties, based on a final payment order, or based on a final court judgment. If the landlord has not legally asserted any claim against the tenant within one year after the end of the tenancy, the tenant may demand the bank to return the security.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257e Abs. 4": {
+  "summary": "The cantons may enact supplementary provisions.",
+  "draft": "The cantons may enact supplementary provisions.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257f Abs. 1": {
+  "summary": "The tenant must use the property with care.",
+  "draft": "The tenant must use the property with care. This obligation applies unless the lease agreement or law permits a different use.",
+  "changed": true,
+  "change_note": "Removed an invented exception."
+ },
+ "OR Art. 257f Abs. 2": {
+  "summary": "The tenant of immovable property must show consideration for other residents of the building and for neighbours.",
+  "draft": "The tenant of an immovable property must show consideration to the other occupants of the house and to the neighbours. This obligation applies unless the landlord has expressly permitted otherwise.",
+  "changed": true,
+  "change_note": "Removed an invented exception (landlord's permission)."
+ },
+ "OR Art. 257f Abs. 3": {
+  "summary": "If, despite a written warning from the landlord, the tenant keeps breaching the duty of care or consideration so that the landlord or the other residents can no longer reasonably be expected to continue the lease, the landlord may terminate without notice; for residential and business premises, with at least 30 days' notice to the end of a month.",
+  "draft": "If, after a written warning from the landlord, the tenant continues to breach their duty of care or consideration to the extent that the landlord or other residents can no longer reasonably tolerate the continuation of the tenancy, the landlord may terminate the lease immediately for residential or commercial premises, provided a notice period of at least 30 days to the end of a month is given.",
+  "changed": true,
+  "change_note": "Same error as 257d Abs. 2: draft merged immediate termination and the 30-day rule for residential/business premises."
+ },
+ "OR Art. 257f Abs. 4": {
+  "summary": "The landlord of residential or commercial premises may terminate the lease immediately if the tenant intentionally causes severe damage to the property.",
+  "draft": "The landlord of residential or commercial premises may terminate the lease immediately if the tenant intentionally causes severe damage to the property.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257g Abs. 1": {
+  "summary": "The tenant must report to the landlord defects that the tenant does not have to remedy themselves.",
+  "draft": "The tenant must notify the landlord of any defects that the tenant is not required to fix themselves. This obligation applies to all defects the tenant is not responsible for remedying.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 257g Abs. 2": {
+  "summary": "If the tenant fails to report such a defect, the tenant is liable for the resulting damage to the landlord.",
+  "draft": "If the tenant fails to report something, the tenant is liable for any damage this omission causes to the landlord.",
+  "changed": true,
+  "change_note": "'Something' replaced by 'such a defect' (the duty concerns defects under Abs. 1)."
+ },
+ "OR Art. 257h Abs. 1": {
+  "summary": "The tenant must tolerate work on the property if it is necessary to eliminate defects, remedy or prevent damage.",
+  "draft": "The tenant must tolerate work on the property if it is necessary to eliminate defects, remedy or prevent damage.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257h Abs. 2": {
+  "summary": "The tenant must permit the landlord to inspect the property if this is necessary for maintenance, sale, or re-rental.",
+  "draft": "The tenant must permit the landlord to inspect the property if this is necessary for maintenance, sale, or re-rental.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 257h Abs. 3": {
+  "summary": "The landlord must notify the tenant of any work or inspections in a timely manner and consider the tenant's interests during their execution; any claims the tenant may have for rent reduction (Art. 259d) or compensation for damages (Art. 259e) are reserved.",
+  "draft": "The landlord must notify the tenant of any work or inspections in a timely manner and consider the tenant's interests during their execution; any claims the tenant may have for rent reduction (Art. 259d) or compensation for damages (Art. 259e) are reserved.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 258 Abs. 1": {
+  "summary": "If the landlord does not hand over the property at the agreed time or with defects that exclude or significantly impair its suitability for the intended use, the tenant may take action under Articles 107–109 regarding non-performance of contracts.",
+  "draft": "If the landlord does not hand over the property at the agreed time or with defects that exclude or significantly impair its suitability for the intended use, the tenant may take action under Articles 107–109 regarding non-performance of contracts.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 258 Abs. 2": {
+  "summary": "If the tenant accepts the property despite these defects and insists on proper contract performance, they may only assert the claims that would be due to them if defects arose during the rental period (Art. 259a–259i).",
+  "draft": "If the tenant accepts the property despite these defects and insists on proper contract performance, they may only assert the claims that would be due to them if defects arose during the rental period (Art. 259a–259i).",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 258 Abs. 3": {
+  "summary": "The tenant may assert claims under Articles 259a–259i if the property has defects at handover that either (a) reduce its suitability for the agreed use without excluding or significantly impairing it, or (b) the tenant would have to remedy at their own expense during the lease term (Article 259).",
+  "draft": "The tenant may assert claims under Articles 259a–259i if the property has defects at handover that either (a) reduce its suitability for the agreed use without excluding or significantly impairing it, or (b) the tenant would have to remedy at their own expense during the lease term (Article 259).",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259": {
+  "summary": "The tenant must remedy defects that can be fixed by small cleaning or repairs necessary for ordinary upkeep, at their own expense, according to local custom.",
+  "draft": "The tenant must remedy defects that can be fixed by small cleaning or repairs necessary for ordinary upkeep, at their own expense, according to local custom.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259a Abs. 1": {
+  "summary": "If defects arise in the leased property that the tenant is neither responsible for nor must remedy at their own expense, or if the tenant is disturbed in the contractual use of the property, the tenant may demand that the landlord: a. remedy the defect; b. reduce the rent proportionally; c. provide compensation; d. assume the legal dispute with a third party.",
+  "draft": "If defects arise in the leased property that the tenant is neither responsible for nor must remedy at their own expense, or if the tenant is disturbed in the contractual use of the property, the tenant may demand that the landlord: a. remedy the defect; b. reduce the rent proportionally; c. provide compensation; d. assume the legal dispute with a third party.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259a Abs. 2": {
+  "summary": "A tenant of immovable property may also deposit the rent.",
+  "draft": "A tenant of an immovable property may also deposit the rent. This applies only if the landlord is a natural person or a legal entity whose business consists exclusively or predominantly of letting immovable property.",
+  "changed": true,
+  "change_note": "Removed an invented condition about the landlord being a natural person or a property company."
+ },
+ "OR Art. 259b": {
+  "summary": "If the landlord knows of a defect and does not remedy it within a reasonable time, the tenant may:  \na. terminate the lease immediately if the defect excludes or significantly impairs the suitability of an immovable thing for its intended use, or if it reduces the suitability of a movable thing for its intended use;  \nb. have the defect remedied at the landlord's expense if it reduces the suitability of the thing for its intended use but does not significantly impair it.",
+  "draft": "If the landlord knows of a defect and does not remedy it within a reasonable time, the tenant may:  \na. terminate the lease immediately if the defect excludes or significantly impairs the suitability of an immovable thing for its intended use, or if it reduces the suitability of a movable thing for its intended use;  \nb. have the defect remedied at the landlord's expense if it reduces the suitability of the thing for its intended use but does not significantly impair it.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259c": {
+  "summary": "The tenant has no claim to have the defect removed if the landlord provides full-value replacement for the defective item within a reasonable time.",
+  "draft": "The tenant has no claim to have the defect removed if the landlord provides full-value replacement for the defective item within a reasonable time.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259d": {
+  "summary": "If the fitness of the property for its intended use is impaired or reduced, the tenant may demand that the landlord reduce the rent accordingly, from the time the landlord learned of the defect until it is remedied.",
+  "draft": "If a defect impairs or reduces the suitability of the rented property for its intended use, the tenant may demand that the landlord reduce the rent from the time the tenant became aware of the defect until the defect is remedied.",
+  "changed": true,
+  "change_note": "Wrong party: the reduction runs from when the LANDLORD learned of the defect ('er' = Vermieter), not the tenant; 'accordingly' (proportionate) restored."
+ },
+ "OR Art. 259e": {
+  "summary": "If the tenant has suffered damage due to a defect, the landlord must compensate the tenant, unless the landlord proves that no fault is attributable to them.",
+  "draft": "If the tenant has suffered damage due to a defect, the landlord must compensate the tenant, unless the landlord proves that no fault is attributable to them.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259f": {
+  "summary": "If a third party asserts a claim to the property that conflicts with the tenant's rights, the landlord must take over the legal dispute upon the tenant's notice.",
+  "draft": "If a third party asserts a claim to the property that conflicts with the tenant's rights, the landlord must take over the legal dispute upon the tenant's notice.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259g Abs. 1": {
+  "summary": "If a tenant of an immovable property requests the landlord to remedy a defect, the tenant must set a reasonable written deadline for this and may threaten to deposit future due rents with a cantonal designated authority if the deadline passes unused. The tenant must notify the landlord of this deposit in writing.",
+  "draft": "If a tenant of an immovable property requests the landlord to remedy a defect, the tenant must set a reasonable written deadline for this and may threaten to deposit future due rents with a cantonal designated authority if the deadline passes unused. The tenant must notify the landlord of this deposit in writing.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259g Abs. 2": {
+  "summary": "Once deposited, the rent counts as paid.",
+  "draft": "With the deposit, the rent is considered paid. This applies only if the landlord has not yet received the rent.",
+  "changed": true,
+  "change_note": "Removed an invented condition ('only if the landlord has not yet received the rent')."
+ },
+ "OR Art. 259h Abs. 1": {
+  "summary": "Deposited rents belong to the landlord if the tenant has not asserted their claims against the landlord to the conciliation authority within 30 days of the due date of the first deposited rent.",
+  "draft": "Deposited rents belong to the landlord if the tenant has not asserted their claims against the landlord to the conciliation authority within 30 days of the due date of the first deposited rent.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 259h Abs. 2": {
+  "summary": "As soon as the tenant has announced the deposit, the landlord may ask the conciliation authority to release to the landlord any rent that was wrongly deposited.",
+  "draft": "The landlord may request the return of wrongfully deposited rent from the conciliation authority once the tenant has notified the landlord of the deposit.",
+  "changed": true,
+  "change_note": "'Return' was ambiguous about who receives the money; Herausgabe is release to the landlord."
+ },
+ "OR Art. 259i": {
+  "summary": "The procedure is governed by the Civil Procedure Code (ZPO).",
+  "draft": "The procedure is governed by the Swiss Code of Civil Procedure (ZPO). There are no exceptions to this rule.",
+  "changed": true,
+  "change_note": "Removed an added sentence ('There are no exceptions')."
+ },
+ "OR Art. 260 Abs. 1": {
+  "summary": "The landlord may only carry out renovations or alterations to the property if they are reasonable for the tenant and if the tenancy has not been terminated.",
+  "draft": "The landlord may only carry out renovations or alterations to the property if they are reasonable for the tenant and if the tenancy has not been terminated.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 260 Abs. 2": {
+  "summary": "The landlord must consider the tenant's interests when carrying out the work; any claims the tenant may have for rent reduction under Article 259d and for damages under Article 259e are reserved.",
+  "draft": "The landlord must consider the tenant's interests when carrying out the work; any claims the tenant may have for rent reduction under Article 259d and for damages under Article 259e are reserved.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 260a Abs. 1": {
+  "summary": "The tenant may renovate or alter the property only with the landlord's written consent.",
+  "draft": "The tenant may only carry out renewals and changes to the property if the landlord has given written consent. This requirement applies to all such actions by the tenant.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 260a Abs. 2": {
+  "summary": "If the landlord has consented, they may only demand the restoration of the previous condition if this was agreed in writing.",
+  "draft": "If the landlord has consented, they may only demand the restoration of the previous condition if this was agreed in writing.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 260a Abs. 3": {
+  "summary": "When a tenancy ends, if the property has gained significant additional value due to renovations or changes the landlord approved, the tenant may demand a corresponding compensation; any further compensation claims agreed upon in writing are reserved.",
+  "draft": "When a tenancy ends, if the property has gained significant additional value due to renovations or changes the landlord approved, the tenant may demand a corresponding compensation; any further compensation claims agreed upon in writing are reserved.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 261 Abs. 1": {
+  "summary": "If the landlord transfers ownership of the property after the lease was concluded, or loses it in debt enforcement or bankruptcy proceedings, the lease passes to the new owner together with ownership.",
+  "draft": "If the landlord sells the rental property after the lease is signed or if it is taken from the landlord in a debt enforcement or bankruptcy proceeding, the lease transfers to the new owner of the property.",
+  "changed": true,
+  "change_note": "'Sells'/'signed' replaced: Veräusserung covers any transfer of ownership, and the lease is 'concluded'."
+ },
+ "OR Art. 261 Abs. 2": {
+  "summary": "The new owner may, however: a. for residential and business premises, terminate the lease with the statutory notice period for the next statutory date if they claim an urgent need for themselves, close relatives or relatives by marriage; b. for other things, terminate the lease with the statutory notice period for the next statutory date if the contract does not allow earlier termination.",
+  "draft": "The new owner may terminate the lease of residential or commercial premises with the statutory notice period on the next statutory date if they assert an urgent need for themselves, close relatives, or in-laws; for any other item, the new owner may terminate the lease with the statutory notice period on the next statutory date if the contract does not permit earlier termination.",
+  "changed": true,
+  "change_note": "Kept letters a/b; 'item' replaced by 'things'."
+ },
+ "OR Art. 261 Abs. 3": {
+  "summary": "If the new owner terminates the lease earlier than the contract with the previous landlord would have permitted, the previous landlord is liable to the tenant for all resulting damage.",
+  "draft": "If the new owner terminates the lease earlier than the contract with the previous landlord would have permitted, the previous landlord is liable to the tenant for all resulting damage.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 261 Abs. 4": {
+  "summary": "Any provisions regarding expropriation remain unaffected.",
+  "draft": "Any provisions regarding expropriation remain unaffected.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 261a": {
+  "summary": "The rules on transfer of the property apply by analogy when the landlord grants a third party a limited right in rem and this amounts to a change of ownership.",
+  "draft": "The provisions on the sale of the property apply by analogy when the landlord grants a third party a limited real right, and this is equivalent to a change of ownership. This applies only when the landlord grants a third party a limited real right that is equivalent to a change of ownership.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 261b Abs. 1": {
+  "summary": "For the lease of real property (Grundstück), the parties may agree to have the lease noted (vorgemerkt) in the land register.",
+  "draft": "When renting a plot of land, it is possible to agree that the relationship is noted in the land register.",
+  "changed": true,
+  "change_note": "'Plot of land' was too narrow: Grundstück in Swiss law includes buildings and condominium units."
+ },
+ "OR Art. 261b Abs. 2": {
+  "summary": "The annotation means that every new owner must let the tenant use the property as the lease provides.",
+  "draft": "The notice requires every new owner of the property to permit the tenant to use the property in accordance with the lease agreement.",
+  "changed": true,
+  "change_note": "'Notice' replaced by 'annotation' to avoid confusion with a notice of termination."
+ },
+ "OR Art. 262 Abs. 1": {
+  "summary": "The tenant may sublet the property entirely or partially only with the landlord's consent.",
+  "draft": "The tenant may sublet the property entirely or partially only with the landlord's consent.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 262 Abs. 2": {
+  "summary": "The landlord may only refuse consent if: (a) the tenant refuses to disclose the subletting conditions to the landlord; (b) the subletting conditions are abusive compared to those of the main lease; or (c) the subletting causes substantial disadvantages to the landlord.",
+  "draft": "The landlord may only refuse consent if: (a) the tenant refuses to disclose the subletting conditions to the landlord; (b) the subletting conditions are abusive compared to those of the main lease; or (c) the subletting causes substantial disadvantages to the landlord.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 262 Abs. 3": {
+  "summary": "The tenant is liable to the landlord for ensuring that the subtenant uses the property only as the tenant is permitted to. The landlord may require this of the subtenant directly.",
+  "draft": "The subtenant must use the property only as permitted to the tenant. The landlord may directly instruct the subtenant to do so.",
+  "changed": true,
+  "change_note": "Draft dropped the tenant's liability to the landlord, the core of the rule."
+ },
+ "OR Art. 263 Abs. 1": {
+  "summary": "A tenant of business premises may transfer the lease to a third party only with the written consent of the landlord.",
+  "draft": "A tenant of business premises may transfer the lease to a third party only with the written consent of the landlord.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 263 Abs. 2": {
+  "summary": "The landlord may refuse consent to the transfer only for good cause (wichtiger Grund).",
+  "draft": "The landlord may only refuse consent for a sublease for a valid reason.",
+  "changed": true,
+  "change_note": "Draft said 'sublease'; this article is about transfer of a business lease, not subletting."
+ },
+ "OR Art. 263 Abs. 3": {
+  "summary": "If the landlord agrees, the third party replaces the tenant in the rental agreement.",
+  "draft": "If the landlord agrees, the third party replaces the tenant in the rental agreement.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 263 Abs. 4": {
+  "summary": "The original tenant is released from their obligations to the landlord, but remains jointly and severally liable with the third party until the lease ends, or could be ended, under the contract or the law, and for at most two years.",
+  "draft": "The tenant is released from their obligations to the landlord but remains jointly liable with the third party for up to two years, or until the lease ends according to the contract or law, whichever occurs first.",
+  "changed": true,
+  "change_note": "Draft dropped 'or could be ended' and restated the cap loosely."
+ },
+ "OR Art. 264 Abs. 1": {
+  "summary": "If the tenant returns the property without observing the notice period or termination date, they are only released from their obligations to the landlord if they propose a new tenant who is reasonable for the landlord, is solvent, and is willing to assume the lease on the same terms.",
+  "draft": "If the tenant returns the property without observing the notice period or termination date, they are only released from their obligations to the landlord if they propose a new tenant who is reasonable for the landlord, is solvent, and is willing to assume the lease on the same terms.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 264 Abs. 2": {
+  "summary": "If the tenant does not do so, they must pay the rent until the rental relationship ends or can be ended according to the contract or law.",
+  "draft": "If the tenant does not do so, they must pay the rent until the rental relationship ends or can be ended according to the contract or law.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 264 Abs. 3": {
+  "summary": "The landlord must account for: a. any expenses they save, and b. any gain they obtain or intentionally fail to obtain through alternative use of the property.",
+  "draft": "The landlord must account for: a. any expenses they save, and b. any gain they obtain or intentionally fail to obtain through alternative use of the property.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 265": {
+  "summary": "The landlord and the tenant cannot waive in advance the right to set off claims and debts arising from the lease against each other.",
+  "draft": "The landlord and the tenant may not waive in advance the right to offset claims and debts arising from the tenancy. This prohibition applies to all such claims and debts between the landlord and the tenant.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 266 Abs. 1": {
+  "summary": "If the parties have agreed on a specific duration, either explicitly or implicitly, the tenancy ends automatically upon the expiration of that duration without the need for a notice of termination.",
+  "draft": "If the parties have agreed on a specific duration, either explicitly or implicitly, the tenancy ends automatically upon the expiration of that duration without the need for a notice of termination.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266 Abs. 2": {
+  "summary": "If the parties tacitly continue the lease, it is treated as a lease of indefinite duration.",
+  "draft": "If the parties continue the tenancy without express agreement, it is deemed an unlimited-term tenancy.",
+  "changed": true,
+  "change_note": "Terminology ('tacitly', 'indefinite duration')."
+ },
+ "OR Art. 266a Abs. 1": {
+  "summary": "The parties may terminate the open-ended tenancy by observing the statutory notice periods and dates, provided they have not agreed to a longer notice period or a different termination date.",
+  "draft": "The parties may terminate the open-ended tenancy by observing the statutory notice periods and dates, provided they have not agreed to a longer notice period or a different termination date.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266a Abs. 2": {
+  "summary": "If a party does not observe the notice period or the termination date, the notice takes effect for the next possible termination date.",
+  "draft": "If the parties fail to meet the deadline or appointment, the termination is effective for the next possible date.",
+  "changed": true,
+  "change_note": "'Appointment' was a mistranslation of Termin (termination date)."
+ },
+ "OR Art. 266b": {
+  "summary": "When renting immovable property or movable structures, the parties may terminate the lease with a three-month notice period on a customary local date, or if no such custom exists, at the end of a six-month rental period.",
+  "draft": "When renting immovable property or movable structures, the parties may terminate the lease with a three-month notice period on a customary local date, or if no such custom exists, at the end of a six-month rental period.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266c": {
+  "summary": "When renting an apartment, the parties may terminate the lease with a three-month notice period on a customary local date, or if no such custom exists, at the end of a three-month rental period.",
+  "draft": "When renting an apartment, the parties may terminate the lease with a three-month notice period on a customary local date, or if no such custom exists, at the end of a three-month rental period.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266d": {
+  "summary": "When renting business premises, the parties may terminate the lease with a six-month notice period on a customary local date, or if no such custom exists, at the end of a three-month rental period.",
+  "draft": "When renting business premises, the parties may terminate the lease with a six-month notice period on a customary local date, or if no such custom exists, at the end of a three-month rental period.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266e": {
+  "summary": "For furnished rooms and separately rented parking spaces or similar facilities, the parties may terminate with two weeks' notice to the end of a one-month rental period.",
+  "draft": "Parties may terminate the lease of furnished rooms, separately rented parking spaces, or similar facilities with a two-week notice at the end of a one-month rental period. This applies only to furnished rooms, separately rented parking spaces, or similar facilities.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 266f": {
+  "summary": "When renting movable property, the parties may terminate the rental agreement with a three-day notice for any date they choose.",
+  "draft": "When renting movable property, the parties may terminate the rental agreement with a three-day notice for any date they choose.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266g Abs. 1": {
+  "summary": "For important reasons that make continuing the contract unreasonable for them, the parties may terminate the lease with the statutory notice period, to take effect on any date.",
+  "draft": "Parties may terminate the lease at any time with the statutory notice period if important reasons make fulfilling the contract unreasonable for them.",
+  "changed": true,
+  "change_note": "'At any time' clarified: the notice may take effect on any date, but the statutory notice period still applies."
+ },
+ "OR Art. 266g Abs. 2": {
+  "summary": "The court decides the financial consequences of the early termination, taking all circumstances into account.",
+  "draft": "The judge determines the financial consequences of early termination by considering all circumstances. This applies when the termination is not due to the fault of the spouse or registered partner.",
+  "changed": true,
+  "change_note": "Removed an invented condition about fault of a spouse or registered partner."
+ },
+ "OR Art. 266h Abs. 1": {
+  "summary": "If the tenant goes bankrupt after taking possession of the property, the landlord may demand security for future rent payments. The landlord must give the tenant and the bankruptcy administration a written notice of a reasonable period to provide this security.",
+  "draft": "If the tenant goes bankrupt after taking possession of the property, the landlord may demand security for future rent payments. The landlord must give the tenant and the bankruptcy administration a written notice of a reasonable period to provide this security.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266h Abs. 2": {
+  "summary": "If the landlord does not receive the security within this time limit, they may terminate the lease without notice.",
+  "draft": "If the landlord does not receive the security within this time limit, they may terminate the lease without notice.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266i": {
+  "summary": "If the tenant dies, their heirs may terminate the lease with the statutory notice period on the next statutory termination date.",
+  "draft": "If the tenant dies, their heirs may terminate the lease with the statutory notice period on the next statutory termination date.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266k": {
+  "summary": "A tenant of a movable item used for private purposes, which the landlord rents out as part of their business, may terminate the lease with at least 30 days' notice at the end of any three-month rental period. The landlord has no claim to compensation for this termination.",
+  "draft": "A tenant of a movable item used for private purposes, which the landlord rents out as part of their business, may terminate the lease with at least 30 days' notice at the end of any three-month rental period. The landlord has no claim to compensation for this termination.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266l Abs. 1": {
+  "summary": "Landlords and tenants of residential and business premises must give notice of termination in writing.",
+  "draft": "Landlords and tenants of residential and commercial spaces must give notice in writing. This requirement applies to both parties.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 266l Abs. 2": {
+  "summary": "The landlord must use a cantonal-approved form to give notice, which must specify how the tenant can contest the termination or request an extension of the lease.",
+  "draft": "The landlord must use a cantonal-approved form to give notice, which must specify how the tenant can contest the termination or request an extension of the lease.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266m Abs. 1": {
+  "summary": "If the rented property serves as the family home, one spouse may only terminate the lease with the other spouse's explicit consent.",
+  "draft": "If the rented property serves as the family home, one spouse may only terminate the lease with the other spouse's explicit consent.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266m Abs. 2": {
+  "summary": "If a spouse cannot obtain this consent, or it is refused without good reason, that spouse may apply to the court.",
+  "draft": "If a spouse cannot obtain this consent or it is refused without a valid reason, the spouse may appeal to the judge.",
+  "changed": true,
+  "change_note": "'Appeal to the judge' suggested an appeal; den Richter anrufen means applying to the court."
+ },
+ "OR Art. 266m Abs. 3": {
+  "summary": "The same rule applies by analogy to registered partnerships.",
+  "draft": "The same rule applies by analogy to registered partnerships.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 266n": {
+  "summary": "The landlord's notice of termination and any payment deadline with a threat of termination (Art. 257d) must be served separately on the tenant and on the tenant's spouse or registered partner.",
+  "draft": "The landlord must serve the notice of termination and any payment deadline notice with a threat of termination (Art. 257d) separately to the tenant and to the tenant's spouse, registered partner, or cohabiting partner.",
+  "changed": true,
+  "change_note": "Removed 'cohabiting partner': the text covers only spouses and registered partners."
+ },
+ "OR Art. 266o": {
+  "summary": "A notice of termination that does not comply with Articles 266l–266n is void.",
+  "draft": "The termination is invalid if it does not comply with Articles 266l–266n.",
+  "changed": true,
+  "change_note": "'Invalid' replaced by 'void' (nichtig), the exact legal consequence."
+ },
+ "OR Art. 267 Abs. 1": {
+  "summary": "The tenant must return the property in the condition that results from use in line with the contract.",
+  "draft": "The tenant must return the property in the condition resulting from its contractual use. This obligation does not apply if the property has deteriorated due to normal wear and tear or if the deterioration was caused by circumstances beyond the tenant's control.",
+  "changed": true,
+  "change_note": "Removed invented exceptions (wear and tear, circumstances beyond control) that are not in the text."
+ },
+ "OR Art. 267 Abs. 2": {
+  "summary": "Agreements in which the tenant precommits to pay compensation upon termination of the lease that includes anything beyond potential damage coverage are void.",
+  "draft": "Agreements in which the tenant precommits to pay compensation upon termination of the lease that includes anything beyond potential damage coverage are void.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 267a Abs. 1": {
+  "summary": "When the property is returned, the landlord must check its condition and immediately notify the tenant of defects the tenant is responsible for.",
+  "draft": "When returning the property, the landlord must inspect its condition and immediately notify the tenant of any defects for which the tenant is responsible.",
+  "changed": true,
+  "change_note": "'When returning the property' wrongly suggested the landlord returns it."
+ },
+ "OR Art. 267a Abs. 2": {
+  "summary": "If the landlord fails to do so, they lose their claims, except for defects that were not detectable through a customary inspection.",
+  "draft": "If the landlord fails to do so, they lose their claims, except for defects that were not detectable through a customary inspection.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 267a Abs. 3": {
+  "summary": "If the landlord discovers such (hidden) defects later, the landlord must notify the tenant immediately.",
+  "draft": "If the landlord later discovers defects, they must immediately report them to the tenant.",
+  "changed": true,
+  "change_note": "Restored 'such': the rule refers to defects not detectable in a customary inspection (Abs. 2)."
+ },
+ "OR Art. 268 Abs. 1": {
+  "summary": "The landlord of business premises has a right of retention over movable things in the rented premises that serve to furnish or use them, as security for one year's rent that has fallen due and the current half-year's rent.",
+  "draft": "The landlord of business premises has a right of retention for a defaulted annual rent and the current half-year rent on movable items located in the rented premises that belong to their furnishing or use. This right applies only to such items.",
+  "changed": true,
+  "change_note": "'Defaulted annual rent' clarified (one year's rent already due); removed a redundant added sentence."
+ },
+ "OR Art. 268 Abs. 2": {
+  "summary": "The landlord's right of retention covers items brought in by the subtenant only to the extent that the subtenant has not paid their rent.",
+  "draft": "The landlord's right of retention covers items brought in by the subtenant only to the extent that the subtenant has not paid their rent.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 268 Abs. 3": {
+  "summary": "The right of retention does not cover things that the tenant's creditors could not seize.",
+  "draft": "The creditor of a tenant cannot exercise a retention right on items that the tenant's own creditors could not seize.",
+  "changed": true,
+  "change_note": "Draft garbled the subject ('the creditor of a tenant cannot exercise'); the limit is on the landlord's retention right."
+ },
+ "OR Art. 268a Abs. 1": {
+  "summary": "Third-party rights take priority over the landlord's right of retention for things the landlord knew or should have known did not belong to the tenant, and for stolen, lost or otherwise missing things.",
+  "draft": "The rights of third parties to items the landlord knew or should have known did not belong to the tenant, as well as to stolen, lost, or otherwise misappropriated items, take precedence over the landlord's right of retention.",
+  "changed": true,
+  "change_note": "'Misappropriated' replaced: abhanden gekommen means lost/gone missing, not embezzled."
+ },
+ "OR Art. 268a Abs. 2": {
+  "summary": "If the landlord only discovers during the tenancy that items brought in by the tenant do not belong to the tenant, the landlord's right of retention over those items expires unless the landlord terminates the lease agreement at the earliest possible date.",
+  "draft": "If the landlord only discovers during the tenancy that items brought in by the tenant do not belong to the tenant, the landlord's right of retention over those items expires unless the landlord terminates the lease agreement at the earliest possible date.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 268b Abs. 1": {
+  "summary": "If the tenant intends to move out or remove the things in the rented premises, the landlord may, with the help of the competent official office, retain as many items as are needed to cover the landlord's claim.",
+  "draft": "If the tenant moves out or removes the items located in the rented space, the landlord may, with the assistance of the competent authority, retain as many items as are necessary to cover their claim.",
+  "changed": true,
+  "change_note": "Restored 'intends to' (will); the right applies before the move, not only after."
+ },
+ "OR Art. 268b Abs. 2": {
+  "summary": "Items removed secretly or by force may be brought back into the rented premises with police help within ten days of their removal.",
+  "draft": "Heimlich or violently removed items may be returned to the rented rooms with police assistance within ten days of their removal.",
+  "changed": true,
+  "change_note": "Translated the German word 'Heimlich' left in the draft (secretly)."
+ },
+ "OR Art. 269": {
+  "summary": "Rent is abusive if it yields an excessive return from the rental property or if it is based on an obviously excessive purchase price.",
+  "draft": "Rent is abusive if it yields an excessive return from the rental property or if it is based on an obviously excessive purchase price.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 269a": {
+  "summary": "As a rule, rents are not abusive in particular if they: a. are within the range of rents usual in the locality or neighbourhood; b. are justified by cost increases or additional services of the landlord; c. for newer buildings, are within a cost-covering gross return; d. only offset a rent reduction previously granted by restructuring standard market financing costs, and are set out in a payment plan disclosed to the tenant in advance; e. only offset inflation on the risk-bearing capital; f. do not exceed what landlord and tenant associations, or organisations with similar interests, recommend in their framework agreements.",
+  "draft": "Mietzinse sind in der Regel nicht missbräuchlich, wenn sie insbesondere im Rahmen der orts- oder quartierüblichen Mietzinse liegen, durch Kostensteigerungen oder Mehrleistungen des Vermieters begründet sind, bei neueren Bauten im Rahmen der kostendeckenden Bruttorendite liegen, lediglich dem Ausgleich einer Mietzinsverbilligung dienen, die zuvor durch Umlagerung marktüblicher Finanzierungskosten gewahrt wurde und in einem dem Mieter im Voraus bekanntgegebenen Zahlungsplan festgelegt sind, lediglich die Teuerung auf dem risikotragenden Kapital ausgleichen oder das Ausmass nicht überschreiten, das Vermieter- und Mieterverbände oder Organisationen, die ähnliche Interessen wahrnehmen, in ihren Rahmenverträgen empfehlen.",
+  "changed": true,
+  "change_note": "Draft was in German (not translated); translated with letters a–f."
+ },
+ "OR Art. 269b": {
+  "summary": "The agreement that the rent follows an index is valid only if the rental contract is concluded for at least five years and the national consumer price index is designated as the index.",
+  "draft": "The agreement that the rent follows an index is valid only if the rental contract is concluded for at least five years and the national consumer price index is designated as the index.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 269c": {
+  "summary": "The agreement that the rent increases periodically by a specific amount is valid only if: a. the rental contract is concluded for at least three years; b. the rent is increased at most once per year; and c. the amount of the increase is specified in Swiss francs.",
+  "draft": "The agreement that the rent increases periodically by a specific amount is valid only if: a. the rental contract is concluded for at least three years; b. the rent is increased at most once per year; and c. the amount of the increase is specified in Swiss francs.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 269d Abs. 1": {
+  "summary": "The landlord may increase the rent at any time, with effect from the next possible termination date. The landlord must notify and justify the increase to the tenant on a form approved by the canton at least ten days before the notice period begins.",
+  "draft": "The landlord may raise the rent at any time to the next possible termination date. The landlord must notify the tenant of the rent increase at least ten days before the start of the notice period on a form approved by the canton, and provide a reason for the increase.",
+  "changed": true,
+  "change_note": "Clarified 'raise to the next termination date' as 'with effect from'; 'provide a reason' -> notify and justify."
+ },
+ "OR Art. 269d Abs. 2": {
+  "summary": "A rent increase is void if the landlord: a. does not communicate it using the prescribed form; b. does not provide a justification; c. threatens or issues a termination notice with the communication.",
+  "draft": "A rent increase is void if the landlord: a. does not communicate it using the prescribed form; b. does not provide a justification; c. threatens or issues a termination notice with the communication.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 269d Abs. 3": {
+  "summary": "The provisions of paragraphs 1 and 2 also apply when the landlord intends to unilaterally alter the lease agreement to the tenant's detriment, specifically by reducing existing services or introducing new ancillary costs.",
+  "draft": "The provisions of paragraphs 1 and 2 also apply when the landlord intends to unilaterally alter the lease agreement to the tenant's detriment, specifically by reducing existing services or introducing new ancillary costs.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 269d Abs. 4": {
+  "summary": "For notice of a rent increase or other unilateral contract change, a mechanically reproduced signature on the prescribed form is sufficient.",
+  "draft": "For a rent increase or other unilateral contract changes, a mechanically reproduced signature on the prescribed form is sufficient. This applies only to the communication of such changes.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 269d Abs. 5": {
+  "summary": "For rent increases stipulated in an agreement under Article 269c, written notice is sufficient.",
+  "draft": "For rent increases stipulated in an agreement under Article 269c, written notice is sufficient.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270 Abs. 1": {
+  "summary": "Within 30 days of taking over the property, the tenant may challenge the initial rent before the conciliation authority as abusive under Articles 269 and 269a and demand a reduction, if: a. the tenant felt forced to conclude the contract because of personal or family hardship or the situation on the local market for residential and business premises; or b. the landlord significantly increased the initial rent compared with the previous rent for the same property.",
+  "draft": "The tenant may challenge the initial rent as abusive within 30 days of taking possession and demand its reduction if: (a) they were compelled to sign the contract due to personal or family hardship or local housing market conditions; or (b) the landlord significantly increased the initial rent compared to the previous rent for the same property.",
+  "changed": true,
+  "change_note": "Restored the conciliation authority as forum and the reference to Art. 269/269a; 'sign' -> 'conclude'."
+ },
+ "OR Art. 270 Abs. 2": {
+  "summary": "In cases of housing shortage, the cantons may make the use of the form according to Article 269d obligatory for their territory or a part thereof when concluding a new lease agreement.",
+  "draft": "In cases of housing shortage, the cantons may make the use of the form according to Article 269d obligatory for their territory or a part thereof when concluding a new lease agreement.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270a Abs. 1": {
+  "summary": "The tenant may challenge the rent as abusive and demand a reduction to the next possible termination date if they have reason to believe the landlord is earning an excessive return on the rental property due to a substantial change in the calculation basis, particularly a cost reduction, in violation of Articles 269 and 269a.",
+  "draft": "The tenant may challenge the rent as abusive and demand a reduction to the next possible termination date if they have reason to believe the landlord is earning an excessive return on the rental property due to a substantial change in the calculation basis, particularly a cost reduction, in violation of Articles 269 and 269a.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270a Abs. 2": {
+  "summary": "The tenant must submit a written request for rent reduction to the landlord, who must respond within 30 days. If the landlord does not grant the request, only grants it partially, or fails to respond within the 30-day period, the tenant may refer the matter to the conciliation authority within 30 days.",
+  "draft": "The tenant must submit a written request for rent reduction to the landlord, who must respond within 30 days. If the landlord does not grant the request, only grants it partially, or fails to respond within the 30-day period, the tenant may refer the matter to the conciliation authority within 30 days.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270a Abs. 3": {
+  "summary": "If the tenant files a request for rent reduction at the same time as challenging a rent increase, paragraph 2 does not apply.",
+  "draft": "If the tenant files a request for rent reduction at the same time as challenging a rent increase, paragraph 2 does not apply.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270b Abs. 1": {
+  "summary": "The tenant may challenge a rent increase as abusive under Articles 269 and 269a at the conciliation authority within 30 days of receiving notice of the increase.",
+  "draft": "The tenant may challenge a rent increase as abusive under Articles 269 and 269a at the conciliation authority within 30 days of receiving notice of the increase.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270b Abs. 2": {
+  "summary": "If the landlord unilaterally changes the rental contract to the tenant's disadvantage—such as reducing previous services or introducing new ancillary costs—paragraph 1 applies.",
+  "draft": "If the landlord unilaterally changes the rental contract to the tenant's disadvantage—such as reducing previous services or introducing new ancillary costs—paragraph 1 applies.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 270c": {
+  "summary": "Apart from challenging the initial rent, a party can only argue before the conciliation authority that the rent increase or reduction demanded by the other party is not justified by a corresponding change in the index.",
+  "draft": "A party may only claim before the conciliation authority that the rent increase or decrease demanded by the other party is not justified by a corresponding change in the index, provided that the initial rent is not being contested.",
+  "changed": true,
+  "change_note": "Draft reversed the reservation ('provided the initial rent is not being contested'); 'unter Vorbehalt' means the initial-rent challenge remains available."
+ },
+ "OR Art. 270d": {
+  "summary": "Apart from challenging the initial rent, the tenant cannot contest stepped (graduated) rents.",
+  "draft": "The tenant cannot contest graduated rent increases, provided that the initial rent is subject to challenge.",
+  "changed": true,
+  "change_note": "Draft reversed the reservation ('provided that the initial rent is subject to challenge')."
+ },
+ "OR Art. 270e": {
+  "summary": "The existing rental agreement continues unchanged: a. during the conciliation procedure if no agreement is reached between the parties, and b. during the court proceedings, subject to any provisional measures ordered by the judge.",
+  "draft": "The existing rental agreement continues unchanged: a. during the conciliation procedure if no agreement is reached between the parties, and b. during the court proceedings, subject to any provisional measures ordered by the judge.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 271 Abs. 1": {
+  "summary": "A notice of termination can be challenged if it breaches the principle of good faith.",
+  "draft": "A tenancy termination is contestable if it violates the principle of good faith.",
+  "changed": true,
+  "change_note": "Wording ('notice of termination' as the act being challenged)."
+ },
+ "OR Art. 271 Abs. 2": {
+  "summary": "On request, the reasons for the termination must be given.",
+  "draft": "The landlord must provide a written explanation of the termination upon request. This obligation applies to all terminations covered by this provision.",
+  "changed": true,
+  "change_note": "Draft limited it to the landlord and added 'written'; the text applies to either party and sets no written form."
+ },
+ "OR Art. 271a Abs. 1": {
+  "summary": "A landlord's notice of termination can be challenged in particular if it is given: a. because the tenant asserts claims under the lease in good faith; b. because the landlord wants to impose a unilateral change to the tenant's detriment or a rent adjustment; c. solely to make the tenant buy the rented flat; d. during conciliation or court proceedings connected with the lease, unless the tenant started them abusively; e. within three years after the end of conciliation or court proceedings connected with the lease in which the landlord: 1. lost to a significant extent; 2. withdrew or substantially reduced the claim or action; 3. decided not to go to court; 4. reached a settlement or other agreement with the tenant; f. because of changes in the tenant's family situation that cause the landlord no significant disadvantage.",
+  "draft": "The landlord's termination is contestable if it is given because the tenant asserts rights under the lease in good faith; because the landlord seeks to impose a unilateral contract change or rent adjustment to the tenant's detriment; solely to induce the tenant to purchase the rented apartment; during a conciliation or court proceeding related to the lease, unless the tenant initiated the proceeding abusively; within three years after the conclusion of such a related proceeding in which the landlord: 1. was substantially defeated; 2. withdrew or significantly reduced their claim or lawsuit; 3. waived to call upon the judge; 4. reached a settlement or otherwise agreed with the tenant; or because of changes in the tenant's family situation that do not cause the landlord any substantial disadvantage.",
+  "changed": true,
+  "change_note": "Restored 'in particular' (the list is not exhaustive) and letters a–f; fixed 'waived to call upon the judge'."
+ },
+ "OR Art. 271a Abs. 2": {
+  "summary": "Paragraph 1, letter e also applies if the tenant can prove with written documents that they have reached an agreement with the landlord on a claim arising from the tenancy outside of a conciliation or court proceeding.",
+  "draft": "Paragraph 1, letter e also applies if the tenant can prove with written documents that they have reached an agreement with the landlord on a claim arising from the tenancy outside of a conciliation or court proceeding.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 271a Abs. 3": {
+  "summary": "Paragraph 1, letters d and e do not apply to terminations of tenancy for: (a) urgent personal need of the landlord for themselves, close relatives, or in-laws; (b) tenant's arrears in payment (Art. 257d); (c) serious breach by the tenant of their duty to exercise diligence and consideration (Art. 257f para. 3 and 4); (d) sale of the property (Art. 261); (e) important reasons (Art. 266g); (f) tenant's bankruptcy (Art. 266h).",
+  "draft": "Paragraph 1, letters d and e do not apply to terminations of tenancy for: (a) urgent personal need of the landlord for themselves, close relatives, or in-laws; (b) tenant's arrears in payment (Art. 257d); (c) serious breach by the tenant of their duty to exercise diligence and consideration (Art. 257f para. 3 and 4); (d) sale of the property (Art. 261); (e) important reasons (Art. 266g); (f) tenant's bankruptcy (Art. 266h).",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272 Abs. 1": {
+  "summary": "The tenant may request an extension of a fixed-term or open-ended lease if the lease termination would cause a hardship for the tenant or their family that cannot be justified by the landlord's interests.",
+  "draft": "The tenant may request an extension of a fixed-term or open-ended lease if the lease termination would cause a hardship for the tenant or their family that cannot be justified by the landlord's interests.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272 Abs. 2": {
+  "summary": "When weighing the interests, the competent authority considers in particular: a. the circumstances in which the contract was concluded and its content; b. the duration of the lease; c. the personal, family and financial circumstances of the parties and their conduct; d. any need of the landlord to use the premises for themselves, close relatives or relatives by marriage, and how urgent that need is; e. the situation on the local market for residential and business premises.",
+  "draft": "The competent authority must consider, in particular: a. the circumstances of the contract's conclusion and its content; b. the duration of the tenancy; c. the personal, family, and economic circumstances of the parties and their conduct; d. any owner's need for the property for themselves, close relatives, or in-laws, along with the urgency of that need; e. the conditions on the local market for residential and commercial spaces.",
+  "changed": true,
+  "change_note": "'Any owner's need' corrected to the landlord's own need; restored 'when weighing the interests'."
+ },
+ "OR Art. 272 Abs. 3": {
+  "summary": "If a tenant requests a second extension, the competent authority must also consider whether the tenant has taken all reasonable steps to avoid the hardship.",
+  "draft": "If a tenant requests a second extension, the competent authority must also consider whether the tenant has taken all reasonable steps to avoid the hardship.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272a Abs. 1": {
+  "summary": "The extension of a tenancy is excluded in the case of terminations due to: a) the tenant's arrears in payment (Art. 257d); b) a serious breach by the tenant of their duty to exercise diligence and consideration (Art. 257f para. 3 and 4); c) the tenant's bankruptcy (Art. 266h); or d) a lease contract that was expressly concluded only for the limited period until the start of construction or until the necessary permits are obtained for an upcoming renovation or demolition project.",
+  "draft": "The extension of a tenancy is excluded in the case of terminations due to: a) the tenant's arrears in payment (Art. 257d); b) a serious breach by the tenant of their duty to exercise diligence and consideration (Art. 257f para. 3 and 4); c) the tenant's bankruptcy (Art. 266h); or d) a lease contract that was expressly concluded only for the limited period until the start of construction or until the necessary permits are obtained for an upcoming renovation or demolition project.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272a Abs. 2": {
+  "summary": "The extension of the lease is generally excluded if the landlord offers the tenant equivalent alternative housing or business premises.",
+  "draft": "The extension of the lease is generally excluded if the landlord offers the tenant equivalent alternative housing or business premises.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272b Abs. 1": {
+  "summary": "The lease for residential premises may be extended for a maximum of four years, and for business premises for a maximum of six years. Within this maximum duration, one or two extensions may be granted.",
+  "draft": "The lease for residential premises may be extended for a maximum of four years, and for business premises for a maximum of six years. Within this maximum duration, one or two extensions may be granted.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272b Abs. 2": {
+  "summary": "If the parties agree to extend the lease, there is no maximum duration, and the tenant may waive a second extension.",
+  "draft": "If the parties agree to extend the lease, there is no maximum duration, and the tenant may waive a second extension.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272c Abs. 1": {
+  "summary": "Either party may ask that the contract be adapted to changed circumstances in the extension decision.",
+  "draft": "Each party may request that the contract be adjusted to changed circumstances in the extension decision. This applies to every party involved.",
+  "changed": true,
+  "change_note": "Removed a redundant added sentence."
+ },
+ "OR Art. 272c Abs. 2": {
+  "summary": "If the contract was not changed in the extension decision, it continues unchanged during the extension; the statutory adjustment possibilities are reserved.",
+  "draft": "If the contract was not changed in the extension decision, it continues unchanged during the extension; the statutory adjustment possibilities are reserved.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 272d": {
+  "summary": "If the extension decision or extension agreement does not specify otherwise, the tenant may terminate the lease as follows: a. for an extension of up to one year, with one month's notice on the end of a month; b. for an extension of more than one year, with three months' notice on a legal termination date.",
+  "draft": "If the extension decision or extension agreement does not specify otherwise, the tenant may terminate the lease as follows: a. for an extension of up to one year, with one month's notice on the end of a month; b. for an extension of more than one year, with three months' notice on a legal termination date.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273 Abs. 1": {
+  "summary": "If one party wishes to contest a termination, they must submit the request to the conciliation authority within 30 days of receiving the termination notice.",
+  "draft": "If one party wishes to contest a termination, they must submit the request to the conciliation authority within 30 days of receiving the termination notice.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273 Abs. 2": {
+  "summary": "If the tenant seeks an extension of the lease, they must submit the request to the conciliation authority: within 30 days of receiving the notice of termination for an indefinite lease, or at least 60 days before the end of the fixed-term lease.",
+  "draft": "If the tenant seeks an extension of the lease, they must submit the request to the conciliation authority: within 30 days of receiving the notice of termination for an indefinite lease, or at least 60 days before the end of the fixed-term lease.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273 Abs. 3": {
+  "summary": "The tenant must submit a request for a second extension to the conciliation authority no later than 60 days before the first extension expires.",
+  "draft": "The tenant must submit a request for a second extension to the conciliation authority no later than 60 days before the first extension expires.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273 Abs. 4": {
+  "summary": "The procedure before the conciliation authority follows the provisions of the Swiss Code of Civil Procedure.",
+  "draft": "The procedure before the conciliation authority follows the provisions of the Swiss Code of Civil Procedure.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273 Abs. 5": {
+  "summary": "If the competent authority rejects a tenant's request to contest a termination of the lease, it must ex officio examine whether the tenancy can be extended.",
+  "draft": "If the competent authority rejects a tenant's request to contest a termination of the lease, it must ex officio examine whether the tenancy can be extended.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273a Abs. 1": {
+  "summary": "If the rented property is the family home, the tenant's spouse may also challenge the termination, request an extension of the lease or exercise the other rights the tenant has on termination.",
+  "draft": "If the rented property serves as the family home, the tenant’s spouse may contest the termination of the lease, request an extension of the rental relationship, or exercise any other rights that belong to the tenant upon termination.",
+  "changed": true,
+  "change_note": "Restored 'also': the spouse acts in addition to, not instead of, the tenant."
+ },
+ "OR Art. 273a Abs. 2": {
+  "summary": "Agreements on extending the lease are valid only if concluded with both spouses.",
+  "draft": "Agreements to extend visitation rights are only valid if they are concluded with both spouses.",
+  "changed": true,
+  "change_note": "Serious mistranslation: draft said 'visitation rights'; Erstreckung is the extension of the lease."
+ },
+ "OR Art. 273a Abs. 3": {
+  "summary": "The same rule applies by analogy to registered partnerships.",
+  "draft": "The same rule applies by analogy to registered partnerships.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273b Abs. 1": {
+  "summary": "The section on protection against termination applies to a sublease as long as the main lease has not ended. A sublease can be extended only for as long as the main lease runs.",
+  "draft": "This section applies to subletting only as long as the main lease remains in effect. The sublet may be extended only for the duration of the main lease.",
+  "changed": true,
+  "change_note": "'This section' identified (protection against termination of residential and business leases)."
+ },
+ "OR Art. 273b Abs. 2": {
+  "summary": "If subletting is primarily intended to circumvent termination protection regulations, the subtenant is granted termination protection regardless of the main lease. If the main lease is terminated, the landlord replaces the tenant in the contract with the subtenant.",
+  "draft": "If subletting is primarily intended to circumvent termination protection regulations, the subtenant is granted termination protection regardless of the main lease. If the main lease is terminated, the landlord replaces the tenant in the contract with the subtenant.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 273c Abs. 1": {
+  "summary": "The tenant can waive rights under the section on protection against termination only where this is expressly provided for.",
+  "draft": "The tenant may only waive rights granted under this section if such waiver is explicitly provided for.",
+  "changed": true,
+  "change_note": "'This section' identified so the summary stands alone."
+ },
+ "OR Art. 273c Abs. 2": {
+  "summary": "Agreements to the contrary are void.",
+  "draft": "No agreements that differ from this provision are valid.",
+  "changed": true,
+  "change_note": "'Not valid' replaced by 'void' (nichtig)."
+ },
+ "OR Art. 544 Abs. 1": {
+  "summary": "Things, rights in rem or claims transferred to or acquired for the simple partnership belong to the partners jointly, as set out in the partnership agreement.",
+  "draft": "Sachen, dingliche Rechte, or Forderungen transferred to or acquired for the company belong jointly to the partners according to the terms of the partnership agreement. This applies only to items transferred to or acquired for the company.",
+  "changed": true,
+  "change_note": "Draft left German words untranslated, called the simple partnership a 'company', and added a redundant sentence."
+ },
+ "OR Art. 544 Abs. 2": {
+  "summary": "Creditors of a partner may only claim their debtor's share of the liquidation proceeds, unless the partnership agreement states otherwise.",
+  "draft": "Creditors of a partner may only claim their debtor's share of the liquidation proceeds, unless the partnership agreement states otherwise.",
+  "changed": false,
+  "change_note": ""
+ },
+ "OR Art. 544 Abs. 3": {
+  "summary": "If the partners have jointly or through representation entered into obligations with a third party, they are jointly and severally liable to that third party, unless otherwise agreed.",
+  "draft": "If the partners have jointly or through representation entered into obligations with a third party, they are jointly and severally liable to that third party, unless otherwise agreed.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 113 Abs. 1": {
+  "summary": "No party compensation (for the other side's costs) is awarded in conciliation proceedings. This does not affect the canton's payment of a legal-aid lawyer appointed free of charge.",
+  "draft": "In the conciliation procedure, no party compensation is awarded. However, the canton may compensate an unpaid legal representative.",
+  "changed": true,
+  "change_note": "'Unpaid legal representative' mistranslated unentgeltlicher Rechtsbeistand (legal-aid counsel); 'may compensate' replaced by the reservation the text makes."
+ },
+ "ZPO Art. 113 Abs. 2": {
+  "summary": "No court fees are charged in disputes: a. under the Equality Act of March 24, 1995; b. under the Disability Equality Act of December 13, 2002; c. concerning the rental and lease of residential and business premises, as well as agricultural lease; d. arising from an employment relationship and under the Employment Services Act of October 6, 1989, up to a dispute value of 30,000 francs; e. under the Participation Act of December 17, 1993; f. concerning supplementary insurance to social health insurance under the Federal Act of March 18, 1994 on Health Insurance; g. under the DSG.",
+  "draft": "No court fees are charged in disputes: a. under the Equality Act of March 24, 1995; b. under the Disability Equality Act of December 13, 2002; c. concerning the rental and lease of residential and business premises, as well as agricultural lease; d. arising from an employment relationship and under the Employment Services Act of October 6, 1989, up to a dispute value of 30,000 francs; e. under the Participation Act of December 17, 1993; f. concerning supplementary insurance to social health insurance under the Federal Act of March 18, 1994 on Health Insurance; g. under the DSG.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 197": {
+  "summary": "Court proceedings are preceded by an attempt at conciliation before a conciliation authority.",
+  "draft": "A court decision must be preceded by an attempt at conciliation before a conciliation authority. This requirement applies to all cases where the value in dispute exceeds CHF 10,000, with exceptions for cases explicitly excluded by law.",
+  "changed": true,
+  "change_note": "Removed an invented CHF 10,000 threshold and invented exceptions (exceptions are in Art. 198–199)."
+ },
+ "ZPO Art. 198": {
+  "summary": "There is no conciliation procedure: a. in summary proceedings; abis. in actions for violence, threats or stalking under Art. 28b ZGB or concerning electronic monitoring under Art. 28c ZGB; b. in actions on civil status; bbis. in actions on maintenance of minor or adult children and other child matters; c. in divorce proceedings; d. in proceedings to dissolve or annul a registered partnership; e. in these debt-enforcement (SchKG) actions: 1. action to deny the debt (Art. 83 para. 2), 2. declaratory action (Art. 85a), 3. third-party ownership action (Art. 106–109), 4. action to join a seizure (Art. 111), 5. actions to separate or add assets to the bankruptcy estate (Art. 242), 6. action contesting the schedule of claims (Art. 148 and 250), 7. action to establish new assets (Art. 265a), 8. action to return retained items (Art. 284); f. in disputes for which a single cantonal instance is competent under Art. 7; g. for principal intervention, counterclaims and third-party actions; h. where the court has set a deadline for an action, and for actions joined to it if they are factually connected; i. in actions before the Federal Patent Court.",
+  "draft": "The out-of-court conciliation procedure does not apply in summary proceedings, in lawsuits concerning violence, threats, or stalking under Article 28b ZGB or electronic surveillance under Article 28c ZGB, in lawsuits regarding civil status, in lawsuits concerning maintenance and other child-related matters for minor and adult children, in divorce proceedings, in proceedings to dissolve or declare the invalidity of a registered partnership, in the following claims under the Swiss Debt Enforcement and Bankruptcy Act (SchKG): the denial of debt claim (Art. 83 para. 2 SchKG), the declaratory action (Art. 85a SchKG), the objection action (Art. 106–109 SchKG), the counterclaim (Art. 111 SchKG), the separate or collective action (Art. 242 SchKG), the collocation action (Art. 148 and 250 SchKG), the action to establish new assets (Art. 265a SchKG),",
+  "changed": true,
+  "change_note": "Draft was truncated (items e8 and f–i missing), added 'out-of-court', and mistranslated Anschlussklage (as 'counterclaim') and Art. 242 actions."
+ },
+ "ZPO Art. 199 Abs. 1": {
+  "summary": "In financial (pecuniary) disputes with a value in dispute of at least CHF 100,000, the parties may jointly waive the conciliation procedure.",
+  "draft": "In disputes concerning property rights with a value of at least 100,000 Swiss francs, the parties may jointly waive the conciliation procedure.",
+  "changed": true,
+  "change_note": "'Property rights' mistranslated vermögensrechtlich (pecuniary)."
+ },
+ "ZPO Art. 199 Abs. 2": {
+  "summary": "The plaintiff may unilaterally waive the conciliation procedure if: a) the defendant has their seat or residence abroad; b) the defendant's place of stay is unknown; or c) the dispute concerns the Equality Act of March 24, 1995.",
+  "draft": "The plaintiff may unilaterally waive the conciliation procedure if: a) the defendant has their seat or residence abroad; b) the defendant's place of stay is unknown; or c) the dispute concerns the Equality Act of March 24, 1995.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 199 Abs. 3": {
+  "summary": "When disputes fall under the jurisdiction of a single cantonal authority as per Articles 5, 6, and 8, the plaintiff may file the lawsuit directly with the court.",
+  "draft": "When disputes fall under the jurisdiction of a single cantonal authority as per Articles 5, 6, and 8, the plaintiff may file the lawsuit directly with the court.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 200 Abs. 1": {
+  "summary": "In disputes over the rental or lease of residential and business premises, the conciliation authority consists of a chair and equal (parity) representation of both sides.",
+  "draft": "In disputes concerning the lease or hire of residential and business premises, the conciliation authority consists of one presiding person and one parity representative.",
+  "changed": true,
+  "change_note": "'One parity representative' was wrong: paritätische Vertretung means equal representation of both sides."
+ },
+ "ZPO Art. 200 Abs. 2": {
+  "summary": "In disputes under the Equality Act of March 24, 1995, the conciliation authority consists of a presiding person and a parity representation of the employer and employee sides and the public and private sectors; the genders must be represented equally.",
+  "draft": "In disputes under the Equality Act of March 24, 1995, the conciliation authority consists of a presiding person and a parity representation of the employer and employee sides and the public and private sectors; the genders must be represented equally.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 201 Abs. 1": {
+  "summary": "The conciliation authority tries to reconcile the parties in an informal hearing. If it helps settle the dispute, a settlement may also include disputed issues between the parties outside the proceedings.",
+  "draft": "The conciliation authority attempts to reconcile the parties in an informal negotiation. If this serves to settle the dispute, issues between the parties that lie outside the proceedings may also be included in a settlement.",
+  "changed": true,
+  "change_note": "'Negotiation' -> hearing (Verhandlung)."
+ },
+ "ZPO Art. 201 Abs. 2": {
+  "summary": "In matters governed by Article 200, the conciliation authority also serves as a legal advice office.",
+  "draft": "In matters governed by Article 200, the conciliation authority also serves as a legal advice office.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 202 Abs. 1": {
+  "summary": "The procedure is initiated by a conciliation request, which may be submitted in the forms prescribed by Article 130 or given orally to the conciliation authority for record.",
+  "draft": "The procedure is initiated by a conciliation request, which may be submitted in the forms prescribed by Article 130 or given orally to the conciliation authority for record.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 202 Abs. 2": {
+  "summary": "In a conciliation request, the opposing party, the legal claim, and the subject of the dispute must be specified.",
+  "draft": "In a conciliation request, the opposing party, the legal claim, and the subject of the dispute must be specified.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 202 Abs. 3": {
+  "summary": "The conciliation authority serves the request on the other party without delay and at the same time summons the parties to the conciliation hearing.",
+  "draft": "The conciliation authority immediately sends the request for conciliation to the opposing party and simultaneously summons both parties to the mediation.",
+  "changed": true,
+  "change_note": "'Mediation' replaced (this is the conciliation hearing, not mediation, which the ZPO treats separately)."
+ },
+ "ZPO Art. 202 Abs. 4": {
+  "summary": "In matters under Article 200, the conciliation authority may exceptionally order an exchange of written submissions if a decision proposal under Article 210 or a decision under Article 212 is possible.",
+  "draft": "In matters governed by Article 200, she may exceptionally conduct a written exchange of statements if a proposal for a decision under Article 210 or a decision under Article 212 is at issue.",
+  "changed": true,
+  "change_note": "'She' replaced by the conciliation authority; 'at issue' -> possible (in Frage kommt)."
+ },
+ "ZPO Art. 203 Abs. 1": {
+  "summary": "The hearing must take place within two months of the request being received or after the conclusion of the exchange of written statements.",
+  "draft": "The hearing must take place within two months of the request being received or after the conclusion of the exchange of written statements.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 203 Abs. 2": {
+  "summary": "The conciliation authority may have any relevant documents presented and may conduct an inspection. If a proposal for a decision under Article 210 or a decision under Article 212 is possible, it may also take the other evidence, provided this does not significantly delay the proceedings.",
+  "draft": "The conciliation authority may have any relevant documents presented and may conduct an inspection. If a proposal for a decision under Article 210 or a decision under Article 212 is possible, it may also take the other evidence, provided this does not significantly delay the proceedings.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 203 Abs. 3": {
+  "summary": "The hearing is not public. In matters governed by Article 200, the conciliation authority may permit the public wholly or partially if there is a public interest.",
+  "draft": "The hearing is not public. In matters governed by Article 200, the conciliation authority may permit the public wholly or partially if there is a public interest.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 203 Abs. 4": {
+  "summary": "With the parties' consent, the conciliation authority may hold further hearings. The proceedings must be concluded within twelve months at the latest.",
+  "draft": "With the parties' consent, the conciliation authority may conduct further negotiations. The proceedings must be concluded no later than twelve months later.",
+  "changed": true,
+  "change_note": "'Negotiations' -> hearings; 'twelve months later' had no reference point."
+ },
+ "ZPO Art. 204 Abs. 1": {
+  "summary": "Parties must appear in person at the conciliation hearing. If a legal entity is a party, either an organ or a person must appear who holds a commercial power of attorney, is authorized to conduct the proceedings and conclude a settlement, and is familiar with the subject matter of the dispute.",
+  "draft": "Parties must appear in person at the conciliation hearing. If a legal entity is a party, either an organ or a person must appear who holds a commercial power of attorney, is authorized to conduct the proceedings and conclude a settlement, and is familiar with the subject matter of the dispute.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 204 Abs. 2": {
+  "summary": "The parties may be accompanied by a legal adviser or a person they trust.",
+  "draft": "Parties may be accompanied by a legal representative, a legal advisor, or a trusted person.",
+  "changed": true,
+  "change_note": "Rechtsbeiständin/Rechtsbeistand are the female and male forms of one term, not two kinds of adviser."
+ },
+ "ZPO Art. 204 Abs. 3": {
+  "summary": "A person does not have to appear in person and may be represented if they have an out-of-canton or foreign residence or seat; are prevented due to illness, old age, or other important reasons; in disputes under Article 243, are an employer or insurer who has delegated representation to an employee or a landlord who has delegated it to the property management, provided these representatives are authorized in writing to conclude a settlement; or are one of several plaintiffs or defendants, provided at least one party is present and authorized to represent the other plaintiffs or defendants and conclude a settlement on their behalf.",
+  "draft": "A person does not have to appear in person and may be represented if they have an out-of-canton or foreign residence or seat; are prevented due to illness, old age, or other important reasons; in disputes under Article 243, are an employer or insurer who has delegated representation to an employee or a landlord who has delegated it to the property management, provided these representatives are authorized in writing to conclude a settlement; or are one of several plaintiffs or defendants, provided at least one party is present and authorized to represent the other plaintiffs or defendants and conclude a settlement on their behalf.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 204 Abs. 4": {
+  "summary": "The other party must be informed in advance about the representation.",
+  "draft": "The opposing party must be informed about the representation in advance. This obligation applies regardless of whether the representation is by a lawyer or another person.",
+  "changed": true,
+  "change_note": "Removed an added sentence."
+ },
+ "ZPO Art. 205 Abs. 1": {
+  "summary": "Neither the statements of the parties may be recorded in the minutes nor may they be used later in the decision-making process.",
+  "draft": "Neither the statements of the parties may be recorded in the minutes nor may they be used later in the decision-making process.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 205 Abs. 2": {
+  "summary": "The statements may, however, be used if the conciliation authority makes a decision proposal or a decision.",
+  "draft": "The use of the statements is reserved for the case of a proposal for a decision or a decision by the conciliation authority.",
+  "changed": true,
+  "change_note": "Clarified that the reservation is an exception to Abs. 1 (use is allowed in these cases)."
+ },
+ "ZPO Art. 206 Abs. 1": {
+  "summary": "If the plaintiff fails to appear, the request for conciliation is deemed withdrawn, and the proceedings are dismissed as having become moot.",
+  "draft": "If the plaintiff fails to appear, the request for conciliation is deemed withdrawn, and the proceedings are dismissed as having become moot.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 206 Abs. 2": {
+  "summary": "If the defendant party fails to appear, the conciliation authority proceeds as if no agreement had been reached (Articles 209–212).",
+  "draft": "If the defendant party fails to appear, the conciliation authority proceeds as if no agreement had been reached (Articles 209–212).",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 206 Abs. 3": {
+  "summary": "If both parties fail to appear, the proceedings are dismissed as being without object.",
+  "draft": "If both parties fail to appear, the proceedings are dismissed as being without object.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 206 Abs. 4": {
+  "summary": "A party in default may be given a disciplinary fine of up to CHF 1,000.",
+  "draft": "A party that fails to meet a deadline may be fined up to 1,000 Swiss francs.",
+  "changed": true,
+  "change_note": "'Fails to meet a deadline' was too narrow/wrong; Säumnis here is default (e.g. not appearing)."
+ },
+ "ZPO Art. 207 Abs. 1": {
+  "summary": "The costs of the conciliation procedure are charged to the plaintiff if: a) the plaintiff withdraws the conciliation request; b) the procedure is discontinued due to default; or c) a permission to sue is granted.",
+  "draft": "The costs of the conciliation procedure are charged to the plaintiff if: a) the plaintiff withdraws the conciliation request; b) the procedure is discontinued due to default; or c) a permission to sue is granted.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 207 Abs. 2": {
+  "summary": "When the action is filed in court, the conciliation costs are added to the costs of the main case.",
+  "draft": "When a lawsuit is filed, the court attaches the costs to the main case. This applies unless the court decides otherwise.",
+  "changed": true,
+  "change_note": "Removed an invented exception ('unless the court decides otherwise')."
+ },
+ "ZPO Art. 208 Abs. 1": {
+  "summary": "If the parties reach an agreement, the conciliation authority records a settlement, a confession of claim, or an unconditional withdrawal of the claim in the minutes and has the parties sign them. Each party receives a copy of the minutes.",
+  "draft": "If the parties reach an agreement, the conciliation authority records a settlement, a confession of claim, or an unconditional withdrawal of the claim in the minutes and has the parties sign them. Each party receives a copy of the minutes.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 208 Abs. 2": {
+  "summary": "A settlement, a confession of claim, or an unconditional withdrawal of the claim have the effect of a final and binding judgment.",
+  "draft": "A settlement, a confession of claim, or an unconditional withdrawal of the claim have the effect of a final and binding judgment.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 209 Abs. 1": {
+  "summary": "If no agreement is reached, the conciliation authority records this in the protocol and issues the authorisation to sue: a. in the case of challenging rent or lease increases: to the landlord or lessor; b. in all other cases: to the party that filed the claim.",
+  "draft": "If no agreement is reached, the conciliation authority records this in the protocol and issues the authorisation to sue: a. in the case of challenging rent or lease increases: to the landlord or lessor; b. in all other cases: to the party that filed the claim.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 209 Abs. 2": {
+  "summary": "The claim authorization must include: a) the names and addresses of the parties and any representatives; b) the claimant's legal request with the subject of the dispute and any counterclaim; c) the date the conciliation procedure was initiated; d) the decision on the costs of the conciliation procedure; e) the date of the claim authorization; f) the signature of the conciliation authority.",
+  "draft": "The claim authorization must include: a) the names and addresses of the parties and any representatives; b) the claimant's legal request with the subject of the dispute and any counterclaim; c) the date the conciliation procedure was initiated; d) the decision on the costs of the conciliation procedure; e) the date of the claim authorization; f) the signature of the conciliation authority.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 209 Abs. 3": {
+  "summary": "Once notified, the authorisation to sue allows the action to be filed in court within three months.",
+  "draft": "After the conciliation authority issues the lawsuit permission, it authorizes the filing of the lawsuit with the court for a period of three months.",
+  "changed": true,
+  "change_note": "'After the authority issues' -> after notification (Eröffnung)."
+ },
+ "ZPO Art. 209 Abs. 4": {
+  "summary": "In disputes over the rental or lease of residential and business premises and over agricultural leases, the deadline for filing the action in court is 30 days.",
+  "draft": "In disputes arising from the lease or rent of residential and commercial spaces, as well as from agricultural lease, the claim period is 30 days.",
+  "changed": true,
+  "change_note": "Clarified what the 30-day period is (deadline to file in court after the authorisation)."
+ },
+ "ZPO Art. 210 Abs. 1": {
+  "summary": "The conciliation authority may submit a decision proposal to the parties in: a. disputes under the Gender Equality Act of 24 March 1995; b. disputes over the rental or lease of residential and business premises and agricultural leases, where the deposit of rent, protection against abusive rents, protection against termination or extension of the lease is concerned; c. other financial disputes with a value in dispute of up to CHF 10,000.",
+  "draft": "The conciliation authority may submit a proposal for a decision in: (a) disputes under the Equality Act of March 24, 1995; (b) disputes concerning the lease and hire of residential and business premises, as well as agricultural lease, where the deposit of rent and lease payments, protection against abusive rent and lease terms, protection against termination, or the extension of the lease or hire relationship is at issue; (c) other pecuniary disputes with a value up to 10,000 Swiss francs.",
+  "changed": true,
+  "change_note": "'Abusive rent and lease terms' corrected to abusive rents."
+ },
+ "ZPO Art. 210 Abs. 2": {
+  "summary": "The decision proposal may include a brief justification; otherwise, Article 238 applies by analogy.",
+  "draft": "The decision proposal may include a brief justification; otherwise, Article 238 applies by analogy.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 211 Abs. 1": {
+  "summary": "The decision proposal is deemed accepted and has the effect of a final decision if no party rejects it within 20 days of its written notification. A rejection needs no reasons.",
+  "draft": "The decision proposal is deemed accepted and has the effects of a final decision if no party rejects it in writing within 20 days of its written communication. The rejection does not require any justification.",
+  "changed": true,
+  "change_note": "Removed the added requirement that the rejection be 'in writing' (the text puts 'written' on the notification)."
+ },
+ "ZPO Art. 211 Abs. 2": {
+  "summary": "After receiving a rejection, the conciliation authority issues the authorisation to sue: a. in matters under Article 210 para. 1 letter b, to the party that rejected the proposal; b. in all other cases, to the claimant.",
+  "draft": "After receiving a rejection, the conciliation authority issues the statement of claim to: a. the rejecting party in matters under Article 210, paragraph 1, letter b; b. the claiming party in all other cases.",
+  "changed": true,
+  "change_note": "'Statement of claim' mistranslated Klagebewilligung (authorisation to sue)."
+ },
+ "ZPO Art. 211 Abs. 3": {
+  "summary": "In matters under Article 210 para. 1 letter b, if the action is not filed in time, the decision proposal is deemed accepted and has the effect of a final decision.",
+  "draft": "If a claim is not filed in time regarding matters under Article 210, paragraph 1, letter b, the settlement proposal is deemed accepted and has the effects of a final and binding decision.",
+  "changed": true,
+  "change_note": "'Settlement proposal' corrected to decision proposal (Entscheidvorschlag)."
+ },
+ "ZPO Art. 211 Abs. 4": {
+  "summary": "The decision proposal must inform the parties of the effects set out in paragraphs 1–3.",
+  "draft": "The parties must be informed in the settlement proposal about the effects described in paragraphs 1–3.",
+  "changed": true,
+  "change_note": "'Settlement proposal' corrected to decision proposal."
+ },
+ "ZPO Art. 212 Abs. 1": {
+  "summary": "In financial disputes with a value in dispute of up to CHF 2,000, the conciliation authority may decide the case if the claimant requests it.",
+  "draft": "The conciliation authority may decide property disputes with a value of up to 2,000 francs if the plaintiff makes a corresponding request.",
+  "changed": true,
+  "change_note": "'Property disputes' mistranslated vermögensrechtlich (pecuniary)."
+ },
+ "ZPO Art. 212 Abs. 2": {
+  "summary": "The procedure is oral.",
+  "draft": "The procedure is oral. This applies unless the court determines that a written procedure is appropriate.",
+  "changed": true,
+  "change_note": "Removed an invented exception."
+ },
+ "ZPO Art. 212 Abs. 3": {
+  "summary": "When it decides under paragraph 1, the conciliation authority sets the court costs and the party compensation.",
+  "draft": "When the conciliation authority makes a decision under paragraph 1, it determines the court costs and the party's legal fees.",
+  "changed": true,
+  "change_note": "Terminology (Parteientschädigung = party compensation)."
+ },
+ "ZPO Art. 243 Abs. 1": {
+  "summary": "The simplified procedure applies to financial disputes with a value in dispute of up to CHF 30,000.",
+  "draft": "The simplified procedure applies to property disputes with a value of up to 30,000 Swiss francs.",
+  "changed": true,
+  "change_note": "'Property disputes' mistranslated vermögensrechtlich (pecuniary)."
+ },
+ "ZPO Art. 243 Abs. 2": {
+  "summary": "Regardless of the value in dispute, the simplified procedure applies to disputes: a. under the Gender Equality Act of 24 March 1995; b. over violence, threats or stalking under Art. 28b ZGB or electronic monitoring under Art. 28c ZGB; c. over the rental or lease of residential and business premises and agricultural leases, where the deposit of rent, protection against abusive rents, protection against termination or extension of the lease is concerned; d. to enforce the right of access under Art. 25 of the Data Protection Act (DSG); e. under the Participation Act of 17 December 1993; f. over supplementary insurance to social health insurance under the Federal Health Insurance Act of 18 March 1994.",
+  "draft": "Without regard to the amount in dispute, the simplified procedure applies to disputes: a. under the Equality Act of March 24, 1995; b. concerning violence, threats, or stalking under Article 28b ZGB or electronic surveillance under Article 28c ZGB; c. regarding the lease and hire of residential and business premises as well as agricultural lease, where the deposit of rent and lease payments, protection against abusive rent and lease terms, termination protection, or the extension of the lease or hire relationship is at issue; d. to enforce the right to information under Article 25 DSG; e. under the Participation Act of December 17, 1993; f. concerning supplementary insurance to social health insurance under the Federal Act of March 18, 1994 on Health Insurance.",
+  "changed": true,
+  "change_note": "'Abusive rent and lease terms' corrected to abusive rents."
+ },
+ "ZPO Art. 243 Abs. 3": {
+  "summary": "The simplified procedure does not apply in disputes before the single cantonal instance under Articles 5 and 8 or before the commercial court under Article 6.",
+  "draft": "This provision does not apply to disputes before the sole cantonal authority under Articles 5 and 8, nor to disputes before the Commercial Court under Article 6.",
+  "changed": true,
+  "change_note": "'This provision' replaced by the simplified procedure; 'authority' -> instance (a court)."
+ },
+ "ZPO Art. 257 Abs. 1": {
+  "summary": "The court provides legal protection through summary proceedings if: (a) the facts are undisputed or immediately provable, and (b) the legal situation is clear.",
+  "draft": "The court provides legal protection through summary proceedings if: (a) the facts are undisputed or immediately provable, and (b) the legal situation is clear.",
+  "changed": false,
+  "change_note": ""
+ },
+ "ZPO Art. 257 Abs. 2": {
+  "summary": "This protection is not available if the matter is subject to the ex officio principle (Offizialgrundsatz).",
+  "draft": "This legal protection is excluded when the matter is subject to the official principle.",
+  "changed": true,
+  "change_note": "'Official principle' was not a recognisable term."
+ },
+ "ZPO Art. 257 Abs. 3": {
+  "summary": "If this protection cannot be granted, the court does not consider the application (it is dismissed without a ruling on the merits).",
+  "draft": "If the court cannot grant this legal protection, it will not enter into the request.",
+  "changed": true,
+  "change_note": "'Will not enter into the request' was a literal translation of Nichteintreten."
+ },
+ "VMWG Art. 19 Abs. 1": {
+  "summary": "The form for notifying rent increases and other unilateral contract changes under Art. 269d OR must contain: a. for rent increases: 1. the previous rent and the tenant's previous ancillary-cost charges; 2. the new rent and the tenant's new ancillary-cost charges; 3. the date the increase takes effect; 4. clear reasons for the increase, with a separate amount for each reason if several are given; 5. for additional services, whether the landlord receives subsidies for value-enhancing improvements; b. for other unilateral changes: 1. a description of the demand; 2. the date it takes effect; 3. clear reasons for it; c. in both cases: 1. the legal requirements for challenging it; 2. the list of conciliation authorities and their local competence.",
+  "draft": "The form for notifying rent increases and other unilateral contract changes under Article 269d OR must include: for rent increases, the previous rent and previous tenant's ancillary cost charges, the new rent and new tenant's ancillary cost charges, the effective date of the increase, a clear justification of the increase, each individual amount if multiple reasons are cited, and whether the landlord receives subsidies for value-increasing improvements; for other unilateral contract changes, a description of the change and its effective date, and a clear justification; and for both cases, the legal grounds for contesting the change and a list of conciliation authorities with their local jurisdiction.",
+  "changed": true,
+  "change_note": "'Previous tenant's' could be read as the former tenant; 'legal grounds for contesting' -> legal requirements; kept the a/b/c structure."
+ },
+ "VMWG Art. 19 Abs. 1bis": {
+  "summary": "If the reasons are given in an accompanying letter, the landlord must expressly say so on the form.",
+  "draft": "If the establishment of a maintenance obligation occurs in an accompanying letter, the landlord must explicitly point this out on the form.",
+  "changed": true,
+  "change_note": "Serious mistranslation: Begründung means the reasons, not 'establishment of a maintenance obligation'."
+ },
+ "VMWG Art. 19 Abs. 2": {
+  "summary": "When the landlord adjusts the rent according to an agreed index, paragraphs 1 and 1bis apply by analogy. The notice of such an adjustment may not be given earlier than after the new index figure has been publicly announced.",
+  "draft": "When the landlord adjusts the rent according to an agreed index, paragraphs 1 and 1bis apply by analogy. The notice of such an adjustment may not be given earlier than after the new index figure has been publicly announced.",
+  "changed": false,
+  "change_note": ""
+ },
+ "VMWG Art. 19 Abs. 3": {
+  "summary": "When cantons make the prescribed form mandatory for new rental agreements under Article 270, paragraph 2 of the Swiss Code of Obligations, paragraphs 1 and 1bis apply accordingly. The form must also include the reference interest rate and the consumer price index level that applied to the previous rent.",
+  "draft": "When cantons make the prescribed form mandatory for new rental agreements under Article 270, paragraph 2 of the Swiss Code of Obligations, paragraphs 1 and 1bis apply accordingly. The form must also include the reference interest rate and the consumer price index level that applied to the previous rent.",
+  "changed": false,
+  "change_note": ""
+ },
+ "VMWG Art. 19 Abs. 4": {
+  "summary": "The cantons ensure that sufficient forms are available in the municipalities. For this purpose, they may place their own forms in the municipal offices.",
+  "draft": "The cantons ensure that sufficient forms are available in the municipalities. For this purpose, they may place their own forms in the municipal offices.",
+  "changed": false,
+  "change_note": ""
+ },
+ "VMWG Art. 20 Abs. 1": {
+  "summary": "When the landlord increases the rent due to cost increases or value-enhancing improvements, the tenant can demand a numerical justification of the claimed difference. The 30-day objection period remains unaffected.",
+  "draft": "When the landlord increases the rent due to cost increases or value-enhancing improvements, the tenant can demand a numerical justification of the claimed difference. The 30-day objection period remains unaffected.",
+  "changed": false,
+  "change_note": ""
+ },
+ "VMWG Art. 20 Abs. 2": {
+  "summary": "During the conciliation procedure, the tenant may demand that the landlord submit the relevant documents for every ground of the rent increase being claimed.",
+  "draft": "During the conciliation procedure, the tenant may demand that the landlord submit the relevant documents for every ground of the rent increase being claimed.",
+  "changed": false,
+  "change_note": ""
+ },
+ "Samstagsgesetz Art. 1": {
+  "summary": "Regarding federal legal deadlines and deadlines set by authorities under federal law, Saturday is treated as an official public holiday.",
+  "draft": "Regarding federal legal deadlines and deadlines set by authorities under federal law, Saturday is treated as an official public holiday.",
+  "changed": false,
+  "change_note": ""
+ }
+}

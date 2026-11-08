@@ -106,8 +106,10 @@ def create(body: NewCase):
     case = pipeline.new_case(body.description, body.client_language, today=date.today())
     pipeline.understand(case)
     pipeline.gather_sources(case)
+    case["provisional_lane"] = pipeline.provisional_lane(case)
     return _out(case, ["sentences", "masking", "understanding", "facts", "disputes", "signals", "events",
-                       "vulnerability_score", "vulnerability_source", "vulnerability_indicators", "consequences",
+                       "documents", "intents", "situations", "deadlines", "provisional_lane",
+                       "vulnerability_score", "vulnerability_source", "vulnerability_indicators",
                        "municipality", "articles_expanded"])
 
 
@@ -116,7 +118,8 @@ def ask(body: Confirm):
     case = _load(body.state)
     pipeline.confirm(case, body.facts, body.signals, body.vulnerability_score)
     pipeline.questions(case)
-    return _out(case, ["questions", "dropped_questions", "sources"])
+    case["provisional_lane"] = pipeline.provisional_lane(case)
+    return _out(case, ["questions", "dropped_questions", "sources", "provisional_lane"])
 
 
 @app.post("/api/case/upload")

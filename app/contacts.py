@@ -28,15 +28,14 @@ def _place(municipality: str) -> str:
 def _geo_ok(entry_geo: str, place: str) -> bool:
     if entry_geo in ("switzerland", "canton_zurich"):
         return True
-    if place == "unknown":
-        return True  # shown, with the geography note, for the social worker to check
+    # unknown place: only canton-wide and national services (a local service elsewhere would be a visible error)
     return entry_geo == place
 
 
-def _audience_ok(e, gender):
-    """Women-only services are left out when the description clearly says the client is a man."""
+def _audience_ok(e, gender, violence=False):
+    """Women-only services only when the description says the client is a woman (or violence was stated)."""
     aud = (e.get("audience") or "").lower()
-    return not ("women" in aud and gender == "male")
+    return "women" not in aud or gender == "female" or (violence and gender != "male")
 
 
 def select(lane: int, levels: dict, topics: list, municipality: str, immediate_danger: bool, gender: str = "unknown"):
@@ -44,8 +43,10 @@ def select(lane: int, levels: dict, topics: list, municipality: str, immediate_d
     place = _place(municipality)
     chosen, out = set(), []
 
+    violence = any(t in ("domestic_violence", "sexual_violence") for t in topics)
+
     def add(e, reason):
-        if not _audience_ok(e, gender):
+        if not _audience_ok(e, gender, violence):
             return
         if (e.get("audience") or "").lower().find("women") >= 0 and gender == "unknown":
             reason += " (service for women)"
@@ -68,11 +69,17 @@ def select(lane: int, levels: dict, topics: list, municipality: str, immediate_d
         "trafficking_exploitation": "trafficking_exploitation", "isolation_stress": "peer_support",
         "financial_hardship": "social_counselling", "language_barrier": "multilingual",
     }
+    # other support: at most 2, one per topic, emergency contacts excepted (decision G, 2026-11-08)
+    other = 0
     for t in topics:
         tag = topic_map.get(t)
-        if not tag:
+        if not tag or other >= 2:
             continue
         for e in resources():
-            if e["kind"] == "organisation" and tag in e["topics"] and _geo_ok(e["geography"], place):
-                add(e, f"Topic identified in the case: {t.replace('_', ' ')}")
-    return out[:7]
+            if e["kind"] == "organisation" and tag in e["topics"] and "tenancy_legal" not in e["topics"] \
+                    and _geo_ok(e["geography"], place) and _audience_ok(e, gender, violence) and e["id"] not in chosen:
+                add(e, f"Other support - check relevance. Topic identified in the case: {t.replace('_', ' ')}")
+                out[-1]["other_support"] = True
+                other += 1
+                break
+    return out

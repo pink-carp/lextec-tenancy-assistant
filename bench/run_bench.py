@@ -37,8 +37,11 @@ SYSTEMS = {
     "plain_nemotron120b": {"kind": "plain", "model": "aisingapore/Nemotron-SEA-LION-v4.8-120B-A12B"},
 }
 
+# Checklist version: severity and vulnerability from escalation.md indicator checklists, computed by code.
+SYSTEMS["harness_checklist_apertus70b"] = {"kind": "harness", "model": "swiss-ai/apertus-v1.5-70b"}
+
 # Repeat runs (same configuration) to measure run-to-run variation of the lane decision.
-for _base in ("harness_final_apertus70b", "plain_apertus70b", "plain_nemotron120b"):
+for _base in ("harness_checklist_apertus70b", "harness_final_apertus70b", "plain_apertus70b", "plain_nemotron120b"):
     for _r in ("r2", "r3"):
         SYSTEMS[f"{_base}_{_r}"] = SYSTEMS[_base]
 
@@ -258,7 +261,7 @@ def score(systems):
 def lanes_report():
     """Lane decisions over the repeat runs (code only, no judge): per run and per case."""
     out = {}
-    for base in ("harness_final_apertus70b", "plain_apertus70b", "plain_nemotron120b"):
+    for base in ("harness_checklist_apertus70b", "harness_final_apertus70b", "plain_apertus70b", "plain_nemotron120b"):
         runs = [base, f"{base}_r2", f"{base}_r3"]
         per_run, per_case = [], {c["case_no"]: [] for c in CASES}
         for r in runs:

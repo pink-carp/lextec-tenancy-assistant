@@ -44,7 +44,9 @@
   .cols { display:grid; grid-template-columns: 1fr 1fr; gap:16px; } @media (max-width:760px){ .cols { grid-template-columns: 1fr; } }
   .chk { font-weight:400; display:flex; gap:8px; align-items:flex-start; margin:4px 0; }
   .chk input { margin-top:5px; }
-  @media print { header, .noprint, button { display:none !important; } body { font-size:13px; } }
+  @media print { header, .noprint, button { display:none !important; } body { font-size:13px; }
+                 body.print-extra main > section:not(#s5), body.print-extra #result { display:none !important; } }
+  .prov { border:2px dashed var(--line); border-radius:4px; padding:8px 12px; margin:10px 0; }
 </style>
 </head>
 <body>
@@ -151,7 +153,22 @@ function showSrc(id) {
                               : `<p>${esc(id)}</p>`;
   $("#dlg").showModal();
 }
-function sentencesOf(ids) { return (ids || []).map(i => `“${esc(C.sentences[i - 1] || "")}”`).join(" "); }
+function quoted(q) { return q ? `“${esc(q)}”` : ""; }
+function fail(el, e, retry) {  // plain-language error with a retry button
+  const msg = /401|access code/i.test(e.message) ? "The access code was not accepted." :
+              /HTTP 402|wallet|credit/i.test(e.message) ? "The AI service has no credit left. Please tell the organisers." :
+              /HTTP 429|rate/i.test(e.message) ? "The AI service is busy right now." : "Something went wrong while contacting the AI service.";
+  el.innerHTML = `<span class="bad" style="display:inline-block">${esc(msg)} <button class="secondary" id="retry_${el.id}">Try again</button>
+     <details class="muted"><summary>details</summary>${esc(e.message)}</details></span>`;
+  document.getElementById(`retry_${el.id}`).onclick = retry;
+}
+function provBanner(p) {
+  if (!p) return "";
+  const nm = {1: "Lane 1 (information)", 2: "Lane 2 (information, facts still needed)", 3: "Lane 3 (involve a specialist)"}[p.lane];
+  return `<div class="prov lane${p.lane}"><strong>Provisional: ${nm}</strong> <span class="muted">— before the questions are answered. ${esc(p.rule)} The lane is decided after step 3.</span></div>`;
+}
+function timed(el, text) { const t0 = Date.now(); el.textContent = text;
+  const h = setInterval(() => el.textContent = `${text} ${Math.round((Date.now() - t0) / 1000)} s`, 500); return () => clearInterval(h); }
 
 // ---------------- step 1
 send("/api/examples", {method: "GET"}).then(xs => {
@@ -160,32 +177,33 @@ send("/api/examples", {method: "GET"}).then(xs => {
 });
 $("#go").onclick = async () => {
   if (!$("#consent").checked) { $("#s1msg").textContent = "Please confirm the client has been informed."; return; }
-  busy($("#go"), $("#s1msg"), true, "Reading the description (about 20–30 seconds)…");
+  $("#go").disabled = true; const stop = timed($("#s1msg"), "Reading the description (usually 5–15 seconds)…");
   try {
     C = await api("/api/case", {description: $("#desc").value, client_language: $("#lang").value});
+    stop(); $("#s1msg").textContent = "";
     renderUnderstanding(); $("#s2").classList.remove("hidden"); $("#s2").scrollIntoView({behavior:"smooth"});
-  } catch (e) { $("#s1msg").textContent = "Error: " + e.message; }
-  busy($("#go"), $("#s1msg"), false);
+  } catch (e) { stop(); fail($("#s1msg"), e, () => $("#go").click()); }
+  $("#go").disabled = false;
 };
 
 function renderUnderstanding() {
   const u = C.understanding;
   const urg = C.signals.filter(s => s.index === "urgency" && ["current","future"].includes(s.tense));
-  $("#urgent").innerHTML = urg.length ? `<div class="warn"><strong>A deadline may be running.</strong> Ask first: on what date did the client receive the letter or notice, and how (registered mail, collection slip)?</div>` : "";
+  $("#urgent").innerHTML = provBanner(C.provisional_lane) + (urg.length ? `<div class="warn"><strong>A deadline may be running.</strong> Ask first: on what date did the client receive the letter or notice, and how (registered mail, collection slip)?</div>` : "");
   $("#facts").innerHTML = C.facts.map((f, i) => `<div class="card"><span class="tag">${esc(f.heading.replace("_"," "))}</span>
-     ${f.status === "inferred" ? '<span class="tag inferred">inferred – please check</span>' : `<span class="tag">${esc(f.status)}</span>`}
+     ${f.status === "inferred" ? '<span class="tag inferred">wording not found in the description – please check</span>' : `<span class="tag">${f.status === "documented" ? "document" : "client's account"}</span>`}
      <textarea data-fact="${i}" style="min-height:44px">${esc(f.statement)}</textarea>
-     <div class="src">Source: ${f.sentences.length ? sentencesOf(f.sentences) : "not stated directly in the description"}</div></div>`).join("");
+     ${f.quote ? `<div class="src">Client's words: ${quoted(f.quote)}</div>` : ""}</div>`).join("");
   $("#disputesWrap").innerHTML = C.disputes.length ? `<h3>Disputed facts</h3>` + C.disputes.map(d => `<div class="card"><span class="tag disputed">Disputed</span> <strong>${esc(d.topic)}</strong>
      <div class="cols"><div><span class="muted">Client says</span><br>${esc(d.client_position)}</div><div><span class="muted">${esc(d.other_party)} says (as reported by the client)</span><br>${esc(d.other_position)}</div></div>
      <div class="src">Evidence that could settle it: ${esc(d.evidence_that_could_settle_it)}. The tool does not decide disputes.</div></div>`).join("") : "";
   $("#events").innerHTML = (C.events || []).length ? C.events.map(e => `<div class="card">${esc(e.event)} — <strong>${e.precision === "exact" ? esc(e.date) : e.precision === "estimate" ? "between " + esc(e.date_from) + " and " + esc(e.date_to) + " (estimate)" : "date unknown"}</strong>
-     <div class="src">${sentencesOf(e.sentences)}</div></div>`).join("") : "<p class='muted'>None identified.</p>";
-  $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)}<br>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}
-     <div class="src">${esc(i.why)}</div></div>`).join("") +
-     `<p class="muted">Related articles added by code (cross-references and exceptions): ${Object.entries(C.articles_expanded || {}).filter(([k,v]) => v !== "chosen by the AI").map(([k,v]) => esc(k) + " (" + esc(v) + ")").join("; ") || "none"}</p>`;
+     <div class="src">Client's words: ${quoted(e.client_words)}${e.explanation ? "<br>" + esc(e.explanation) : ""}</div></div>`).join("") : "<p class='muted'>None identified.</p>";
+  $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)} <span class="muted">(${i.source === "safety net" ? "added by the checklist of rules for this situation" : "found by the AI"})</span>
+     <details><summary>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}</summary>
+     ${i.articles.map(a => `<p><strong>Art. ${esc(a.replace("OR ", ""))} OR</strong> (plain-language summary, reviewed against the official text): ${esc((i.summaries || {})[a] || "")}</p>`).join("")}</details></div>`).join("");
   $("#signals").innerHTML = C.signals.map((s, i) => `<label class="chk"><input type="checkbox" data-sig="${i}" ${s.confirmed !== false ? "checked" : ""}>
-     <span><strong>${esc(s.index)}</strong>: ${esc(s.description)} <span class="muted">(${esc(s.tense)}; concerns ${esc(s.concerns.replace("_"," "))}) ${sentencesOf(s.sentences)}</span></span></label>`).join("");
+     <span><strong>${esc({urgency:"Urgency",severity:"Severity",complexity:"Complexity",vulnerability:"Vulnerability"}[s.index] || s.index)}</strong>: ${esc(s.description)} <span class="muted">${quoted(s.quote)}</span></span></label>`).join("");
   $("#vuln").value = C.vulnerability_score; $("#vulnv").textContent = C.vulnerability_score;
   $("#vulnsrc").textContent = "Suggested: " + C.vulnerability_source + ". Please set your own rating.";
   $("#vuln").oninput = () => { VULN_TOUCHED = true; $("#vulnv").textContent = $("#vuln").value; $("#vulnsrc").textContent = "your rating"; };
@@ -199,13 +217,14 @@ function renderUnderstanding() {
 $("#toQ").onclick = async () => {
   document.querySelectorAll("[data-fact]").forEach(t => C.facts[+t.dataset.fact].statement = t.value);
   document.querySelectorAll("[data-sig]").forEach(c => C.signals[+c.dataset.sig].confirmed = c.checked);
-  busy($("#toQ"), $("#s2msg"), true, "Preparing questions (about 20–30 seconds)…");
+  $("#toQ").disabled = true; const stop = timed($("#s2msg"), "Preparing questions (usually 5–20 seconds)…");
   try {
     const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null});
-    QS = r.questions; SOURCES = r.sources; renderQuestions(r.dropped_questions);
+    stop(); $("#s2msg").textContent = "";
+    QS = r.questions; SOURCES = r.sources; C.provisional_lane = r.provisional_lane; renderQuestions(r.dropped_questions);
     $("#s3").classList.remove("hidden"); $("#s3").scrollIntoView({behavior:"smooth"});
-  } catch (e) { $("#s2msg").textContent = "Error: " + e.message; }
-  busy($("#toQ"), $("#s2msg"), false);
+  } catch (e) { stop(); fail($("#s2msg"), e, () => $("#toQ").click()); }
+  $("#toQ").disabled = false;
 };
 
 function inputFor(q) {
@@ -221,12 +240,12 @@ function inputFor(q) {
   return `<input type="text" id="${n}">`;
 }
 function renderQuestions(dropped) {
-  $("#questions").innerHTML = QS.map((q, i) => `<div class="card ${i >= SHOW ? "hidden more" : ""}"><span class="tag">${esc(q.priority)}</span> <strong>${esc(q.question)}</strong>
+  $("#questions").innerHTML = provBanner(C.provisional_lane) + QS.map((q, i) => `<div class="card ${i >= SHOW ? "hidden more" : ""}"><span class="tag">${esc(q.priority)}</span> <strong>${esc(q.question)}</strong>
      <div style="margin:6px 0">${inputFor(q)}</div>
      <label class="chk"><input type="radio" name="st_${q.id}" value="answered" checked> answer above</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="dont_know"> I don't know</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="cant_get"> Can't get this</label>
-     <div class="src"><strong>Why we ask:</strong> ${esc(q.why_we_ask)}<br>Legal basis: ${q.legal_basis.map(chip).join("")}${q.added_by ? " · added by the completeness check" : ""}</div></div>`).join("");
+     <div class="src">${q.why_we_ask ? `<strong>Why we ask:</strong> ${esc(q.why_we_ask)}<br>` : ""}Legal basis: ${q.legal_basis.map(chip).join("")}${q.added_by ? " · from the fixed checklist" : ""}</div></div>`).join("");
   $("#moreQ").classList.toggle("hidden", QS.length <= SHOW);
   $("#dropped").innerHTML = (dropped || []).length ? `<details class="muted"><summary>${dropped.length} question(s) removed by the question check</summary>${dropped.map(d => `<p>${esc(d.question)} — ${esc(d.reason)}</p>`).join("")}</details>` : "";
 }
@@ -272,12 +291,12 @@ async function runAssess() {
   const items = [...document.querySelectorAll("#steps li")]; let k = 0, t0 = Date.now();
   items.forEach(li => li.className = ""); items[0].className = "now";
   const tick = setInterval(() => { const s = Math.round((Date.now() - t0) / 1000); $("#timer").textContent = s + " s";
-    const nk = Math.min(items.length - 1, Math.floor(s / 18)); if (nk !== k) { items[k].className = "done"; k = nk; items[k].className = "now"; } }, 500);
+    const nk = Math.min(items.length - 1, Math.floor(s / 4)); if (nk !== k) { items[k].className = "done"; k = nk; items[k].className = "now"; } }, 500);
   try {
     const r = await api(`/api/case/assess`, {state: STATE, answers: collectAnswers(), override: OVERRIDE});
     Object.assign(C, r); SOURCES = r.sources; renderResult(); OVERRIDE = null;
     $("#s5").classList.remove("hidden"); $("#s5").scrollIntoView({behavior:"smooth"});
-  } catch (e) { $("#timer").textContent = "Error: " + e.message; }
+  } catch (e) { fail($("#timer"), e, runAssess); }
   clearInterval(tick); items.forEach(li => li.className = "done");
 }
 $("#toA").onclick = runAssess;
@@ -289,7 +308,7 @@ function renderResult() {
   const groups = {referral: "Referral", immediate: "Immediate step", now: "Can be done now", needs_clarification: "Needs clarification first"};
   const dl = Object.fromEntries(C.deadlines.map(d => [d.id, d]));
   const ct = Object.fromEntries(C.contacts.map(c => [c.id, c]));
-  const facts = C.facts.map(f => `<li>${esc(f.statement)} <span class="tag ${f.status === "inferred" ? "inferred" : ""}">${f.status === "reported" ? "client's account" : f.status === "documented" ? "document" : "inferred – check"}</span></li>`).join("");
+  const facts = C.facts.map(f => `<li>${esc(f.statement)} <span class="tag ${f.status === "inferred" ? "inferred" : ""}">${f.status === "reported" ? "client's account" : f.status === "documented" ? "document" : "check wording"}</span></li>`).join("");
   const removed = C.verification.removed || [];
   $("#result").innerHTML = `
    ${C.scope_note ? `<div class="warn">${esc(C.scope_note)}</div>` : ""}
@@ -308,16 +327,18 @@ function renderResult() {
       <span class="muted">(${esc(d.who_must_act)} must act)</span>${d.condition ? ` <span class="tag disputed">applies only if: ${esc(d.condition)}</span>` : ""}${d.check === "supported" ? ' <span class="tag">✓ checked against source</span>' : ""}<br>${d.legal_basis.map(chip).join("")}
       <details><summary class="muted">How this was calculated</summary><ol>${d.steps.map(x => "<li>" + esc(x) + "</li>").join("")}</ol></details></div>`).join("") : "<p class='muted'>No running deadline identified.</p>"}
    <h3>Contacts (from the legal team's list — please verify before passing on)</h3>
-   ${C.contacts.length ? C.contacts.map(c => `<div class="card"><strong>${esc(c.name)}</strong> <span class="muted">${esc(c.reason_rule)}</span><br>
+   ${C.contacts.length ? C.contacts.map(c => `<div class="card">${c.other_support ? '<span class="tag disputed">other support – check relevance</span> ' : ""}<strong>${esc(c.name)}</strong> <span class="muted">${esc(c.reason_rule)}</span><br>
       ${esc(c.address || "")} ${(c.phones||[]).map(p => esc(p.label) + ": " + esc(p.number)).join(" · ")} ${c.email ? "· " + esc(c.email) : ""} ${c.url ? `· <a href="${esc(c.url)}" target="_blank" rel="noopener">website</a>` : ""}
       <div class="src">${esc(c.description || "").slice(0, 300)}${c.cost_note ? " " + esc(c.cost_note) : ""}</div></div>`).join("") : "<p class='muted'>None selected.</p>"}
    <h3>B. Case summary (neutral overview)</h3>
    <p>${esc(s.situation)}</p>
    <p><strong>Facts</strong></p><ul>${facts}</ul>
    ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
+   <h3>Relevant law (plain-language summaries, reviewed against the official text)</h3>
+   <p class="muted">These summaries say what each rule says in general. Whether it applies to your client depends on the facts; the open questions above help to find out.</p>
    ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}
-      ${r.check === "supported" ? '<span class="tag">✓ checked against source</span>' : r.check === "conditional" ? `<span class="tag disputed">applies only if: ${esc(r.condition)}</span>` : r.check === "partly" ? '<span class="tag disputed">partly supported</span>' : ""}</li>`).join("")}</ul>
-      <p class="muted">${esc(i.application)}</p>`).join("")}
+      ${r.check === "conditional" ? `<span class="tag disputed">applies only if: ${esc(r.condition)}</span>` : ""}</li>`).join("")}</ul>
+      ${i.application ? `<p class="muted">${esc(i.application)}</p>` : ""}`).join("")}
    ${s.open_points.length ? `<p><strong>Open points</strong></p><ul>${s.open_points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
    <h3>C. Lane assessment</h3>
    <p>${esc(C.lane_rule)} Vulnerability: ${esc(C.vulnerability_score)}/10 (${esc(C.vulnerability_source)}).</p>
@@ -341,9 +362,10 @@ $("#hout").onclick = async () => {
     $("#extra").innerHTML = `<h2>Client handout</h2><p class="muted noprint">Legal information, not legal advice. The left column is for you, so you know exactly what the client receives.</p>
       <div class="cols">${block(en, "English", false)}${tr ? block(tr, lang + " (machine translation – check dates with the client)", true) : ""}</div>
       <h3>Contacts</h3><ul>${en.contacts.map(c => `<li>${esc(c.name)} ${(c.phones||[]).map(p => esc(p.number)).join(", ")} ${c.address ? "· " + esc(c.address) : ""}</li>`).join("")}</ul>
+      <div class="cols"><p class="note">${esc(en.disclosure)}</p>${tr && tr.disclosure ? `<p class="note">${esc(tr.disclosure)}</p>` : ""}</div>
       ${tr && tr.check.numbers_changed_or_missing.length ? `<div class="warn noprint">Check the translation: these numbers differ from the English version: ${tr.check.numbers_changed_or_missing.map(esc).join(", ")}</div>` : ""}
-      <p class="noprint"><button onclick="window.print()">Print</button></p>`;
-  } catch (e) { $("#extra").innerHTML = `<div class="bad">${esc(e.message)}</div>`; }
+      <p class="noprint"><button onclick="printExtra()">Print</button></p>`;
+  } catch (e) { fail($("#extra"), e, () => $("#hout").click()); }
 };
 $("#brf").onclick = async () => {
   $("#extra").innerHTML = "<p class='muted'>Writing the expert brief (about 20 seconds)…</p>";
@@ -355,12 +377,14 @@ $("#brf").onclick = async () => {
       <h3>2. Client's objective and context</h3><p>${esc(b.objective_and_context)}</p>
       <h3>3. Key facts and chronology</h3><ul>${b.chronology.map(c => `<li>${esc(c.date)} — ${esc(c.event)} (${esc(c.source)})</li>`).join("")}</ul>
       <ul>${b.facts.map(f => `<li>${esc(f.statement)} — <em>${esc(f.status)}</em></li>`).join("")}${b.disputed.map(d => `<li>${esc(d)} — <em>disputed</em></li>`).join("")}</ul>
-      <h3>4. Preliminary legal assessment</h3><p>${esc(b.preliminary_assessment)}</p>
+      <h3>4. Preliminary legal assessment</h3><p class="muted">Rules identified by the tool (reviewed summaries); applicability to be assessed by the lawyer.</p>
+      ${(b.preliminary_assessment || []).map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r)}</li>`).join("")}</ul>`).join("")}
       <h3>5. Evidence and outstanding questions</h3><p><strong>Available:</strong> ${b.evidence_available.map(esc).join(", ")}</p><p><strong>Missing:</strong></p><ul>${b.missing.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
       <h3>6. Action already taken and decision needed</h3><p><strong>Already done:</strong> ${esc(b.already_done)}</p><p><strong>Lawyer asked to assess:</strong> ${esc(b.lawyer_asked_to_assess)}</p>
-      <p class="noprint"><button onclick="window.print()">Print</button></p>`;
-  } catch (e) { $("#extra").innerHTML = `<div class="bad">${esc(e.message)}</div>`; }
+      <p class="noprint"><button onclick="printExtra()">Print</button></p>`;
+  } catch (e) { fail($("#extra"), e, () => $("#brf").click()); }
 };
+function printExtra() { document.body.classList.add("print-extra"); window.print(); document.body.classList.remove("print-extra"); }
 $("#aud").onclick = () => {  // built in the browser from the case it holds
   const data = {...STATE, note: "Audit trail. Contains client information: handle it like a case note."};
   const a = document.createElement("a");
