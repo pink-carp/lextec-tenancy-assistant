@@ -1,0 +1,1026 @@
+{
+ "1": {
+  "X": [
+   {
+    "sentence": "Cristina can demand the landlord to professionally remove the mold (OR Art. 259a Abs. 1), as the mold is a defect not caused by her and not her responsibility to fix.  [OR Art. 259a Abs. 1]",
+    "label": "unsupported",
+    "why": "Cause of mold is disputed (X1); text asserts as fact it is not caused by her."
+   },
+   {
+    "sentence": "If the landlord does not fix the mold, Cristina can request a proportional rent reduction from the time she learned of the defect until it is repaired (OR Art. 259d).  [OR Art. 259d]",
+    "label": "wrong_law",
+    "why": "Reduction is not conditional on landlord failing to fix; and 259d runs from when the LANDLORD learned of the defect, not the tenant."
+   },
+   {
+    "sentence": "If the mold has caused Cristina any damage (e.g., ruined belongings), she can claim compensation from the landlord, unless the landlord proves no fault (OR Art. 259e).  [OR Art. 259e]",
+    "label": "ok",
+    "why": "Correct summary of 259e incl. reversed burden on fault; conditional on damage."
+   },
+   {
+    "sentence": "If the landlord continues to deny responsibility, Cristina may consider depositing the rent (OR Art. 259a Abs. 2) as a protective measure.  [OR Art. 259a Abs. 2]",
+    "label": "ok",
+    "why": "Deposit right exists (259a II); procedure follows in 259g section."
+   },
+   {
+    "sentence": "Since the landlord has not removed the mold within a reasonable time, Cristina may either have the mold professionally removed at the landlord's expense (as the mold reduces the apartment's habitability) or, if the mold completely prevents the apartment from being used as intended, Cristina may terminate the lease immediately.  [OR Art. 259b]",
+    "label": "unsupported",
+    "why": "Asserts landlord failed within reasonable time; only a phone report last month, no deadline set. Also narrows termination to 'completely prevents' (omits 'erheblich beeinträchtigt') and gives substitute repair without the 'not substantial' condition."
+   },
+   {
+    "sentence": "If it is established that the mold is caused by insufficient ventilation on Cristina's part, then the landlord would not be obligated to remove the mold under this provision.  [OR Art. 259b]",
+    "label": "ok",
+    "why": "Correct: 259a/259b only for defects the tenant is not responsible for; relevant given disputed cause."
+   },
+   {
+    "sentence": "Cristina must send the landlord a written notice demanding mold removal within a reasonable timeframe and may threaten to deposit future rent payments with the cantonal authority if the landlord fails to act.  [OR Art. 259g Abs. 1]",
+    "label": "ok",
+    "why": "Correct 259g I written deadline + threat to deposit (omits written announcement of deposit, minor)."
+   },
+   {
+    "sentence": "If Cristina deposits the rent with the cantonal authority after the deadline passes, those rent payments will be considered paid.  [OR Art. 259g Abs. 2]",
+    "label": "ok",
+    "why": "Correct 259g II."
+   },
+   {
+    "sentence": "If the landlord has not yet set a written payment deadline with a termination warning for unpaid rent, Cristina cannot yet reduce or withhold rent under OR Art. 257d Abs. 1.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "257d is the landlord's arrears-termination procedure; it does not govern when the tenant may reduce/withhold rent."
+   },
+   {
+    "sentence": "If the landlord has not yet served a proper written notice after the payment deadline passed without full payment, Cristina cannot yet terminate the lease under OR Art. 257d Abs. 2.  [OR Art. 257d Abs. 2]",
+    "label": "wrong_law",
+    "why": "Wrong party: 257d II lets the LANDLORD terminate; nothing about the tenant terminating."
+   },
+   {
+    "sentence": "If Cristina has not yet deposited rent with the Zurich conciliation authority within 30 days of the first deposit, the deposited rent belongs to the landlord under OR Art. 259h Abs. 1.  [OR Art. 259h Abs. 1]",
+    "label": "wrong_law",
+    "why": "Garbled: 259h I requires the tenant to bring claims before the conciliation authority within 30 days of the first deposited rent falling due; she has not deposited anything."
+   },
+   {
+    "sentence": "If Cristina has not yet notified the landlord of the rent deposit, the landlord could request the return of any wrongfully deposited rent from the conciliation authority under OR Art. 259h Abs. 2.  [OR Art. 259h Abs. 2]",
+    "label": "wrong_law",
+    "why": "Reversed: landlord can request release as soon as the tenant HAS announced the deposit."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the mold is caused by a maintenance defect the landlord is responsible for, Cristina can demand the landlord fix the mold, request a rent reduction from the date she learned of the problem, and claim compensation for any harm caused by the mold.  [OR Art. 259a Abs. 1]",
+    "label": "wrong_law",
+    "why": "Conditional on cause is good, but reduction runs from when the landlord learned of the defect (259d), not the tenant; damages ignore landlord's fault defence."
+   },
+   {
+    "sentence": "If the landlord insists Cristina must clean the mold herself with vinegar, Cristina should insist on professional remediation and document all communications, as the landlord is obligated to keep the apartment habitable.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Reasonable advice grounded in 256 I; documentation is useful."
+   },
+   {
+    "sentence": "If Cristina decides to pay reduced rent, she should notify the landlord in writing before the next rent payment and keep copies of all correspondence, as rent reductions require clear communication.  [OR Art. 259d]",
+    "label": "wrong_law",
+    "why": "Implies unilateral rent reduction is lawful with written notice; under Swiss law reduction must be claimed/agreed or ordered, self-help deduction creates arrears (257d termination risk) — the client's stated plan."
+   },
+   {
+    "sentence": "If the landlord has not fixed the mold within a reasonable time, Cristina may either have the mold removed at the landlord’s expense or, if the mold makes the apartment unfit or seriously impairs its use, she could even end the tenancy immediately.  [OR Art. 259b]",
+    "label": "ok",
+    "why": "Correct conditional 259b (knowledge + reasonable time, termination for unfit/serious impairment)."
+   },
+   {
+    "sentence": "If the mold only slightly reduces the apartment’s suitability but the landlord still refuses to fix it, Cristina can demand that the landlord pay for professional mold removal.  [OR Art. 259b]",
+    "label": "ok",
+    "why": "Correct gist of 259b lit. b (repair at landlord's cost for non-serious defect)."
+   },
+   {
+    "sentence": "If Cristina sends the landlord a written notice demanding professional mold removal within a reasonable time and warns that she will deposit future rents with the cantonal authority if the mold is not fixed, she can legally withhold rent payments once the deadline passes.  [OR Art. 259g Abs. 1]",
+    "label": "wrong_law",
+    "why": "259g allows depositing future rent with the cantonal office, not withholding it; withholding = arrears. Also omits written announcement."
+   },
+   {
+    "sentence": "If Cristina deposits the rent with the cantonal authority after the deadline passes, those deposits will count as paid rent until the mold is properly removed.  [OR Art. 259g Abs. 2]",
+    "label": "ok",
+    "why": "Correct 259g II."
+   },
+   {
+    "sentence": "If Cristina has not yet sent a written notice to the landlord, she should do so immediately, clearly describing the mold problem, requesting professional remediation, and setting a fair deadline before considering rent reductions or deposits.  [OR Art. 259g Abs. 1]",
+    "label": "ok",
+    "why": "Actionable, correct first step (written notice with deadline)."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a written notice demanding payment of overdue rent with a clear deadline and warning of termination, Cristina cannot legally reduce or withhold rent based on the mold issue alone.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Mislinks 257d (landlord's arrears procedure) to the tenant's right to reduce/withhold."
+   },
+   {
+    "sentence": "If the landlord has already issued a formal written payment deadline for rent and Cristina has not paid within that time, the landlord could then terminate the lease with a 30-day notice.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct conditional warning on 257d II (30 days to end of month simplified); relevant since client plans to pay less."
+   },
+   {
+    "sentence": "If Cristina decides to withhold rent, she should only do so after the landlord has failed to fix the mold despite proper notice, and she should keep clear records and photos of the mold and all communications.  [OR Art. 259h Abs. 1]",
+    "label": "wrong_law",
+    "why": "Presents withholding as allowed after notice; only deposit is allowed, and 259h I requires filing with conciliation authority within 30 days — omitted."
+   }
+  ],
+  "usefulness": {
+   "X": 2,
+   "Y": 3
+  },
+  "missing_key_points": {
+   "X": "No warning that unilateral 30% cut risks arrears termination (257d); no 30-day filing duty after deposit stated correctly; no advice to document/send written defect notice first.",
+   "Y": "Unilateral reduction and 'withholding' presented as permissible; 30-day conciliation filing after deposit missing; no mention that reduction runs from landlord's knowledge."
+  }
+ },
+ "2": {
+  "X": [
+   {
+    "sentence": "If the client pays the overdue rent before the deadline in the letter expires, they can avoid the immediate risk of eviction.  [OR Art. 257d Abs. 1]",
+    "label": "ok",
+    "why": "Correct: full payment within the letter's deadline averts 257d termination."
+   },
+   {
+    "sentence": "If the client cannot pay the full amount by the deadline, they should immediately seek help from a legal aid office or tenants' association to explore options like negotiating a payment plan or contesting the notice.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Sound practical step; 'contesting the notice' is vague (no termination yet) but not misleading."
+   },
+   {
+    "sentence": "If the landlord has already sent a formal demand for payment with a threat of termination, the client must act quickly to avoid eviction.  [OR Art. 266n]",
+    "label": "noise",
+    "why": "Demand is a confirmed fact, so the 'if' is empty; says nothing about 266n (separate delivery to spouse)."
+   },
+   {
+    "sentence": "If the landlord later serves notice of termination, the client should immediately seek legal advice because eviction is usually not delayed if the termination is based on unpaid rent.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Roughly correct (272a I excludes extension for arrears termination; 'usually not delayed' is a soft simplification)."
+   },
+   {
+    "sentence": "If the landlord offers an equivalent replacement apartment, the client cannot request an extension of the lease.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant hypothetical (extension already excluded for 257d termination); also overstates 272a II, which says 'in der Regel'."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "The landlord has already sent a written demand for payment of the overdue rent with a threat of termination, giving the client at least ten days (or more if it is an apartment) to pay the arrears.  [OR Art. 257d Abs. 1]",
+    "label": "ok",
+    "why": "Correct; '(or more if apartment)' is vague — the flat minimum is 30 days — but not wrong."
+   },
+   {
+    "sentence": "If the client does not pay the overdue rent in full within the set deadline, the landlord can terminate the lease for an apartment with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct 257d II for flats (omits 'to end of a month')."
+   },
+   {
+    "sentence": "If the client pays the outstanding rent before the deadline expires, the landlord cannot proceed with termination.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct consequence of timely payment."
+   },
+   {
+    "sentence": "If the landlord serves a termination notice due to unpaid rent (Art. 257d), it must also be separately delivered to the client's spouse or registered partner, but this fact is currently unknown.  [OR Art. 266n]",
+    "label": "ok",
+    "why": "Correct and flags unknown marital status; misses that 266n also covers the payment demand already received."
+   },
+   {
+    "sentence": "If the landlord gives the client notice of termination for unpaid rent, the client will not be able to request an extension of the lease (Art. 272a Abs. 1).  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 272a I; important for client with children."
+   },
+   {
+    "sentence": "If the landlord offers the client an equivalent replacement apartment, an extension of the lease will generally be excluded (Art. 272a Abs. 2).  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Correct but irrelevant: extension already excluded for 257d termination."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 3
+  },
+  "missing_key_points": {
+   "X": "No concrete deadline (>=30 days, code date 2026-12-08); no mention that social assistance (Sozialhilfe) can cover arrears; no check of marital status (266n/266o nullity); consequences of non-payment (termination, no extension) only vague.",
+   "Y": "No action steps (pay in full, apply to social services/Sozialhilfe for arrears, get advice); concrete deadline date not given; 266n relevance to the payment demand itself missed."
+  }
+ },
+ "3": {
+  "X": [
+   {
+    "sentence": "If the client has already received a formal written notice from the landlord demanding payment of overdue rent and threatening termination, they must act quickly because the landlord can now legally proceed with eviction after the deadline passes.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct gist: after the 257d deadline lapses the landlord may terminate ('eviction' is a lay simplification)."
+   },
+   {
+    "sentence": "If the client has not yet paid the overdue rent by the deadline set in the notice, they risk losing their flat when the notice period expires, so they should prioritize paying the arrears or contacting the landlord immediately to discuss a payment plan.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct risk and sensible action; payment plan only helps if landlord agrees (not stated, minor)."
+   },
+   {
+    "sentence": "If the client has not yet picked up or fully understood the letter, they should immediately collect and read the notice carefully to confirm the deadline and amount owed before deciding on their next steps.  [OR Art. 257d Abs. 1]",
+    "label": "ok",
+    "why": "Useful step (confirm deadline and amount); he has picked it up, but reading carefully still applies."
+   },
+   {
+    "sentence": "If Luca moves out or hands back the flat before the eviction process is completed, he could then propose a suitable replacement tenant to avoid paying rent until the lease ends.  [OR Art. 264 Abs. 1]",
+    "label": "noise",
+    "why": "Correct gist of 264 I but Luca does not want to move out; irrelevant."
+   },
+   {
+    "sentence": "If Luca does not move out or return the flat, he must pay the rent until the lease legally ends, as he cannot use the replacement-tenant option to avoid payment.  [OR Art. 264 Abs. 2]",
+    "label": "noise",
+    "why": "Muddled use of 264 II (which concerns early return without replacement); trivially true but useless."
+   },
+   {
+    "sentence": "If the landlord has already sent a formal notice of termination due to unpaid rent, the law generally does not allow an extension of the lease, so Luca cannot rely on a legal stay extension to avoid eviction.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 272a I: no extension after arrears termination."
+   },
+   {
+    "sentence": "If the landlord offers Luca an equivalent alternative place to live, the law would normally bar any extension of his current tenancy.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant hypothetical (272a II)."
+   },
+   {
+    "sentence": "If Luca does not pay the overdue rent by the deadline in the letter, the landlord could legally proceed with eviction, so he should act quickly to either pay the arrears or negotiate a payment plan with the property management.  [OR Art. 257d]",
+    "label": "ok",
+    "why": "Correct and actionable; repeats sentence 2."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "Since you received a formal notice from the landlord with a payment deadline and threat of termination, the landlord can now proceed to terminate the tenancy if you do not pay the overdue rent within the required period.  [OR Art. 257d Abs. 1]",
+    "label": "ok",
+    "why": "Correct 257d I consequence."
+   },
+   {
+    "sentence": "If the payment deadline set by the landlord in the notice has passed without full payment, the landlord can terminate the tenancy for your flat with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct 257d II for flats (omits 'end of a month')."
+   },
+   {
+    "sentence": "If you pay the outstanding rent before the landlord issues the formal termination notice, the eviction process will be stopped.  [OR Art. 257d Abs. 2]",
+    "label": "wrong_law",
+    "why": "Wrong cut-off: only full payment WITHIN the set deadline prevents termination; paying later but before the termination notice does not. Dangerous for a client who wants to wait until month-end pay."
+   },
+   {
+    "sentence": "If Luca moves out or hands back the flat before paying the rent, he must either propose a suitable replacement tenant or continue paying rent until the lease ends.  [OR Art. 264 Abs. 1]",
+    "label": "noise",
+    "why": "264 I gist correct but irrelevant (no move-out plan); 'before paying the rent' is confused."
+   },
+   {
+    "sentence": "If Luca does not move out or hand back the flat, he must continue paying rent until the lease ends or a legal termination is possible.  [OR Art. 264 Abs. 2]",
+    "label": "noise",
+    "why": "Correct but irrelevant 264 II restatement."
+   },
+   {
+    "sentence": "If Luca moves out or hands back the flat, the landlord must account for any savings or gains from the flat during that time.  [OR Art. 264 Abs. 3]",
+    "label": "noise",
+    "why": "Correct gist of 264 III but irrelevant."
+   },
+   {
+    "sentence": "If the landlord has given notice of termination due to unpaid rent (Art. 257d), the law excludes any extension of the lease, so Luca cannot request an extension.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 272a I."
+   },
+   {
+    "sentence": "If the landlord offers Luca an equivalent replacement flat, the law generally excludes an extension even if he is a young employee in Zurich.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant hypothetical with odd 'young employee' remark."
+   },
+   {
+    "sentence": "If the landlord has not yet served a formal termination notice, these rules do not yet apply to Luca's situation.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct clarification that 272a is not yet triggered."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "No concrete deadline (period >=30 days; code earliest 2026-11-25) and no warning that month-end pay may come too late; no point that only FULL payment counts; no mention of father/social services as source of funds; non-collection of registered letter does not delay receipt.",
+   "Y": "Misstates the payment cut-off; no deadline date; no action steps (pay in full, accept father's help or social services); 264 material crowds out key points."
+  }
+ },
+ "4": {
+  "X": [
+   {
+    "sentence": "If the landlord has not legally asserted any claim against Sandro within one year of the lease ending, Sandro can ask the bank to return the deposit.  [OR Art. 257e Abs. 3]",
+    "label": "ok",
+    "why": "Correct 257e III."
+   },
+   {
+    "sentence": "If the landlord continues to refuse to sign or communicate, Sandro should document all attempts to resolve the issue and consider contacting the bank directly to request the deposit based on the one-year rule.  [OR Art. 257e Abs. 3]",
+    "label": "inapplicable",
+    "why": "Suggests asking the bank now 'based on the one-year rule', but only 4 of 12 months have passed; the bank cannot release on that basis yet."
+   },
+   {
+    "sentence": "If the landlord still does not respond after one year from Sandro’s move-out, Sandro can proceed with the bank to get the deposit back without the landlord’s signature.  [OR Art. 257e Abs. 3]",
+    "label": "ok",
+    "why": "Correct (one year without a legally asserted claim); 'does not respond' is a loose paraphrase."
+   },
+   {
+    "sentence": "If the landlord refuses to sign the release form, the bank will likely not release the deposit without his signature.  [OR Art. 267a Abs. 1]",
+    "label": "ok",
+    "why": "Correct practical consequence of 257e III (cited to 267a)."
+   },
+   {
+    "sentence": "If the landlord does not respond to emails or complete the handover process, he may lose his right to claim any deductions from the deposit.  [OR Art. 267a Abs. 2]",
+    "label": "ok",
+    "why": "Hedged but correct gist of 267a II (claims for detectable defects lost without prompt inspection/notice)."
+   },
+   {
+    "sentence": "If the landlord later claims there are hidden damages that were not obvious during the handover, he must notify Sandro immediately to avoid losing his right to claim them.  [OR Art. 267a Abs. 3]",
+    "label": "ok",
+    "why": "Correct 267a III."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "Since Sandro moved out four months ago, if the landlord has not legally asserted any claim against him within one year, Sandro can demand the bank return the security deposit.  [OR Art. 257e Abs. 3]",
+    "label": "ok",
+    "why": "Correct conditional; does not spell out that ~8 months remain."
+   },
+   {
+    "sentence": "If the landlord has not yet legally asserted any claim against Sandro within one year of the lease ending, Sandro can request the bank to release the deposit.  [OR Art. 257e Abs. 3]",
+    "label": "noise",
+    "why": "Duplicate of the previous sentence."
+   },
+   {
+    "sentence": "According to OR Art. 267a Abs. 1, the landlord must inspect the flat upon return and immediately notify Sandro of any defects he is responsible for.  [OR Art. 267a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 267a I."
+   },
+   {
+    "sentence": "If the landlord fails to inspect the flat and report defects as required, he loses his claims against Sandro, unless the defects were not detectable during a proper inspection.  [OR Art. 267a Abs. 2]",
+    "label": "ok",
+    "why": "Correct 267a II."
+   },
+   {
+    "sentence": "If the landlord later discovers defects that were not initially detectable, he must immediately notify Sandro.  [OR Art. 267a Abs. 3]",
+    "label": "ok",
+    "why": "Correct 267a III."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "Does not say the one-year release date is ~8 months away, nor that Sandro can go to the conciliation authority now to obtain release; does not apply 267a to the 'handover was fine' fact as a reason the landlord likely lost claims; no written demand step.",
+   "Y": "Pure law restatement: no application to Sandro (handover fine -> likely no claims for visible defects), no date when one year runs out, no next step (registered demand letter, conciliation authority)."
+  }
+ },
+ "5": {
+  "X": [
+   {
+    "sentence": "If the rental agreement or house rules prohibit pets without an explicit exception for mental support animals, this prohibition may be invalid under OR Art. 256 Abs. 2 because it is a pre-formulated rule disadvantaging the tenant.  [OR Art. 256 Abs. 2]",
+    "label": "wrong_law",
+    "why": "256 II only voids deviations from the landlord's maintenance duty (256 I); it does not invalidate pet bans, and the 'mental support animal exception' condition is invented."
+   },
+   {
+    "sentence": "Greta must use her flat carefully and consider her neighbours, including respecting house rules that prohibit pets.  [OR Art. 257f Abs. 1]",
+    "label": "unsupported",
+    "why": "257f says nothing about pets; asserts the house-rule ban binds her although it is unknown whether it is part of her 25-year-old contract."
+   },
+   {
+    "sentence": "If Greta continues to keep the cat despite the property management’s written warning after violating the pet ban, the landlord could terminate the lease with at least 30 days’ notice.  [OR Art. 257f Abs. 3]",
+    "label": "ok",
+    "why": "Gist of 257f III correct (omits 'unreasonable to continue' and 'end of a month'); relevant risk warning."
+   },
+   {
+    "sentence": "If the property management intends to unilaterally change the contract to prohibit pets, they must use the approved form and provide a valid reason.  [OR Art. 269d Abs. 3]",
+    "label": "ok",
+    "why": "Correct and key: a newly imposed ban in a 25-year tenancy is a unilateral change needing the 269d form and reasons."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the property management’s house rules ban pets, this clause may be invalid if it is part of pre‑printed terms or the rental agreement itself.  [OR Art. 256 Abs. 2]",
+    "label": "wrong_law",
+    "why": "Inverted: a ban in the contract itself is what makes it binding; 256 II does not void pet clauses."
+   },
+   {
+    "sentence": "If Greta can show the cat is necessary for her mental well‑being, she may be able to request an exception to the pet ban.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Practical (she may ask); weak legal basis in 256 I, but phrased as a request, not a right."
+   },
+   {
+    "sentence": "If no formal notice has been sent yet, Greta should ask the management to put any pet ban in writing and note the date, so she can check whether the rule is enforceable.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Reasonable step to clarify the source/date of the rule."
+   },
+   {
+    "sentence": "If no written warning has been issued yet, Greta should ask the property management in writing to reconsider the pet ban, explaining the emotional support the cat would provide after her husband’s death.  [OR Art. 257f Abs. 2]",
+    "label": "ok",
+    "why": "Practical, relevant next step."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "Key check not spelled out: was the pet ban part of the contract/house rules she signed 25 years ago? If not, a new ban is void without the 269d form. No advice to wait before taking the cat.",
+   "Y": "Misses the 269d point (unilateral change needs official form, otherwise void) and the 257f III termination risk if she takes the cat against a valid ban; no 'check the original contract' step."
+  }
+ },
+ "6": {
+  "X": [
+   {
+    "sentence": "The landlord must have notified the rent increase on an approved form at least ten days before the notice period began and provided a valid reason; if not, the increase is invalid (OR Art. 269d Abs. 2).  [OR Art. 269d Abs. 2]",
+    "label": "ok",
+    "why": "Correct form/reason/timing requirements; lumping late notice into nullity is a simplification (a late notice usually only postpones the effective date)."
+   },
+   {
+    "sentence": "Maria can contest the rent increase as abusive within 30 days of receiving the notice at the Zurich conciliation authority (OR Art. 270b Abs. 1).  [OR Art. 270b Abs. 1]",
+    "label": "ok",
+    "why": "Key point, correct: 30 days from receipt to challenge at the conciliation authority (270b I)."
+   },
+   {
+    "sentence": "If Maria can prove the rent increase results in an excessive return for the landlord due to cost reductions, she can demand a reduction in rent in writing to the landlord within 30 days (OR Art. 270a Abs. 2).  [OR Art. 270a Abs. 2]",
+    "label": "wrong_law",
+    "why": "270a II: the landlord (not Maria) has 30 days to respond; 270a reduction for cost reductions is not the route against a fresh increase."
+   },
+   {
+    "sentence": "If Maria wishes to challenge the increase and request a reduction simultaneously, she must do so in one written request to avoid the 30-day separate procedure (OR Art. 270a Abs. 3).  [OR Art. 270a Abs. 3]",
+    "label": "noise",
+    "why": "Loosely correct 270a III but confusing and of no practical use here."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a written notice to Maria setting a payment deadline and warning of termination for the rent increase, then the law does not yet require Maria to face an immediate termination threat.  [OR Art. 257d Abs. 1]",
+    "label": "noise",
+    "why": "Rent arrears procedure is irrelevant; nothing is owed yet."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a written notice to Maria setting a payment deadline and warning of termination for the rent increase, then Maria would only need to worry about termination if the landlord later sends such a notice and she fails to pay within the deadline.  [OR Art. 257d Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant arrears hypothetical; also ignores that other termination routes exist."
+   },
+   {
+    "sentence": "If the landlord has given notice of termination of the lease, the law would exclude any extension of the tenancy under OR Art. 272a Abs. 1 because no such termination notice has been given yet.  [OR Art. 272a Abs. 1]",
+    "label": "wrong_law",
+    "why": "Nonsense: 272a excludes extension only for listed grounds (arrears, serious breach etc.), not for any termination; a family of six would normally be able to seek extension."
+   },
+   {
+    "sentence": "If the landlord offers Maria a substitute accommodation of equal value, the law would generally exclude an extension under OR Art. 272a Abs. 2, but no such offer has been made.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Correct but irrelevant hypothetical."
+   },
+   {
+    "sentence": "If the landlord has not yet given notice of termination, Maria and her husband must each consent to any termination of the lease, as they live in a family apartment.  [OR Art. 266m Abs. 1]",
+    "label": "inapplicable",
+    "why": "266m only concerns a spouse who terminates the lease; the couple has no plan to terminate, and 'any termination' wrongly suggests it covers the landlord's notice."
+   },
+   {
+    "sentence": "If the landlord has not yet given notice of termination, Maria and her husband must use a cantonal-approved form when terminating the lease, which must explain how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "label": "wrong_law",
+    "why": "Wrong party: the approved form is the landlord's obligation (266l II), not the tenants'."
+   },
+   {
+    "sentence": "If the landlord has given notice of termination, Maria and her husband must each consent to it, as they live in a family apartment.  [OR Art. 266m Abs. 1]",
+    "label": "wrong_law",
+    "why": "Landlord's notice does not need the spouses' consent; 266m covers a tenant-spouse's own termination (landlord must serve separately under 266n)."
+   },
+   {
+    "sentence": "If Maria cannot obtain her husband's consent or it is unreasonably refused, she can apply to the judge for assistance.  [OR Art. 266m Abs. 2]",
+    "label": "noise",
+    "why": "Correct 266m II but irrelevant."
+   },
+   {
+    "sentence": "If the rent increase is not based on local/neighbourhood rents, cost increases, or other permitted grounds under Art. 269a OR, Maria can contest the increase as potentially abusive.  [OR Art. 269a]",
+    "label": "ok",
+    "why": "Fair lay reading: increase not justified by 269a grounds may be abusive."
+   },
+   {
+    "sentence": "If the rent increase exceeds the limits set by landlord-tenant associations or recommended in framework agreements, Maria can also challenge it under Art. 269a OR.  [OR Art. 269a]",
+    "label": "noise",
+    "why": "Marginal and slightly inverted (269a f is a safe-harbour, exceeding it does not itself make the rent abusive)."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the rent increase notice was not sent on the official form or lacks a proper reason, Maria can challenge it as invalid.  [OR Art. 269d Abs. 2]",
+    "label": "ok",
+    "why": "Correct: increase without official form or reasons is void (269d II)."
+   },
+   {
+    "sentence": "If Maria believes the new rent is too high because it would give the landlord an excessive profit, she can ask the landlord to lower it in writing and, if he does not agree, take the matter to the Zurich mediation authority.  [OR Art. 270a Abs. 1]",
+    "label": "inapplicable",
+    "why": "Describes the 270a reduction route (written request first) instead of the 270b 30-day challenge at the conciliation authority; following it could make her miss the deadline."
+   },
+   {
+    "sentence": "If the landlord sends a written notice demanding payment of the overdue rent and threatening termination, Maria will have a defined time to pay before the landlord can legally end the lease.  [OR Art. 257d Abs. 1]",
+    "label": "noise",
+    "why": "Arrears procedure irrelevant; nothing overdue."
+   },
+   {
+    "sentence": "If the landlord has given notice to end the lease, the law currently does not allow an extension because no termination notice has been issued yet.  [OR Art. 272a Abs. 1]",
+    "label": "wrong_law",
+    "why": "Nonsense: 272a does not exclude extension for every termination."
+   },
+   {
+    "sentence": "If the landlord later gives notice to end the lease, Maria should check if the notice is for a reason that excludes an extension, such as unpaid rent or serious breach of duties.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct conditional check of exclusion grounds."
+   },
+   {
+    "sentence": "If the landlord offers an equivalent replacement apartment, an extension would usually not be possible.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Correct but irrelevant hypothetical."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a formal termination notice, Maria should not assume she will be evicted solely because of the rent increase.  [OR Art. 266l Abs. 1]",
+    "label": "ok",
+    "why": "Reasonable reassurance; increase alone is not a termination."
+   },
+   {
+    "sentence": "If the rent increase notice does not use the official cantonal form that explains how to challenge it, Maria can question its validity.  [OR Art. 266l Abs. 2]",
+    "label": "ok",
+    "why": "Substantively correct (official form required for increases, 269d) although cited to 266l II."
+   },
+   {
+    "sentence": "If Maria’s husband is the one who signed the lease, he must get her written consent before agreeing to the rent increase or signing any agreement.  [OR Art. 266m Abs. 1]",
+    "label": "wrong_law",
+    "why": "Invented: 266m requires spousal consent only for a spouse's termination, not for accepting a rent increase."
+   },
+   {
+    "sentence": "If her husband cannot get her consent or it is unreasonably refused, they can ask a judge to decide on the rent increase.  [OR Art. 266m Abs. 2]",
+    "label": "wrong_law",
+    "why": "Invented application of 266m II to rent increases."
+   },
+   {
+    "sentence": "If the rent increase notice was not accompanied by a valid reason (such as cost increases or local rent levels), Maria can question the increase and request justification from the landlord.  [OR Art. 269a]",
+    "label": "ok",
+    "why": "Reasonable: ask for/check the justification."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "Concrete deadline date (code: from 2026-11-25 depending on receipt); advice to read the form now and contact Mieterverband/Schlichtungsbehörde; protection against retaliatory termination during proceedings (271a).",
+   "Y": "The 30-day deadline to challenge at the conciliation authority (270b) is missing entirely — the single most important point; no date; spousal-consent statements are invented."
+  }
+ },
+ "7": {
+  "X": [
+   {
+    "sentence": "Because the heating failure makes the flat uninhabitable, the client can demand the landlord fix the defect (OR Art. 259a Abs. 1).  [OR Art. 259a Abs. 1]",
+    "label": "ok",
+    "why": "Right to demand repair is correct; 'uninhabitable' is an overstatement but the right does not depend on it."
+   },
+   {
+    "sentence": "If the landlord does not repair the heating within a reasonable time, the client may also request a proportional rent reduction from the date they became aware of the defect until the repair is completed (OR Art. 259d).  [OR Art. 259d]",
+    "label": "wrong_law",
+    "why": "Invented condition (reduction does not wait for a failed repair) and wrong reference point: 259d runs from when the landlord learned of the defect."
+   },
+   {
+    "sentence": "If the landlord continues to deny responsibility for the heating repair, the client could consider depositing the rent (OR Art. 259a Abs. 2) as a precautionary measure.  [OR Art. 259a Abs. 2]",
+    "label": "ok",
+    "why": "Deposit option exists (259a II); 'deny responsibility' fits the facts loosely."
+   },
+   {
+    "sentence": "If the supply problems persist and the flat remains uninhabitable, the client may later assess whether they can terminate the lease without notice under OR Art. 259b, but only if the defect completely excludes or severely impairs the flat’s habitability.  [OR Art. 259b]",
+    "label": "ok",
+    "why": "Correct 259b lit. a conditions; appropriately framed as later assessment."
+   },
+   {
+    "sentence": "If the client formally demands the repair of the heating defect in writing, sets an appropriate deadline, and notifies the landlord of the intent to deposit future rents with the cantonal authority upon expiry of that deadline, they may withhold rent payments going forward.  [OR Art. 259g Abs. 1]",
+    "label": "wrong_law",
+    "why": "259g permits depositing future rent with the cantonal office, not withholding it; withholding = arrears."
+   },
+   {
+    "sentence": "If the client deposits the rent with the cantonal authority as threatened, those deposited rents will be deemed paid.  [OR Art. 259g Abs. 2]",
+    "label": "ok",
+    "why": "Correct 259g II."
+   },
+   {
+    "sentence": "The landlord is obligated to keep the flat in a condition suitable for the agreed use, including maintaining the heating system.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Correct 256 I."
+   },
+   {
+    "sentence": "If the landlord cannot provide a functioning heating system due to supply issues with spare parts, the family may be entitled to a rent reduction while the defect persists.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Correct and relevant: reduction does not depend on landlord fault (supply problems no excuse)."
+   },
+   {
+    "sentence": "If the property management confirms the heating defect is causing health issues for the children, the family could further claim compensation for damages.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Damages possible; the 'if PM confirms' framing is odd and the landlord's no-fault defence (259e) is not mentioned, but not wrong."
+   },
+   {
+    "sentence": "If the landlord has not yet set a written payment deadline with a termination warning because the tenant is behind on rent or ancillary costs, the client cannot yet reduce or withhold rent under OR Art. 257d Abs. 1.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Mislinks 257d (landlord's arrears procedure) to the tenant's right to reduce/withhold."
+   },
+   {
+    "sentence": "If the landlord has not yet issued a written payment deadline with a termination warning after the tenant fell behind on rent or ancillary costs, the client cannot yet withhold or reduce rent under OR Art. 257d Abs. 2.  [OR Art. 257d Abs. 2]",
+    "label": "wrong_law",
+    "why": "Same mislink for 257d II."
+   },
+   {
+    "sentence": "If the client has not yet deposited the rent with the competent authority and notified the landlord, they cannot yet claim the deposited rent belongs to the landlord under OR Art. 259h Abs. 1.  [OR Art. 259h Abs. 1]",
+    "label": "wrong_law",
+    "why": "Garbled 259h I: the rule is that the tenant must file claims at the conciliation authority within 30 days of the first deposited rent's due date, or the money goes to the landlord."
+   },
+   {
+    "sentence": "If the client has not yet notified the landlord of the rent deposit and the landlord has not yet requested the release of the deposited rent, the landlord could later demand the return of any wrongfully deposited rent under OR Art. 259h Abs. 2.  [OR Art. 259h Abs. 2]",
+    "label": "wrong_law",
+    "why": "Garbled/reversed 259h II: the landlord can claim release once the tenant HAS announced the deposit."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the heating remains unrepaired and the flat stays uninhabitable, the client can demand the landlord fix the defect or reduce the rent from when they first learned of the problem until it is fixed.  [OR Art. 259a Abs. 1]",
+    "label": "wrong_law",
+    "why": "Invented 'uninhabitable' threshold (any impairment suffices for 259a/259d) and reduction runs from the landlord's knowledge, not the tenant's."
+   },
+   {
+    "sentence": "If the landlord still does not repair the heating within a reasonable time, the client may also consider renting a temporary alternative and deducting those costs from the rent, or they can deposit rent until the issue is resolved.  [OR Art. 259a Abs. 2]",
+    "label": "wrong_law",
+    "why": "Not in 259a II; self-help deduction of alternative-housing costs is risky (damages need landlord fault under 259e, disputed set-off can trigger 257d arrears termination)."
+   },
+   {
+    "sentence": "If the landlord disputes the rent reduction or the health impact, the client should document all communications, keep records of the cold temperatures, and seek advice on how to formally request a rent reduction or file a rent deposit.  [OR Art. 259d]",
+    "label": "ok",
+    "why": "Practical and correct next steps."
+   },
+   {
+    "sentence": "If the family sends a written notice to the landlord demanding the heating be fixed within a reasonable time and warns that they will deposit future rents with the cantonal authority if it isn't repaired, they may legally withhold rent payments from that point onward.  [OR Art. 259g Abs. 1]",
+    "label": "wrong_law",
+    "why": "Deposit, not withholding, is allowed under 259g."
+   },
+   {
+    "sentence": "If the family deposits the rent money with the cantonal authority after giving the written notice, those rent payments will be considered paid as long as the deposit is made correctly.  [OR Art. 259g Abs. 2]",
+    "label": "ok",
+    "why": "Correct 259g II."
+   },
+   {
+    "sentence": "If the heating remains out of order, the landlord is still required to keep the flat in a usable condition for the family, especially with small children.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Correct 256 I."
+   },
+   {
+    "sentence": "If the landlord cannot fix the heating due to supply issues, the family should document all communications and keep records of the cold temperatures and any health impacts.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Practical documentation advice."
+   },
+   {
+    "sentence": "If the landlord fails to resolve the heating problem, the family may have grounds to request a rent reduction, but this should be communicated in writing to the landlord.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Correct: request reduction in writing."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a written notice demanding payment of overdue rent and threatening termination, the family cannot yet legally reduce or withhold rent.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Mislinks 257d to the tenant's right to reduce/withhold."
+   },
+   {
+    "sentence": "If the landlord has not yet issued a formal payment deadline with a termination warning, the family should not withhold rent yet, as this could lead to an unlawful termination.  [OR Art. 257d Abs. 2]",
+    "label": "wrong_law",
+    "why": "Reasoning reversed: withholding would make a 257d termination lawful, not 'unlawful'; the advice not to withhold is right only by accident."
+   },
+   {
+    "sentence": "If the family has not yet deposited rent with the official rent deposit authority and notified the landlord, they cannot yet claim rent reduction based on the heating failure.  [OR Art. 259h Abs. 1]",
+    "label": "wrong_law",
+    "why": "Reduction claim does not require a prior deposit; directly misanswers the client's question."
+   }
+  ],
+  "usefulness": {
+   "X": 2,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "Clear answer: reduction is claimable from the landlord's knowledge (10 days ago) regardless of fault, but must be requested, not self-applied; send written deadline; ask for temporary heaters; 30-day filing after deposit.",
+   "Y": "Same core answer missing and contradicted (says reduction needs a deposit); no mention that supply problems do not defeat reduction; no 30-day filing after deposit; demand temporary heaters."
+  }
+ },
+ "8": {
+  "X": [
+   {
+    "sentence": "If the landlord did not state a reason for the termination, Fatima can ask them in writing to explain why they ended the tenancy.  [OR Art. 271 Abs. 2]",
+    "label": "ok",
+    "why": "Correct 271 II."
+   },
+   {
+    "sentence": "If Fatima believes the termination is retaliation for reporting the mould and water damage, she can challenge it within the legal time limit once she receives the official reason.  [OR Art. 271 Abs. 1]",
+    "label": "wrong_law",
+    "why": "Implies the challenge period runs from/after receiving the reason; the 30 days run from receipt of the termination regardless (273 I). Dangerous."
+   },
+   {
+    "sentence": "If Fatima still does not understand the deadline mentioned in the termination notice, she should ask the landlord or a legal advice centre to clarify it before the time limit expires.  [OR Art. 271 Abs. 1]",
+    "label": "ok",
+    "why": "Advice centre is right; does not state the 30-day period itself."
+   },
+   {
+    "sentence": "If the termination notice was not sent using the official cantonal form that explains how to challenge the notice or request an extension, the client may be able to contest the termination.  [OR Art. 266l Abs. 2]",
+    "label": "ok",
+    "why": "Soft but correct (form defect makes the notice void, 266o)."
+   },
+   {
+    "sentence": "If mould and water damage are confirmed as defects the client did not cause, she may ask the landlord to repair them and/or reduce the rent from when she reported the problem until it is fixed.  [OR Art. 259a Abs. 1]",
+    "label": "ok",
+    "why": "Correct: reduction from the report (= landlord's knowledge) until repair."
+   },
+   {
+    "sentence": "If the termination notice was sent without stating a reason, the client should ask the landlord in writing for clarification before the deadline in the notice expires.  [OR Art. 266l]",
+    "label": "noise",
+    "why": "Duplicate of sentence 0; 'deadline in the notice' is confusing."
+   },
+   {
+    "sentence": "If the client did not fully understand the deadline, she should immediately request written confirmation of the notice’s validity and any remaining time to respond.  [OR Art. 266l]",
+    "label": "noise",
+    "why": "Useless: the landlord will not confirm validity; the period should simply be stated."
+   },
+   {
+    "sentence": "If Fatima did not fully understand the deadline in the termination notice, she should request clarification from the landlord in writing before the time limit expires.  [OR Art. 259g Abs. 1]",
+    "label": "noise",
+    "why": "Duplicate advice, cited to an unrelated paragraph (259g)."
+   },
+   {
+    "sentence": "If the termination is retaliation for reporting the mould and water issues, Fatima should document all communications and seek legal advice to explore her options.  [OR Art. 256 Abs. 1]",
+    "label": "ok",
+    "why": "Practical advice."
+   },
+   {
+    "sentence": "If the termination notice was sent without stating a reason, Fatima should check whether it complies with legal requirements before the time limit in the letter expires.  [OR Art. 266o]",
+    "label": "noise",
+    "why": "Vague; a missing reason does not affect validity."
+   },
+   {
+    "sentence": "If Fatima did not fully understand the deadline, she should contact the property management immediately to clarify the notice and ensure she does not miss any time limits.  [OR Art. 273 Abs. 1]",
+    "label": "noise",
+    "why": "Relying on the landlord to explain the challenge deadline is weak advice; the 30-day rule is never stated."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "Because the termination was given after Fatima reported mould and water damage, it may be contestable under OR Art. 271 Abs. 1 if it violates good faith.  [OR Art. 271 Abs. 1]",
+    "label": "ok",
+    "why": "Correct (271a I a would be the more specific basis)."
+   },
+   {
+    "sentence": "The landlord must provide a written explanation of the termination upon request under OR Art. 271 Abs. 2.  [OR Art. 271 Abs. 2]",
+    "label": "ok",
+    "why": "Correct 271 II."
+   },
+   {
+    "sentence": "The landlord must have terminated the tenancy in writing using an official, canton-approved form that explains how the client can contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "label": "ok",
+    "why": "Correct 266l II requirement."
+   },
+   {
+    "sentence": "If the mould and water damage defects continue to exist and significantly impair the use of the flat, the client can demand a proportional rent reduction from the time they became aware of the defects until the defects are repaired.  [OR Art. 259d]",
+    "label": "wrong_law",
+    "why": "Invented 'significantly impair' threshold (any impairment suffices under 259d); ambiguous 'they became aware' (law: landlord's knowledge)."
+   },
+   {
+    "sentence": "Fatima must now send the landlord a written notice demanding the removal of the mould and water issues within a reasonable time and may threaten to deposit future rent payments with the cantonal authority if the defect is not fixed.  [OR Art. 259g Abs. 1]",
+    "label": "ok",
+    "why": "Correct 259g I steps if she wants to deposit ('must' = precondition for deposit)."
+   },
+   {
+    "sentence": "If the landlord does not eliminate the defect within the set deadline, Fatima can deposit future rent payments with the cantonal authority, and such deposits will be deemed paid rent.  [OR Art. 259g Abs. 2]",
+    "label": "ok",
+    "why": "Correct 259g (omits written announcement of deposit)."
+   },
+   {
+    "sentence": "If it is established that the termination was issued in retaliation for Fatima reporting mould and water issues, the termination would be annulled under OR Art. 266o.  [OR Art. 266o]",
+    "label": "wrong_law",
+    "why": "Retaliation makes a termination challengeable (271/271a), not void under 266o; it stays valid unless challenged within 30 days."
+   },
+   {
+    "sentence": "If the landlord did not separately serve the termination notice to Fatima and her spouse or registered partner, the termination would be invalid under OR Art. 266n.  [OR Art. 266n]",
+    "label": "ok",
+    "why": "Correct conditional (266n/266o); marital status unknown."
+   },
+   {
+    "sentence": "If Fatima wishes to challenge the termination, she must file a request with the conciliation authority within 30 days of receiving the notice under OR Art. 273 Abs. 1.  [OR Art. 273 Abs. 1]",
+    "label": "ok",
+    "why": "Key point: 30 days at the conciliation authority."
+   }
+  ],
+  "usefulness": {
+   "X": 2,
+   "Y": 4
+  },
+  "missing_key_points": {
+   "X": "Never states the 30-day challenge deadline (code: from 2026-11-25) or that it runs from receipt; no mention of 271a I a retaliation ground, extension request, or spouse service check.",
+   "Y": "No concrete date; extension request (273 II, same 30 days) not mentioned; 271a I a not named; 266o nullity confused with challengeability."
+  }
+ },
+ "9": {
+  "X": [
+   {
+    "sentence": "If the client's boyfriend has not properly returned the flat (moved out without following the proper notice period), the client may still be responsible for the full rent until the lease legally ends, unless she finds a new, suitable tenant for the landlord.  [OR Art. 264 Abs. 2]",
+    "label": "inapplicable",
+    "why": "264 concerns early return of the flat by the tenant side; the flat has not been returned (she lives there). Her full-rent exposure stems from joint liability, and 'unless she finds a new tenant' is misleading."
+   },
+   {
+    "sentence": "If the boyfriend's notice is invalid, the client should not accept his claim that he no longer owes rent and should clarify the proper notice requirements with the landlord.  [OR Art. 264 Abs. 1]",
+    "label": "ok",
+    "why": "Practical and sound."
+   },
+   {
+    "sentence": "If the client stays in the flat, she should keep records of all rent payments and communications with the landlord and boyfriend, as she may need to prove who paid what and when.  [OR Art. 264 Abs. 3]",
+    "label": "ok",
+    "why": "Practical record-keeping advice (citation to 264 III irrelevant)."
+   },
+   {
+    "sentence": "If the landlord has given notice of termination, the client should verify the notice was served using the official cantonal form and check if it complies with the required procedure.  [OR Art. 266l Abs. 2]",
+    "label": "noise",
+    "why": "No landlord termination exists; irrelevant hypothetical."
+   },
+   {
+    "sentence": "If the boyfriend claims he has given notice, the client should ask him to provide proof of the notice and confirm whether it was properly served to the landlord.  [OR Art. 266l Abs. 1]",
+    "label": "ok",
+    "why": "Useful check; misses that one co-tenant alone generally cannot terminate a joint lease."
+   },
+   {
+    "sentence": "If the boyfriend is still listed on the lease, the client may still be held responsible for the full rent until the lease is legally terminated or a new agreement is made with the landlord.  [OR Art. 266l Abs. 1]",
+    "label": "ok",
+    "why": "Correct: as co-signatory she can be held for the full rent until the lease ends or is changed."
+   },
+   {
+    "sentence": "If the property management has already sent a written demand for payment with a deadline and a warning of termination, the client must pay the outstanding rent by that date to avoid eviction.  [OR Art. 257d Abs. 1]",
+    "label": "ok",
+    "why": "Correct 257d I consequence; relevant given partial payments."
+   },
+   {
+    "sentence": "If the landlord later serves a termination notice, the client should know that she cannot ask for an extension of the lease because the law excludes it when the tenant is in arrears with rent.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 272a I."
+   },
+   {
+    "sentence": "If the landlord offers an equivalent replacement flat, the client would not be able to request an extension even if she wanted to.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant hypothetical."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the client's former boyfriend has not moved out or handed back the flat, he remains liable for the full rent until the tenancy ends, unless he proposes a suitable, solvent replacement tenant.  [OR Art. 264 Abs. 2]",
+    "label": "inapplicable",
+    "why": "Condition contradicts the facts (he has moved out) and 264 II does not fit a co-tenant leaving while the flat stays occupied."
+   },
+   {
+    "sentence": "If the client's former boyfriend has already moved out or handed back the flat, he would only be released from rent obligations if he proposed a suitable, solvent replacement tenant; otherwise, he must pay rent until the tenancy legally ends.  [OR Art. 264 Abs. 1]",
+    "label": "inapplicable",
+    "why": "264 I presupposes return of the flat; it has not been returned. Conclusion (he stays liable) is right for a different reason."
+   },
+   {
+    "sentence": "If the client's former boyfriend has moved out or handed back the flat, the landlord must account for any savings or gains from the flat's re-use.  [OR Art. 264 Abs. 3]",
+    "label": "inapplicable",
+    "why": "264 III (re-letting gains) presupposes return and re-use of the flat; she still occupies it."
+   },
+   {
+    "sentence": "If the landlord has given notice of termination to the client or her former boyfriend, the landlord must use a cantonal-approved form specifying how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "label": "noise",
+    "why": "Correct 266l II but no termination has been given."
+   },
+   {
+    "sentence": "The client and her former boyfriend are jointly and severally liable for the rent under the lease agreement, unless otherwise agreed.  [OR Art. 544 Abs. 3]",
+    "label": "ok",
+    "why": "Key point, correct: co-tenants are jointly and severally liable for the full rent."
+   },
+   {
+    "sentence": "If the client and her former boyfriend had jointly declared to the landlord that each would be individually liable for the entire rent, this would create joint and several liability.  [OR Art. 143 Abs. 1]",
+    "label": "noise",
+    "why": "Correct 143 I but adds nothing."
+   },
+   {
+    "sentence": "If the landlord has not yet sent the client a written demand to pay the overdue rent within a minimum 10-day (or 30-day for flats) deadline and warned of termination, this step must happen before any termination can be valid.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Overbroad: a 257d demand is required only for termination for arrears, not for 'any termination' (ordinary termination remains possible)."
+   },
+   {
+    "sentence": "If the landlord has already issued a written payment deadline with termination warning and the client has not paid within that period, the landlord may terminate the lease with at least 30 days' notice for a flat.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct 257d II for flats (omits 'end of a month')."
+   },
+   {
+    "sentence": "If the landlord later serves notice of termination due to non-payment, the client cannot request an extension of the tenancy under OR Art. 272a Abs. 1 because the law excludes such extensions for arrears under Art. 257d.  [OR Art. 272a Abs. 1]",
+    "label": "ok",
+    "why": "Correct 272a I."
+   },
+   {
+    "sentence": "If the landlord offers the client an equivalent replacement flat, an extension of the tenancy would generally be excluded under OR Art. 272a Abs. 2.  [OR Art. 272a Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant hypothetical."
+   }
+  ],
+  "usefulness": {
+   "X": 3,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "Neither the rule that a joint lease can generally only be terminated by both co-tenants together (his solo notice likely ineffective) nor her internal claim against the ex for his share; no path to taking over the lease alone; social services for the shortfall.",
+   "Y": "Same gaps; 264 is misapplied in three sentences; no practical steps (pay full rent to avoid 257d, contact landlord about lease takeover, claim his share)."
+  }
+ },
+ "10": {
+  "X": [
+   {
+    "sentence": "If the landlord has not already given notice, Jonas must give written notice to end the lease by the end of March 2027.  [OR Art. 266a Abs. 2]",
+    "label": "wrong_law",
+    "why": "Wrong deadline: to end on 31 March 2027 with 3 months' notice, the notice must reach the landlord by 31 December 2026, not 'by the end of March'."
+   },
+   {
+    "sentence": "If the landlord has not already given notice, Jonas should check the exact date the notice must be received by the landlord to meet the end of March deadline.  [OR Art. 266a Abs. 2]",
+    "label": "ok",
+    "why": "Vague but not wrong (receipt by the landlord is what counts); gives no date."
+   },
+   {
+    "sentence": "If Jonas sends an email to cancel, he should also send a formal letter by post to be safe, as email may not meet legal requirements for termination.  [OR Art. 266a Abs. 1]",
+    "label": "ok",
+    "why": "Hedged but correct direction: email does not satisfy the written form (266l I)."
+   },
+   {
+    "sentence": "If the landlord has not yet sent a termination notice, Jonas must wait for the landlord to provide a proper written notice using the official canton-approved form.  [OR Art. 266l Abs. 1]",
+    "label": "wrong_law",
+    "why": "Nonsense: Jonas does not have to wait for any landlord notice; he can terminate himself."
+   },
+   {
+    "sentence": "If the landlord sends a notice, Jonas must ensure it is on the official form that explains how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "label": "noise",
+    "why": "Landlord's form requirement is irrelevant; Jonas is terminating."
+   },
+   {
+    "sentence": "If Jonas wants to cancel the lease himself, he cannot use an email; he must send a written notice on the official form to the landlord.  [OR Art. 266l Abs. 1]",
+    "label": "wrong_law",
+    "why": "Invented requirement: the official form binds only the landlord (266l II); the tenant needs a signed letter."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "Jonas can terminate his open-ended tenancy by giving notice three months in advance to the end of any month except December, as per OR Art. 266c for flats.  [OR Art. 266c]",
+    "label": "ok",
+    "why": "Correct for Jonas (the 'except December' rule is contractual, allowed under 266a, not from 266c itself)."
+   },
+   {
+    "sentence": "If the landlord has not yet given Jonas notice of termination or Jonas has not yet given notice to the landlord, the termination cannot yet be processed.  [OR Art. 266a Abs. 2]",
+    "label": "noise",
+    "why": "Empty statement."
+   },
+   {
+    "sentence": "If Jonas gives valid notice by the required deadline, his tenancy will end at the next permissible date after the notice period expires.  [OR Art. 266a Abs. 1]",
+    "label": "ok",
+    "why": "Correct gist of 266a; no concrete date."
+   },
+   {
+    "sentence": "If the landlord has not yet given Jonas notice of termination, the landlord must use a cantonally approved form to terminate the lease.  [OR Art. 266l Abs. 2]",
+    "label": "noise",
+    "why": "Irrelevant: landlord's form requirement."
+   },
+   {
+    "sentence": "If Jonas wants to terminate the lease, he must not use an email; he must give written notice using the required form.  [OR Art. 266l Abs. 1]",
+    "label": "wrong_law",
+    "why": "Email correctly excluded, but 'using the required form' implies a mandatory form for the tenant; only a signed written letter is required."
+   }
+  ],
+  "usefulness": {
+   "X": 1,
+   "Y": 3
+  },
+  "missing_key_points": {
+   "X": "The actual deadline (notice must be received by 31 Dec 2026; send by registered post well before), that a simple signed letter suffices, no form needed.",
+   "Y": "Concrete last date for receipt (31 Dec 2026) and advice to send a signed letter by registered mail early; clarification that no official form is needed for tenants."
+  }
+ },
+ "11": {
+  "X": [
+   {
+    "sentence": "If the landlord has not yet sent a written notice demanding payment of the overdue rent and warning of termination, the client should ask the landlord to issue such a notice so she has a clear deadline to pay and avoid immediate eviction.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Misrepresents 257d as a protective step: the payment demand is the landlord's first step towards termination; asking the landlord to issue one (with no rent yet overdue) is harmful."
+   },
+   {
+    "sentence": "If the husband attempts to cancel the lease unilaterally, the client should inform the landlord that the lease remains binding regardless of the husband's actions, as only the landlord can validly terminate it under the law.  [OR Art. 257d Abs. 2]",
+    "label": "wrong_law",
+    "why": "Wrong reason: tenants can terminate; what protects her is 266m (husband cannot terminate the family home without her express consent), not a landlord-only termination right."
+   }
+  ],
+  "Y": [
+   {
+    "sentence": "If the landlord has not yet set a written payment deadline with a warning of lease termination, the landlord must do so before any termination can be valid.  [OR Art. 257d Abs. 1]",
+    "label": "wrong_law",
+    "why": "Overbroad: the 257d demand is required only for termination for arrears, not for 'any termination'."
+   },
+   {
+    "sentence": "If the landlord has set a payment deadline but the tenant has not paid by the end of that period, the landlord can terminate the lease for flats with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Correct 257d II for flats (omits 'end of a month')."
+   },
+   {
+    "sentence": "If the husband unilaterally cancels the lease or stops paying rent, the landlord may still be able to enforce rent payment or terminate the lease under OR Art. 257d Abs. 2, regardless of the husband's actions, as long as the formal notice requirements are met.  [OR Art. 257d Abs. 2]",
+    "label": "ok",
+    "why": "Muddled but correct risk: unpaid rent can lead to 257d termination regardless of who stops paying."
+   }
+  ],
+  "usefulness": {
+   "X": 1,
+   "Y": 2
+  },
+  "missing_key_points": {
+   "X": "266m (husband's termination of the family flat void without her consent), 266n (payment demand/termination must be served on her separately, so she can pay in time), referral to victim support / Eheschutz court to assign the flat; B-permit hardship rule outside tenancy law.",
+   "Y": "Same: 266m and 266n protections absent, so it does not answer the husband's threat; no practical steps (pay December rent or seek social assistance, victim support, confidentiality)."
+  }
+ }
+}

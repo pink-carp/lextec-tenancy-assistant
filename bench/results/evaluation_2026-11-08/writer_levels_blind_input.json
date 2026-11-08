@@ -1,0 +1,1210 @@
+{
+ "1": {
+  "client_words": "Hi, I am Cristina and I found mold in my apartment. I live in a 3-room flat in Zurich and moved in about two years ago. Last month I noticed black spots on the wall behind the bed in the bedroom, and now it is also starting in the corner near the window. It smells bad.\n\nI told my landlord’s property manager about it by phone, and he said it’s because I don’t ventilate enough and that I should just wipe it with vinegar. But I do open the windows every morning!\n\nI took a few photos on my phone. I’m so angry that I’m thinking of just paying less rent this month, maybe 30%, until they fix it. Or should I move out? I can’t afford a lawyer. What are my rights and what should I do now?",
+  "confirmed_facts": "F1 [who, inferred]: Cristina is the client reporting the issue.\nF2 [where, inferred]: The client lives in a 3-room flat in Zurich.\nF3 [what, reported]: The client found mold in her apartment.\nF4 [when, inferred]: The mold was first noticed last month.\nF5 [current_position, reported]: The client is considering paying reduced rent or moving out due to unresolved mold issues.\nX1 [disputed] Cause of mold: client says The mold is not caused by insufficient ventilation.; Landlord’s property manager says The mold is caused by the client not ventilating enough.\nX2 [disputed] Responsibility for mold remediation: client says The landlord is responsible for fixing the mold.; Landlord’s property manager says The client is responsible for fixing the mold (suggested solution: wipe with vinegar).\nX3 [disputed] Appropriate remedy for mold: client says The landlord should fix the mold professionally.; Landlord’s property manager says The client should clean the mold with vinegar.",
+  "deciding_facts": {
+   "documents": [],
+   "situations": [
+    "defect_in_flat"
+   ],
+   "intents": [
+    "reduce_or_withhold_rent",
+    "move_out"
+   ],
+   "household": {
+    "married_or_registered_partner": "unknown",
+    "children_in_household": "unknown"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Mold growth due to maintenance defects",
+     "Potential right to rent reduction due to diminished habitability",
+     "Potential right to claim damages for harm caused by mold",
+     "Landlord's obligation to maintain habitable premises"
+    ],
+    "articles": [
+     "OR 259a",
+     "OR 259d",
+     "OR 259e",
+     "OR 256"
+    ]
+   },
+   {
+    "titles": [
+     "Failure of landlord to address reported defect"
+    ],
+    "articles": [
+     "OR 259b"
+    ]
+   },
+   {
+    "titles": [
+     "Defect in the flat"
+    ],
+    "articles": [
+     "OR 259g"
+    ]
+   },
+   {
+    "titles": [
+     "Client plans: reduce or withhold rent"
+    ],
+    "articles": [
+     "OR 257d",
+     "OR 259h"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 259a Abs. 1": "applies",
+   "OR Art. 259a Abs. 2": "applies",
+   "OR Art. 259d": "applies",
+   "OR Art. 259e": "applies",
+   "OR Art. 256 Abs. 1": "applies",
+   "OR Art. 256 Abs. 2": "applies",
+   "OR Art. 259b": "applies",
+   "OR Art. 259g Abs. 1": "applies",
+   "OR Art. 259g Abs. 2": "applies",
+   "OR Art. 257d Abs. 1": "not_yet",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 259h Abs. 1": "applies",
+   "OR Art. 259h Abs. 2": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 256 Abs. 1": "Der Vermieter ist verpflichtet, die Sache zum vereinbarten Zeitpunkt in einem zum vorausgesetzten Gebrauch tauglichen Zustand zu übergeben und in demselben zu erhalten.",
+   "OR Art. 256 Abs. 2": "Abweichende Vereinbarungen zum Nachteil des Mieters sind nichtig, wenn sie enthalten sind in: a. vorformulierten allgemeinen Geschäftsbedingungen; b. Mietverträgen über Wohn- oder Geschäftsräume.",
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 259a Abs. 1": "Entstehen an der Sache Mängel, die der Mieter weder zu verantworten noch auf eigene Kosten zu beseitigen hat, oder wird der Mieter im vertragsgemässen Gebrauch der Sache gestört, so kann er verlangen, dass der Vermieter: a. den Mangel beseitigt; b. den Mietzins verhältnismässig herabsetzt; c. Schadenersatz leistet; d. den Rechtsstreit mit einem Dritten übernimmt.",
+   "OR Art. 259a Abs. 2": "Der Mieter einer unbeweglichen Sache kann zudem den Mietzins hinterlegen.",
+   "OR Art. 259b": "Kennt der Vermieter einen Mangel und beseitigt er ihn nicht innert angemessener Frist, so kann der Mieter: a. fristlos kündigen, wenn der Mangel die Tauglichkeit einer unbeweglichen Sache zum vorausgesetzten Gebrauch ausschliesst oder erheblich beeinträchtigt oder wenn der Mangel die Tauglichkeit einer beweglichen Sache zum vorausgesetzten Gebrauch vermindert; b. auf Kosten des Vermieters den Mangel beseitigen lassen, wenn dieser die Tauglichkeit der Sache zum vorausgesetzten Gebrauch zwar vermindert, aber nicht erheblich beeinträchtigt.",
+   "OR Art. 259d": "Wird die Tauglichkeit der Sache zum vorausgesetzten Gebrauch beeinträchtigt oder vermindert, so kann der Mieter vom Vermieter verlangen, dass er den Mietzins vom Zeitpunkt, in dem er vom Mangel erfahren hat, bis zur Behebung des Mangels entsprechend herabsetzt.",
+   "OR Art. 259e": "Hat der Mieter durch den Mangel Schaden erlitten, so muss ihm der Vermieter dafür Ersatz leisten, wenn er nicht beweist, dass ihn kein Verschulden trifft.",
+   "OR Art. 259g Abs. 1": "Verlangt der Mieter einer unbeweglichen Sache vom Vermieter die Beseitigung eines Mangels, so muss er ihm dazu schriftlich eine angemessene Frist setzen und kann ihm androhen, dass er bei unbenütztem Ablauf der Frist Mietzinse, die künftig fällig werden, bei einer vom Kanton bezeichneten Stelle hinterlegen wird. Er muss die Hinterlegung dem Vermieter schriftlich ankündigen.",
+   "OR Art. 259g Abs. 2": "Mit der Hinterlegung gelten die Mietzinse als bezahlt.",
+   "OR Art. 259h Abs. 1": "Hinterlegte Mietzinse fallen dem Vermieter zu, wenn der Mieter seine Ansprüche gegenüber dem Vermieter nicht innert 30 Tagen seit Fälligkeit des ersten hinterlegten Mietzinses bei der Schlichtungsbehörde geltend gemacht hat.",
+   "OR Art. 259h Abs. 2": "Der Vermieter kann bei der Schlichtungsbehörde die Herausgabe der zu Unrecht hinterlegten Mietzinse verlangen, sobald ihm der Mieter die Hinterlegung angekündigt hat."
+  },
+  "X": [
+   [
+    "Cristina can demand the landlord to professionally remove the mold (OR Art. 259a Abs. 1), as the mold is a defect not caused by her and not her responsibility to fix.  [OR Art. 259a Abs. 1]",
+    "If the landlord does not fix the mold, Cristina can request a proportional rent reduction from the time she learned of the defect until it is repaired (OR Art. 259d).  [OR Art. 259d]",
+    "If the mold has caused Cristina any damage (e.g., ruined belongings), she can claim compensation from the landlord, unless the landlord proves no fault (OR Art. 259e).  [OR Art. 259e]",
+    "If the landlord continues to deny responsibility, Cristina may consider depositing the rent (OR Art. 259a Abs. 2) as a protective measure.  [OR Art. 259a Abs. 2]"
+   ],
+   [
+    "Since the landlord has not removed the mold within a reasonable time, Cristina may either have the mold professionally removed at the landlord's expense (as the mold reduces the apartment's habitability) or, if the mold completely prevents the apartment from being used as intended, Cristina may terminate the lease immediately.  [OR Art. 259b]",
+    "If it is established that the mold is caused by insufficient ventilation on Cristina's part, then the landlord would not be obligated to remove the mold under this provision.  [OR Art. 259b]"
+   ],
+   [
+    "Cristina must send the landlord a written notice demanding mold removal within a reasonable timeframe and may threaten to deposit future rent payments with the cantonal authority if the landlord fails to act.  [OR Art. 259g Abs. 1]",
+    "If Cristina deposits the rent with the cantonal authority after the deadline passes, those rent payments will be considered paid.  [OR Art. 259g Abs. 2]"
+   ],
+   [
+    "If the landlord has not yet set a written payment deadline with a termination warning for unpaid rent, Cristina cannot yet reduce or withhold rent under OR Art. 257d Abs. 1.  [OR Art. 257d Abs. 1]",
+    "If the landlord has not yet served a proper written notice after the payment deadline passed without full payment, Cristina cannot yet terminate the lease under OR Art. 257d Abs. 2.  [OR Art. 257d Abs. 2]",
+    "If Cristina has not yet deposited rent with the Zurich conciliation authority within 30 days of the first deposit, the deposited rent belongs to the landlord under OR Art. 259h Abs. 1.  [OR Art. 259h Abs. 1]",
+    "If Cristina has not yet notified the landlord of the rent deposit, the landlord could request the return of any wrongfully deposited rent from the conciliation authority under OR Art. 259h Abs. 2.  [OR Art. 259h Abs. 2]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the mold is caused by a maintenance defect the landlord is responsible for, Cristina can demand the landlord fix the mold, request a rent reduction from the date she learned of the problem, and claim compensation for any harm caused by the mold.  [OR Art. 259a Abs. 1]",
+    "If the landlord insists Cristina must clean the mold herself with vinegar, Cristina should insist on professional remediation and document all communications, as the landlord is obligated to keep the apartment habitable.  [OR Art. 256 Abs. 1]",
+    "If Cristina decides to pay reduced rent, she should notify the landlord in writing before the next rent payment and keep copies of all correspondence, as rent reductions require clear communication.  [OR Art. 259d]"
+   ],
+   [
+    "If the landlord has not fixed the mold within a reasonable time, Cristina may either have the mold removed at the landlord’s expense or, if the mold makes the apartment unfit or seriously impairs its use, she could even end the tenancy immediately.  [OR Art. 259b]",
+    "If the mold only slightly reduces the apartment’s suitability but the landlord still refuses to fix it, Cristina can demand that the landlord pay for professional mold removal.  [OR Art. 259b]"
+   ],
+   [
+    "If Cristina sends the landlord a written notice demanding professional mold removal within a reasonable time and warns that she will deposit future rents with the cantonal authority if the mold is not fixed, she can legally withhold rent payments once the deadline passes.  [OR Art. 259g Abs. 1]",
+    "If Cristina deposits the rent with the cantonal authority after the deadline passes, those deposits will count as paid rent until the mold is properly removed.  [OR Art. 259g Abs. 2]",
+    "If Cristina has not yet sent a written notice to the landlord, she should do so immediately, clearly describing the mold problem, requesting professional remediation, and setting a fair deadline before considering rent reductions or deposits.  [OR Art. 259g Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet sent a written notice demanding payment of overdue rent with a clear deadline and warning of termination, Cristina cannot legally reduce or withhold rent based on the mold issue alone.  [OR Art. 257d Abs. 1]",
+    "If the landlord has already issued a formal written payment deadline for rent and Cristina has not paid within that time, the landlord could then terminate the lease with a 30-day notice.  [OR Art. 257d Abs. 2]",
+    "If Cristina decides to withhold rent, she should only do so after the landlord has failed to fix the mold despite proper notice, and she should keep clear records and photos of the mold and all communications.  [OR Art. 259h Abs. 1]"
+   ]
+  ]
+ },
+ "2": {
+  "client_words": "I lost my job two months ago and couldn’t pay the rent for two months. Today I received a registered letter from my landlord. It says I have to pay the arrears or they will terminate my lease. I have two children. I don’t understand what this means. Will we have to leave the apartment? What should I do?",
+  "confirmed_facts": "F1 [who, inferred]: The client is a parent with two children.\nF2 [where, inferred]: The client is a tenant in an apartment.\nF3 [what, reported]: The client received a registered letter from the landlord demanding payment of two months of unpaid rent or face lease termination.\nF4 [when, inferred]: The client lost their job two months ago and has not paid rent for two months.\nF5 [current_position, reported]: The client is facing potential eviction due to unpaid rent and is unsure of the next steps.\nE1 [event] Payment demand with termination warning received: 2026-11-08 (client: \"It says I have to pay the arrears or they will terminate my lease.\")",
+  "deciding_facts": {
+   "documents": [
+    "payment_demand_with_termination_warning"
+   ],
+   "situations": [
+    "rent_arrears"
+   ],
+   "intents": [
+    "wait_before_paying"
+   ],
+   "household": {
+    "married_or_registered_partner": "unknown",
+    "children_in_household": "yes"
+   }
+  },
+  "deadlines_calculated_by_code": [
+   {
+    "action": "Pay the arrears in full within the payment period set in the letter (for flats at least 30 days after receipt; the date in the letter governs)",
+    "earliest": "2026-12-08",
+    "legal_basis": "['OR Art. 257d Abs. 1']"
+   }
+  ],
+  "issues": [
+   {
+    "titles": [
+     "Late rent payment and risk of eviction due to non-payment"
+    ],
+    "articles": [
+     "OR 257d"
+    ]
+   },
+   {
+    "titles": [
+     "Unpaid rent and payment demand"
+    ],
+    "articles": [
+     "OR 266n",
+     "OR 272a"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 257d Abs. 1": "applies",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 266n": "open",
+   "OR Art. 272a Abs. 1": "not_yet",
+   "OR Art. 272a Abs. 2": "not_yet"
+  },
+  "law_text_german": {
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 266n": "Die Kündigung durch den Vermieter sowie die Ansetzung einer Zahlungsfrist mit Kündigungsandrohung (Art. 257d) sind dem Mieter und seinem Ehegatten, seiner eingetragenen Partnerin oder seinem eingetragenen Partner separat zuzustellen.",
+   "OR Art. 272a Abs. 1": "Die Erstreckung ist ausgeschlossen bei Kündigungen: a. wegen Zahlungsrückstand des Mieters (Art. 257d); b. wegen schwerer Verletzung der Pflicht des Mieters zu Sorgfalt und Rücksichtnahme (Art. 257f Abs. 3 und 4); c. wegen Konkurs des Mieters (Art. 266h). d. eines Mietvertrages, welcher im Hinblick auf ein bevorstehendes Umbau- oder Abbruchvorhaben ausdrücklich nur für die beschränkte Zeit bis zum Baubeginn oder bis zum Erhalt der erforderlichen Bewilligung abgeschlossen wurde.",
+   "OR Art. 272a Abs. 2": "Die Erstreckung ist in der Regel ausgeschlossen, wenn der Vermieter dem Mieter einen gleichwertigen Ersatz für die Wohn- oder Geschäftsräume anbietet."
+  },
+  "X": [
+   [
+    "If the client pays the overdue rent before the deadline in the letter expires, they can avoid the immediate risk of eviction.  [OR Art. 257d Abs. 1]",
+    "If the client cannot pay the full amount by the deadline, they should immediately seek help from a legal aid office or tenants' association to explore options like negotiating a payment plan or contesting the notice.  [OR Art. 257d Abs. 2]"
+   ],
+   [
+    "If the landlord has already sent a formal demand for payment with a threat of termination, the client must act quickly to avoid eviction.  [OR Art. 266n]",
+    "If the landlord later serves notice of termination, the client should immediately seek legal advice because eviction is usually not delayed if the termination is based on unpaid rent.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers an equivalent replacement apartment, the client cannot request an extension of the lease.  [OR Art. 272a Abs. 2]"
+   ]
+  ],
+  "Y": [
+   [
+    "The landlord has already sent a written demand for payment of the overdue rent with a threat of termination, giving the client at least ten days (or more if it is an apartment) to pay the arrears.  [OR Art. 257d Abs. 1]",
+    "If the client does not pay the overdue rent in full within the set deadline, the landlord can terminate the lease for an apartment with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "If the client pays the outstanding rent before the deadline expires, the landlord cannot proceed with termination.  [OR Art. 257d Abs. 2]"
+   ],
+   [
+    "If the landlord serves a termination notice due to unpaid rent (Art. 257d), it must also be separately delivered to the client's spouse or registered partner, but this fact is currently unknown.  [OR Art. 266n]",
+    "If the landlord gives the client notice of termination for unpaid rent, the client will not be able to request an extension of the lease (Art. 272a Abs. 1).  [OR Art. 272a Abs. 1]",
+    "If the landlord offers the client an equivalent replacement apartment, an extension of the lease will generally be excluded (Art. 272a Abs. 2).  [OR Art. 272a Abs. 2]"
+   ]
+  ]
+ },
+ "3": {
+  "client_words": "Hey, I’m Luca, 23, I live in a 2-room flat in Zurich, which I rent since last year. I’m an apprentice-turned-junior employee and money has been tight. I missed rent in September and October because my hours got cut. Last week I got a registered letter from the property management. I didn’t pick it up at first, and when I did, it was a lot of legal text and it says something about “Kündigung” if I don’t pay. My friend says this means I’m getting evicted.\n\nMy parents live in the same city and my dad said he can help, but I don’t want to ask him because we had an argument about me moving out. I’m also not sure if I should just ignore the letter, because I’m going to get paid at the end of the month anyway.\n\nCan they really throw me out? How long do I have? What can I do?",
+  "confirmed_facts": "F1 [who, reported]: Luca, a 23-year-old apprentice-turned-junior employee\nF2 [where, reported]: A 2-room flat in Zurich\nF3 [what, reported]: Missed rent payments for September and October due to reduced working hours\nF4 [when, reported]: Received a registered letter from property management last week\nF5 [current_position, reported]: Uncertain about the meaning of the letter and whether eviction is imminent\nX1 [disputed] Interpretation of the letter and eviction risk: client says Believes the letter may mean eviction but is unsure; Property management (implied) says Intends to proceed with eviction if rent is not paid\nX2 [disputed] Options for resolving the rent arrears: client says Considering ignoring the letter and waiting for end-of-month pay; Property management says Expects rent payment and may proceed with legal action if unpaid\nX3 [disputed] Seeking financial help from family: client says Does not want to ask parents for help due to a prior argument; Parents says Offered to help with rent payments\nE1 [event] Payment demand with termination warning received: between 2026-10-26 and 2026-11-01 (client: \"registered letter from the property management. I didn’t pick it up at first, and when I did, it was a lot of legal text\")",
+  "deciding_facts": {
+   "documents": [
+    "payment_demand_with_termination_warning"
+   ],
+   "situations": [
+    "rent_arrears"
+   ],
+   "intents": [
+    "wait_before_paying",
+    "ignore_the_letter"
+   ],
+   "household": {
+    "married_or_registered_partner": "no",
+    "children_in_household": "no"
+   }
+  },
+  "deadlines_calculated_by_code": [
+   {
+    "action": "Pay the arrears in full within the payment period set in the letter (for flats at least 30 days after receipt; the date in the letter governs)",
+    "earliest": "2026-11-25",
+    "legal_basis": "['OR Art. 257d Abs. 1']"
+   }
+  ],
+  "issues": [
+   {
+    "titles": [
+     "Late rent payment and risk of eviction due to non-payment",
+     "Notice period for eviction after missed rent",
+     "Right to inspect and respond to formal eviction notice"
+    ],
+    "articles": [
+     "OR 257d"
+    ]
+   },
+   {
+    "titles": [
+     "Right to negotiate payment plan or propose replacement tenant to avoid eviction"
+    ],
+    "articles": [
+     "OR 264"
+    ]
+   },
+   {
+    "titles": [
+     "Unpaid rent and payment demand"
+    ],
+    "articles": [
+     "OR 272a"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 257d Abs. 1": "applies",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 264 Abs. 1": "not_yet",
+   "OR Art. 264 Abs. 2": "not_yet",
+   "OR Art. 264 Abs. 3": "not_yet",
+   "OR Art. 272a Abs. 1": "not_yet",
+   "OR Art. 272a Abs. 2": "not_yet"
+  },
+  "law_text_german": {
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 264 Abs. 1": "Gibt der Mieter die Sache zurück, ohne Kündigungsfrist oder -termin einzuhalten, so ist er von seinen Verpflichtungen gegenüber dem Vermieter nur befreit, wenn er einen für den Vermieter zumutbaren neuen Mieter vorschlägt; dieser muss zahlungsfähig und bereit sein, den Mietvertrag zu den gleichen Bedingungen zu übernehmen.",
+   "OR Art. 264 Abs. 2": "Andernfalls muss er den Mietzins bis zu dem Zeitpunkt leisten, in dem das Mietverhältnis gemäss Vertrag oder Gesetz endet oder beendet werden kann.",
+   "OR Art. 264 Abs. 3": "Der Vermieter muss sich anrechnen lassen, was er: a. an Auslagen erspart und b. durch anderweitige Verwendung der Sache gewinnt oder absichtlich zu gewinnen unterlassen hat.",
+   "OR Art. 272a Abs. 1": "Die Erstreckung ist ausgeschlossen bei Kündigungen: a. wegen Zahlungsrückstand des Mieters (Art. 257d); b. wegen schwerer Verletzung der Pflicht des Mieters zu Sorgfalt und Rücksichtnahme (Art. 257f Abs. 3 und 4); c. wegen Konkurs des Mieters (Art. 266h). d. eines Mietvertrages, welcher im Hinblick auf ein bevorstehendes Umbau- oder Abbruchvorhaben ausdrücklich nur für die beschränkte Zeit bis zum Baubeginn oder bis zum Erhalt der erforderlichen Bewilligung abgeschlossen wurde.",
+   "OR Art. 272a Abs. 2": "Die Erstreckung ist in der Regel ausgeschlossen, wenn der Vermieter dem Mieter einen gleichwertigen Ersatz für die Wohn- oder Geschäftsräume anbietet."
+  },
+  "X": [
+   [
+    "If the client has already received a formal written notice from the landlord demanding payment of overdue rent and threatening termination, they must act quickly because the landlord can now legally proceed with eviction after the deadline passes.  [OR Art. 257d Abs. 2]",
+    "If the client has not yet paid the overdue rent by the deadline set in the notice, they risk losing their flat when the notice period expires, so they should prioritize paying the arrears or contacting the landlord immediately to discuss a payment plan.  [OR Art. 257d Abs. 2]",
+    "If the client has not yet picked up or fully understood the letter, they should immediately collect and read the notice carefully to confirm the deadline and amount owed before deciding on their next steps.  [OR Art. 257d Abs. 1]"
+   ],
+   [
+    "If Luca moves out or hands back the flat before the eviction process is completed, he could then propose a suitable replacement tenant to avoid paying rent until the lease ends.  [OR Art. 264 Abs. 1]",
+    "If Luca does not move out or return the flat, he must pay the rent until the lease legally ends, as he cannot use the replacement-tenant option to avoid payment.  [OR Art. 264 Abs. 2]"
+   ],
+   [
+    "If the landlord has already sent a formal notice of termination due to unpaid rent, the law generally does not allow an extension of the lease, so Luca cannot rely on a legal stay extension to avoid eviction.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers Luca an equivalent alternative place to live, the law would normally bar any extension of his current tenancy.  [OR Art. 272a Abs. 2]",
+    "If Luca does not pay the overdue rent by the deadline in the letter, the landlord could legally proceed with eviction, so he should act quickly to either pay the arrears or negotiate a payment plan with the property management.  [OR Art. 257d]"
+   ]
+  ],
+  "Y": [
+   [
+    "Since you received a formal notice from the landlord with a payment deadline and threat of termination, the landlord can now proceed to terminate the tenancy if you do not pay the overdue rent within the required period.  [OR Art. 257d Abs. 1]",
+    "If the payment deadline set by the landlord in the notice has passed without full payment, the landlord can terminate the tenancy for your flat with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "If you pay the outstanding rent before the landlord issues the formal termination notice, the eviction process will be stopped.  [OR Art. 257d Abs. 2]"
+   ],
+   [
+    "If Luca moves out or hands back the flat before paying the rent, he must either propose a suitable replacement tenant or continue paying rent until the lease ends.  [OR Art. 264 Abs. 1]",
+    "If Luca does not move out or hand back the flat, he must continue paying rent until the lease ends or a legal termination is possible.  [OR Art. 264 Abs. 2]",
+    "If Luca moves out or hands back the flat, the landlord must account for any savings or gains from the flat during that time.  [OR Art. 264 Abs. 3]"
+   ],
+   [
+    "If the landlord has given notice of termination due to unpaid rent (Art. 257d), the law excludes any extension of the lease, so Luca cannot request an extension.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers Luca an equivalent replacement flat, the law generally excludes an extension even if he is a young employee in Zurich.  [OR Art. 272a Abs. 2]",
+    "If the landlord has not yet served a formal termination notice, these rules do not yet apply to Luca's situation.  [OR Art. 272a Abs. 1]"
+   ]
+  ]
+ },
+ "4": {
+  "client_words": "Hi, I’m Sandro and I moved out of my flat in Winterthur four months ago. The handover was fine, the property manager just said he would still look everything over. My deposit (3 months’ rent) is at the bank, but they won’t release it because the landlord won’t sign. He also no longer answers my emails. Can he just do that? I need the money for my new place.",
+  "confirmed_facts": "F1 [who, reported]: Sandro is the client.\nF2 [where, reported]: The tenancy was in a flat in Winterthur.\nF3 [what, reported]: The issue is the non-release of a security deposit (3 months' rent) held at the bank.\nF4 [when, reported]: Sandro moved out four months ago.\nF5 [current_position, reported]: Sandro is waiting for the deposit to be released for his new place.\nX1 [disputed] Deposit release: client says The landlord should sign to release the deposit.; The landlord says The landlord refuses to sign, preventing the bank from releasing the deposit.\nX2 [disputed] Communication: client says The landlord should respond to emails.; The landlord says The landlord no longer answers emails.\nX3 [disputed] Landlord's obligations post-move-out: client says The landlord should complete the handover process and release the deposit.; The landlord says The landlord claims the handover was fine and has taken no further action.",
+  "deciding_facts": {
+   "documents": [],
+   "situations": [
+    "deposit_return"
+   ],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "unknown",
+    "children_in_household": "unknown"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Landlord refusing to release security deposit without valid reason",
+     "Potential unlawful retention of deposit due to lack of valid claim",
+     "Landlord's obligation to release deposit upon end of lease if no valid claim",
+     "Right to dispute deposit retention if landlord fails to assert claim within one year"
+    ],
+    "articles": [
+     "OR 257e"
+    ]
+   },
+   {
+    "titles": [
+     "Return of the rent deposit"
+    ],
+    "articles": [
+     "OR 267",
+     "OR 267a"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 257e Abs. 1": "applies",
+   "OR Art. 257e Abs. 2": "applies",
+   "OR Art. 257e Abs. 3": "applies",
+   "OR Art. 257e Abs. 4": "applies",
+   "OR Art. 267 Abs. 1": "applies",
+   "OR Art. 267 Abs. 2": "applies",
+   "OR Art. 267a Abs. 1": "applies",
+   "OR Art. 267a Abs. 2": "applies",
+   "OR Art. 267a Abs. 3": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 257e Abs. 1": "Leistet der Mieter von Wohn- oder Geschäftsräumen eine Sicherheit in Geld oder in Wertpapieren, so muss der Vermieter sie bei einer Bank auf einem Sparkonto oder einem Depot, das auf den Namen des Mieters lautet, hinterlegen.",
+   "OR Art. 257e Abs. 2": "Bei der Miete von Wohnräumen darf der Vermieter höchstens drei Monatszinse als Sicherheit verlangen.",
+   "OR Art. 257e Abs. 3": "Die Bank darf die Sicherheit nur mit Zustimmung beider Parteien oder gestützt auf einen rechtskräftigen Zahlungsbefehl oder auf ein rechtskräftiges Gerichtsurteil herausgeben. Hat der Vermieter innert einem Jahr nach Beendigung des Mietverhältnisses keinen Anspruch gegenüber dem Mieter rechtlich geltend gemacht, so kann dieser von der Bank die Rückerstattung der Sicherheit verlangen.",
+   "OR Art. 257e Abs. 4": "Die Kantone können ergänzende Bestimmungen erlassen.",
+   "OR Art. 267 Abs. 1": "Der Mieter muss die Sache in dem Zustand zurückgeben, der sich aus dem vertragsgemässen Gebrauch ergibt.",
+   "OR Art. 267 Abs. 2": "Vereinbarungen, in denen sich der Mieter im Voraus verpflichtet, bei Beendigung des Mietverhältnisses eine Entschädigung zu entrichten, die anderes als die Deckung des allfälligen Schadens einschliesst, sind nichtig.",
+   "OR Art. 267a Abs. 1": "Bei der Rückgabe muss der Vermieter den Zustand der Sache prüfen und Mängel, für die der Mieter einzustehen hat, diesem sofort melden.",
+   "OR Art. 267a Abs. 2": "Versäumt dies der Vermieter, so verliert er seine Ansprüche, soweit es sich nicht um Mängel handelt, die bei übungsgemässer Untersuchung nicht erkennbar waren.",
+   "OR Art. 267a Abs. 3": "Entdeckt der Vermieter solche Mängel später, so muss er sie dem Mieter sofort melden."
+  },
+  "X": [
+   [
+    "If the landlord has not legally asserted any claim against Sandro within one year of the lease ending, Sandro can ask the bank to return the deposit.  [OR Art. 257e Abs. 3]",
+    "If the landlord continues to refuse to sign or communicate, Sandro should document all attempts to resolve the issue and consider contacting the bank directly to request the deposit based on the one-year rule.  [OR Art. 257e Abs. 3]",
+    "If the landlord still does not respond after one year from Sandro’s move-out, Sandro can proceed with the bank to get the deposit back without the landlord’s signature.  [OR Art. 257e Abs. 3]"
+   ],
+   [
+    "If the landlord refuses to sign the release form, the bank will likely not release the deposit without his signature.  [OR Art. 267a Abs. 1]",
+    "If the landlord does not respond to emails or complete the handover process, he may lose his right to claim any deductions from the deposit.  [OR Art. 267a Abs. 2]",
+    "If the landlord later claims there are hidden damages that were not obvious during the handover, he must notify Sandro immediately to avoid losing his right to claim them.  [OR Art. 267a Abs. 3]"
+   ]
+  ],
+  "Y": [
+   [
+    "Since Sandro moved out four months ago, if the landlord has not legally asserted any claim against him within one year, Sandro can demand the bank return the security deposit.  [OR Art. 257e Abs. 3]",
+    "If the landlord has not yet legally asserted any claim against Sandro within one year of the lease ending, Sandro can request the bank to release the deposit.  [OR Art. 257e Abs. 3]"
+   ],
+   [
+    "According to OR Art. 267a Abs. 1, the landlord must inspect the flat upon return and immediately notify Sandro of any defects he is responsible for.  [OR Art. 267a Abs. 1]",
+    "If the landlord fails to inspect the flat and report defects as required, he loses his claims against Sandro, unless the defects were not detectable during a proper inspection.  [OR Art. 267a Abs. 2]",
+    "If the landlord later discovers defects that were not initially detectable, he must immediately notify Sandro.  [OR Art. 267a Abs. 3]"
+   ]
+  ]
+ },
+ "5": {
+  "client_words": "Hello I am Greta. I now live for 25 years in my 3-room flat in Uster. I want to get a cat as a mental support animal, as my husband passed away last month. Now the property management has told me that the house rules say “pets are prohibited” and I can’t keep any at all. Is that even allowed? We’ve already promised to take the cat.",
+  "confirmed_facts": "F1 [who, inferred]: Greta, a tenant\nF2 [where, inferred]: A 3-room flat in Uster\nF3 [what, reported]: Request to keep a cat as a mental support animal\nF4 [when, inferred]: Recent past (husband passed away last month)\nF5 [current_position, reported]: Property management prohibits pets under house rules\nX1 [disputed] Whether pets are allowed in the flat: client says Pets should be allowed, especially as a mental support animal; Property management says Pets are prohibited under house rules\nE1 [event] Letter or message received: between 2026-10-01 and 2026-10-31 (client: \"Hello I am Greta. I now live for 25 years in my 3-room flat in Uster. I want to get a cat as a mental support animal, as\")",
+  "deciding_facts": {
+   "documents": [
+    "other_letter_or_message"
+   ],
+   "situations": [
+    "house_rules_or_pets"
+   ],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "no",
+    "children_in_household": "unknown"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Pet prohibition in rental agreement"
+    ],
+    "articles": [
+     "OR 256"
+    ]
+   },
+   {
+    "titles": [
+     "House rules or pets"
+    ],
+    "articles": [
+     "OR 257f",
+     "OR 269d"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 256 Abs. 1": "applies",
+   "OR Art. 256 Abs. 2": "applies",
+   "OR Art. 257f Abs. 1": "applies",
+   "OR Art. 257f Abs. 2": "applies",
+   "OR Art. 257f Abs. 3": "applies",
+   "OR Art. 257f Abs. 4": "applies",
+   "OR Art. 269d Abs. 1": "applies",
+   "OR Art. 269d Abs. 2": "applies",
+   "OR Art. 269d Abs. 3": "applies",
+   "OR Art. 269d Abs. 4": "applies",
+   "OR Art. 269d Abs. 5": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 256 Abs. 1": "Der Vermieter ist verpflichtet, die Sache zum vereinbarten Zeitpunkt in einem zum vorausgesetzten Gebrauch tauglichen Zustand zu übergeben und in demselben zu erhalten.",
+   "OR Art. 256 Abs. 2": "Abweichende Vereinbarungen zum Nachteil des Mieters sind nichtig, wenn sie enthalten sind in: a. vorformulierten allgemeinen Geschäftsbedingungen; b. Mietverträgen über Wohn- oder Geschäftsräume.",
+   "OR Art. 257f Abs. 1": "Der Mieter muss die Sache sorgfältig gebrauchen.",
+   "OR Art. 257f Abs. 2": "Der Mieter einer unbeweglichen Sache muss auf Hausbewohner und Nachbarn Rücksicht nehmen.",
+   "OR Art. 257f Abs. 3": "Verletzt der Mieter trotz schriftlicher Mahnung des Vermieters seine Pflicht zu Sorgfalt oder Rücksichtnahme weiter, so dass dem Vermieter oder den Hausbewohnern die Fortsetzung des Mietverhältnisses nicht mehr zuzumuten ist so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 257f Abs. 4": "Der Vermieter von Wohn- oder Geschäftsräumen kann jedoch fristlos kündigen, wenn der Mieter vorsätzlich der Sache schweren Schaden zufügt.",
+   "OR Art. 269d Abs. 1": "Der Vermieter kann den Mietzins jederzeit auf den nächstmöglichen Kündigungstermin erhöhen. Er muss dem Mieter die Mietzinserhöhung mindestens zehn Tage vor Beginn der Kündigungsfrist auf einem vom Kanton genehmigten Formular mitteilen und begründen.",
+   "OR Art. 269d Abs. 2": "Die Mietzinserhöhung ist nichtig, wenn der Vermieter: a. sie nicht mit dem vorgeschriebenen Formular mitteilt; b. sie nicht begründet; c. mit der Mitteilung die Kündigung androht oder ausspricht.",
+   "OR Art. 269d Abs. 3": "Die Absätze 1 und 2 gelten auch, wenn der Vermieter beabsichtigt, sonstwie den Mietvertrag einseitig zu Lasten des Mieters zu ändern, namentlich seine bisherigen Leistungen zu vermindern oder neue Nebenkosten einzuführen.",
+   "OR Art. 269d Abs. 4": "Für die Mitteilung einer Mietzinserhöhung und anderer einseitiger Vertragsänderungen genügt eine auf mechanischem Weg nachgebildete Unterschrift auf dem vorgeschriebenen Formular.",
+   "OR Art. 269d Abs. 5": "Für die Mitteilung von Mietzinserhöhungen, die in einer Vereinbarung nach Artikel 269c vorgesehen sind, genügt die schriftliche Form."
+  },
+  "X": [
+   [
+    "If the rental agreement or house rules prohibit pets without an explicit exception for mental support animals, this prohibition may be invalid under OR Art. 256 Abs. 2 because it is a pre-formulated rule disadvantaging the tenant.  [OR Art. 256 Abs. 2]"
+   ],
+   [
+    "Greta must use her flat carefully and consider her neighbours, including respecting house rules that prohibit pets.  [OR Art. 257f Abs. 1]",
+    "If Greta continues to keep the cat despite the property management’s written warning after violating the pet ban, the landlord could terminate the lease with at least 30 days’ notice.  [OR Art. 257f Abs. 3]",
+    "If the property management intends to unilaterally change the contract to prohibit pets, they must use the approved form and provide a valid reason.  [OR Art. 269d Abs. 3]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the property management’s house rules ban pets, this clause may be invalid if it is part of pre‑printed terms or the rental agreement itself.  [OR Art. 256 Abs. 2]",
+    "If Greta can show the cat is necessary for her mental well‑being, she may be able to request an exception to the pet ban.  [OR Art. 256 Abs. 1]",
+    "If no formal notice has been sent yet, Greta should ask the management to put any pet ban in writing and note the date, so she can check whether the rule is enforceable.  [OR Art. 256 Abs. 1]"
+   ],
+   [
+    "If no written warning has been issued yet, Greta should ask the property management in writing to reconsider the pet ban, explaining the emotional support the cat would provide after her husband’s death.  [OR Art. 257f Abs. 2]"
+   ]
+  ]
+ },
+ "6": {
+  "client_words": "Hello, I am Maria and I don’t know what to do. Together with my husband and four kids we live in our apartment in Zurich-Altstetten. My husband works in a warehouse, I clean part-time. We already receive premium subsidies. Last week a letter came from the property management saying our rent will go up by 280 francs from January. We currently pay 1,850. I didn’t read the letter closely because we were so shocked. We can’t afford this and we’re afraid of losing the flat. Do we just have to accept it?",
+  "confirmed_facts": "F1 [who, inferred]: Maria, her husband, and their four children\nF2 [where, inferred]: Zurich-Altstetten\nF3 [what, inferred]: A rent increase of 280 francs from January\nF4 [when, inferred]: Last week (letter received), with effect from January\nF5 [current_position, inferred]: Living in the apartment and currently paying 1,850 francs in rent\nE1 [event] Rent-increase notice received: between 2026-10-26 and 2026-11-01 (client: \"Last week a letter came from the property management saying our rent will go up by 280 francs from January. We currently\")",
+  "deciding_facts": {
+   "documents": [
+    "rent_increase_notice"
+   ],
+   "situations": [
+    "rent_increase"
+   ],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "yes",
+    "children_in_household": "yes"
+   }
+  },
+  "deadlines_calculated_by_code": [
+   {
+    "action": "Challenge the rent increase at the conciliation authority",
+    "earliest": "2026-11-25",
+    "legal_basis": "['OR Art. 270b Abs. 1']"
+   }
+  ],
+  "issues": [
+   {
+    "titles": [
+     "Mietzinserhöhung",
+     "Schutz vor missbräuchlicher Mietzinserhöhung"
+    ],
+    "articles": [
+     "OR 269d",
+     "OR 270b",
+     "OR 269",
+     "OR 270a"
+    ]
+   },
+   {
+    "titles": [
+     "Kündigungsandrohung bei Zahlungsrückstand"
+    ],
+    "articles": [
+     "OR 257d"
+    ]
+   },
+   {
+    "titles": [
+     "Erstreckung des Mietverhältnisses bei Härte"
+    ],
+    "articles": [
+     "OR 272a"
+    ]
+   },
+   {
+    "titles": [
+     "Formvorschriften für Kündigung und Mietzinserhöhung"
+    ],
+    "articles": [
+     "OR 266l",
+     "OR 266m"
+    ]
+   },
+   {
+    "titles": [
+     "Rent increase"
+    ],
+    "articles": [
+     "OR 269a"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 269d Abs. 1": "applies",
+   "OR Art. 269d Abs. 2": "applies",
+   "OR Art. 269d Abs. 3": "applies",
+   "OR Art. 269d Abs. 4": "applies",
+   "OR Art. 269d Abs. 5": "applies",
+   "OR Art. 270b Abs. 1": "applies",
+   "OR Art. 270b Abs. 2": "applies",
+   "OR Art. 269": "applies",
+   "OR Art. 270a Abs. 1": "applies",
+   "OR Art. 270a Abs. 2": "applies",
+   "OR Art. 270a Abs. 3": "applies",
+   "OR Art. 257d Abs. 1": "not_yet",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 272a Abs. 1": "not_yet",
+   "OR Art. 272a Abs. 2": "not_yet",
+   "OR Art. 266l Abs. 1": "not_yet",
+   "OR Art. 266l Abs. 2": "not_yet",
+   "OR Art. 266m Abs. 1": "applies",
+   "OR Art. 266m Abs. 2": "applies",
+   "OR Art. 266m Abs. 3": "applies",
+   "OR Art. 269a": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 266l Abs. 1": "Vermieter und Mieter von Wohn- und Geschäftsräumen müssen schriftlich kündigen.",
+   "OR Art. 266l Abs. 2": "Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Mieter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Mietverhältnisses verlangen will.",
+   "OR Art. 266m Abs. 1": "Dient die gemietete Sache als Wohnung der Familie, kann ein Ehegatte den Mietvertrag nur mit der ausdrücklichen Zustimmung des anderen kündigen.",
+   "OR Art. 266m Abs. 2": "Kann der Ehegatte diese Zustimmung nicht einholen oder wird sie ihm ohne triftigen Grund verweigert, so kann er den Richter anrufen.",
+   "OR Art. 266m Abs. 3": "Die gleiche Regelung gilt bei eingetragenen Partnerschaften sinngemäss.",
+   "OR Art. 269": "Mietzinse sind missbräuchlich, wenn damit ein übersetzter Ertrag aus der Mietsache erzielt wird oder wenn sie auf einem offensichtlich übersetzten Kaufpreis beruhen.",
+   "OR Art. 269a": "Mietzinse sind in der Regel nicht missbräuchlich, wenn sie insbesondere: a. im Rahmen der orts- oder quartierüblichen Mietzinse liegen; b. durch Kostensteigerungen oder Mehrleistungen des Vermieters begründet sind; c. bei neueren Bauten im Rahmen der kostendeckenden Bruttorendite liegen; d. lediglich dem Ausgleich einer Mietzinsverbilligung dienen, die zuvor durch Umlagerung marktüblicher Finanzierungskosten gewahrt wurde, und in einem dem Mieter im Voraus bekanntgegebenen Zahlungsplan festgelegt sind; e. lediglich die Teuerung auf dem risikotragenden Kapital ausgleichen; f. das Ausmass nicht überschreiten, das Vermieter- und Mieterverbände oder Organisationen, die ähnliche Interessen wahrnehmen, in ihren Rahmenverträgen empfehlen.",
+   "OR Art. 269d Abs. 1": "Der Vermieter kann den Mietzins jederzeit auf den nächstmöglichen Kündigungstermin erhöhen. Er muss dem Mieter die Mietzinserhöhung mindestens zehn Tage vor Beginn der Kündigungsfrist auf einem vom Kanton genehmigten Formular mitteilen und begründen.",
+   "OR Art. 269d Abs. 2": "Die Mietzinserhöhung ist nichtig, wenn der Vermieter: a. sie nicht mit dem vorgeschriebenen Formular mitteilt; b. sie nicht begründet; c. mit der Mitteilung die Kündigung androht oder ausspricht.",
+   "OR Art. 269d Abs. 3": "Die Absätze 1 und 2 gelten auch, wenn der Vermieter beabsichtigt, sonstwie den Mietvertrag einseitig zu Lasten des Mieters zu ändern, namentlich seine bisherigen Leistungen zu vermindern oder neue Nebenkosten einzuführen.",
+   "OR Art. 269d Abs. 4": "Für die Mitteilung einer Mietzinserhöhung und anderer einseitiger Vertragsänderungen genügt eine auf mechanischem Weg nachgebildete Unterschrift auf dem vorgeschriebenen Formular.",
+   "OR Art. 269d Abs. 5": "Für die Mitteilung von Mietzinserhöhungen, die in einer Vereinbarung nach Artikel 269c vorgesehen sind, genügt die schriftliche Form.",
+   "OR Art. 270a Abs. 1": "Der Mieter kann den Mietzins als missbräuchlich anfechten und die Herabsetzung auf den nächstmöglichen Kündigungstermin verlangen, wenn er Grund zur Annahme hat, dass der Vermieter wegen einer wesentlichen Änderung der Berechnungsgrundlagen, vor allem wegen einer Kostensenkung, einen nach den Artikeln 269 und 269a übersetzten Ertrag aus der Mietsache erzielt.",
+   "OR Art. 270a Abs. 2": "Der Mieter muss das Herabsetzungsbegehren schriftlich beim Vermieter stellen; dieser muss innert 30 Tagen Stellung nehmen. Entspricht der Vermieter dem Begehren nicht oder nur teilweise oder antwortet er nicht fristgemäss, so kann der Mieter innert 30 Tagen die Schlichtungsbehörde anrufen.",
+   "OR Art. 270a Abs. 3": "Absatz 2 ist nicht anwendbar, wenn der Mieter gleichzeitig mit der Anfechtung einer Mietzinserhöhung ein Herabsetzungsbegehren stellt.",
+   "OR Art. 270b Abs. 1": "Der Mieter kann eine Mietzinserhöhung innert 30 Tagen, nachdem sie ihm mitgeteilt worden ist, bei der Schlichtungsbehörde als missbräuchlich im Sinne der Artikel 269 und 269a anfechten.",
+   "OR Art. 270b Abs. 2": "Absatz 1 gilt auch, wenn der Vermieter sonstwie den Mietvertrag einseitig zu Lasten des Mieters ändert, namentlich seine bisherigen Leistungen vermindert oder neue Nebenkosten einführt.",
+   "OR Art. 272a Abs. 1": "Die Erstreckung ist ausgeschlossen bei Kündigungen: a. wegen Zahlungsrückstand des Mieters (Art. 257d); b. wegen schwerer Verletzung der Pflicht des Mieters zu Sorgfalt und Rücksichtnahme (Art. 257f Abs. 3 und 4); c. wegen Konkurs des Mieters (Art. 266h). d. eines Mietvertrages, welcher im Hinblick auf ein bevorstehendes Umbau- oder Abbruchvorhaben ausdrücklich nur für die beschränkte Zeit bis zum Baubeginn oder bis zum Erhalt der erforderlichen Bewilligung abgeschlossen wurde.",
+   "OR Art. 272a Abs. 2": "Die Erstreckung ist in der Regel ausgeschlossen, wenn der Vermieter dem Mieter einen gleichwertigen Ersatz für die Wohn- oder Geschäftsräume anbietet."
+  },
+  "X": [
+   [
+    "The landlord must have notified the rent increase on an approved form at least ten days before the notice period began and provided a valid reason; if not, the increase is invalid (OR Art. 269d Abs. 2).  [OR Art. 269d Abs. 2]",
+    "Maria can contest the rent increase as abusive within 30 days of receiving the notice at the Zurich conciliation authority (OR Art. 270b Abs. 1).  [OR Art. 270b Abs. 1]",
+    "If Maria can prove the rent increase results in an excessive return for the landlord due to cost reductions, she can demand a reduction in rent in writing to the landlord within 30 days (OR Art. 270a Abs. 2).  [OR Art. 270a Abs. 2]",
+    "If Maria wishes to challenge the increase and request a reduction simultaneously, she must do so in one written request to avoid the 30-day separate procedure (OR Art. 270a Abs. 3).  [OR Art. 270a Abs. 3]"
+   ],
+   [
+    "If the landlord has not yet sent a written notice to Maria setting a payment deadline and warning of termination for the rent increase, then the law does not yet require Maria to face an immediate termination threat.  [OR Art. 257d Abs. 1]",
+    "If the landlord has not yet sent a written notice to Maria setting a payment deadline and warning of termination for the rent increase, then Maria would only need to worry about termination if the landlord later sends such a notice and she fails to pay within the deadline.  [OR Art. 257d Abs. 2]"
+   ],
+   [
+    "If the landlord has given notice of termination of the lease, the law would exclude any extension of the tenancy under OR Art. 272a Abs. 1 because no such termination notice has been given yet.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers Maria a substitute accommodation of equal value, the law would generally exclude an extension under OR Art. 272a Abs. 2, but no such offer has been made.  [OR Art. 272a Abs. 2]"
+   ],
+   [
+    "If the landlord has not yet given notice of termination, Maria and her husband must each consent to any termination of the lease, as they live in a family apartment.  [OR Art. 266m Abs. 1]",
+    "If the landlord has not yet given notice of termination, Maria and her husband must use a cantonal-approved form when terminating the lease, which must explain how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "If the landlord has given notice of termination, Maria and her husband must each consent to it, as they live in a family apartment.  [OR Art. 266m Abs. 1]",
+    "If Maria cannot obtain her husband's consent or it is unreasonably refused, she can apply to the judge for assistance.  [OR Art. 266m Abs. 2]"
+   ],
+   [
+    "If the rent increase is not based on local/neighbourhood rents, cost increases, or other permitted grounds under Art. 269a OR, Maria can contest the increase as potentially abusive.  [OR Art. 269a]",
+    "If the rent increase exceeds the limits set by landlord-tenant associations or recommended in framework agreements, Maria can also challenge it under Art. 269a OR.  [OR Art. 269a]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the rent increase notice was not sent on the official form or lacks a proper reason, Maria can challenge it as invalid.  [OR Art. 269d Abs. 2]",
+    "If Maria believes the new rent is too high because it would give the landlord an excessive profit, she can ask the landlord to lower it in writing and, if he does not agree, take the matter to the Zurich mediation authority.  [OR Art. 270a Abs. 1]"
+   ],
+   [
+    "If the landlord sends a written notice demanding payment of the overdue rent and threatening termination, Maria will have a defined time to pay before the landlord can legally end the lease.  [OR Art. 257d Abs. 1]"
+   ],
+   [
+    "If the landlord has given notice to end the lease, the law currently does not allow an extension because no termination notice has been issued yet.  [OR Art. 272a Abs. 1]",
+    "If the landlord later gives notice to end the lease, Maria should check if the notice is for a reason that excludes an extension, such as unpaid rent or serious breach of duties.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers an equivalent replacement apartment, an extension would usually not be possible.  [OR Art. 272a Abs. 2]"
+   ],
+   [
+    "If the landlord has not yet sent a formal termination notice, Maria should not assume she will be evicted solely because of the rent increase.  [OR Art. 266l Abs. 1]",
+    "If the rent increase notice does not use the official cantonal form that explains how to challenge it, Maria can question its validity.  [OR Art. 266l Abs. 2]",
+    "If Maria’s husband is the one who signed the lease, he must get her written consent before agreeing to the rent increase or signing any agreement.  [OR Art. 266m Abs. 1]",
+    "If her husband cannot get her consent or it is unreasonably refused, they can ask a judge to decide on the rent increase.  [OR Art. 266m Abs. 2]"
+   ],
+   [
+    "If the rent increase notice was not accompanied by a valid reason (such as cost increases or local rent levels), Maria can question the increase and request justification from the landlord.  [OR Art. 269a]"
+   ]
+  ]
+ },
+ "7": {
+  "client_words": "We’re a family with two small children (1 and 4 years old) in Zurich-Oerlikon. The heating hasn’t worked for ten days and it’s only 14 degrees in the flat. We phoned the property management twice and a technician came once, but nothing has changed. Now they say there are supply problems with the spare part. We don’t know what to do and feel completely helpless. Our youngest already has a cold. Are we allowed to pay less rent?",
+  "confirmed_facts": "F1 [who, inferred]: A family with two small children (1 and 4 years old)\nF2 [where, inferred]: Zurich-Oerlikon\nF3 [what, inferred]: Heating has not worked for ten days and the flat is only 14 degrees\nF4 [when, inferred]: Over the past ten days\nF5 [current_position, inferred]: The family feels completely helpless and does not know what to do\nX1 [disputed] Responsibility for heating repair: client says Property management is responsible for fixing the heating; Property management says Heating cannot be fixed due to supply problems with a spare part\nX2 [disputed] Rent reduction: client says The family believes they are allowed to pay less rent; Property management says Property management likely denies any entitlement to rent reduction\nX3 [disputed] Health impact of cold flat: client says The cold flat is causing health issues (youngest child has a cold); Property management says Property management may dispute the severity or direct link to the cold flat",
+  "deciding_facts": {
+   "documents": [],
+   "situations": [
+    "defect_in_flat",
+    "no_heating_water_or_power"
+   ],
+   "intents": [
+    "reduce_or_withhold_rent"
+   ],
+   "household": {
+    "married_or_registered_partner": "unknown",
+    "children_in_household": "yes"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Heating failure causing uninhabitable conditions",
+     "Failure to repair defect within reasonable time",
+     "Potential right to rent reduction due to reduced habitability"
+    ],
+    "articles": [
+     "OR 259a",
+     "OR 259d",
+     "OR 259b"
+    ]
+   },
+   {
+    "titles": [
+     "Potential right to withhold rent until defect fixed (deposit)"
+    ],
+    "articles": [
+     "OR 259g"
+    ]
+   },
+   {
+    "titles": [
+     "Defect in the flat"
+    ],
+    "articles": [
+     "OR 256"
+    ]
+   },
+   {
+    "titles": [
+     "Client plans: reduce or withhold rent"
+    ],
+    "articles": [
+     "OR 257d",
+     "OR 259h"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 259a Abs. 1": "applies",
+   "OR Art. 259a Abs. 2": "applies",
+   "OR Art. 259d": "applies",
+   "OR Art. 259b": "applies",
+   "OR Art. 259g Abs. 1": "applies",
+   "OR Art. 259g Abs. 2": "applies",
+   "OR Art. 256 Abs. 1": "applies",
+   "OR Art. 256 Abs. 2": "applies",
+   "OR Art. 257d Abs. 1": "not_yet",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 259h Abs. 1": "applies",
+   "OR Art. 259h Abs. 2": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 256 Abs. 1": "Der Vermieter ist verpflichtet, die Sache zum vereinbarten Zeitpunkt in einem zum vorausgesetzten Gebrauch tauglichen Zustand zu übergeben und in demselben zu erhalten.",
+   "OR Art. 256 Abs. 2": "Abweichende Vereinbarungen zum Nachteil des Mieters sind nichtig, wenn sie enthalten sind in: a. vorformulierten allgemeinen Geschäftsbedingungen; b. Mietverträgen über Wohn- oder Geschäftsräume.",
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 259a Abs. 1": "Entstehen an der Sache Mängel, die der Mieter weder zu verantworten noch auf eigene Kosten zu beseitigen hat, oder wird der Mieter im vertragsgemässen Gebrauch der Sache gestört, so kann er verlangen, dass der Vermieter: a. den Mangel beseitigt; b. den Mietzins verhältnismässig herabsetzt; c. Schadenersatz leistet; d. den Rechtsstreit mit einem Dritten übernimmt.",
+   "OR Art. 259a Abs. 2": "Der Mieter einer unbeweglichen Sache kann zudem den Mietzins hinterlegen.",
+   "OR Art. 259b": "Kennt der Vermieter einen Mangel und beseitigt er ihn nicht innert angemessener Frist, so kann der Mieter: a. fristlos kündigen, wenn der Mangel die Tauglichkeit einer unbeweglichen Sache zum vorausgesetzten Gebrauch ausschliesst oder erheblich beeinträchtigt oder wenn der Mangel die Tauglichkeit einer beweglichen Sache zum vorausgesetzten Gebrauch vermindert; b. auf Kosten des Vermieters den Mangel beseitigen lassen, wenn dieser die Tauglichkeit der Sache zum vorausgesetzten Gebrauch zwar vermindert, aber nicht erheblich beeinträchtigt.",
+   "OR Art. 259d": "Wird die Tauglichkeit der Sache zum vorausgesetzten Gebrauch beeinträchtigt oder vermindert, so kann der Mieter vom Vermieter verlangen, dass er den Mietzins vom Zeitpunkt, in dem er vom Mangel erfahren hat, bis zur Behebung des Mangels entsprechend herabsetzt.",
+   "OR Art. 259g Abs. 1": "Verlangt der Mieter einer unbeweglichen Sache vom Vermieter die Beseitigung eines Mangels, so muss er ihm dazu schriftlich eine angemessene Frist setzen und kann ihm androhen, dass er bei unbenütztem Ablauf der Frist Mietzinse, die künftig fällig werden, bei einer vom Kanton bezeichneten Stelle hinterlegen wird. Er muss die Hinterlegung dem Vermieter schriftlich ankündigen.",
+   "OR Art. 259g Abs. 2": "Mit der Hinterlegung gelten die Mietzinse als bezahlt.",
+   "OR Art. 259h Abs. 1": "Hinterlegte Mietzinse fallen dem Vermieter zu, wenn der Mieter seine Ansprüche gegenüber dem Vermieter nicht innert 30 Tagen seit Fälligkeit des ersten hinterlegten Mietzinses bei der Schlichtungsbehörde geltend gemacht hat.",
+   "OR Art. 259h Abs. 2": "Der Vermieter kann bei der Schlichtungsbehörde die Herausgabe der zu Unrecht hinterlegten Mietzinse verlangen, sobald ihm der Mieter die Hinterlegung angekündigt hat."
+  },
+  "X": [
+   [
+    "Because the heating failure makes the flat uninhabitable, the client can demand the landlord fix the defect (OR Art. 259a Abs. 1).  [OR Art. 259a Abs. 1]",
+    "If the landlord does not repair the heating within a reasonable time, the client may also request a proportional rent reduction from the date they became aware of the defect until the repair is completed (OR Art. 259d).  [OR Art. 259d]",
+    "If the landlord continues to deny responsibility for the heating repair, the client could consider depositing the rent (OR Art. 259a Abs. 2) as a precautionary measure.  [OR Art. 259a Abs. 2]",
+    "If the supply problems persist and the flat remains uninhabitable, the client may later assess whether they can terminate the lease without notice under OR Art. 259b, but only if the defect completely excludes or severely impairs the flat’s habitability.  [OR Art. 259b]"
+   ],
+   [
+    "If the client formally demands the repair of the heating defect in writing, sets an appropriate deadline, and notifies the landlord of the intent to deposit future rents with the cantonal authority upon expiry of that deadline, they may withhold rent payments going forward.  [OR Art. 259g Abs. 1]",
+    "If the client deposits the rent with the cantonal authority as threatened, those deposited rents will be deemed paid.  [OR Art. 259g Abs. 2]"
+   ],
+   [
+    "The landlord is obligated to keep the flat in a condition suitable for the agreed use, including maintaining the heating system.  [OR Art. 256 Abs. 1]",
+    "If the landlord cannot provide a functioning heating system due to supply issues with spare parts, the family may be entitled to a rent reduction while the defect persists.  [OR Art. 256 Abs. 1]",
+    "If the property management confirms the heating defect is causing health issues for the children, the family could further claim compensation for damages.  [OR Art. 256 Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet set a written payment deadline with a termination warning because the tenant is behind on rent or ancillary costs, the client cannot yet reduce or withhold rent under OR Art. 257d Abs. 1.  [OR Art. 257d Abs. 1]",
+    "If the landlord has not yet issued a written payment deadline with a termination warning after the tenant fell behind on rent or ancillary costs, the client cannot yet withhold or reduce rent under OR Art. 257d Abs. 2.  [OR Art. 257d Abs. 2]",
+    "If the client has not yet deposited the rent with the competent authority and notified the landlord, they cannot yet claim the deposited rent belongs to the landlord under OR Art. 259h Abs. 1.  [OR Art. 259h Abs. 1]",
+    "If the client has not yet notified the landlord of the rent deposit and the landlord has not yet requested the release of the deposited rent, the landlord could later demand the return of any wrongfully deposited rent under OR Art. 259h Abs. 2.  [OR Art. 259h Abs. 2]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the heating remains unrepaired and the flat stays uninhabitable, the client can demand the landlord fix the defect or reduce the rent from when they first learned of the problem until it is fixed.  [OR Art. 259a Abs. 1]",
+    "If the landlord still does not repair the heating within a reasonable time, the client may also consider renting a temporary alternative and deducting those costs from the rent, or they can deposit rent until the issue is resolved.  [OR Art. 259a Abs. 2]",
+    "If the landlord disputes the rent reduction or the health impact, the client should document all communications, keep records of the cold temperatures, and seek advice on how to formally request a rent reduction or file a rent deposit.  [OR Art. 259d]"
+   ],
+   [
+    "If the family sends a written notice to the landlord demanding the heating be fixed within a reasonable time and warns that they will deposit future rents with the cantonal authority if it isn't repaired, they may legally withhold rent payments from that point onward.  [OR Art. 259g Abs. 1]",
+    "If the family deposits the rent money with the cantonal authority after giving the written notice, those rent payments will be considered paid as long as the deposit is made correctly.  [OR Art. 259g Abs. 2]"
+   ],
+   [
+    "If the heating remains out of order, the landlord is still required to keep the flat in a usable condition for the family, especially with small children.  [OR Art. 256 Abs. 1]",
+    "If the landlord cannot fix the heating due to supply issues, the family should document all communications and keep records of the cold temperatures and any health impacts.  [OR Art. 256 Abs. 1]",
+    "If the landlord fails to resolve the heating problem, the family may have grounds to request a rent reduction, but this should be communicated in writing to the landlord.  [OR Art. 256 Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet sent a written notice demanding payment of overdue rent and threatening termination, the family cannot yet legally reduce or withhold rent.  [OR Art. 257d Abs. 1]",
+    "If the landlord has not yet issued a formal payment deadline with a termination warning, the family should not withhold rent yet, as this could lead to an unlawful termination.  [OR Art. 257d Abs. 2]",
+    "If the family has not yet deposited rent with the official rent deposit authority and notified the landlord, they cannot yet claim rent reduction based on the heating failure.  [OR Art. 259h Abs. 1]"
+   ]
+  ]
+ },
+ "8": {
+  "client_words": "My name is Fatima and I’ve lived in a flat in Zurich-Wiedikon for six years. Three weeks ago I emailed the property management that there is mould in the bathroom and water standing in the cellar. Last week a termination for the end of March arrived by registered mail, without any reason. I’ve never caused problems and always paid on time. I think this is because of my report. Can I fight it? I didn’t fully understand the deadline.",
+  "confirmed_facts": "F1 [who, reported]: Fatima\nF2 [where, reported]: Zurich-Wiedikon\nF3 [what, reported]: A termination notice was received\nF4 [when, reported]: Three weeks ago and last week\nF5 [current_position, reported]: Resident of the flat facing potential eviction\nX1 [disputed] Reason for termination: client says Believes the termination is retaliation for reporting mould and water issues; Property management says Issued termination without stating a reason\nX2 [disputed] Understanding of termination notice: client says Did not fully understand the deadline; Property management says Sent termination notice by registered mail\nX3 [disputed] Legitimacy of termination: client says Believes the termination is unjust and can be challenged; Property management says Asserts the right to terminate the tenancy\nE1 [event] Termination by the landlord received: between 2026-10-26 and 2026-11-01 (client: \"Last week a termination for the end of March arrived by registered mail, without any reason.\")",
+  "deciding_facts": {
+   "documents": [
+    "termination_by_landlord"
+   ],
+   "situations": [
+    "defect_in_flat",
+    "termination"
+   ],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "unknown",
+    "children_in_household": "unknown"
+   }
+  },
+  "deadlines_calculated_by_code": [
+   {
+    "action": "Challenge the termination at the conciliation authority",
+    "earliest": "2026-11-25",
+    "legal_basis": "['OR Art. 273 Abs. 1']"
+   },
+   {
+    "action": "If staying longer is the goal: request an extension of the tenancy at the conciliation authority (not possible after a termination for unpaid rent)",
+    "earliest": "2026-11-25",
+    "legal_basis": "['OR Art. 273 Abs. 2']"
+   }
+  ],
+  "issues": [
+   {
+    "titles": [
+     "Unfair termination due to exercising tenant rights (reporting mould and water damage)"
+    ],
+    "articles": [
+     "OR 271"
+    ]
+   },
+   {
+    "titles": [
+     "Termination notice not complying with formal requirements (no reason given)",
+     "Deadline confusion regarding termination notice and response period"
+    ],
+    "articles": [
+     "OR 266l",
+     "OR 266a"
+    ]
+   },
+   {
+    "titles": [
+     "Potential claim for rent reduction due to mould and water damage (defects)",
+     "Potential claim for repair of mould and water damage defects"
+    ],
+    "articles": [
+     "OR 259a",
+     "OR 259d",
+     "OR 259b"
+    ]
+   },
+   {
+    "titles": [
+     "Defect in the flat"
+    ],
+    "articles": [
+     "OR 256",
+     "OR 259g"
+    ]
+   },
+   {
+    "titles": [
+     "Termination of the lease"
+    ],
+    "articles": [
+     "OR 266n",
+     "OR 266o",
+     "OR 271a",
+     "OR 272",
+     "OR 273"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 271 Abs. 1": "applies",
+   "OR Art. 271 Abs. 2": "applies",
+   "OR Art. 266l Abs. 1": "applies",
+   "OR Art. 266l Abs. 2": "applies",
+   "OR Art. 266a Abs. 1": "applies",
+   "OR Art. 266a Abs. 2": "applies",
+   "OR Art. 259a Abs. 1": "applies",
+   "OR Art. 259a Abs. 2": "applies",
+   "OR Art. 259d": "applies",
+   "OR Art. 259b": "applies",
+   "OR Art. 256 Abs. 1": "applies",
+   "OR Art. 256 Abs. 2": "applies",
+   "OR Art. 259g Abs. 1": "applies",
+   "OR Art. 259g Abs. 2": "applies",
+   "OR Art. 266n": "open",
+   "OR Art. 266o": "applies",
+   "OR Art. 271a Abs. 1": "applies",
+   "OR Art. 271a Abs. 2": "applies",
+   "OR Art. 271a Abs. 3": "applies",
+   "OR Art. 272 Abs. 1": "applies",
+   "OR Art. 272 Abs. 2": "applies",
+   "OR Art. 272 Abs. 3": "applies",
+   "OR Art. 273 Abs. 1": "applies",
+   "OR Art. 273 Abs. 2": "applies",
+   "OR Art. 273 Abs. 3": "applies",
+   "OR Art. 273 Abs. 4": "applies",
+   "OR Art. 273 Abs. 5": "applies"
+  },
+  "law_text_german": {
+   "OR Art. 256 Abs. 1": "Der Vermieter ist verpflichtet, die Sache zum vereinbarten Zeitpunkt in einem zum vorausgesetzten Gebrauch tauglichen Zustand zu übergeben und in demselben zu erhalten.",
+   "OR Art. 256 Abs. 2": "Abweichende Vereinbarungen zum Nachteil des Mieters sind nichtig, wenn sie enthalten sind in: a. vorformulierten allgemeinen Geschäftsbedingungen; b. Mietverträgen über Wohn- oder Geschäftsräume.",
+   "OR Art. 259a Abs. 1": "Entstehen an der Sache Mängel, die der Mieter weder zu verantworten noch auf eigene Kosten zu beseitigen hat, oder wird der Mieter im vertragsgemässen Gebrauch der Sache gestört, so kann er verlangen, dass der Vermieter: a. den Mangel beseitigt; b. den Mietzins verhältnismässig herabsetzt; c. Schadenersatz leistet; d. den Rechtsstreit mit einem Dritten übernimmt.",
+   "OR Art. 259a Abs. 2": "Der Mieter einer unbeweglichen Sache kann zudem den Mietzins hinterlegen.",
+   "OR Art. 259b": "Kennt der Vermieter einen Mangel und beseitigt er ihn nicht innert angemessener Frist, so kann der Mieter: a. fristlos kündigen, wenn der Mangel die Tauglichkeit einer unbeweglichen Sache zum vorausgesetzten Gebrauch ausschliesst oder erheblich beeinträchtigt oder wenn der Mangel die Tauglichkeit einer beweglichen Sache zum vorausgesetzten Gebrauch vermindert; b. auf Kosten des Vermieters den Mangel beseitigen lassen, wenn dieser die Tauglichkeit der Sache zum vorausgesetzten Gebrauch zwar vermindert, aber nicht erheblich beeinträchtigt.",
+   "OR Art. 259d": "Wird die Tauglichkeit der Sache zum vorausgesetzten Gebrauch beeinträchtigt oder vermindert, so kann der Mieter vom Vermieter verlangen, dass er den Mietzins vom Zeitpunkt, in dem er vom Mangel erfahren hat, bis zur Behebung des Mangels entsprechend herabsetzt.",
+   "OR Art. 259g Abs. 1": "Verlangt der Mieter einer unbeweglichen Sache vom Vermieter die Beseitigung eines Mangels, so muss er ihm dazu schriftlich eine angemessene Frist setzen und kann ihm androhen, dass er bei unbenütztem Ablauf der Frist Mietzinse, die künftig fällig werden, bei einer vom Kanton bezeichneten Stelle hinterlegen wird. Er muss die Hinterlegung dem Vermieter schriftlich ankündigen.",
+   "OR Art. 259g Abs. 2": "Mit der Hinterlegung gelten die Mietzinse als bezahlt.",
+   "OR Art. 266a Abs. 1": "Die Parteien können das unbefristete Mietverhältnis unter Einhaltung der gesetzlichen Fristen und Termine kündigen, sofern sie keine längere Frist oder keinen anderen Termin vereinbart haben.",
+   "OR Art. 266a Abs. 2": "Halten die Parteien die Frist oder den Termin nicht ein, so gilt die Kündigung für den nächstmöglichen Termin.",
+   "OR Art. 266l Abs. 1": "Vermieter und Mieter von Wohn- und Geschäftsräumen müssen schriftlich kündigen.",
+   "OR Art. 266l Abs. 2": "Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Mieter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Mietverhältnisses verlangen will.",
+   "OR Art. 266n": "Die Kündigung durch den Vermieter sowie die Ansetzung einer Zahlungsfrist mit Kündigungsandrohung (Art. 257d) sind dem Mieter und seinem Ehegatten, seiner eingetragenen Partnerin oder seinem eingetragenen Partner separat zuzustellen.",
+   "OR Art. 266o": "Die Kündigung ist nichtig, wenn sie den Artikeln 266l–266n nicht entspricht.",
+   "OR Art. 271 Abs. 1": "Die Kündigung ist anfechtbar, wenn sie gegen den Grundsatz von Treu und Glauben verstösst.",
+   "OR Art. 271 Abs. 2": "Die Kündigung muss auf Verlangen begründet werden.",
+   "OR Art. 271a Abs. 1": "Die Kündigung durch den Vermieter ist insbesondere anfechtbar, wenn sie ausgesprochen wird: a. weil der Mieter nach Treu und Glauben Ansprüche aus dem Mietverhältnis geltend macht; b. weil der Vermieter eine einseitige Vertragsänderung zu Lasten des Mieters oder eine Mietzinsanpassung durchsetzen will; c. allein um den Mieter zum Erwerb der gemieteten Wohnung zu veranlassen; d. während eines mit dem Mietverhältnis zusammenhängenden Schlichtungs- oder Gerichtsverfahrens, ausser wenn der Mieter das Verfahren missbräuchlich eingeleitet hat; e. vor Ablauf von drei Jahren nach Abschluss eines mit dem Mietverhältnis zusammenhängenden Schlichtungs- oder Gerichtsverfahrens, in dem der Vermieter: 1. zu einem erheblichen Teil unterlegen ist; 2. seine Forderung oder Klage zurückgezogen oder erheblich eingeschränkt hat; 3. auf die Anrufung des Richters verzichtet hat; 4. mit dem Mieter einen Vergleich geschlossen oder sich sonstwie geeinigt hat; f. wegen Änderungen in der familiären Situation des Mieters, aus denen dem Vermieter keine wesentlichen Nachteile entstehen.",
+   "OR Art. 271a Abs. 2": "Absatz 1 Buchstabe e ist auch anwendbar, wenn der Mieter durch Schriftstücke nachweisen kann, dass er sich mit dem Vermieter ausserhalb eines Schlichtungs- oder Gerichtsverfahrens über eine Forderung aus dem Mietverhältnis geeinigt hat.",
+   "OR Art. 271a Abs. 3": "Absatz 1 Buchstaben d und e sind nicht anwendbar bei Kündigungen: a. wegen dringenden Eigenbedarfs des Vermieters für sich, nahe Verwandte oder Verschwägerte; b. wegen Zahlungsrückstand des Mieters (Art. 257d); c. wegen schwerer Verletzung der Pflicht des Mieters zu Sorgfalt und Rücksichtnahme (Art. 257f Abs. 3 und 4); d. infolge Veräusserung der Sache (Art. 261); e. aus wichtigen Gründen (Art. 266g); f. wegen Konkurs des Mieters (Art. 266h).",
+   "OR Art. 272 Abs. 1": "Der Mieter kann die Erstreckung eines befristeten oder unbefristeten Mietverhältnisses verlangen, wenn die Beendigung der Miete für ihn oder seine Familie eine Härte zur Folge hätte, die durch die Interessen des Vermieters nicht zu rechtfertigen wäre.",
+   "OR Art. 272 Abs. 2": "Bei der Interessenabwägung berücksichtigt die zuständige Behörde insbesondere: a. die Umstände des Vertragsabschlusses und den Inhalt des Vertrags; b. die Dauer des Mietverhältnisses; c. die persönlichen, familiären und wirtschaftlichen Verhältnisse der Parteien und deren Verhalten; d. einen allfälligen Eigenbedarf des Vermieters für sich, nahe Verwandte oder Verschwägerte sowie die Dringlichkeit dieses Bedarfs; e. die Verhältnisse auf dem örtlichen Markt für Wohn- und Geschäftsräume.",
+   "OR Art. 272 Abs. 3": "Verlangt der Mieter eine zweite Erstreckung, so berücksichtigt die zuständige Behörde auch, ob er zur Abwendung der Härte alles unternommen hat, was ihm zuzumuten war.",
+   "OR Art. 273 Abs. 1": "Will eine Partei die Kündigung anfechten, so muss sie das Begehren innert 30 Tagen nach Empfang der Kündigung der Schlichtungsbehörde einreichen.",
+   "OR Art. 273 Abs. 2": "Will der Mieter eine Erstreckung des Mietverhältnisses verlangen, so muss er das Begehren der Schlichtungsbehörde einreichen: a. bei einem unbefristeten Mietverhältnis innert 30 Tagen nach Empfang der Kündigung; b. bei einem befristeten Mietverhältnis spätestens 60 Tage vor Ablauf der Vertragsdauer.",
+   "OR Art. 273 Abs. 3": "Das Begehren um eine zweite Erstreckung muss der Mieter der Schlichtungsbehörde spätestens 60 Tage vor Ablauf der ersten einreichen.",
+   "OR Art. 273 Abs. 4": "Das Verfahren vor der Schlichtungsbehörde richtet sich nach der ZPO.",
+   "OR Art. 273 Abs. 5": "Weist die zuständige Behörde ein Begehren des Mieters betreffend Anfechtung der Kündigung ab, so prüft sie von Amtes wegen, ob das Mietverhältnis erstreckt werden kann."
+  },
+  "X": [
+   [
+    "If the landlord did not state a reason for the termination, Fatima can ask them in writing to explain why they ended the tenancy.  [OR Art. 271 Abs. 2]",
+    "If Fatima believes the termination is retaliation for reporting the mould and water damage, she can challenge it within the legal time limit once she receives the official reason.  [OR Art. 271 Abs. 1]",
+    "If Fatima still does not understand the deadline mentioned in the termination notice, she should ask the landlord or a legal advice centre to clarify it before the time limit expires.  [OR Art. 271 Abs. 1]"
+   ],
+   [
+    "If the termination notice was not sent using the official cantonal form that explains how to challenge the notice or request an extension, the client may be able to contest the termination.  [OR Art. 266l Abs. 2]"
+   ],
+   [
+    "If mould and water damage are confirmed as defects the client did not cause, she may ask the landlord to repair them and/or reduce the rent from when she reported the problem until it is fixed.  [OR Art. 259a Abs. 1]",
+    "If the termination notice was sent without stating a reason, the client should ask the landlord in writing for clarification before the deadline in the notice expires.  [OR Art. 266l]",
+    "If the client did not fully understand the deadline, she should immediately request written confirmation of the notice’s validity and any remaining time to respond.  [OR Art. 266l]"
+   ],
+   [
+    "If Fatima did not fully understand the deadline in the termination notice, she should request clarification from the landlord in writing before the time limit expires.  [OR Art. 259g Abs. 1]",
+    "If the termination is retaliation for reporting the mould and water issues, Fatima should document all communications and seek legal advice to explore her options.  [OR Art. 256 Abs. 1]"
+   ],
+   [
+    "If the termination notice was sent without stating a reason, Fatima should check whether it complies with legal requirements before the time limit in the letter expires.  [OR Art. 266o]",
+    "If Fatima did not fully understand the deadline, she should contact the property management immediately to clarify the notice and ensure she does not miss any time limits.  [OR Art. 273 Abs. 1]"
+   ]
+  ],
+  "Y": [
+   [
+    "Because the termination was given after Fatima reported mould and water damage, it may be contestable under OR Art. 271 Abs. 1 if it violates good faith.  [OR Art. 271 Abs. 1]",
+    "The landlord must provide a written explanation of the termination upon request under OR Art. 271 Abs. 2.  [OR Art. 271 Abs. 2]"
+   ],
+   [
+    "The landlord must have terminated the tenancy in writing using an official, canton-approved form that explains how the client can contest the termination or request an extension.  [OR Art. 266l Abs. 2]"
+   ],
+   [
+    "If the mould and water damage defects continue to exist and significantly impair the use of the flat, the client can demand a proportional rent reduction from the time they became aware of the defects until the defects are repaired.  [OR Art. 259d]"
+   ],
+   [
+    "Fatima must now send the landlord a written notice demanding the removal of the mould and water issues within a reasonable time and may threaten to deposit future rent payments with the cantonal authority if the defect is not fixed.  [OR Art. 259g Abs. 1]",
+    "If the landlord does not eliminate the defect within the set deadline, Fatima can deposit future rent payments with the cantonal authority, and such deposits will be deemed paid rent.  [OR Art. 259g Abs. 2]"
+   ],
+   [
+    "If it is established that the termination was issued in retaliation for Fatima reporting mould and water issues, the termination would be annulled under OR Art. 266o.  [OR Art. 266o]",
+    "If the landlord did not separately serve the termination notice to Fatima and her spouse or registered partner, the termination would be invalid under OR Art. 266n.  [OR Art. 266n]",
+    "If Fatima wishes to challenge the termination, she must file a request with the conciliation authority within 30 days of receiving the notice under OR Art. 273 Abs. 1.  [OR Art. 273 Abs. 1]"
+   ]
+  ]
+ },
+ "9": {
+  "client_words": "Hello, my boyfriend and I have lived together for three years in a 3-room flat in Schlieren, and we both signed the lease. We’ve now split up. He moved in with his parents last week and no longer wants to pay anything. I have our 2-year-old daughter with me. The property management has already asked why only part of the rent is arriving. I don’t know whether I can stay in the flat alone and who is liable for what. He says he has given notice.",
+  "confirmed_facts": "F1 [who, inferred]: The client and her former boyfriend\nF2 [where, inferred]: A 3-room flat in Schlieren\nF3 [what, inferred]: The client and her former boyfriend have split up; the boyfriend moved out and stopped paying rent\nF4 [when, inferred]: The boyfriend moved out last week\nF5 [current_position, inferred]: The client is unsure if she can stay in the flat alone and who is liable for rent\nX1 [disputed] Rent payment responsibility: client says The boyfriend should continue to pay rent or be held liable for it; The boyfriend says He claims he has given notice and no longer owes rent\nE1 [event] Letter or message received: date unknown (client: \"The property management has already asked why only part of the rent is arriving.\")",
+  "deciding_facts": {
+   "documents": [
+    "other_letter_or_message"
+   ],
+   "situations": [
+    "co_tenant_left_or_gave_notice",
+    "rent_arrears"
+   ],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "no",
+    "children_in_household": "yes"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Rent payment responsibility after co-tenancy ends",
+     "Potential liability for full rent if boyfriend's notice is invalid"
+    ],
+    "articles": [
+     "OR 264"
+    ]
+   },
+   {
+    "titles": [
+     "A co-tenant left or gave notice"
+    ],
+    "articles": [
+     "OR 266l",
+     "OR 544",
+     "OR 143"
+    ]
+   },
+   {
+    "titles": [
+     "Unpaid rent and payment demand"
+    ],
+    "articles": [
+     "OR 257d",
+     "OR 272a"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 264 Abs. 1": "not_yet",
+   "OR Art. 264 Abs. 2": "not_yet",
+   "OR Art. 264 Abs. 3": "not_yet",
+   "OR Art. 266l Abs. 1": "open",
+   "OR Art. 266l Abs. 2": "not_yet",
+   "OR Art. 544 Abs. 1": "applies",
+   "OR Art. 544 Abs. 2": "applies",
+   "OR Art. 544 Abs. 3": "applies",
+   "OR Art. 143 Abs. 1": "applies",
+   "OR Art. 143 Abs. 2": "applies",
+   "OR Art. 257d Abs. 1": "applies",
+   "OR Art. 257d Abs. 2": "not_yet",
+   "OR Art. 272a Abs. 1": "not_yet",
+   "OR Art. 272a Abs. 2": "not_yet"
+  },
+  "law_text_german": {
+   "OR Art. 143 Abs. 1": "Solidarität unter mehreren Schuldnern entsteht, wenn sie erklären, dass dem Gläubiger gegenüber jeder einzeln für die Erfüllung der ganzen Schuld haften wolle.",
+   "OR Art. 143 Abs. 2": "Ohne solche Willenserklärung entsteht Solidarität nur in den vom Gesetze bestimmten Fällen.",
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen.",
+   "OR Art. 264 Abs. 1": "Gibt der Mieter die Sache zurück, ohne Kündigungsfrist oder -termin einzuhalten, so ist er von seinen Verpflichtungen gegenüber dem Vermieter nur befreit, wenn er einen für den Vermieter zumutbaren neuen Mieter vorschlägt; dieser muss zahlungsfähig und bereit sein, den Mietvertrag zu den gleichen Bedingungen zu übernehmen.",
+   "OR Art. 264 Abs. 2": "Andernfalls muss er den Mietzins bis zu dem Zeitpunkt leisten, in dem das Mietverhältnis gemäss Vertrag oder Gesetz endet oder beendet werden kann.",
+   "OR Art. 264 Abs. 3": "Der Vermieter muss sich anrechnen lassen, was er: a. an Auslagen erspart und b. durch anderweitige Verwendung der Sache gewinnt oder absichtlich zu gewinnen unterlassen hat.",
+   "OR Art. 266l Abs. 1": "Vermieter und Mieter von Wohn- und Geschäftsräumen müssen schriftlich kündigen.",
+   "OR Art. 266l Abs. 2": "Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Mieter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Mietverhältnisses verlangen will.",
+   "OR Art. 272a Abs. 1": "Die Erstreckung ist ausgeschlossen bei Kündigungen: a. wegen Zahlungsrückstand des Mieters (Art. 257d); b. wegen schwerer Verletzung der Pflicht des Mieters zu Sorgfalt und Rücksichtnahme (Art. 257f Abs. 3 und 4); c. wegen Konkurs des Mieters (Art. 266h). d. eines Mietvertrages, welcher im Hinblick auf ein bevorstehendes Umbau- oder Abbruchvorhaben ausdrücklich nur für die beschränkte Zeit bis zum Baubeginn oder bis zum Erhalt der erforderlichen Bewilligung abgeschlossen wurde.",
+   "OR Art. 272a Abs. 2": "Die Erstreckung ist in der Regel ausgeschlossen, wenn der Vermieter dem Mieter einen gleichwertigen Ersatz für die Wohn- oder Geschäftsräume anbietet.",
+   "OR Art. 544 Abs. 1": "Sachen, dingliche Rechte oder Forderungen, die an die Gesellschaft übertragen oder für sie erworben sind, gehören den Gesellschaftern gemeinschaftlich nach Massgabe des Gesellschaftsvertrages.",
+   "OR Art. 544 Abs. 2": "Die Gläubiger eines Gesellschafters können, wo aus dem Gesellschaftsvertrage nichts anderes hervorgeht, zu ihrer Befriedigung nur den Liquidationsanteil ihres Schuldners in Anspruch nehmen.",
+   "OR Art. 544 Abs. 3": "Haben die Gesellschafter gemeinschaftlich oder durch Stellvertretung einem Dritten gegenüber Verpflichtungen eingegangen, so haften sie ihm solidarisch, unter Vorbehalt anderer Vereinbarung."
+  },
+  "X": [
+   [
+    "If the client's boyfriend has not properly returned the flat (moved out without following the proper notice period), the client may still be responsible for the full rent until the lease legally ends, unless she finds a new, suitable tenant for the landlord.  [OR Art. 264 Abs. 2]",
+    "If the boyfriend's notice is invalid, the client should not accept his claim that he no longer owes rent and should clarify the proper notice requirements with the landlord.  [OR Art. 264 Abs. 1]",
+    "If the client stays in the flat, she should keep records of all rent payments and communications with the landlord and boyfriend, as she may need to prove who paid what and when.  [OR Art. 264 Abs. 3]"
+   ],
+   [
+    "If the landlord has given notice of termination, the client should verify the notice was served using the official cantonal form and check if it complies with the required procedure.  [OR Art. 266l Abs. 2]",
+    "If the boyfriend claims he has given notice, the client should ask him to provide proof of the notice and confirm whether it was properly served to the landlord.  [OR Art. 266l Abs. 1]",
+    "If the boyfriend is still listed on the lease, the client may still be held responsible for the full rent until the lease is legally terminated or a new agreement is made with the landlord.  [OR Art. 266l Abs. 1]"
+   ],
+   [
+    "If the property management has already sent a written demand for payment with a deadline and a warning of termination, the client must pay the outstanding rent by that date to avoid eviction.  [OR Art. 257d Abs. 1]",
+    "If the landlord later serves a termination notice, the client should know that she cannot ask for an extension of the lease because the law excludes it when the tenant is in arrears with rent.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers an equivalent replacement flat, the client would not be able to request an extension even if she wanted to.  [OR Art. 272a Abs. 2]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the client's former boyfriend has not moved out or handed back the flat, he remains liable for the full rent until the tenancy ends, unless he proposes a suitable, solvent replacement tenant.  [OR Art. 264 Abs. 2]",
+    "If the client's former boyfriend has already moved out or handed back the flat, he would only be released from rent obligations if he proposed a suitable, solvent replacement tenant; otherwise, he must pay rent until the tenancy legally ends.  [OR Art. 264 Abs. 1]",
+    "If the client's former boyfriend has moved out or handed back the flat, the landlord must account for any savings or gains from the flat's re-use.  [OR Art. 264 Abs. 3]"
+   ],
+   [
+    "If the landlord has given notice of termination to the client or her former boyfriend, the landlord must use a cantonal-approved form specifying how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "The client and her former boyfriend are jointly and severally liable for the rent under the lease agreement, unless otherwise agreed.  [OR Art. 544 Abs. 3]",
+    "If the client and her former boyfriend had jointly declared to the landlord that each would be individually liable for the entire rent, this would create joint and several liability.  [OR Art. 143 Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet sent the client a written demand to pay the overdue rent within a minimum 10-day (or 30-day for flats) deadline and warned of termination, this step must happen before any termination can be valid.  [OR Art. 257d Abs. 1]",
+    "If the landlord has already issued a written payment deadline with termination warning and the client has not paid within that period, the landlord may terminate the lease with at least 30 days' notice for a flat.  [OR Art. 257d Abs. 2]",
+    "If the landlord later serves notice of termination due to non-payment, the client cannot request an extension of the tenancy under OR Art. 272a Abs. 1 because the law excludes such extensions for arrears under Art. 257d.  [OR Art. 272a Abs. 1]",
+    "If the landlord offers the client an equivalent replacement flat, an extension of the tenancy would generally be excluded under OR Art. 272a Abs. 2.  [OR Art. 272a Abs. 2]"
+   ]
+  ]
+ },
+ "10": {
+  "client_words": "Hi, I'm Jonas, 29. I rent a 2-room flat in Winterthur on my own since 2021. The contract has no end date. I'm not married and nobody else is on the lease. I found a new flat that starts on 1 April 2027, so I want to end my current lease at the end of March. My contract says the notice period is 3 months and that I can cancel to the end of any month except December. My rent is paid and there are no problems with the landlord. How do I cancel, and until when? Can I just send an email to the property management?",
+  "confirmed_facts": "F1 [who, reported]: Jonas, a 29-year-old individual\nF2 [where, reported]: A 2-room flat in Winterthur\nF3 [what, reported]: Seeking to terminate a rental lease\nF4 [when, reported]: Intends to move out by end of March 2027\nF5 [current_position, reported]: Renting a flat with no end date on the contract\nF6 [who, reported]: Rents alone with no others on the lease\nF7 [what, reported]: Notice period is 3 months with restrictions\nF8 [what, reported]: Rent is up to date and no issues with landlord\nF9 [what, reported]: Seeking clarification on cancellation procedure\nF10 [what, reported]: Questioning if email is an acceptable method to cancel",
+  "deciding_facts": {
+   "documents": [],
+   "situations": [],
+   "intents": [
+    "move_out"
+   ],
+   "household": {
+    "married_or_registered_partner": "no",
+    "children_in_household": "no"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Valid notice period and termination date for an open-ended tenancy",
+     "No requirement for landlord's consent to terminate"
+    ],
+    "articles": [
+     "OR 266a",
+     "OR 266c",
+     "OR 266"
+    ]
+   },
+   {
+    "titles": [
+     "Required written form for termination notice",
+     "Email not sufficient as written notice"
+    ],
+    "articles": [
+     "OR 266l"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 266a Abs. 1": "applies",
+   "OR Art. 266a Abs. 2": "not_yet",
+   "OR Art. 266c": "applies",
+   "OR Art. 266 Abs. 1": "applies",
+   "OR Art. 266 Abs. 2": "applies",
+   "OR Art. 266l Abs. 1": "not_yet",
+   "OR Art. 266l Abs. 2": "not_yet"
+  },
+  "law_text_german": {
+   "OR Art. 266 Abs. 1": "Haben die Parteien eine bestimmte Dauer ausdrücklich oder stillschweigend vereinbart, so endet das Mietverhältnis ohne Kündigung mit Ablauf dieser Dauer.",
+   "OR Art. 266 Abs. 2": "Setzen die Parteien das Mietverhältnis stillschweigend fort, so gilt es als unbefristetes Mietverhältnis.",
+   "OR Art. 266a Abs. 1": "Die Parteien können das unbefristete Mietverhältnis unter Einhaltung der gesetzlichen Fristen und Termine kündigen, sofern sie keine längere Frist oder keinen anderen Termin vereinbart haben.",
+   "OR Art. 266a Abs. 2": "Halten die Parteien die Frist oder den Termin nicht ein, so gilt die Kündigung für den nächstmöglichen Termin.",
+   "OR Art. 266c": "Bei der Miete von Wohnungen können die Parteien mit einer Frist von drei Monaten auf einen ortsüblichen Termin oder, wenn es keinen Ortsgebrauch gibt, auf Ende einer dreimonatigen Mietdauer kündigen.",
+   "OR Art. 266l Abs. 1": "Vermieter und Mieter von Wohn- und Geschäftsräumen müssen schriftlich kündigen.",
+   "OR Art. 266l Abs. 2": "Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Mieter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Mietverhältnisses verlangen will."
+  },
+  "X": [
+   [
+    "If the landlord has not already given notice, Jonas must give written notice to end the lease by the end of March 2027.  [OR Art. 266a Abs. 2]",
+    "If the landlord has not already given notice, Jonas should check the exact date the notice must be received by the landlord to meet the end of March deadline.  [OR Art. 266a Abs. 2]",
+    "If Jonas sends an email to cancel, he should also send a formal letter by post to be safe, as email may not meet legal requirements for termination.  [OR Art. 266a Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet sent a termination notice, Jonas must wait for the landlord to provide a proper written notice using the official canton-approved form.  [OR Art. 266l Abs. 1]",
+    "If the landlord sends a notice, Jonas must ensure it is on the official form that explains how to contest the termination or request an extension.  [OR Art. 266l Abs. 2]",
+    "If Jonas wants to cancel the lease himself, he cannot use an email; he must send a written notice on the official form to the landlord.  [OR Art. 266l Abs. 1]"
+   ]
+  ],
+  "Y": [
+   [
+    "Jonas can terminate his open-ended tenancy by giving notice three months in advance to the end of any month except December, as per OR Art. 266c for flats.  [OR Art. 266c]",
+    "If the landlord has not yet given Jonas notice of termination or Jonas has not yet given notice to the landlord, the termination cannot yet be processed.  [OR Art. 266a Abs. 2]",
+    "If Jonas gives valid notice by the required deadline, his tenancy will end at the next permissible date after the notice period expires.  [OR Art. 266a Abs. 1]"
+   ],
+   [
+    "If the landlord has not yet given Jonas notice of termination, the landlord must use a cantonally approved form to terminate the lease.  [OR Art. 266l Abs. 2]",
+    "If Jonas wants to terminate the lease, he must not use an email; he must give written notice using the required form.  [OR Art. 266l Abs. 1]"
+   ]
+  ]
+ },
+ "11": {
+  "client_words": "Hello, I am Amina, I live in Zurich-Schwamendingen with my husband and our two children (3 and 7). On Saturday night my husband hit me again and the police came. They gave him a paper that he cannot come home for 14 days. The lease is only in his name. Now he writes me messages that he will cancel the flat so me and the kids are on the street, and that he will stop paying the rent. My B permit is because of him, I am scared I lose it if I leave him. The rent for December is due soon. What can I do? Please don't tell him I asked.",
+  "confirmed_facts": "F1 [who, inferred]: Amina, her husband, and their two children (ages 3 and 7)\nF2 [where, inferred]: Zurich-Schwamendingen\nF3 [what, reported]: The husband was removed from the home by police for 14 days following domestic violence on Saturday night\nF4 [when, inferred]: Recent past (Saturday night) and upcoming (December rent due)\nF5 [current_position, inferred]: Amina and children are at risk of homelessness if the husband cancels the flat or stops paying rent\nX1 [disputed] Lease ownership and right to cancel: client says The husband cannot unilaterally cancel the lease and must not evict her and the children; The husband says He claims he can cancel the flat and stop paying rent\nX2 [disputed] Responsibility for rent payment: client says The husband must continue to pay the rent despite being excluded from the flat; The husband says He intends to stop paying the rent\nX3 [disputed] Dependence on husband's B permit: client says Amina fears losing her B permit if she leaves her husband; Swiss immigration authorities (implied) says Immigration status may be affected by separation or domestic violence circumstances",
+  "deciding_facts": {
+   "documents": [],
+   "situations": [],
+   "intents": [],
+   "household": {
+    "married_or_registered_partner": "yes",
+    "children_in_household": "yes"
+   }
+  },
+  "deadlines_calculated_by_code": [],
+  "issues": [
+   {
+    "titles": [
+     "Rent payment obligation despite the tenant's threats to cancel the lease",
+     "Rent due for December and risk of non-payment by the tenant"
+    ],
+    "articles": [
+     "OR 257d"
+    ]
+   }
+  ],
+  "paragraph_status_set_by_code": {
+   "OR Art. 257d Abs. 1": "not_yet",
+   "OR Art. 257d Abs. 2": "not_yet"
+  },
+  "law_text_german": {
+   "OR Art. 257d Abs. 1": "Ist der Mieter nach der Übernahme der Sache mit der Zahlung fälliger Mietzinse oder Nebenkosten im Rückstand, so kann ihm der Vermieter schriftlich eine Zahlungsfrist setzen und ihm androhen, dass bei unbenütztem Ablauf der Frist das Mietverhältnis gekündigt werde. Diese Frist beträgt mindestens zehn Tage, bei Wohn- und Geschäftsräumen mindestens 30 Tage.",
+   "OR Art. 257d Abs. 2": "Bezahlt der Mieter innert der gesetzten Frist nicht, so kann der Vermieter fristlos, bei Wohn- und Geschäftsräumen mit einer Frist von mindestens 30 Tagen auf Ende eines Monats kündigen."
+  },
+  "X": [
+   [
+    "If the landlord has not yet sent a written notice demanding payment of the overdue rent and warning of termination, the client should ask the landlord to issue such a notice so she has a clear deadline to pay and avoid immediate eviction.  [OR Art. 257d Abs. 1]",
+    "If the husband attempts to cancel the lease unilaterally, the client should inform the landlord that the lease remains binding regardless of the husband's actions, as only the landlord can validly terminate it under the law.  [OR Art. 257d Abs. 2]"
+   ]
+  ],
+  "Y": [
+   [
+    "If the landlord has not yet set a written payment deadline with a warning of lease termination, the landlord must do so before any termination can be valid.  [OR Art. 257d Abs. 1]",
+    "If the landlord has set a payment deadline but the tenant has not paid by the end of that period, the landlord can terminate the lease for flats with at least 30 days' notice.  [OR Art. 257d Abs. 2]",
+    "If the husband unilaterally cancels the lease or stops paying rent, the landlord may still be able to enforce rent payment or terminate the lease under OR Art. 257d Abs. 2, regardless of the husband's actions, as long as the formal notice requirements are met.  [OR Art. 257d Abs. 2]"
+   ]
+  ]
+ }
+}

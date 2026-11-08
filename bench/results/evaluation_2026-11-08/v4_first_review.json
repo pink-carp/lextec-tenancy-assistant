@@ -1,0 +1,173 @@
+{
+ "1": {
+  "questions": [
+   {"i":0,"label":"relevant","note":"children/health part relevant for mould; heating part generic"},
+   {"i":1,"label":"relevant"},
+   {"i":2,"label":"relevant"},
+   {"i":3,"label":"already_answered","note":"client says she is thinking of paying 30% less; not pre-filled"},
+   {"i":4,"label":"relevant"},
+   {"i":5,"label":"already_answered","note":"reported by phone only; has photos; not pre-filled"}
+  ],
+  "missing_questions": ["She asks 'should I move out?': notice period / termination dates in her lease (ordinary termination vs. Art. 259b)"],
+  "legal_points": ["ok","ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"summary+handout","quote":"She noticed black spots on the wall behind her bed and in the corner near the window last month","why":"window corner is new ('now'), only the bed wall was last month (minor)"},
+   {"where":"expert_brief","quote":"is concerned about the landlord's suggested remedy of using vinegar instead of professional remediation","why":"not stated by client; embellishment"}
+  ],
+  "deadlines": "ok (none)", "lane": "appropriate"
+ },
+ "2": {
+  "questions": [
+   {"i":0,"label":"already_answered","note":"'Today I received a registered letter'"},
+   {"i":1,"label":"relevant"},{"i":2,"label":"relevant"},{"i":3,"label":"relevant"},
+   {"i":4,"label":"relevant","note":"Art. 266n separate delivery to spouse"}
+  ],
+  "missing_questions": [],
+  "legal_points": ["ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"expert_brief","quote":"whether they can retain their apartment as their family home","why":"'family home' (Art. 266m-n) presumes marriage; marital status unknown"},
+   {"where":"expert_brief","quote":"immediate_risk: None identified by the tool.","why":"30-day payment deadline running, lane 3; contradicts deadline shown"},
+   {"where":"handout act_now","quote":"by 2026-12-08","why":"presented as certain without the 'estimate' tag used in other cases (minor)"}
+  ],
+  "deadlines": "ok", "lane": "appropriate"
+ },
+ "3": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant"},{"i":2,"label":"relevant"},
+   {"i":3,"label":"already_answered","note":"father offered help; salary at end of month; not pre-filled"},
+   {"i":4,"label":"relevant"}
+  ],
+  "missing_questions": ["Exactly when is the salary paid and does it cover the full arrears before the payment deadline (end-of-month pay vs. estimated 25 Nov deadline)?"],
+  "legal_points": ["ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"summary+handout","quote":"non-payment could lead to eviction ('Kündigung')","why":"Kündigung = termination, not eviction (Ausweisung); legal mistranslation"},
+   {"where":"expert_brief","quote":"he is unsure whether he can raise the full amount owed from savings, family, or social services","why":"fabricated from unanswered question text; client said his father can help and he is paid at month end"},
+   {"where":"expert_brief","quote":"immediate_risk: None identified by the tool.","why":"payment deadline running (est. 2026-11-25)"}
+  ],
+  "omission": "Never tells Luca not to ignore the letter / that end-of-month pay may arrive after the deadline",
+  "deadlines": "ok (conservative estimate)", "lane": "appropriate (borderline 2/3)"
+ },
+ "4": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant"},{"i":2,"label":"relevant"},{"i":3,"label":"relevant"},{"i":4,"label":"relevant"},
+   {"i":5,"label":"already_answered","note":"amount (3 months' rent) and 'at the bank' stated; partly"}
+  ],
+  "missing_questions": [],
+  "legal_points": ["ok","ok","ok","noise","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [],
+  "other": "Contact 'Frauenzentrale Winterthur - Legal Advice' for male client: verify it serves men",
+  "deadlines": "ok", "lane": "appropriate (could be 1)"
+ },
+ "5": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant"},{"i":2,"label":"relevant"},
+   {"i":3,"label":"already_answered","note":"a cat; not yet living with her ('promised to take')"},
+   {"i":4,"label":"irrelevant","note":"no animal yet, so no warning about it"},
+   {"i":5,"label":"relevant"}
+  ],
+  "missing_questions": ["Whose name is the lease in (hers, late husband's, both)? husband died last month","Is there a doctor's/therapist's letter supporting the need for the animal?"],
+  "legal_points": ["ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok"],
+  "wrong_statements": [],
+  "other": "vulnerability 'low' for widow bereaved last month is questionable",
+  "deadlines": "ok", "lane": "appropriate"
+ },
+ "6": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant","note":"'Please upload' is confusing in client handout"},{"i":2,"label":"relevant"},{"i":3,"label":"relevant"},{"i":4,"label":"relevant","note":"start date 'January' partly given"},{"i":5,"label":"relevant"}
+  ],
+  "missing_questions": [],
+  "legal_points": ["ok","ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"expert_brief","quote":"bringing their current rent of 1,850 francs to an unknown new amount","why":"new rent is 2,130 (1,850 + 280)"},
+   {"where":"expert_brief","quote":"immediate_risk: None identified by the tool.","why":"30-day challenge period running; deadline 2026-11-25 shown elsewhere"}
+  ],
+  "deadlines": "ok", "lane": "appropriate"
+ },
+ "7": {
+  "questions": [
+   {"i":0,"label":"already_answered","note":"heating out in November, children 1 and 4"},
+   {"i":1,"label":"already_answered","note":"heating, 10 days"},
+   {"i":2,"label":"already_answered","note":"phoned twice"},
+   {"i":3,"label":"already_answered","note":"'Are we allowed to pay less rent?'"},
+   {"i":4,"label":"irrelevant","note":"mould/airing; landlord cites spare-part supply, no blame"},
+   {"i":5,"label":"relevant"}
+  ],
+  "missing_questions": ["Has the landlord provided or been asked for temporary heaters?"],
+  "legal_points": ["ok","ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "missing_points": "rent reduction does not depend on landlord fault (spare-part delay irrelevant to Art. 259d); demand interim heating",
+  "wrong_statements": [
+   {"where":"expert_brief","quote":"they are in dispute with the property management over responsibility for the repair","why":"no dispute; management acknowledges and cites supply problems"},
+   {"where":"expert_brief","quote":"immediate_risk: None identified by the tool.","why":"toddlers at 14 degrees, youngest ill"},
+   {"where":"indices","quote":"urgency: low","why":"heating failure with infant in November"}
+  ],
+  "deadlines": "ok (none)", "lane": "too_low (should be 3 by tool's own rule: vulnerability high, severity >= medium)"
+ },
+ "8": {
+  "questions": [
+   {"i":0,"label":"relevant"},
+   {"i":1,"label":"irrelevant","note":"heating/children boilerplate; not in case"},
+   {"i":2,"label":"relevant"},{"i":3,"label":"relevant"},{"i":4,"label":"relevant"},
+   {"i":5,"label":"already_answered","note":"end of March, no reason"},
+   {"i":6,"label":"relevant","note":"prefill 'three weeks ago' is the report date, not onset"},
+   {"i":7,"label":"relevant"},
+   {"i":8,"label":"irrelevant","note":"she always paid on time"},
+   {"i":9,"label":"relevant","note":"marginal"},
+   {"i":10,"label":"relevant","note":"prefill 'yes' overclaims photos"}
+  ],
+  "missing_questions": ["Is the lease open-ended or fixed-term? (extension deadline Art. 273 Abs. 2)"],
+  "legal_points": ["ok","ok","ok","ok","ok","ok","noise","noise","noise","noise"],
+  "legal_point_notes": {"6":"rent-withholding warning; she always paid","7":"Hinterlegung boilerplate","8":"tenant's immediate termination contrary to her goal of staying","9":"duplicate of LP1"},
+  "actions": ["ok","unhelpful","ok","unhelpful","ok","ok","ok","ok","ok"],
+  "wrong_statements": [],
+  "deadlines": "ok", "lane": "appropriate"
+ },
+ "9": {
+  "questions": [
+   {"i":0,"label":"relevant"},
+   {"i":1,"label":"already_answered","note":"'we both signed the lease'"},
+   {"i":2,"label":"relevant"},{"i":3,"label":"relevant"},
+   {"i":4,"label":"already_answered","note":"'boyfriend' = not married"}
+  ],
+  "missing_questions": ["Was a deposit paid, and in whose name? (LP4 discusses it)","Does she want to stay alone and can she pay the full rent herself?"],
+  "legal_points": ["ok","ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [],
+  "other": "co-tenant notice event 'unknown' although 'He says he has given notice' (conservative, minor)",
+  "deadlines": "ok", "lane": "appropriate"
+ },
+ "10": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant"},{"i":2,"label":"relevant"},
+   {"i":3,"label":"wrong_prefill","note":"prefilled 'yes'; new flat starts 1 April, lease ends 31 March: no early move"}
+  ],
+  "missing_questions": [],
+  "legal_points": ["ok","ok","ok","inapplicable"],
+  "actions": ["ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"client_handout","quote":"If you move out before the lease can end, and the landlord does not agree to an earlier end, you are free of the rent only if you propose a new tenant...","why":"inapplicable, triggered by wrong prefill"}
+  ],
+  "other": "spouse-signature line shown although client said he is not married (minor)",
+  "deadlines": "ok (2026-12-31 receipt correct)", "lane": "appropriate"
+ },
+ "11": {
+  "questions": [
+   {"i":0,"label":"relevant"},{"i":1,"label":"relevant"},{"i":2,"label":"relevant"},
+   {"i":3,"label":"already_answered","note":"'my husband', lease in his name, family lives there; event confirmed yes"}
+  ],
+  "missing_questions": ["Can she pay the December rent herself / does she need social-assistance help?"],
+  "legal_points": ["ok","ok","ok","ok","ok"],
+  "actions": ["ok","ok","ok","ok"],
+  "wrong_statements": [
+   {"where":"expert_brief","quote":"No current housing or financial consequence identified.","why":"December rent due, husband stops paying and threatens to cancel"}
+  ],
+  "verify": ["Victim support number 142 (national number; verify in service)","Zurich GSG: extension of 14-day protective order must be requested within 8 days (outside OR; brief says 'No running deadline')"],
+  "deadlines": "ok for tenancy", "lane": "appropriate"
+ }
+}

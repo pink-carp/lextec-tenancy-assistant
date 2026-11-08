@@ -1,0 +1,1423 @@
+{
+ "1": {
+  "P": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 2,
+    "duplicate": 1,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "When exactly (date) did she phone the property manager? (start of 259d reduction)",
+    "Has she already paid less rent / when is next rent due?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Warning: do not unilaterally cut rent by 30%; use written notice + Hinterlegung (259g) instead"
+   ],
+   "actions": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 1
+   },
+   "wrong_statements": [
+    "summary: 'guidance on reducing or depositing rent' – client never mentioned depositing rent (minor)"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q1 asks about a written warning for 'noise, damage, nuisance' – template question irrelevant to a mould defect",
+    "Q8 asks whether she received a termination letter – irrelevant",
+    "Q7 overlaps Q1 (landlord complaint letters)",
+    "No legal statement, handout point or act_now warns that unilaterally paying 30% less rent risks arrears/termination (Art. 257d); only buried in expert brief",
+    "Handout has no points and act_now empty; only action is vague 'arrange advice'",
+    "Legal statements cover 264 early return but not the 259b/ordinary-termination routes in client-facing text"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 3,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Date of the phone report to the property manager (asked only as 'when and how', prefilled just 'phone')"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "questions prefill: 'since ~2 years' (mould noticed last month)"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q2 prefilled 'mold in flat, since ~2 years' – wrong extraction: she moved in 2 years ago, mould appeared last month",
+    "Q2, Q4 (paying less rent), Q5 (landlord blames ventilation) ask what the client already said",
+    "Q1 heating/hot water part is template noise for a mould case (children/health part is relevant)",
+    "Client handout 'summary' is written in third person ('Cristina reports...')",
+    "Expert brief 'objective_and_context' is a raw dump of the client's text labelled '(masked)' though the name is not masked"
+   ],
+   "usefulness": 4,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 6,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Has she already reduced the rent / when is next rent due?",
+    "Does the mould affect health (children, illness)?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Warning: do not unilaterally cut rent (257d risk)",
+    "Answer to 'should I move out?' (259b / notice / 264)"
+   ],
+   "actions": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "client_handout action: 'threatening to withhold rent if unaddressed'",
+    "summary: 'wants professional mold remediation' (not stated)",
+    "expert_brief issue: 'Mold growth due to maintenance defects' presumes the disputed cause"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Client handout action: 'threatening to withhold rent if unaddressed' – legally wrong/dangerous; the lawful threat is to deposit rent (259g), withholding leads to 257d termination",
+    "No legal statements at all; no warning against her plan to pay 30% less",
+    "Q1 'Since when have you been seeing the mold' – already answered (last month)",
+    "Q4 'When did the property manager say he first learned about the mold from you?' – oddly framed; should ask when she reported it",
+    "Summary/handout attribute to client a wish for 'professional mould remediation' she never stated",
+    "Moving-out question of the client not addressed anywhere"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  }
+ },
+ "2": {
+  "P": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 4,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Can you pay the full arrears before the deadline (savings, social services, family)?",
+    "On which date did you receive/collect the letter?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 6,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Full payment within the deadline averts termination (257d)",
+    "Letter is a warning, not yet a termination"
+   ],
+   "actions": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 2
+   },
+   "wrong_statements": [
+    "client_handout act_now: 'The letter says you must pay the rent arrears in full by 8 December 2026'",
+    "expert_brief main_issue: 'The stated payment deadline is 8 December 2026'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q2 fixed-term lease, Q7 lease only until demolition, Q6 'did both missed payments become due after you moved in' – template questions irrelevant to a 257d payment demand",
+    "Q5 upload rent-payment clause – low value",
+    "Handout act_now: 'The letter says you must pay ... by 8 December 2026' – the letter's date is unknown; 8 Dec is the tool's computed minimum, presented as what the letter says",
+    "Expert brief: 'The stated payment deadline is 8 December 2026' – same fabrication",
+    "Legal statements never say the key point: paying the full arrears within the deadline prevents termination; and the letter is not yet a termination",
+    "Actions are vague (arrange appointment / review finances); no concrete step such as social-assistance application for arrears or contacting landlord"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Handout act_now gives '2026-12-08' as the deadline (with qualifier that the letter governs) – acceptable but could be read as fixed",
+    "Handout 'If you have received a payment demand' – awkward conditional although she has",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  },
+  "R": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 1
+   },
+   "missing_questions": [
+    "On which date did you receive the letter?",
+    "Can you raise the full amount in time?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Full payment within the deadline averts termination",
+    "Letter is not yet a termination"
+   ],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief immediate_risk: 'None identified by the tool.'",
+    "expert_brief main_issue: 'with a deadline of 2026-12-08' stated as fact",
+    "question why: 'If they didn't offer a replacement, it could make the termination unfair and harder for them to enforce'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q6 'Did the landlord offer you another place to live... If they didn't offer a replacement, it could make the termination unfair and harder for them to enforce' – legally wrong (272a Abs. 2: an offer of a replacement EXCLUDES extension; no such duty)",
+    "Q1 fixed-term lease – irrelevant",
+    "Q5 'What reason does the letter give for wanting to end your lease?' – already answered (unpaid rent)",
+    "Q2 why 'extra protection under the law against being evicted' – overstated (266n is a formal service requirement)",
+    "No legal statements; key point (pay in full within deadline averts termination; no extension for arrears) missing from client-facing output",
+    "Handout act_now empty despite a running payment deadline",
+    "Expert brief immediate_risk 'None identified by the tool' – wrong, a payment deadline is running",
+    "Expert brief asks lawyer about 'disputed facts between the client and the landlord' – none exist"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  }
+ },
+ "3": {
+  "P": {
+   "questions": {
+    "relevant": 6,
+    "irrelevant": 1,
+    "duplicate": 1,
+    "already_answered": 0,
+    "legally_wrong": 2
+   },
+   "missing_questions": [
+    "When exactly is your payday, and is it before the deadline in the letter?",
+    "Can you raise the full amount in time (incl. father, social services)?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Not yet a termination; full payment within deadline averts it",
+    "Don't ignore the letter; end-of-month pay may be too late"
+   ],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief: 'Right to request rent reduction if financial hardship exists' [OR 270a]",
+    "expert_brief immediate_risk: 'None identified by the tool.'",
+    "question why: 'If your lease is fixed-term, the landlord can't evict you before that date unless you break the rules.'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q10 'Have you ever sent a written request to the landlord asking for a rent reduction because your income dropped?' – legally wrong premise: no right to rent reduction for tenant's income loss",
+    "Q8 why 'If your lease is fixed-term, the landlord can't evict you before that date unless you break the rules' – misleading; arrears-termination (257d) applies to fixed-term leases too",
+    "Q1 fixed-term lease – irrelevant; Q4 duplicates Q3 (date of receipt)",
+    "Q7 why 'If they are extra charges you don't owe' – frames Nebenkosten as possibly not covered; 257d covers ancillary costs too",
+    "Expert brief cites OR 270a as 'Right to request rent reduction if financial hardship exists' – wrong law (270a is about excessive return after cost reductions)",
+    "Expert brief immediate_risk 'None identified by the tool' despite running payment deadline",
+    "No legal statements; client never told the letter is not yet a termination and that full payment in time saves the lease; handout act_now empty",
+    "Does not flag that his end-of-month salary may arrive after the deadline"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 2,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Can you pay the full arrears before the deadline (payday date, father's help)?"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 1,
+    "misleading": 0,
+    "noise": 2
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q3 fixed-term lease and Q7 lease only until demolition – irrelevant template questions",
+    "L4 and L5 duplicate L1 and L3 almost verbatim",
+    "L7 (272a Abs. 2 replacement flat) – inapplicable to this case",
+    "Only two vague actions; no 'contact landlord / payment plan', no mention of father's offer",
+    "Handout has no points"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "When is your payday relative to the deadline?"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Handout point 'even if you lost your job' – generic (Luca had hours cut), harmless",
+    "Does not explicitly connect the end-of-month salary to the estimated 25 Nov deadline (act_now says 'act earlier')",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  }
+ },
+ "4": {
+  "P": {
+   "questions": {
+    "relevant": 7,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Does the landlord claim any outstanding amount (e.g. Nebenkosten settlement)?"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 1
+   },
+   "missing_key_points": [
+    "One-year rule of 257e Abs. 3",
+    "Conciliation authority route"
+   ],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief issue 'Moving out early' [OR 264] – inapplicable"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Key point missing from legal statements and handout: after one year from tenancy end without legal action by the landlord, Sandro can claim the deposit from the bank alone (257e Abs. 3, 2nd sentence) – only appears in an expert-brief issue heading",
+    "L1 (3 months is the maximum deposit) – noise, not in issue",
+    "Expert brief includes 'Moving out early' (OR 264) and asks the lawyer about 'moving out early' – inapplicable, Sandro moved out at the end of the tenancy",
+    "No mention of the conciliation authority as a free route; handout points empty, act_now empty",
+    "Q4/Q6 partly asked already (handover 'was fine')"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 6,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q6 asks deposit amount though client said 3 months' rent (minor; bank/account name part is relevant)",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  },
+  "R": {
+   "questions": {
+    "relevant": 2,
+    "irrelevant": 2,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "On which date did the tenancy end?",
+    "Was a handover protocol signed / any defects reported?",
+    "Does the landlord claim outstanding Nebenkosten or other amounts?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "One-year rule of 257e Abs. 3",
+    "Conciliation authority route"
+   ],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 1,
+    "inapplicable": 1,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "action: 'Inform client about Frauenzentrale Winterthur'",
+    "action: 'referencing legal right under OR Art. 257e Abs. 3' (premature)",
+    "expert_brief objective: 'The landlord has not provided a valid reason for withholding the deposit.'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q1 'given as cash, or placed in a bank account' – already answered (deposit is at the bank)",
+    "Q2 'labeled as tenant's deposit or regular savings account' and Q4 'agreement that deposit would be released' – irrelevant",
+    "A5/handout: refers Sandro (a man) to 'Frauenzentrale Winterthur' – inapplicable referral",
+    "A4: written demand 'referencing legal right under OR Art. 257e Abs. 3' – misleading: before one year 257e Abs. 3 gives no right to release without landlord consent",
+    "No legal statements; one-year rule and bank-consent rule missing from client-facing output",
+    "Expert brief repeats 257e three times and asserts 'The landlord has not provided a valid reason for withholding' / issue 'without valid reason' – unsupported"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  }
+ },
+ "5": {
+  "P": {
+   "questions": {
+    "relevant": 0,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "What does the signed lease say about pets?",
+    "Are the house rules part of the lease (signed/received with it)?",
+    "Was the pet ban introduced after she signed (25 years ago)?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Pet keeping depends on the lease/agreed house rules; a later unilateral change needs the 269d procedure"
+   ],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 1,
+    "unsupported": 2,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "action: 'pet policies can sometimes be negotiated or overridden ... especially for support animals'",
+    "action: 'support any request for reasonable accommodation'",
+    "expert_brief: issue 'Pet prohibition in rental agreement' [OR 256]"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "No follow-up questions at all, although the decisive fact (does the signed lease contain/incorporate the pet ban? was it added later?) is unknown; lane rule claims 'enough information'",
+    "No legal statements",
+    "A3/handout: pet bans 'can sometimes be ... overridden ... especially for support animals' – unsupported; Swiss tenancy law gives support animals no special status",
+    "A4: 'request for reasonable accommodation' – US-law concept, not Swiss law",
+    "Expert brief cites OR 256 (landlord's duty to keep the flat fit for use) for 'Pet prohibition in rental agreement' – inapplicable; 269d cited without explanation"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 4,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q4 'What animal is it ... is it already living with you?' – already answered (a cat, not yet taken)",
+    "Q5 written warning about the animal – premature, she has no cat yet",
+    "269d Abs. 3 (later unilateral change) only in expert brief, not in legal statements (Q3 asks the right question though)",
+    "L4 termination detail is heavy for a client who has no animal yet"
+   ],
+   "usefulness": 4,
+   "jury_spots_error": false
+  },
+  "R": {
+   "questions": {
+    "relevant": 0,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "What does the signed lease say about pets?",
+    "Are the house rules part of the lease?",
+    "Was the ban introduced after she signed?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "No follow-up questions, although lane 2 says 'material information is missing' – the lease/house-rules status is the decisive unknown",
+    "Expert brief cites OR 256 without any rule (noise)"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  }
+ },
+ "6": {
+  "P": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 0,
+    "duplicate": 3,
+    "already_answered": 0,
+    "legally_wrong": 1
+   },
+   "missing_questions": [
+    "What notice period and termination dates does your lease have (can the increase take effect in January at all)?"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "30-day deadline to challenge at the conciliation authority (270b)",
+    "Increase only to next termination date; notice ≥10 days before notice period"
+   ],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "question why: 'The law requires at least ten days' notice before the increase can take effect'",
+    "expert_brief: 'formal requirements under OR Art. 266l and OR Art. 266m'",
+    "expert_brief immediate_risk: 'None identified by the tool.'"
+   ],
+   "lane": "appropriate (borderline; lane 3 also defensible given 4 children and a running deadline)",
+   "errors": [
+    "Q5, Q7 and Q9 ask the same thing three times (reason for the increase); Q3 duplicates Q2 (date received)",
+    "Q6 why: 'The law requires at least ten days' notice before the increase can take effect' – legally wrong: 269d Abs. 1 requires notice 10 days before the notice period begins, i.e. the increase only takes effect at the next termination date",
+    "Q1 fixed-term question has an unrelated generic 'why'",
+    "No legal statements; the 30-day challenge deadline (270b) is in 'deadlines' but handout act_now is empty and no client-facing text explains it",
+    "Expert brief asks the lawyer whether the increase complies with 'formal requirements under OR Art. 266l and OR Art. 266m' – wrong law (termination form / family home)",
+    "Expert brief lists inapplicable issues: 272a extension, 257d arrears termination, 270a reduction request",
+    "Expert brief immediate_risk 'None identified by the tool' although a 30-day challenge deadline is running"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 7,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Thin: only two legal statements; 30 days not stated in the statement itself (date given in act_now); no 'keep paying current rent' or 270e protection in client-facing text (270e only in brief)",
+    "Q3/Q4/Q5/Q6 are all upload requests – heavy for a distressed client",
+    "Handout points empty",
+    "Expert brief issues phrased in second person ('You can challenge...')"
+   ],
+   "usefulness": 4,
+   "jury_spots_error": false
+  },
+  "R": {
+   "questions": {
+    "relevant": 6,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Long, dense legal statements (L1, L3) for a social worker, but correct",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  }
+ },
+ "7": {
+  "P": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 2,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief immediate_risk: 'Confirmed: Is the heating or hot water not working during the cold months, or do children ... live in the flat?; Confirmed: [same]'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q1 'Is the heating or hot water not working ... or do children live in the flat?' and Q2 'What is the problem, since when...' – already answered by the client (no prefill shown)",
+    "Q5 'Does the landlord say you caused the problem (for example mould...)?' – irrelevant; landlord blames spare-part supply",
+    "Expert brief immediate_risk is a raw glitch: 'Confirmed: Is the heating or hot water not working during the cold months, ...?' repeated twice",
+    "Generic mould wording in L1, A5 and brief issue 'Defects in the flat (mould, heating, hot water, damp)'"
+   ],
+   "usefulness": 4,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 3,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Did the landlord offer any interim heating?"
+   ],
+   "missing_questions_count": 1,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q6 'Could the heating problem be fixed by you with simple steps and no special tools?' – irrelevant (technician came, spare part missing)",
+    "Q7 'On what date did the heating stop working?' – already answered (ten days ago)",
+    "Q4 (did you cause it) and Q5 (upload lease re maintenance) – irrelevant to a central-heating failure awaiting a spare part",
+    "No action for an immediate interim solution (temporary heaters) despite 14°C and a sick infant",
+    "No 259b point (serious defect not fixed in reasonable time)"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 2,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 1
+   },
+   "missing_questions": [
+    "On what date was the property management first told?",
+    "Was an interim solution offered?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Do not cut rent unilaterally; reduction from date landlord knew (259d); deposit route (259g)"
+   ],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief main_issue: 'may entitle the tenants to rent reduction or withholding'",
+    "expert_brief issue: 'Potential right to withhold rent until defect fixed' [OR 259g]",
+    "expert_brief immediate_risk: 'None identified by the tool.'",
+    "question why: 'If you didn't give them a deadline, they might not be in breach of their duty to repair'"
+   ],
+   "lane": "too low (urgent: no heating, 14°C, infant ill; lane rule claims 'material information missing')",
+   "errors": [
+    "Q1 'What exactly is wrong with the heating and how long has it been broken?' – already answered (not working, ten days)",
+    "Q2 'Did you or anyone in your family cause the heating to stop working?' – irrelevant here",
+    "Q4 why 'If you didn't give them a deadline, they might not be in breach of their duty to repair' – misleading: the repair duty (256/259a) exists regardless; a written deadline is needed for deposit (259g)",
+    "No legal statements; no answer to the client's question 'are we allowed to pay less rent?' and no warning against unilateral reduction",
+    "Only two actions (refer, collect letters); no written demand, no interim heating, no evidence log",
+    "Expert brief: 'may entitle the tenants to rent reduction or withholding' and issue 'Potential right to withhold rent until defect fixed' citing 259g – legally wrong, 259g is deposit, not withholding",
+    "Expert brief immediate_risk 'None identified by the tool' – wrong (no heating, small children)"
+   ],
+   "usefulness": 1,
+   "jury_spots_error": true
+  }
+ },
+ "8": {
+  "P": {
+   "questions": {
+    "relevant": 2,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 4,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Was the termination on the official cantonal form? (asked indirectly in Q3)",
+    "Are you married / is it the family home (266n)?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "30-day challenge deadline from receipt (273 Abs. 1)",
+    "Retaliatory termination challengeable (271a Abs. 1 lit. a)",
+    "Extension option (272)"
+   ],
+   "actions": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "action: 'challenge the termination at the conciliation authority within deadline D1'",
+    "expert_brief issue: 'Termination notice not complying with formal requirements (no reason given)' [OR 266l]",
+    "question why: 'responsible for the issues mentioned in the termination'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q2 'Did the termination letter say why?' – already answered ('without any reason')",
+    "Q6 'Did you tell the landlord about the mould before the termination?' and Q7 'When did the landlord first find out?' – already answered (e-mail three weeks ago); Q4 largely answered",
+    "Q5 'Do you think you caused the mould...' why 'issues mentioned in the termination' – the termination mentions no issues; irrelevant to the challenge",
+    "A3 'within deadline D1' – unresolved template placeholder shown to the social worker",
+    "No legal statements: 30-day challenge deadline (273), retaliation ground (271a Abs. 1 lit. a), right to reasons (271 Abs. 2) and extension (272) missing from client-facing output",
+    "Handout act_now empty despite running 30-day deadline",
+    "Expert brief issue 'Termination notice not complying with formal requirements (no reason given)' [266l] – legally wrong: a missing reason is not a formal defect; reasons are only owed on request (271 Abs. 2)"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 6,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Was the termination on the official form?",
+    "Are you married / family home?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 10,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 3
+   },
+   "missing_key_points": [
+    "Retaliatory termination ground 271a Abs. 1 lit. a in client-facing text",
+    "Explicit '30 days from receipt'"
+   ],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "L1 and L2 say the same thing (ask for reasons); L9 repeats L7 (extension request)",
+    "L6/L7/L9 say 'within the time limit' without stating it is 30 days (only the date appears in act_now)",
+    "Client's core point (termination because of her defect report) – 271a Abs. 1 lit. a not in legal statements, only in expert brief",
+    "Q2 'Was a later move-out date ever approved by an official office...' – unclear/irrelevant",
+    "Only two actions; no action to file the challenge at the conciliation authority",
+    "Handout points empty"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 5,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 2,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 9,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 1
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 9,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "question prefill: 'since three weeks ago' (date of report, not of defect)"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q2 'Is the heating or hot water not working ... or do children live in the flat?' – irrelevant template question",
+    "Q7 prefill 'since three weeks ago' – she reported three weeks ago; when the mould began is unknown (mild extraction error); Q6 prefill 'end date: yes' garbled (she said end of March)",
+    "L10 repeats L2 (271a/273)",
+    "Very long output (10 legal statements, 9 actions, 10 handout points) – correct but heavy for a social worker",
+    "Expert brief immediate_risk repeats the same deadlines twice"
+   ],
+   "usefulness": 4,
+   "jury_spots_error": true
+  }
+ },
+ "9": {
+  "P": {
+   "questions": {
+    "relevant": 7,
+    "irrelevant": 0,
+    "duplicate": 1,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Can you pay the full rent alone (income, social services)?",
+    "Does the lease contain a joint-liability ('solidarisch') clause?"
+   ],
+   "missing_questions_count": 2,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 2,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Joint and several liability for the full rent",
+    "One co-tenant's notice alone does not end the joint lease"
+   ],
+   "actions": {
+    "ok": 1,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "legal statement L6: 'If notice has been given ... and the flat is returned early without such a replacement tenant, rent remains due' [OR 264 Abs. 2] – inapplicable"
+   ],
+   "lane": "appropriate (lane 2 also defensible)",
+   "errors": [
+    "Central question 'who is liable for what' not answered in legal statements or handout: joint and several liability of co-tenants (143/544 Abs. 3) appears only as an expert-brief heading",
+    "L6/L7 apply OR 264 (early return of the flat, replacement tenant) – inapplicable: the flat is not being returned, the client stays; L6 also refers to 'such a replacement tenant' never introduced",
+    "No statement that a notice by one co-tenant alone generally cannot end a joint lease",
+    "Q5 duplicates Q2 (both ask to upload the lease)",
+    "Only one action; handout points and act_now empty",
+    "Expert brief issue 'Unpaid rent and payment demand' cites OR 272a with no rule (noise)"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 2,
+    "irrelevant": 5,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 1
+   },
+   "missing_questions": [
+    "Has the management set a written payment deadline / termination warning?",
+    "How much rent is unpaid?",
+    "Can you pay the full rent alone?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Joint and several liability",
+    "Risk of 257d termination if partial payments continue"
+   ],
+   "actions": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "expert_brief issue: 'Right to remain in the rental flat after cohabiting partner moves out' [OR 261]",
+    "summary: 'the boyfriend claims he has given valid notice and no longer owes anything'",
+    "question: 'Did you receive a security deposit ... from the tenant when they moved in?'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "Q1 'Did you receive a security deposit ... from the tenant when they moved in?' – written from the landlord's perspective; irrelevant and confusing",
+    "Q7, Q8 (deposit form/account) and Q1 – three deposit questions irrelevant to the urgent issue",
+    "Q3 replacement tenant and Q5 'Has the landlord tried to rent the flat to someone else' – irrelevant, the client still lives in the flat",
+    "Q6 'Did your boyfriend give you any written notice' – legally wrong premise: a tenant's notice must go to the landlord, not to the co-tenant",
+    "No question about the management's letter, unpaid amount or payment deadline",
+    "No legal statements; joint and several liability not stated",
+    "Expert brief cites OR 261 (sale of the property) for 'Right to remain in the rental flat after cohabiting partner moves out' – wrong law; also asks about 'rent increases' – irrelevant",
+    "Summary: 'the boyfriend claims he has given valid notice and no longer owes anything' – overstates the client's words ('says he has given notice', 'no longer wants to pay')"
+   ],
+   "usefulness": 1,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 2,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 6,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q2 'Who signed the lease as tenant? Are both your names on it?' – already answered ('we both signed the lease')",
+    "Q5 'Are you married to ... your co-tenant?' – effectively answered ('my boyfriend')",
+    "L4 leaves validity of one co-tenant's notice open ('not settled by the law text') – cautious but correct",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": true
+  }
+ },
+ "10": {
+  "P": {
+   "questions": {
+    "relevant": 0,
+    "irrelevant": 3,
+    "duplicate": 1,
+    "already_answered": 2,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "Signed letter must be received by the landlord by 31 Dec 2026 for end of March 2027",
+    "Tenant needs no official form; e-mail is not enough"
+   ],
+   "actions": {
+    "ok": 2,
+    "wrong_law": 1,
+    "inapplicable": 1,
+    "unsupported": 0,
+    "unhelpful": 1
+   },
+   "wrong_statements": [
+    "client_handout summary: 'you need to give written notice using the proper form'",
+    "action: 'termination must be in writing using approved form'",
+    "action: 'Frauenzentrale Winterthur'",
+    "expert_brief issue 'Termination of the lease' citing OR 271, 271a, 272, 273 – inapplicable"
+   ],
+   "lane": "too high (all deciding facts given; lane 1 fits)",
+   "errors": [
+    "Q1 (fixed end date?) and Q2 (notice dates?) – already answered by the client",
+    "Q3/Q5 'When did you receive the notice you want to send' – nonsensical (he has not sent it; he would not receive it); Q5 duplicates Q3",
+    "Q4 local customs in Winterthur – irrelevant, the contract's dates govern; Q6 'Did you receive the notice requirement in writing' – nonsensical",
+    "A2 and handout: 'termination must be in writing using approved form' / 'give written notice using the proper form' – legally wrong: only the landlord must use the cantonal form (266l Abs. 2)",
+    "A5: refers Jonas (a man) to 'Frauenzentrale Winterthur'",
+    "Never gives the key answer: the signed letter must reach the landlord by 31 December 2026",
+    "No legal statements; expert brief lists inapplicable 271/271a/272/273 and cites OR 266 (fixed-term) for 'No requirement for landlord's consent'"
+   ],
+   "usefulness": 1,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 2,
+    "irrelevant": 4,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 1
+   },
+   "missing_key_points": [
+    "Last receipt date 31 Dec 2026"
+   ],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [
+    "client_handout summary: 'The correct cancellation date is not yet clear. It depends on ... whether another suitable tenant is available.'"
+   ],
+   "lane": "too high (lane 1 fits)",
+   "errors": [
+    "Never states the concrete answer: notice must reach the landlord by 31 December 2026",
+    "Q5 (offer a replacement tenant) and Q6 (has the landlord re-let) – irrelevant; he is giving timely notice, not leaving early",
+    "Q2/Q4 conditional on a letter already sent – he clearly has not sent it",
+    "Handout summary: 'The correct cancellation date is not yet clear. It depends on ... whether another suitable tenant is available' – wrong: all facts are given and the date does not depend on a replacement tenant",
+    "L2 (landlord's form) – noise for a tenant's own notice",
+    "Expert brief main_issue just 'He asks how and when to give notice.'"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 1,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q4 (move out before lease can end?) – not indicated by the client; low value",
+    "A3/handout mention a spouse signing although the client said he is unmarried (conditional, harmless)",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  }
+ },
+ "11": {
+  "P": {
+   "questions": {
+    "relevant": 0,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Are you and the children safe right now?",
+    "What dates does the police order give?",
+    "Has the landlord sent any letter about rent or termination?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 0,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [
+    "266m spousal consent for termination of family home",
+    "266n/273a her own rights as spouse",
+    "Migration referral for B permit; confidentiality"
+   ],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 1
+   },
+   "wrong_statements": [
+    "expert_brief issue: 'Right to remain in the apartment despite lease being in husband's name' [OR 261, 261a]",
+    "expert_brief immediate_risk: 'None identified by the tool.'"
+   ],
+   "lane": "appropriate",
+   "errors": [
+    "No follow-up questions (e.g. safety now, police-order dates, any letter from the landlord)",
+    "No legal statements: the central answer – a husband cannot terminate the family-home lease without the wife's express consent (266m), and the landlord must serve her separately (266n) – is missing everywhere, including the expert brief",
+    "Expert brief cites OR 261/261a (sale of the property) for 'Right to remain in the apartment despite lease being in husband's name' – wrong law",
+    "Expert brief immediate_risk 'None identified by the tool' despite reported domestic violence",
+    "Handout act_now empty: no emergency number / safety advice; no referral for the B-permit question; confidentiality request not reflected",
+    "A4 debt counselling – premature (no arrears yet)"
+   ],
+   "usefulness": 2,
+   "jury_spots_error": true
+  },
+  "Q": {
+   "questions": {
+    "relevant": 1,
+    "irrelevant": 3,
+    "duplicate": 0,
+    "already_answered": 0,
+    "legally_wrong": 0
+   },
+   "missing_questions": [
+    "Are you and the children safe right now?",
+    "What dates does the police order give?",
+    "Has the landlord written about rent/termination?"
+   ],
+   "missing_questions_count": 3,
+   "legal_statements": {
+    "ok": 7,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 3,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q1 fixed-term lease, Q3 lease 'only until planned building work or demolition', Q4 'Has the landlord offered you another similar flat?' – irrelevant template questions in a domestic-violence case",
+    "No question about safety, police-order dates or the landlord's letters about rent",
+    "Handout has no points (266m protection not explained to the client) and no emergency number",
+    "Expert brief issues written in second person ('Your husband cannot...')"
+   ],
+   "usefulness": 3,
+   "jury_spots_error": true
+  },
+  "R": {
+   "questions": {
+    "relevant": 3,
+    "irrelevant": 0,
+    "duplicate": 0,
+    "already_answered": 1,
+    "legally_wrong": 0
+   },
+   "missing_questions": [],
+   "missing_questions_count": 0,
+   "legal_statements": {
+    "ok": 5,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "misleading": 0,
+    "noise": 0
+   },
+   "missing_key_points": [],
+   "actions": {
+    "ok": 4,
+    "wrong_law": 0,
+    "inapplicable": 0,
+    "unsupported": 0,
+    "unhelpful": 0
+   },
+   "wrong_statements": [],
+   "lane": "appropriate",
+   "errors": [
+    "Q4 'Are you legally married...?' – largely answered ('my husband'), though legally justified as a check",
+    "Handout act_now repeats 'If you are in danger, call the police on 117' twice (cosmetic)",
+    "Does not mention court assignment of the home to the spouse (ZGB 176 Eheschutz) – left to the family/tenancy lawyer",
+    "Expert brief objective is a raw dump of client's words"
+   ],
+   "usefulness": 5,
+   "jury_spots_error": false
+  }
+ }
+}

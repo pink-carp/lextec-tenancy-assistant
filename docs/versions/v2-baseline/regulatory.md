@@ -1,8 +1,9 @@
-# Regulatory notes
+# Regulatory notes (v2 baseline)
 
+> **Version:** v2 baseline, an earlier version kept for comparison (branch `v2-baseline`, Vercel preview behind a Vercel login). Not the live version; see `docs/README.md`.
 > **PRELIMINARY, FOR REVIEW BY THE LEGAL TEAM.** Drafted 8 Nov 2026 by an AI assistant. This is not a legal opinion.
 > Each note separates **Sources say** (text we opened, cited by article) from **Assessment** (our reading, to be checked).
-> Facts assumed about the system: it runs Apertus 1.5 70B through the Public AI inference service, and **where Public AI processes data is not verified**. It is hosted on Vercel (region Frankfurt; Vercel is a US company). The server stores no case data. Phone numbers, e-mails, IBAN and AHV numbers are masked before text is sent to the AI. **Document photos are sent unmasked.** The social worker confirms the inputs and can override the lane.
+> Facts assumed about the system: it runs Apertus 1.5 70B through the Public AI inference service, and **where Public AI processes data is not verified**. It is hosted on Vercel (region Frankfurt; Vercel is a US company). The server stores no case data. Phone numbers, e-mails, IBAN and AHV numbers are masked before text is sent to the AI. **Document photos are sent unmasked.** The social worker confirms the inputs and can override the lane. What the AI writes in v2: it chooses the legal issues and articles (code adds articles for the identified situation), writes most follow-up questions, the case summary, up to five actions and the client handout. Legal explanations on screen are plain-language article summaries reviewed against the official text; a few questions and warnings are fixed texts.
 
 ## 1. Revised FADP (nDSG): does it apply?
 

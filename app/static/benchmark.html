@@ -3,78 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Benchmark Results</title>
+<title>Evaluation Results</title>
 <style>
-  body { margin:0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#1b1b1b; background:#fff; }
-  header { border-bottom:3px solid #1d4f91; padding:14px 16px; } header h1 { margin:0; font-size:22px; }
+  :root { --ink:#1b1b1b; --muted:#5a5a5a; --line:#c9c9c9; --bg:#fff; --panel:#f4f4f2; --accent:#1d4f91; --okbg:#e7f4ea; --badbg:#fdeaea; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#e8e8e8; --muted:#a8a8a8; --line:#444; --bg:#161616; --panel:#222; --accent:#7aa7e6; --okbg:#1d3a25; --badbg:#4a2020; } }
+  body { margin:0; font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+  header { border-bottom:3px solid var(--accent); padding:14px 16px; } header h1 { margin:0; font-size:22px; }
   main { max-width:1100px; margin:0 auto; padding:16px; }
-  table { border-collapse:collapse; width:100%; font-size:15px; margin:10px 0 24px; }
-  th, td { border:1px solid #c9c9c9; padding:6px 8px; text-align:left; vertical-align:top; } th { background:#f4f4f2; }
-  td.num { text-align:right; } .good { background:#e7f4ea; } .bad { background:#fdeaea; }
-  .muted { color:#5a5a5a; font-size:14px; } .wrap { overflow-x:auto; }
+  h2 { font-size:19px; margin:28px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  table { border-collapse:collapse; width:100%; font-size:15px; margin:10px 0 18px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; } th { background:var(--panel); }
+  td.num { text-align:right; } .good { background:var(--okbg); } .bad { background:var(--badbg); }
+  .muted { color:var(--muted); font-size:14px; } .wrap { overflow-x:auto; } a { color:var(--accent); }
+  .note { background:var(--panel); border-left:4px solid var(--accent); padding:10px 12px; margin:10px 0; }
 </style>
 </head>
 <body>
-<header><h1>Benchmark: the legal team's 9 example cases</h1></header>
+<header><h1>Evaluation: how accurate is each version?</h1></header>
 <main>
-<p class="muted">All systems get the legal team's documents (legal_workflow.md, escalation.md, output.md, deadlines.md) and
-the full official tenancy law. Baselines answer in one call without the harness. Expected lanes and articles come from the
-legal team's files and were never shown to any system. Claim support is rated by an independent judge model against the
-official text of the cited article. <a href="/">Back to the tool</a></p>
-<div class="wrap"><table id="agg"></table></div>
-<h2>Lane per case</h2>
-<div class="wrap"><table id="lanes"></table></div>
-<h2>Stability: lane decision over three runs</h2>
-<p class="muted">The same configuration run three times. Even at temperature 0 the hosted model's output varies slightly between runs, which can flip borderline cases. "failed" in runs 2 and 3 of the baselines means the API credit ran out during the night (HTTP 402), not a model failure.</p>
-<div class="wrap"><table id="stab"></table></div>
-<div class="wrap"><table id="stabcases"></table></div>
-<div id="notes" class="muted"></div>
-<script>
-const NAMES = {harness_final_apertus70b: "Harness · Apertus 70B (final)", harness_v3_apertus70b: "Harness · Apertus 70B (round 3)", harness_v2_apertus70b: "Harness · Apertus 70B (round 2)", harness_apertus70b: "Harness · Apertus 70B (round 1)",
-               plain_apertus70b: "Plain · Apertus 70B", plain_nemotron120b: "Plain · Nemotron 120B"};
-const order = ["harness_final_apertus70b", "harness_apertus70b", "plain_apertus70b", "plain_nemotron120b"];
-fetch("/api/benchmark").then(r => r.json()).then(D => { const S = D.summary || {}, L = D.lanes || {};
-  const systems = order.filter(s => S[s]);
-  const pct = x => isFinite(x) ? Math.round(100 * x) + "%" : "–";
-  const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : NaN;
-  const rows = systems.map(s => {
-    const R = S[s], ok = R.filter(r => !r.error), n = R.length;
-    const claims = ok.map(r => r.claims || {}); const sum = k => claims.reduce((x, c) => x + (c[k] || 0), 0);
-    const totalClaims = ["supported","conditional","partly","not_supported","not_applicable","no_valid_citation"].reduce((x, k) => x + sum(k), 0);
-    const art = ok.reduce((x, r) => x + r.articles_mentioned, 0), artBad = ok.reduce((x, r) => x + r.articles_invalid.length, 0);
-    const dec = ok.reduce((x, r) => x + r.decisions_mentioned, 0), decBad = ok.reduce((x, r) => x + r.decisions_invalid.length, 0);
-    return {s, n, errors: n - ok.length,
-      lane: ok.filter(r => r.lane_ok).length + " / " + n, under: ok.filter(r => r.under_escalated).length, over: ok.filter(r => r.over_escalated).length,
-      artValid: art ? pct(1 - artBad / art) + ` (${art - artBad}/${art})` : "–", decValid: dec ? pct(1 - decBad / dec) + ` (${dec - decBad}/${dec})` : "none cited",
-      recall: pct(avg(ok.filter(r => r.gold_recall != null).map(r => r.gold_recall))),
-      supported: totalClaims ? pct((sum("supported") + sum("conditional")) / totalClaims) : "–",
-      unsupported: totalClaims ? pct((sum("not_supported") + sum("not_applicable") + sum("no_valid_citation")) / totalClaims) : "–",
-      coverage: pct(avg(ok.filter(r => r.question_coverage != null).map(r => r.question_coverage))),
-      secs: Math.round(avg(ok.map(r => r.seconds))) + " s", cost: "$" + avg(ok.map(r => r.cost_usd)).toFixed(3)};
-  });
-  const cols = [["lane","Correct lane"],["under","Under-escalated (missed referral)"],["over","Over-escalated"],["artValid","Article citations that exist"],
-                ["decValid","Court decisions that exist"],["recall","Recall of the team's articles"],["supported","Legal claims supported by cited text"],
-                ["unsupported","Claims unsupported / not applicable / invalid citation"],["coverage","Team's follow-up questions covered"],
-                ["secs","Time per case"],["cost","Cost per case"],["errors","Failed runs"]];
-  document.getElementById("agg").innerHTML = `<tr><th>Metric</th>${rows.map(r => `<th>${NAMES[r.s] || r.s}</th>`).join("")}</tr>` +
-    cols.map(([k, t]) => `<tr><td>${t}</td>${rows.map(r => `<td class="num">${r[k]}</td>`).join("")}</tr>`).join("");
-  const cases = [...new Set(systems.flatMap(s => S[s].map(r => r.case)))].sort((a, b) => a - b);
-  document.getElementById("lanes").innerHTML = `<tr><th>Case</th><th>Expected</th>${systems.map(s => `<th>${NAMES[s] || s}</th>`).join("")}</tr>` +
-    cases.map(c => { const any = S[systems[0]].find(r => r.case === c) || {};
-      return `<tr><td>${c}</td><td>${(any.expected || []).join(" or ")}</td>${systems.map(s => { const r = S[s].find(x => x.case === c);
-        return !r ? "<td>–</td>" : r.error ? `<td class="bad">failed</td>` : `<td class="${r.lane_ok ? "good" : "bad"}">${r.lane}</td>`; }).join("")}</tr>`; }).join("");
-  const LN = {harness_final_apertus70b: "Harness · Apertus 70B", plain_apertus70b: "Plain · Apertus 70B", plain_nemotron120b: "Plain · Nemotron 120B"};
-  const lk = Object.keys(L);
-  if (lk.length) {
-    document.getElementById("stab").innerHTML = `<tr><th>System</th><th>Correct lane per run</th><th>Missed referrals (all runs)</th><th>Over-escalations (all runs)</th><th>Failed runs</th></tr>` +
-      lk.map(k => { const R = L[k].runs; return `<tr><td>${LN[k] || k}</td><td>${R.map(r => r.correct + "/9").join(" · ")}</td><td class="num">${R.reduce((x, r) => x + r.under, 0)}</td><td class="num">${R.reduce((x, r) => x + r.over, 0)}</td><td class="num">${R.reduce((x, r) => x + r.failed, 0)}</td></tr>`; }).join("");
-    const exp = Object.fromEntries((S[systems[0]] || []).map(r => [r.case, r.expected]));
-    document.getElementById("stabcases").innerHTML = `<tr><th>Case</th><th>Expected</th>${lk.map(k => `<th>${LN[k] || k} (3 runs)</th>`).join("")}</tr>` +
-      Object.keys(L[lk[0]].per_case).map(c => `<tr><td>${c}</td><td>${(exp[c] || []).join(" or ")}</td>${lk.map(k => `<td>${L[k].per_case[c].join(" · ")}</td>`).join("")}</tr>`).join("");
-  }
-  document.getElementById("notes").innerHTML = "The final harness was adjusted after seeing earlier results on these same 9 cases (rules, prompts, checks), so its scores are not an independent estimate; fresh cases are needed for that. The judge is Nemotron 120B, which also judges its own baseline answers. Time and cost are per case for the full pipeline; some harness calls may have been served from the provider's cache.";
-});
-</script>
+<p><a href="/">Back to the tool</a></p>
+<div class="note"><strong>In short.</strong> We measured whether the Swiss open model Apertus can write correct legal text for
+social workers. Even with confirmed facts, rule filters and two automatic checks, about one in four AI-written legal sentences
+was wrong. The live version therefore shows <strong>checked content for nine common situations</strong> and uses Apertus for
+what it does reliably: reading the case, pre-filling facts, suggesting the situation and summarising. In a blind review of
+11 cases, it had no wrong legal statements and the right lane in all cases. A version with a strong commercial model
+(OpenAI gpt-5.6-sol) and no pre-written text also wrote the law correctly, but asked many ill-fitting questions.</div>
+
+<h2>1. Final comparison of the three designs (11 cases, blind review)</h2>
+<p class="muted">One reviewer (a fresh Claude agent, not a lawyer) judged the three versions' outputs for the same 11 cases with
+the same rules, without being told which version was which (the labels were shuffled per case). The cases are the legal
+team's 9 example cases plus 2 extra scenarios (lane 1 and lane 3). Inputs, labels and the key are in
+<code>bench/results/evaluation_2026-11-08/three_way_*.json</code>.</p>
+<div class="wrap"><table><tr><th>Measure</th><th>v4 live: checked situation content, Apertus</th><th>v5: no pre-written text, OpenAI gpt-5.6-sol</th><th>v3: no pre-written text, Apertus</th></tr><tr><td>Usefulness to a social worker (1-5, mean)</td><td class='num'>4.6</td><td class='num'>2.8</td><td class='num'>1.8</td></tr><tr><td>Cases where a lawyer would spot a clear error</td><td class='num'>4 of 11</td><td class='num'>10 of 11</td><td class='num'>11 of 11</td></tr><tr><td>Legal statements: correct</td><td class='num'>54</td><td class='num'>55</td><td class='num'>none shown</td></tr><tr><td>Legal statements: wrong law</td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td></tr><tr><td>Legal statements: do not apply to the client</td><td class='num'>0</td><td class='num'>3</td><td class='num'>0</td></tr><tr><td>Actions: correct</td><td class='num'>49</td><td class='num'>23</td><td class='num'>40</td></tr><tr><td>Actions: wrong law, inapplicable or unsupported</td><td class='num'>0</td><td class='num'>0</td><td class='num'>7</td></tr><tr><td>Questions: relevant</td><td class='num'>46</td><td class='num'>46</td><td class='num'>28</td></tr><tr><td>Questions: irrelevant</td><td class='num'>4</td><td class='num'>19</td><td class='num'>14</td></tr><tr><td>Questions: already answered by the client</td><td class='num'>11</td><td class='num'>1</td><td class='num'>10</td></tr><tr><td>Questions: legally wrong</td><td class='num'>0</td><td class='num'>0</td><td class='num'>6</td></tr><tr><td>Obvious questions missing</td><td class='num'>2</td><td class='num'>17</td><td class='num'>23</td></tr><tr><td>Wrong statements in summary, handout and brief</td><td class='num'>3</td><td class='num'>6</td><td class='num'>34</td></tr><tr><td>Lane appropriate</td><td class='num'>11 of 11</td><td class='num'>10 of 11</td><td class='num'>9 of 11</td></tr><tr><td>Cost per case</td><td class='num'>about USD 0.02</td><td class='num'>about USD 0.30 (price estimate)</td><td class='num'>about USD 0.03</td></tr></table></div>
+
+<h2>2. Per case: lane and usefulness</h2>
+<p class="muted">Expected lane: the legal team's assessment (cases 1-9) or the scenario design (10-11). Usefulness 1-5 from
+the blind review; red = the reviewer found an error a lawyer would spot.</p>
+<div class="wrap"><table><tr><th>Case</th><th>Expected lane</th><th>v4 lane</th><th>v4 live: checked situation content, Apertus</th><th>v5: no pre-written text, OpenAI gpt-5.6-sol</th><th>v3: no pre-written text, Apertus</th></tr><tr><td>1</td><td>2</td><td class='good'>2</td><td class='bad'>4 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td><td class='bad'>3 · error a lawyer would spot</td></tr><tr><td>2</td><td>3</td><td class='good'>3</td><td class='good'>5</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>3</td><td>2</td><td class='good'>2</td><td class='good'>5</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>4</td><td>2</td><td class='good'>2</td><td class='good'>5</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>5</td><td>2</td><td class='good'>2</td><td class='good'>4</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>6</td><td>3</td><td class='good'>3</td><td class='good'>5</td><td class='good'>4</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>7</td><td>2 or 3</td><td class='good'>3</td><td class='bad'>4 · error a lawyer would spot</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>1 · error a lawyer would spot</td></tr><tr><td>8</td><td>3</td><td class='good'>3</td><td class='bad'>4 · error a lawyer would spot</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr><tr><td>9</td><td>2</td><td class='good'>2</td><td class='bad'>5 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td><td class='bad'>1 · error a lawyer would spot</td></tr><tr><td>10</td><td>1</td><td class='good'>1</td><td class='good'>5</td><td class='bad'>2 · error a lawyer would spot</td><td class='bad'>1 · error a lawyer would spot</td></tr><tr><td>11</td><td>3</td><td class='good'>3</td><td class='good'>5</td><td class='bad'>3 · error a lawyer would spot</td><td class='bad'>2 · error a lawyer would spot</td></tr></table></div>
+
+<h2>3. How we got here: measurements of the generative options (Apertus only)</h2>
+<div class="wrap"><table>
+<tr><th>Approach</th><th>Result</th><th>Data</th></tr>
+<tr><td>Apertus writes plain-language summaries of each law paragraph</td><td>109 of 235 drafts needed correction (46%)</td><td><code>corpus/build_summaries.py</code></td></tr>
+<tr><td>Extract the rule's conditions first, write from them, check by reading the sentence back</td><td>Of the statements kept, 13% legally false and 26% true but not applicable; the read-back check wrongly removed 39% of correct statements</td><td>experiment notes (not in repo)</td></tr>
+<tr><td>Writer limited by confirmed facts (rule only if its event happened), 11 cases, blind judge</td><td>Lawyer-level notes: 29 of 90 sentences harmful (32%). Practical guidance: 24 of 84 (29%)</td><td><code>writer_levels_*.json</code></td></tr>
+<tr><td>Same, after two Apertus checks (English and German)</td><td>Checks caught 16 of 24 harmful sentences but removed 21 of 45 correct ones; 23-26% of the sentences still shown were harmful</td><td><code>writer_levels_after_checks.json</code></td></tr>
+<tr><td>Full AI-written Apertus version (v3), 11 cases</td><td>Questions: 25 of 63 relevant, 8 legally wrong. Actions: 37 of 49 correct. Handout: 10 wrong or misleading statements; expert brief: 11</td><td><code>v3_generative_review.json</code></td></tr>
+<tr><td>Live version (v4), first review</td><td>Legal points: 0 of 54 wrong. Actions: 0 of 48 wrong. Questions: 45 of 64 relevant, 14 asked for facts already given (fixed in part since)</td><td><code>v4_first_review.json</code></td></tr>
+</table></div>
+
+<h2>4. Early benchmark (first harness, overnight)</h2>
+<p class="muted">The first harness design against plain one-call baselines on the 9 team cases; claims judged by Nemotron 120B
+against the cited article text. The harness was tuned on the same cases, so these are not independent estimates. Data:
+<code>bench/results/summary.json</code>.</p>
+<div class="wrap"><table><tr><th>System</th><th>Correct lane</th><th>Legal claims supported by the cited text</th><th>Failed runs</th></tr><tr><td>v1 harness, Apertus (round 1)</td><td class='num'>7 / 9</td><td class='num'>66%</td><td class='num'>0</td></tr><tr><td>v1 harness, Apertus (final)</td><td class='num'>5 / 9</td><td class='num'>79%</td><td class='num'>0</td></tr><tr><td>Plain Apertus 70B (one call)</td><td class='num'>3 / 9</td><td class='num'>52%</td><td class='num'>0</td></tr><tr><td>Plain Nemotron 120B (one call)</td><td class='num'>7 / 9</td><td class='num'>57%</td><td class='num'>1</td></tr></table></div>
+
+<h2>5. Method and limits</h2>
+<ul class="muted">
+<li>All judges are AI reviewers (Claude agents), one reviewer per test, not lawyers. Legal points were checked against the
+official German text (fedlex, in <code>corpus/law_paragraphs.jsonl</code>).</li>
+<li>All tests use known cases; the live version's situation content was written with these cases in view. A test on new,
+unseen cases is still to be done.</li>
+<li>The checked situation content was drafted from the German text by Claude and checked in a second pass; it has not been
+reviewed by a lawyer.</li>
+<li>Prices for the OpenAI model are third-party estimates; Apertus prices are Public AI's list prices (USD 0.82 / 2.92 per
+million input / output tokens).</li>
+<li>Social-worker steps (confirming facts and situations, answering yes/no questions) were simulated by Claude from the
+client's words.</li>
+</ul>
+<p class="muted">Generated by <code>bench/build_report.py</code>.</p>
 </main>
 </body>
 </html>

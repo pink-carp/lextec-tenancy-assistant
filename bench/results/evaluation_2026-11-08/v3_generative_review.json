@@ -1,0 +1,882 @@
+{
+ "1": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "already_answered",
+    "note": "Client said 'last month'."
+   },
+   {
+    "i": 2,
+    "label": "relevant",
+    "note": "Cause/ventilation habits; she partly answered (opens windows every morning) but furniture/drying laundry etc. still open."
+   },
+   {
+    "i": 3,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "confusing",
+    "note": "Asks what the property manager 'said he learned'; the relevant fact is the date she phoned him."
+   },
+   {
+    "i": 5,
+    "label": "relevant",
+    "note": "Partly answered (bedroom wall + window corner)."
+   },
+   {
+    "i": 6,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 7,
+    "label": "relevant",
+    "note": ""
+   }
+  ],
+  "missing_questions": [
+   "Have you already paid less rent / is this month's rent paid in full? (she is considering a 30% cut)",
+   "On what date did you phone the property manager? (rent reduction runs from landlord's knowledge, Art. 259d)",
+   "Does anyone in the household have health effects (children, respiratory problems)?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": "Matches Art. 259g Abs. 1 (written deadline + threat of deposit)."
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": "Basis cites 259a Abs. 1 for 259d statement; substance fine."
+   },
+   {
+    "i": 5,
+    "label": "ok",
+    "note": "'mediation through Mieterverband' is imprecise (conciliation is the Schlichtungsbehörde), minor."
+   }
+  ],
+  "situation_summary_wrong": [
+   {
+    "quote": "wants professional mold remediation or rent reduction",
+    "issue": "unsupported: client never asked for 'professional remediation'; she said she is considering paying 30% less or moving out - the key risk (unilateral rent cut) is omitted."
+   }
+  ],
+  "client_handout_wrong": [
+   {
+    "quote": "threatening to withhold rent if unaddressed",
+    "issue": "legally wrong: Swiss law does not allow withholding; the threat must be to DEPOSIT future rent with the cantonal office (Art. 259g). For a client who already wants to pay 30% less this invites an Art. 257d termination."
+   },
+   {
+    "quote": "but you want professional remediation or rent reduction",
+    "issue": "unsupported (see summary)."
+   },
+   {
+    "quote": "(missing)",
+    "issue": "No warning anywhere not to reduce rent unilaterally - the single most important message for this client."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "Cristina wants the mold professionally remediated or a rent reduction",
+    "issue": "unsupported attribution of objective."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Facts on cause disputed; social worker can coach a 259g letter and prevent unilateral rent cut.",
+  "other_notes": ""
+ },
+ "2": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "irrelevant",
+    "note": "Fixed term is irrelevant to a 257d payment deadline; 'why' is generic boilerplate."
+   },
+   {
+    "i": 2,
+    "label": "legally_wrong",
+    "note": "Asks about 'partner'; protection (Art. 266n separate notice) applies only to spouses/registered partners and concerns form, not 'extra protection against eviction'."
+   },
+   {
+    "i": 3,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "relevant",
+    "note": "Valid only if married (266n/266o); presupposes a partner the client never mentioned."
+   },
+   {
+    "i": 5,
+    "label": "already_answered",
+    "note": "Client said: pay arrears or they will terminate."
+   },
+   {
+    "i": 6,
+    "label": "legally_wrong",
+    "note": "No rule makes a termination unfair if no replacement flat is offered; Art. 272a Abs. 2 concerns extension and extension is excluded after 257d anyway."
+   }
+  ],
+  "missing_questions": [
+   "Can you pay the arrears before the deadline, or do you receive/qualify for unemployment benefits or social assistance (which can cover rent arrears)?",
+   "What is the monthly rent and the exact amount owed (incl. whether the current month is also unpaid)?",
+   "Are you married and does your spouse live in the flat? (only form of 266n matters)"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": "Correct: min. 30 days for flats."
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": ""
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "whether the notice was sent to your partner",
+    "issue": "presupposes a partner; relevant only for a spouse."
+   },
+   {
+    "quote": "or if an alternative accommodation was offered",
+    "issue": "implies legal relevance that does not exist here."
+   },
+   {
+    "quote": "(act_now empty)",
+    "issue": "Hard payment deadline exists (code: 2026-12-08) but act_now is empty - unless the UI fills it from deadlines_by_code."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "with a deadline of 2026-12-08 to avoid eviction",
+    "issue": "presented as certain; it is the minimum 30-day date computed from 'today'; the date in the letter governs (could be later)."
+   },
+   {
+    "quote": "clarify the disputed facts between the client and the landlord",
+    "issue": "unsupported: no facts are disputed."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Two children, no income, real termination risk; lane 3 defensible (lane 2 with social assistance also defensible).",
+  "other_notes": ""
+ },
+ "3": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "irrelevant",
+    "note": "Fixed term irrelevant to 257d; boilerplate 'why'."
+   },
+   {
+    "i": 2,
+    "label": "relevant",
+    "note": "266n separate notice to spouse; low prior for a 23-year-old who left his parents' home but legitimate."
+   },
+   {
+    "i": 3,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "duplicate",
+    "note": "Same as Q3."
+   },
+   {
+    "i": 5,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 6,
+    "label": "already_answered",
+    "note": "Client: letter says 'Kündigung' if he doesn't pay."
+   },
+   {
+    "i": 7,
+    "label": "legally_wrong",
+    "note": "Lumps 'utilities' with repairs as extra charges; due Nebenkosten DO count under Art. 257d."
+   },
+   {
+    "i": 8,
+    "label": "legally_wrong",
+    "note": "Duplicate of Q1 and 'why' is wrong: a fixed-term lease can still be terminated under 257d for non-payment."
+   },
+   {
+    "i": 9,
+    "label": "relevant",
+    "note": "Conditional on Q2; borderline duplicate."
+   },
+   {
+    "i": 10,
+    "label": "legally_wrong",
+    "note": "No right to a rent reduction because income dropped; irrelevant to arrears."
+   }
+  ],
+  "missing_questions": [
+   "Will your end-of-month pay cover ALL arrears before the deadline? (payment must be complete and on time)",
+   "What is your monthly rent and is November's rent paid?",
+   "Would you accept help from social services or a family member if your pay comes too late?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": "Should also say explicitly: do not ignore the letter."
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "whether your lease has a fixed end date that would prevent early termination",
+    "issue": "legally wrong: a fixed term does not protect against a 257d termination."
+   },
+   {
+    "quote": "(act_now empty)",
+    "issue": "Payment deadline (code: 2026-11-25) not shown as urgent."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "Are there any disputed facts regarding the client's financial hardship or the property management's intentions",
+    "issue": "filler; nothing disputed (not wrong, but weak)."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Cure is paying in time; social worker can handle with MV referral.",
+  "other_notes": "Code deadline 2026-11-25 implies receipt 2026-10-26 (earliest day of 'last week'); conservative and fine if labelled as such."
+ },
+ "4": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "already_answered",
+    "note": "Client said deposit is at the bank and bank needs landlord's signature."
+   },
+   {
+    "i": 2,
+    "label": "irrelevant",
+    "note": "Account labelling makes no practical difference here."
+   },
+   {
+    "i": 3,
+    "label": "confusing",
+    "note": "Relevant substance (has landlord asserted a claim legally - Betreibung/court), but 'within the past year since you moved out' when he moved out 4 months ago is confusing."
+   },
+   {
+    "i": 4,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 5,
+    "label": "relevant",
+    "note": "Art. 267a: landlord must notify defects immediately."
+   }
+  ],
+  "missing_questions": [
+   "Was a handover protocol (Abnahmeprotokoll) signed, and did it list any defects?",
+   "Is a final ancillary-costs statement (Nebenkostenabrechnung) still outstanding? (most common reason to hold a deposit)",
+   "On what date did the tenancy end? (one-year clock of Art. 257e Abs. 3 runs from the end of the tenancy)"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "unhelpful",
+    "note": "Bank account details are not needed for advice."
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "inapplicable",
+    "note": "Art. 257e Abs. 3 right to claim from the bank applies only after one year without a legal claim; only 4 months passed. Before that the route is demanding consent / conciliation authority."
+   },
+   {
+    "i": 5,
+    "label": "inapplicable",
+    "note": "Frauenzentrale for a male client (Sandro)."
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "referencing your legal right under OR Art. 257e Abs. 3",
+    "issue": "misleading: that right arises only one year after the tenancy ended."
+   },
+   {
+    "quote": "Frauenzentrale Winterthur",
+    "issue": "wrong service for a male client."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "The landlord has not provided a valid reason for withholding the deposit",
+    "issue": "stated as fact; we only know he does not answer emails."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Lane 1 or 2 defensible; amount significant, landlord unresponsive.",
+  "other_notes": "Nobody tells the client the key rule: after one year without a legal claim by the landlord he can get the deposit directly from the bank (257e Abs. 3); before that, 267a and a conciliation request are the levers."
+ },
+ "5": {
+  "questions": [],
+  "missing_questions": [
+   "Does your signed lease (or house rules that were part of it at signing) prohibit pets, or were these rules introduced later?",
+   "Have pets been kept or tolerated in the flat or the building before (in 25 years)?",
+   "Will the cat be indoor-only, and do you have a doctor's/therapist's statement?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": "Vague 'legal aid office'; MV would be the obvious contact (contacts list is empty)."
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "wrong_law",
+    "note": "'especially for support animals' - Swiss tenancy law has no special status for emotional-support animals (US concept); can at most be a negotiation argument."
+   },
+   {
+    "i": 4,
+    "label": "wrong_law",
+    "note": "'reasonable accommodation' is a US/disability-law concept with no basis in Swiss private tenancy law."
+   },
+   {
+    "i": 5,
+    "label": "ok",
+    "note": ""
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [],
+  "expert_brief_wrong": [
+   {
+    "quote": "legal requirements and procedures for modifying house rules to accommodate a support animal",
+    "issue": "presupposes a legal support-animal category; acceptable as a question but framing imported."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Simple, non-urgent; recently widowed client could justify lane 2, but lane 1 is fine.",
+  "other_notes": "Zero follow-up questions on a case where the key fact (contract clause vs. later house rule) is unknown."
+ },
+ "6": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "relevant",
+    "note": "Fixed-term matters for rent increases (269b/269c); generic 'why'."
+   },
+   {
+    "i": 2,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "duplicate",
+    "note": "Same as Q2."
+   },
+   {
+    "i": 4,
+    "label": "relevant",
+    "note": "Official cantonal form, 269d Abs. 1/2."
+   },
+   {
+    "i": 5,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 6,
+    "label": "legally_wrong",
+    "note": "Rule is 10 days BEFORE THE START OF THE NOTICE PERIOD (269d Abs. 1), i.e. effective only at the next termination date; 'ten days' notice before the increase' is wrong and would mislead toward accepting an invalid January increase."
+   },
+   {
+    "i": 7,
+    "label": "duplicate",
+    "note": "Same as Q5."
+   },
+   {
+    "i": 8,
+    "label": "relevant",
+    "note": "Staggered rent, 269c."
+   },
+   {
+    "i": 9,
+    "label": "duplicate",
+    "note": "Same as Q5."
+   }
+  ],
+  "missing_questions": [
+   "What notice period and termination dates does your lease set? (with a 3-month period, a notice received late Oct/early Nov cannot take effect in January)",
+   "Is the flat subsidised or cooperative (gemeinnützig)? (different rent rules in Zurich)",
+   "When did the rent last change and was the reference rate cited?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": "Matches 269d Abs. 2."
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": ""
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "(act_now empty / no deadline in any action)",
+    "issue": "30-day deadline to challenge at the conciliation authority (code: 2026-11-25, Art. 270b) is not mentioned in any action or the handout."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "comply with the formal requirements under OR Art. 266l and OR Art. 266m",
+    "issue": "wrong articles: those govern terminations / family-home terminations; rent-increase form is Art. 269d."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Lane 2 with MV referral fine; deadline must be surfaced.",
+  "other_notes": ""
+ },
+ "7": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "already_answered",
+    "note": "'Ten days' and 'supply problems with spare part' already stated."
+   },
+   {
+    "i": 2,
+    "label": "irrelevant",
+    "note": "Central-heating part failure with supply delay; implying tenant fault is off-putting for a family with a sick infant."
+   },
+   {
+    "i": 3,
+    "label": "relevant",
+    "note": "Proof of notice."
+   },
+   {
+    "i": 4,
+    "label": "legally_wrong",
+    "note": "'If you didn't give a deadline they might not be in breach of their duty to repair' - wrong: duty arises on knowledge (259a/259b); a written deadline is needed only for rent deposit (259g)."
+   },
+   {
+    "i": 5,
+    "label": "relevant",
+    "note": "Partly answered (14°C, child has a cold)."
+   }
+  ],
+  "missing_questions": [
+   "Has the landlord offered temporary heaters or another interim solution?",
+   "Is the whole building affected or only your flat?",
+   "When exactly did you first inform the property management? (reduction runs from that date)"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "It is not yet clear how serious the heating failure is for your living conditions",
+    "issue": "14°C for 10 days in winter with a 1-year-old is clearly serious; reads as dismissive."
+   }
+  ],
+  "expert_brief_wrong": [
+   {
+    "quote": "creating uninhabitable conditions that may entitle the tenants to rent reduction or withholding",
+    "issue": "'uninhabitable' stated as fact; 'withholding' is not a Swiss remedy (only deposit under 259g)."
+   },
+   {
+    "quote": "procedures for tenants to reduce or withhold rent under OR 259d and OR 259g",
+    "issue": "259g is deposit, not withholding."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Lane 2 ok, but urgency index 'low' is visibly wrong (infant, 14°C, winter); lane 3 would also be defensible.",
+  "other_notes": "Only 2 actions: missing written demand for interim heaters, documenting temperatures, and the message 'keep paying rent; reduction can be claimed later from the date the landlord knew'."
+ },
+ "8": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "relevant",
+    "note": "Receipt date for 30-day challenge deadline."
+   },
+   {
+    "i": 2,
+    "label": "already_answered",
+    "note": "Client: 'without any reason'."
+   },
+   {
+    "i": 3,
+    "label": "relevant",
+    "note": "Official form with challenge instructions, 266l Abs. 2 / 266o."
+   },
+   {
+    "i": 4,
+    "label": "relevant",
+    "note": "Good-faith claim (271a Abs. 1 lit. a)."
+   },
+   {
+    "i": 5,
+    "label": "irrelevant",
+    "note": "'why' presupposes the termination mentions issues - it gives no reason."
+   },
+   {
+    "i": 6,
+    "label": "already_answered",
+    "note": "She emailed three weeks ago."
+   },
+   {
+    "i": 7,
+    "label": "already_answered",
+    "note": "Same as Q6 / known from her email."
+   }
+  ],
+  "missing_questions": [
+   "Are you married and is the flat your family home? (266n separate notice, else void)",
+   "Do you still have the email and any reply from the property management?",
+   "Any hints of other reasons (sale of the building, renovation, owner's own use)?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": "Placeholder 'D1' unrendered in the social-worker action text (handout resolves it)."
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": "Also strengthens 271a position."
+   },
+   {
+    "i": 5,
+    "label": "ok",
+    "note": "Should note it requires the 259g written deadline first."
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "(act_now empty)",
+    "issue": "Lane-3 case with a 30-day challenge deadline but nothing in act_now."
+   }
+  ],
+  "expert_brief_wrong": [],
+  "lane": "appropriate",
+  "lane_reason": "Termination with 30-day challenge deadline; likely retaliatory (271a).",
+  "other_notes": ""
+ },
+ "9": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "confusing",
+    "note": "Addressed to the LANDLORD ('did you receive a deposit from the tenant') - wrong perspective."
+   },
+   {
+    "i": 2,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "irrelevant",
+    "note": "She wants to stay; a replacement tenant for the whole flat (264) is not her issue."
+   },
+   {
+    "i": 4,
+    "label": "relevant",
+    "note": ""
+   },
+   {
+    "i": 5,
+    "label": "irrelevant",
+    "note": "She still lives there; re-letting mitigation does not arise."
+   },
+   {
+    "i": 6,
+    "label": "duplicate",
+    "note": "Same as Q2."
+   },
+   {
+    "i": 7,
+    "label": "irrelevant",
+    "note": "Deposit form irrelevant now."
+   },
+   {
+    "i": 8,
+    "label": "irrelevant",
+    "note": "Deposit account irrelevant now; duplicate of Q7."
+   }
+  ],
+  "missing_questions": [
+   "How much of the rent is now missing per month, and has the landlord sent a written payment demand?",
+   "Can you pay the full rent alone (income, social assistance)?",
+   "Do you want to take over the lease alone, and has anyone asked the landlord about that?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 5,
+    "label": "unhelpful",
+    "note": "Contentless; the key messages (both co-tenants jointly liable for full rent; one co-tenant cannot terminate alone; pay full rent to avoid 257d) are missing."
+   }
+  ],
+  "situation_summary_wrong": [
+   {
+    "quote": "the boyfriend claims he has given valid notice and no longer owes anything",
+    "issue": "overstates: client said 'he says he has given notice' and 'no longer wants to pay'."
+   }
+  ],
+  "client_handout_wrong": [],
+  "expert_brief_wrong": [
+   {
+    "quote": "claims he has validly terminated his tenancy",
+    "issue": "legally loaded: in a joint tenancy one co-tenant generally cannot terminate 'his' part alone."
+   },
+   {
+    "quote": "protections against eviction or rent increases",
+    "issue": "rent increases irrelevant (minor)."
+   }
+  ],
+  "lane": "appropriate",
+  "lane_reason": "Joint tenancy, partial arrears, toddler; lane 2 ok, lane 3 defensible.",
+  "other_notes": "Five of eight questions are about the deposit or re-letting while the real risk (accumulating arrears -> 257d) is not asked."
+ },
+ "10": {
+  "questions": [
+   {
+    "i": 1,
+    "label": "already_answered",
+    "note": "'The contract has no end date.'"
+   },
+   {
+    "i": 2,
+    "label": "already_answered",
+    "note": "Contract: 3 months, any month-end except December."
+   },
+   {
+    "i": 3,
+    "label": "confusing",
+    "note": "'When did you receive the notice you want to send' is nonsensical."
+   },
+   {
+    "i": 4,
+    "label": "legally_wrong",
+    "note": "Local custom applies only absent agreement (266c); the contract already sets notice terms."
+   },
+   {
+    "i": 5,
+    "label": "duplicate",
+    "note": "Same nonsensical question as Q3."
+   },
+   {
+    "i": 6,
+    "label": "confusing",
+    "note": "Unclear what 'notice requirement in writing' means."
+   }
+  ],
+  "missing_questions": [],
+  "actions": [
+   {
+    "i": 1,
+    "label": "unhelpful",
+    "note": "Simple self-help case; a referral adds little."
+   },
+   {
+    "i": 2,
+    "label": "wrong_law",
+    "note": "Tenants do NOT need an approved form; the cantonal form is required only for the landlord (266l Abs. 2). Written + signed suffices."
+   },
+   {
+    "i": 3,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 4,
+    "label": "unhelpful",
+    "note": "Already answered by the contract: end of March is allowed."
+   },
+   {
+    "i": 5,
+    "label": "inapplicable",
+    "note": "Frauenzentrale for a male client (Jonas)."
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "you need to give written notice using the proper form",
+    "issue": "legally wrong: no form needed for a tenant's notice."
+   },
+   {
+    "quote": "It is not yet clear if your planned move-out date of the end of March 2027 meets the notice period",
+    "issue": "it is clear: valid if the signed letter reaches the landlord by 31 Dec 2026. The client's main question ('until when?') is never answered."
+   }
+  ],
+  "expert_brief_wrong": [],
+  "lane": "too_high",
+  "lane_reason": "All facts are given and the answer is mechanical (signed letter, received by 31 Dec 2026, email insufficient) - lane 1.",
+  "other_notes": "No code deadline computed although the case is exactly a deadline question."
+ },
+ "11": {
+  "questions": [],
+  "missing_questions": [
+   "Are you and the children safe now, and do you want the 14-day protective order extended? (in Zurich an extension must be requested within days of the order)",
+   "Do you have money for December's rent, and do you receive any income or support?",
+   "Is it safe to contact you (phone/letters) - does your husband read your messages/mail?"
+  ],
+  "actions": [
+   {
+    "i": 1,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 2,
+    "label": "ok",
+    "note": ""
+   },
+   {
+    "i": 3,
+    "label": "wrong_law",
+    "note": "A 257d payment demand can only come from the landlord, not from the husband."
+   },
+   {
+    "i": 4,
+    "label": "inapplicable",
+    "note": "There are no rent arrears yet; social assistance for December rent is the relevant route, not debt counselling."
+   },
+   {
+    "i": 5,
+    "label": "ok",
+    "note": "Essential."
+   }
+  ],
+  "situation_summary_wrong": [],
+  "client_handout_wrong": [
+   {
+    "quote": "(missing)",
+    "issue": "Does not tell her the key protection: a spouse cannot terminate the family flat without her express consent (Art. 266m), and landlord notices must also be sent to her (266n). This directly answers her fear."
+   },
+   {
+    "quote": "(act_now empty)",
+    "issue": "DV case with a short protective-order window and December rent due; nothing urgent shown."
+   }
+  ],
+  "expert_brief_wrong": [],
+  "lane": "appropriate",
+  "lane_reason": "DV, migration status, family home - clearly lane 3.",
+  "other_notes": "Indices urgency 'low' and severity 'low' are visibly wrong for a DV case. Art. 266m not among articles considered (261 sale-of-property is irrelevant). No migration-counselling contact for the B-permit question. Confidentiality request not reflected."
+ }
+}
