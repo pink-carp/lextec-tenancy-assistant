@@ -100,6 +100,17 @@ This reduces one source of variability but transfers substantial responsibility 
 
 Our architecture is designed to accommodate additional modules and workflows. We have not established its capacity under concurrent use, operating costs at scale or performance in other legal fields.
 
+### 3.5 Next step: guided AI generation
+
+The current version relies on prewritten, checked legal content because, today, it works better. In our tests, even with confirmed facts, rule filters and two automatic checks, about one in four legal sentences that Apertus wrote freely was wrong. In the blind comparison on our evaluation page, v4 scored a mean usefulness of 4.6 out of 5, against 2.8 for a fully generative version on a strong commercial model (OpenAI) and 1.8 for a fully generative version on Apertus.
+
+The cost is reach: prewritten content only covers the situations someone has written it for. We are therefore continuing to develop versions in which the AI does the legal work itself, without prewritten guidance, inside a guided structure:
+
+- **`v3-generative` (Apertus) and `v5-openai` (OpenAI):** the social worker confirms the deciding facts; code determines which statutory provisions can apply and calculates deadlines; the AI writes the questions and actions; every legal statement must cite an official source, and automated checks remove what the sources do not support.
+- **`v6-pruefungskern` (Apertus):** built on our own legal examination framework (`LIIT_Pruefungskern_v2.0.0`: core 2.0.0 with nine rule modules). The AI works through the framework's eight steps, from the facts and applicability to rights and duties, the relevant event and the possible remedies, and assesses each legal requirement against the client's own sentences. Code combines the requirements with the framework's AND/OR logic, so unknown facts stay unknown and become the questions for the client; the AI writes a result for a remedy only where the combined conditions support it. This is our most recent version and was not part of the blind comparison.
+
+These versions are not yet reliable enough for the live tool, but we are excited about their potential: guided generation could extend the assistant to new situations, and eventually to other areas of social work, without writing new content for each one.
+
 ## 4. User workflow
 
 1. **Describe the situation.** The social worker enters a fictional or appropriately authorised case account, selects the client's language and acknowledges AI use. The interface asks users to avoid identifying information.
