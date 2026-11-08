@@ -640,7 +640,21 @@ def score(case, override=None):
     reasons = {"urgency": ur, "severity": sr, "complexity": cr,
                "vulnerability": [f"Rated {case['vulnerability_score']}/10 ({case['vulnerability_source']})"],
                "information": ir}
+    ind_v = set(case.get("vulnerability_indicators", []))
+    if "essential_needs" in {x["kind"] for x in sig} and ind["urgency"] == "low":
+        ind["urgency"] = "medium"
+        reasons["urgency"].append("No heating, water or power right now.")
+    if "violence_threats_or_coercion" in ind_v or case["understanding"].get("immediate_danger"):
+        ind["urgency"], ind["severity"] = "high", "high"
+        reasons["urgency"].append("Violence, threats or danger were stated: safety comes first.")
+        reasons["severity"] = ["Violence, threats or danger were stated: the client's safety and home are at risk."]
     lane, rule = scoring.decide_lane(ind)
+    hard = [t for t, hit in [("violence, threats or coercion", "violence_threats_or_coercion" in ind_v),
+                             ("exploitation or dependency", "exploitation_or_dependency" in ind_v),
+                             ("immediate danger", bool(case["understanding"].get("immediate_danger"))),
+                             ("migration status", "migration" in case["understanding"]["scope"].get("other_areas_of_law", []))] if hit]
+    if hard and lane < 3:
+        lane, rule = 3, "Lane 3: hard trigger (" + ", ".join(hard) + ") - always referred to a human."
     if override:
         lane, rule = int(override["lane"]), f"Lane {override['lane']}: set by the social worker ({override['reason']})."
     case["indices"], case["index_reasons"], case["lane"], case["lane_rule"] = ind, reasons, lane, rule
@@ -703,9 +717,7 @@ def write(case):
         dropped += [{**d, "where": iss["issue"]} for d in drop]
         screen_issues.append({"issue": iss["issue"], "articles": iss["articles"], "source": iss.get("source"),
                               "sentences": kept, "error": err,
-                              "rules": [{"statement": f"{a.replace('OR ', 'Art. ')} OR: {iss['summaries'].get(a, '')}",
-                                         "sources": [p["id"] for p in corpus.by_article().get(a, [])][:3],
-                                         "check": "reviewed summary"} for a in iss["articles"]]})
+                              "rules": []})  # no pre-written summaries in this version
     for n, a in enumerate(acts):
         a["id"] = f"A{n + 1}"
         a["sources"] = a.pop("basis", [])

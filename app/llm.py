@@ -10,9 +10,17 @@ from pathlib import Path
 import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
-API_BASE = "https://api.publicai.co/v1"
-MODEL = "swiss-ai/apertus-v1.5-70b"
-FALLBACK_MODEL = "swiss-ai/apertus-70b-instruct"
+# Provider: Public AI (Apertus, default) or OpenAI (comparison version, set LLM_PROVIDER=openai and LLM_MODEL)
+PROVIDER = os.environ.get("LLM_PROVIDER", "publicai")
+if PROVIDER == "openai":
+    API_BASE = "https://api.openai.com/v1"
+    MODEL = os.environ.get("LLM_MODEL", "gpt-5.6-sol")
+    FALLBACK_MODEL = MODEL
+    REASONING = os.environ.get("LLM_REASONING", "low")
+else:
+    API_BASE = "https://api.publicai.co/v1"
+    MODEL = "swiss-ai/apertus-v1.5-70b"
+    FALLBACK_MODEL = "swiss-ai/apertus-70b-instruct"
 USER_AGENT = "lextec-hackathon-prototype/0.1"
 
 # USD per million tokens (input, output), from api.publicai.co/v1/models on 2026-11-07
@@ -22,16 +30,19 @@ PRICES = {
     "swiss-ai/apertus-v1.5-8b": (0.10, 0.20),
     "cohere/command-a-plus-05-2026-w4a4": (3.0, 15.0),
     "aisingapore/Nemotron-SEA-LION-v4.8-120B-A12B": (0.5, 2.0),
+    # OpenAI list prices as reported by third-party pages on 2026-11-08 (not confirmed on openai.com): estimates only
+    "gpt-5.6-sol": (5.0, 30.0), "gpt-5.6-terra": (2.0, 12.0), "gpt-5.5": (5.0, 30.0),
 }
 
 
 def _api_key() -> str:
-    if os.environ.get("PUBLICAI_API_KEY"):
-        return os.environ["PUBLICAI_API_KEY"]
+    name = "OPENAI_API_KEY" if PROVIDER == "openai" else "PUBLICAI_API_KEY"
+    if os.environ.get(name):
+        return os.environ[name]
     for line in (ROOT / ".env").read_text().splitlines():
-        if line.startswith("PUBLICAI_API_KEY="):
-            return line.split("=", 1)[1].strip()
-    raise RuntimeError("PUBLICAI_API_KEY missing (set it in .env)")
+        if line.startswith(name + "="):
+            return line.split("=", 1)[1].strip().strip('"')
+    raise RuntimeError(f"{name} missing (set it in .env)")
 
 
 _client = httpx.Client(timeout=httpx.Timeout(300.0, connect=20.0))
@@ -109,7 +120,7 @@ def chat(messages, *, schema=None, schema_name="output", model=MODEL, max_tokens
 
     Returns the parsed object (schema) or the text. Appends a record to `trace` (a list) if given.
     """
-    if messages and messages[0]["role"] == "system":
+    if messages and messages[0]["role"] == "system" and PROVIDER != "openai":
         # Observed 2026-11-08: Public AI rejects requests with a system message about 1 in 3 times
         # (HTTP 400/500 "only accepts a system message as the first message"); without one, 0 of 8 failed.
         # So the instructions travel in the first user message instead.
@@ -118,6 +129,9 @@ def chat(messages, *, schema=None, schema_name="output", model=MODEL, max_tokens
         messages = [{"role": "user", "content": f"INSTRUCTIONS:\n{sys_txt}\n\nINPUT:\n{first}"}] + rest[1:]
     body = {"model": model, "messages": messages, "temperature": temperature,
             "max_tokens": max_tokens, "seed": seed}
+    if PROVIDER == "openai":  # reasoning models: default temperature only; reasoning tokens count against the limit
+        body = {"model": model, "messages": messages, "seed": seed, "reasoning_effort": REASONING,
+                "max_completion_tokens": max_tokens * 4 + 2000}
     if schema is not None:
         if model.startswith("cohere/"):
             schema = _strip_constraints(schema)  # Cohere rejects minimum/maximum/minItems/maxItems
@@ -131,7 +145,9 @@ def chat(messages, *, schema=None, schema_name="output", model=MODEL, max_tokens
     last_err = None
     for attempt in range(attempts):
         if attempt:  # a retry with the same seed at temperature 0 would repeat the same failure
-            body["seed"], body["temperature"] = seed + attempt, 0.3 * attempt
+            body["seed"] = seed + attempt
+            if PROVIDER != "openai":
+                body["temperature"] = 0.3 * attempt
         try:
             text, finish, usage = _stream(body, headers)
         except LLMError as e:  # server errors were observed to be intermittent: one retry

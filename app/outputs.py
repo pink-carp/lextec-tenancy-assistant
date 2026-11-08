@@ -202,10 +202,14 @@ def brief(case):
     out.update({
         "review_status": "AI draft - not yet checked by the social worker",
         "escalation_trigger": case["lane_rule"],
-        "immediate_risk": "; ".join(r for k in ("urgency", "severity") if case["indices"].get(k) == "high"
-                                    for r in case["index_reasons"][k]) or "None identified by the tool.",
+        "immediate_risk": "; ".join(
+            [f"{d['action']} (by {d['earliest'] if isinstance(d['earliest'], str) else d['earliest'].isoformat()})"
+             for d in case.get("deadlines", []) if d.get("earliest")]
+            + [r for k in ("urgency", "severity") if case["indices"].get(k) == "high" for r in case["index_reasons"][k]])
+            or "No running deadline or high-risk factor identified by the tool; please check.",
         "preliminary_assessment": [{"issue": i["issue"], "articles": i["articles"],
-                                    "rules": [r["statement"] for r in i["rules"]]} for i in scr["issues"]],
+                                    "rules": [x["text"] + f" [{x['para']}]" for x in i.get("sentences", [])]}
+                                   for i in scr["issues"]],
         "check": {"removed": removed},
         "facts": [{"statement": f["statement"], "status": {"reported": "reported by the client", "documented": "documented",
                                                            "inferred": "inferred - check"}.get(f["status"], f["status"])}

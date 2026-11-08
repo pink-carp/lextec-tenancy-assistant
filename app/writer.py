@@ -16,7 +16,7 @@ from .llm import ask_json, chat
 
 PID = re.compile(r"(?:OR|ZGB|ZPO) Art\. \d+[a-z]*(?: Abs\. \d+)?")
 COND = re.compile(r"^\s*(if|should|once|only if|in case|as soon as|unless|whether)\b", re.I)
-SHOW_NOTES = False  # see pipeline.write: measured too unreliable to show
+SHOW_NOTES = True  # comparison version with a strong model: the AI applies the law per issue (checked below)
 LEVEL = "guidance"  # "guidance" (practical, for social workers) or "legal" (applies the provisions); see the comparison test
 
 
@@ -284,9 +284,13 @@ def check(items, case, level=None):
         law = "\n".join(f"[{p['id']}] {p['text']}" for p in corpus.by_article().get(art, []))
         if not _numbers_ok(it["text"], law, client, level):
             return it, "a number is neither in the law text nor in the client's words"
-        with ThreadPoolExecutor(2) as ex:
-            en, de = ex.submit(_check_en, it["text"], law, facts, case), ex.submit(_check_de, it["text"], law, facts, case)
-            (v_en, r_en), (v_de, r_de) = en.result(), de.result()
+        from .llm import PROVIDER
+        if PROVIDER == "openai":  # one check by the strong model (the German check was added for Apertus)
+            (v_en, r_en), (v_de, r_de) = _check_en(it["text"], law, facts, case), ("A", "")
+        else:
+            with ThreadPoolExecutor(2) as ex:
+                en, de = ex.submit(_check_en, it["text"], law, facts, case), ex.submit(_check_de, it["text"], law, facts, case)
+                (v_en, r_en), (v_de, r_de) = en.result(), de.result()
         if v_en != "supported" and not (v_en == "conditional" and COND.match(it["text"])):
             return it, f"English check: {v_en or 'no answer'} - {r_en}"
         if v_de != "A":

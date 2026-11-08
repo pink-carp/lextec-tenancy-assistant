@@ -51,7 +51,7 @@
 </head>
 <body>
 <header>
-  <h1>Tenancy information assistant</h1>
+  <h1>Tenancy information assistant <span style="font-size:14px;color:var(--warn)">· comparison version (OpenAI model, no pre-written text)</span></h1>
   <p>For social workers in the canton of Zurich · residential tenancy · <strong>legal information, not legal advice</strong></p>
 </header>
 <main>
@@ -203,7 +203,7 @@ function renderUnderstanding() {
      <div class="src">Client's words: ${quoted(e.client_words)}${e.explanation ? "<br>" + esc(e.explanation) : ""}</div></div>`).join("") : "<p class='muted'>None identified.</p>";
   $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)} <span class="muted">(${i.source === "safety net" ? "added by the checklist of rules for this situation" : "found by the AI"})</span>
      <details><summary>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}</summary>
-     ${i.articles.map(a => `<p><strong>Art. ${esc(a.replace("OR ", ""))} OR</strong> (plain-language summary, reviewed against the official text): ${esc((i.summaries || {})[a] || "")}</p>`).join("")}</details></div>`).join("");
+     ${i.articles.map(a => `<p><strong>Art. ${esc(a.replace("OR ", ""))} OR</strong></p>`).join("")}</details></div>`).join("");
   const EV = C.event_status || {}, NAMES = C.event_names || {};
   $("#evtable").innerHTML = `<table><tr><th>Fact</th><th>Answer</th><th>Based on</th></tr>${Object.keys(EV).filter(k => EV[k].source !== "code").map(k =>
     `<tr><td>${esc(NAMES[k] || k)}</td><td><select data-ev="${esc(k)}">${[["A","yes"],["B","no / only threatened or planned"],["C","not said / unknown"]].map(([v,l]) =>
@@ -346,7 +346,7 @@ function renderResult() {
    <p class="muted">Written by the AI for this case and checked sentence by sentence against the official text; sentences that failed a check were removed (see "Verification" below). Click a reference to read the official text.</p>
    ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`
       : `<p class="muted">No statement passed the checks for this issue. ${i.articles.map(a => chip(a.replace("OR ", "OR Art. "))).join("")}</p>`}
-      <details class="muted"><summary>The rules in general (plain-language summary of the official text)</summary><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}</li>`).join("")}</ul></details>`).join("")}
+`).join("")}
    ${s.open_points.length ? `<p><strong>Open points</strong></p><ul>${s.open_points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
    <h3>C. Lane assessment</h3>
    <p>${esc(C.lane_rule)} Vulnerability: ${esc(C.vulnerability_score)}/10 (${esc(C.vulnerability_source)}).</p>
@@ -385,7 +385,7 @@ $("#brf").onclick = async () => {
       <h3>2. Client's objective and context</h3><p>${esc(b.objective_and_context)}</p>
       <h3>3. Key facts and chronology</h3><ul>${b.chronology.map(c => `<li>${esc(c.date)} — ${esc(c.event)} (${esc(c.source)})</li>`).join("")}</ul>
       <ul>${b.facts.map(f => `<li>${esc(f.statement)} — <em>${esc(f.status)}</em></li>`).join("")}${b.disputed.map(d => `<li>${esc(d)} — <em>disputed</em></li>`).join("")}</ul>
-      <h3>4. Preliminary legal assessment</h3><p class="muted">Rules identified by the tool (reviewed summaries); applicability to be assessed by the lawyer.</p>
+      <h3>4. Preliminary legal assessment</h3><p class="muted">Written by the AI and checked against the official text; applicability to be assessed by the lawyer.</p>
       ${(b.preliminary_assessment || []).map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r)}</li>`).join("")}</ul>`).join("")}
       <h3>5. Evidence and outstanding questions</h3><p><strong>Available:</strong> ${b.evidence_available.map(esc).join(", ")}</p><p><strong>Missing:</strong></p><ul>${b.missing.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
       <h3>6. Action already taken and decision needed</h3><p><strong>Already done:</strong> ${esc(b.already_done)}</p><p><strong>Lawyer asked to assess:</strong> ${esc(b.lawyer_asked_to_assess)}</p>
