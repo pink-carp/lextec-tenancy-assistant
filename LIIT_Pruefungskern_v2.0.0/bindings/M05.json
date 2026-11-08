@@ -1,0 +1,248 @@
+{
+  "binding_id": "LIIT-V1-TO-CORE2-M05",
+  "version": "1.0.0",
+  "target_core": "LIIT-CORE@2.0.0",
+  "source_module": {
+    "id": "M05",
+    "version": "1.0.0",
+    "sha256": "1b1f62126b559495f44d028e77fb3a7bee2523864af497fc92f6e875b028bc67",
+    "path": "legacy_modules/M05.v1.0.0.json"
+  },
+  "mode": "explicit_read_only_adapter",
+  "legal_rules_changed": false,
+  "context_dependencies": [
+    "scope",
+    "temporal"
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O02",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O03",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O04",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O05",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O06",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O07",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O08",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    },
+    {
+      "id": "O09",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ],
+      "detail_policy": "Caller supplies evidenced structured details; absent fields remain unknown."
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E02",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E03",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E04",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E05",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E06",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E07",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E08",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E09",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E10",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E11",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E12",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E13",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E14",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E15",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E16",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E17",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E18",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E19",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E20",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E21",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    },
+    {
+      "id": "E22",
+      "context_dependencies": [
+        "scope",
+        "temporal"
+      ]
+    }
+  ],
+  "note": "Konservative gemeinsame Geltungsvoraussetzungen. Weitere rechtsspezifische Vorfragen bleiben Modulmerkmale. Unabhängige Bewertungsbefunde werden auch bei offenen Kontexten angezeigt, aber nur bedingt angewendet."
+}

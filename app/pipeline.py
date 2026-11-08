@@ -18,7 +18,7 @@ from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
-from . import checks, contacts, corpus, events, guidance, modules, scoring, writer
+from . import kern, checks, contacts, corpus, events, guidance, modules, scoring, writer
 from .dates import parse_when
 from .deadlines import DeadlineSpec, compute_deadline
 from .llm import ask_json
@@ -361,7 +361,7 @@ def understand(case):
     arts = [a for i in case["understanding"]["issues"] for a in i["articles"]]
     events.prefill(case, only=events.needed_for(arts))  # one closed call per event, confirmed in step 2
     assemble_issues(case)
-    case["modules_suggested"], case["modules_suggested_by"] = modules.suggest_ai(case)
+    case["modules_suggested"], case["modules_suggested_by"] = kern.suggest_ai(case)
     case["modules"] = list(case["modules_suggested"])
     deadlines(case)  # no AI involved: available already for the provisional lane
     return case
@@ -433,7 +433,7 @@ def confirm(case, facts=None, signals=None, vulnerability_score=None, event_edit
     """Step 3: the social worker's corrections replace the AI's reading; issues are rebuilt from the confirmed events."""
     events.confirm(case, event_edits)
     if modules_selected is not None:
-        case["modules"] = [m for m in modules_selected if m in modules.load()]
+        case["modules"] = [m for m in modules_selected if m in kern.load()]
     assemble_issues(case)
     if facts is not None:
         for f in facts:
@@ -467,8 +467,7 @@ def gather_sources(case):
                             "summary": summaries().get(p["id"], {}).get("summary", "")}
     bases = [pid for d in case.get("deadlines", []) for pid in d["legal_basis"]]  # always citable
     bases += [pid for q in case.get("questions", []) for pid in q.get("legal_basis", [])]
-    bases += [pid for m in modules.active(case) for k in ("questions", "points", "actions")
-              for it in m.get(k) or [] for pid in it.get("basis") or []]
+    bases += kern.bases(case)  # v6: legal bases of the selected outcomes and their elements
     for pid in bases:
         p = corpus.by_id().get(pid)
         if p:
@@ -510,7 +509,8 @@ def _articles(case):
 def questions(case):
     """Step 5: the checked questions of the confirmed situation modules; Apertus pre-fills answers the description
     already gives (with the sentence), the social worker confirms. (v3 generative questions: writer.questions.)"""
-    modules.questions(case)
+    kern.run(case)  # v6: K02-K06 per confirmed module, code combines (app/kern.py)
+    kern.questions(case)
     case["dropped_questions"] = []
     return case
 
@@ -721,10 +721,10 @@ def situation_summary(case):
 
 def write(case):
     """Step 9 (v4): checked module content whose conditions hold; Apertus writes only the situation summary."""
-    blocks, acts, lawyer = modules.assemble(case)
+    blocks, acts, lawyer = kern.write(case)
     note = None
     if not blocks:
-        note = ("This tool has no checked guidance for this situation. Please refer the client to the tenant association "
+        note = ("No legal module was confirmed for this situation. Please refer the client to the tenant association "
                 "or another advice service listed below.")
     case["screen"] = {"situation": situation_summary(case), "modules": blocks, "actions": acts, "issues": [],
                       "open_points": [], "lawyer_questions": lawyer, "out_of_scope": note,
@@ -738,7 +738,17 @@ def verify(case, applicability=True):
     removed = []
     law_articles = {s["article"] for s in case["sources"].values() if s["type"] == "law"}
     scr = case["screen"]
-    scr["situation"] = checks.clean_text(scr["situation"], law_articles, [], allowed_dates(case), "situation", removed)
+    ok_dates = allowed_dates(case)
+    scr["situation"] = checks.clean_text(scr["situation"], law_articles, [], ok_dates, "situation", removed)
+    for b in scr.get("modules", []):  # v6: AI-written results per remedy and next steps get the same check
+        for o in b.get("kern", {}).get("outcomes", []):
+            o["result"] = checks.clean_text(o["result"], law_articles, [], ok_dates, f"{b['module']} {o['id']} result", removed)
+    for a in scr.get("actions", []):
+        a["what"] = checks.clean_text(a["what"], law_articles, [], ok_dates, f"action {a['id']}", removed)
+    scr["actions"] = [a for a in scr.get("actions", []) if a["what"]]
+    for b in scr.get("modules", []):  # handout and brief read "points": the checked results per remedy
+        b["points"] = [{"text": f"{o['status_en']}: {o['result'] or o['legal_effect']}", "basis": o["basis"]}
+                       for o in b.get("kern", {}).get("outcomes", [])]
     case["verification"] = {"removed": removed, "warnings": [], "rules_checked": 0, "rules_total": 0, "unverifiable": False}
     return case
 

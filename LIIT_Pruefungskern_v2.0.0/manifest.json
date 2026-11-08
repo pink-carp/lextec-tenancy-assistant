@@ -1,0 +1,177 @@
+{
+  "package_id": "LIIT-CORE-INTEGRATED",
+  "version": "2.0.0",
+  "created_on": "2026-11-08",
+  "core": {
+    "path": "core.v2.0.0.json",
+    "sha256": "7824152b8479047942f5bcb32912b5d297afe893e499eea2a7dd08865c66a0c7"
+  },
+  "previous_core_sha256": "8c6f4b34fca4da936db2b6b185990f11f9d2ca2b7850ffe9c4fd908181cff4b3",
+  "files": [
+    {
+      "path": "BOT_GUIDANCE.md",
+      "sha256": "77e6cea49cd4d9ef4897543e28fedfb76f21289b73609e749740d97522050ddb"
+    },
+    {
+      "path": "MIGRATION.md",
+      "sha256": "e07b0d9c475f35b8490bb406a4195ce2514c2e8b041356e8480db94659b50d3f"
+    },
+    {
+      "path": "PRUEFUNGSKERN.md",
+      "sha256": "8cac52fdb685b79059ecd352efc18ae9f77b8110ae27d1b50fc621ef866ae19d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "9a4b846bc33ad0afdd5c27a3cf12c13139919d4a68ac8fb7a65f24af98f11cce"
+    },
+    {
+      "path": "bindings/M01.json",
+      "sha256": "4687d2ea54db6ca6ca8f477fd10fed7ad1b168c548b6628a5e19c6a7fd08f524"
+    },
+    {
+      "path": "bindings/M02.json",
+      "sha256": "cce77bafdf82d8d8ae09a4a45ddb812902e991c914fbf79258e1469cf0ed5cb6"
+    },
+    {
+      "path": "bindings/M03.json",
+      "sha256": "dbd631939e2647aabf7f71e1f89d3acda3f5b6be3e2b8cbabd7c1cb237252f7d"
+    },
+    {
+      "path": "bindings/M04.json",
+      "sha256": "feb843fc3e250797dbb9512c857034e909ae3399bf57e3b13abccf04e43b83db"
+    },
+    {
+      "path": "bindings/M05.json",
+      "sha256": "6e4e9d2b203323d6f1edef60c6170012e8a799b6e49bfee8fb5bc222f472f653"
+    },
+    {
+      "path": "bindings/M06.json",
+      "sha256": "7d5a7cbdb9615241ca57f2eaf269154d57a4bef8bc7c04fc515f4fa6070a7c95"
+    },
+    {
+      "path": "bindings/M07.json",
+      "sha256": "22bf215d4fa2102897e90e500f8b530a27cd267947b58f4801bc0d1f6b1c7600"
+    },
+    {
+      "path": "bindings/M08.json",
+      "sha256": "efd40cbe2f7e77a8abbb4b8c5e5f3d3bacf7943b22a0d5464acd59ef0fd36e59"
+    },
+    {
+      "path": "bindings/M09.json",
+      "sha256": "803bc0c5cfc06d2314c35ae81be8a7e1cdf876cd18cc7b91e65bbc1b749905d4"
+    },
+    {
+      "path": "core.v2.0.0.json",
+      "sha256": "7824152b8479047942f5bcb32912b5d297afe893e499eea2a7dd08865c66a0c7"
+    },
+    {
+      "path": "dialogue_guidance.v1.0.0.json",
+      "sha256": "4f393c7afe4dc289c54854a971cd08a482e06d86d088be20e3a63f10556aa421"
+    },
+    {
+      "path": "examples/partial_heating.case.json",
+      "sha256": "c8d3261f3c9730c6a983855be7e02d3936439cff8525b865b4ae6097e852d9f7"
+    },
+    {
+      "path": "examples/partial_heating.result.json",
+      "sha256": "ed4b2a1b4c03f97f5b7d031327019ed9f87b543b68e2aaccb7edfc23fefd43a5"
+    },
+    {
+      "path": "examples/unknown_scope.case.json",
+      "sha256": "83792e55cacd995a301a3a17fbe9fb707dc29b7b506eb25004fc4c95ae8b5206"
+    },
+    {
+      "path": "examples/unknown_scope.result.json",
+      "sha256": "a009b1e8ecb253b4341937b70db249b3f25ce308661d01acb4af442ff7e36fa4"
+    },
+    {
+      "path": "integration_map.json",
+      "sha256": "ad1f0b36ce18c084f6e2c33a802a5102a0c8ff20f70a6e40f36283d208ced063"
+    },
+    {
+      "path": "interfaces/core2_handoff.json",
+      "sha256": "b4740248e92f2a2a8fd5a78cea8cd187d21a1d68ca9b320e75de61f889b8ca96"
+    },
+    {
+      "path": "interfaces/existing.v1.0.0.json",
+      "sha256": "224387960af9276dab83c2e19666d45e907f36ce88bdbc3298cc9b2e01c37ecf"
+    },
+    {
+      "path": "legacy_modules/M01.v1.0.0.json",
+      "sha256": "a1eec19e286a8bc2e14d62970ee7c289f997835c54b2b2697afc3ca6a7dd24f6"
+    },
+    {
+      "path": "legacy_modules/M02.v1.0.0.json",
+      "sha256": "50ed3e7b6be8bb6c756e52d764d037130b93d1c8382ee527bc08b2f29d56d3e4"
+    },
+    {
+      "path": "legacy_modules/M03.v1.0.0.json",
+      "sha256": "d18e6a4575a24df4813f026f7d8d4c3e71600cc18ce58ddfda3c44d3d758b599"
+    },
+    {
+      "path": "legacy_modules/M04.v1.0.0.json",
+      "sha256": "e211e7e2c5266019d49a985fcff78b346d274672236d4bfcb314b288e6907f6b"
+    },
+    {
+      "path": "legacy_modules/M05.v1.0.0.json",
+      "sha256": "1b1f62126b559495f44d028e77fb3a7bee2523864af497fc92f6e875b028bc67"
+    },
+    {
+      "path": "legacy_modules/M06.v1.0.0.json",
+      "sha256": "8af42977b6f31fe71bf9abed98d38812a8b7e6190fc1cd245df5dbda10e5cac2"
+    },
+    {
+      "path": "legacy_modules/M07.v1.0.0.json",
+      "sha256": "ce5aca7d7bca24dc4e940c80b76ed046cd3376d44d5014670c8620abe5b0c964"
+    },
+    {
+      "path": "legacy_modules/M08.v1.0.0.json",
+      "sha256": "36b28062d0f35358e63d2956b807c10ce1e60aa754b8bbf5107024defb46a0c6"
+    },
+    {
+      "path": "legacy_modules/M09.v1.0.0.json",
+      "sha256": "ae7229586763ebf5e75ea5d40f0e5cc7e53782c92495a349290a417fedc4374f"
+    },
+    {
+      "path": "runtime/evaluator.mjs",
+      "sha256": "d18299d4530603fcd8a497651d8553273a4661497cf8a025b881456c496cb4bf"
+    },
+    {
+      "path": "runtime/schema_check.mjs",
+      "sha256": "aaf49c3ee8d0a817eb224fcf1ed0c20a1a838196a794e462d18554a951c17d56"
+    },
+    {
+      "path": "schemas/binding.schema.json",
+      "sha256": "dd20c78093d712fddf12a117b51a24223e26ec1cdf48a59f2d1bbaec6b1c3582"
+    },
+    {
+      "path": "schemas/case.schema.json",
+      "sha256": "6ad8406002fabd3ffa1133eb0ead06ec18f889d4d68e16e83398c9a110e1e860"
+    },
+    {
+      "path": "schemas/core.schema.json",
+      "sha256": "7ee0e93ad59e895340f4fc85cfff25a609c2ff4bfb81dcbe18699f960fcb1aa1"
+    },
+    {
+      "path": "schemas/result.schema.json",
+      "sha256": "1b460663ff722c96b539f9fde2a8f72fb0c4608760b4beebf8ddbecb269880a9"
+    },
+    {
+      "path": "sources.json",
+      "sha256": "3b05b47c49c4590ef960fb658097b46cc65760d021a1d4e8fa8015948aacadec"
+    },
+    {
+      "path": "tests/regression_cases.json",
+      "sha256": "2084188942a45b793f013bfb938b6620f5fd6ff0c3121d50bb912ccb13a6795b"
+    },
+    {
+      "path": "tests/report.json",
+      "sha256": "1c6f5390ee68cf7509f7857ee560e9c1d065966430cdb333fd550bf904d4479c"
+    },
+    {
+      "path": "tests/run.mjs",
+      "sha256": "e89b0e462cd27f14f4d77a6abbea85678cf4042a35484edbab4f59489d5800bc"
+    }
+  ],
+  "note": "Manifest extern pinnen/signieren; Hashes allein sind kein Schreibschutz."
+}

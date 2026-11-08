@@ -1,0 +1,1546 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M05",
+  "version": "1.0.0",
+  "title": "Mängel an der Mietsache",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Übergabemängel und Mängel während Mietdauer; jeder Rechtsbehelf wird separat geprüft.",
+  "legal_question": "Welche einzelnen Mängelrechte sind eröffnet?",
+  "activation_tags": [
+    "defect",
+    "mould",
+    "heating",
+    "rent_deposit",
+    "repair"
+  ],
+  "inputs": [
+    {
+      "id": "agreed_condition",
+      "type": "string",
+      "description": "Vertrag Zusicherungen Gebrauch",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "actual_condition",
+      "type": "string",
+      "description": "Fotos Befunde Beschreibung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "impairment",
+      "type": "array",
+      "description": "Räume Art Intensität Zeiträume",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "cause",
+      "type": "string",
+      "description": "Ursache Nutzerverhalten Fachbefund",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "repair_nature",
+      "type": "string",
+      "description": "Arbeitsumfang Fachkenntnisse Kosten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "local_custom",
+      "type": "string",
+      "description": "Beleg Ortsgebrauch",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "defect_onset",
+      "type": "string",
+      "description": "Bei Übergabe oder später",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "handover_record",
+      "type": "string",
+      "description": "Protokoll und Vorbehalte",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "notice",
+      "type": "string",
+      "description": "Inhalt Zugang und sonstige Kenntnisbelege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "repair_history",
+      "type": "string",
+      "description": "Meldung Termine Arbeiten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "reasonable_time_assessment",
+      "type": "string",
+      "description": "Juristische Begründung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_repair",
+      "type": "object",
+      "description": "Externe Zeitprüfung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "replacement",
+      "type": "string",
+      "description": "Art Zeitpunkt Eignung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "expert_report",
+      "type": "string",
+      "description": "Befund",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "damage_items",
+      "type": "array",
+      "description": "Einzelne Schäden und Nachweise",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "causation",
+      "type": "string",
+      "description": "Zeitlicher und sachlicher Zusammenhang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "exculpation",
+      "type": "string",
+      "description": "Behauptungen Beweise und Verfahrensstand",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deposit_warning",
+      "type": "string",
+      "description": "Wortlaut Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "remediability",
+      "type": "string",
+      "description": "Behebbarkeit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_deposit",
+      "type": "object",
+      "description": "Zeitprüfung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deposit_receipt",
+      "type": "string",
+      "description": "Stelle Zahlung Zuordnung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "rent_due",
+      "type": "string",
+      "description": "Fälligkeit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deposit_announcement",
+      "type": "string",
+      "description": "Inhalt Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_conciliation",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "conciliation_receipt",
+      "type": "string",
+      "description": "Eingangsbeleg",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "failure_damage",
+      "type": "string",
+      "description": "Durch Unterlassen verursachter Schaden",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "third_party_claim",
+      "type": "string",
+      "description": "Anspruch und Anzeige",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Abweichung vom geschuldeten Gebrauchszustand",
+      "legal_basis": [
+        "OR 256",
+        "OR 259a"
+      ],
+      "definition": "Vertraglich vorausgesetzten Zustand mit tatsächlichem Zustand vergleichen; zugesicherte Eigenschaften und Gebrauchsstörungen einbeziehen.",
+      "input_refs": [
+        "agreed_condition",
+        "actual_condition"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Abweichung vom geschuldeten Gebrauchszustand?",
+        "rule": "Vertraglich vorausgesetzten Zustand mit tatsächlichem Zustand vergleichen; zugesicherte Eigenschaften und Gebrauchsstörungen einbeziehen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Gebrauch beeinträchtigt",
+      "legal_basis": [
+        "OR 259a",
+        "OR 259d"
+      ],
+      "definition": "Objektive Einbusse für vereinbarten Gebrauch, Dauer und Intensität nach Raum und Zeitraum; kein pauschaler Prozentsatz.",
+      "input_refs": [
+        "impairment"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Gebrauch beeinträchtigt?",
+        "rule": "Objektive Einbusse für vereinbarten Gebrauch, Dauer und Intensität nach Raum und Zeitraum; kein pauschaler Prozentsatz.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Mangel vom Mieter zu verantworten",
+      "legal_basis": [
+        "OR 259a Abs. 1"
+      ],
+      "definition": "Verursachung und rechtliche Zurechnung prüfen; Vermutung wegen blosser Anwesenheit genügt nicht.",
+      "input_refs": [
+        "cause"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mangel vom Mieter zu verantworten?",
+        "rule": "Verursachung und rechtliche Zurechnung prüfen; Vermutung wegen blosser Anwesenheit genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Kleiner Unterhalt während Mietdauer",
+      "legal_basis": [
+        "OR 259"
+      ],
+      "definition": "Kleine gewöhnliche Reinigung/Ausbesserung nach Ortsgebrauch; kein allgemeiner fixer Frankenbetrag. Bei Übergabe gilt Art. 258 Abs. 3 lit. b.",
+      "input_refs": [
+        "repair_nature",
+        "local_custom",
+        "defect_onset"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Kleiner Unterhalt während Mietdauer?",
+        "rule": "Kleine gewöhnliche Reinigung/Ausbesserung nach Ortsgebrauch; kein allgemeiner fixer Frankenbetrag. Bei Übergabe gilt Art. 258 Abs. 3 lit. b.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Mangel bereits bei Übergabe",
+      "legal_basis": [
+        "OR 258"
+      ],
+      "definition": "Zeitpunkt gesondert feststellen; schwere Übergabemängel eröffnen alternativ Nichterfüllungsrechte nach Art. 107–109.",
+      "input_refs": [
+        "defect_onset",
+        "handover_record"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mangel bereits bei Übergabe?",
+        "rule": "Zeitpunkt gesondert feststellen; schwere Übergabemängel eröffnen alternativ Nichterfüllungsrechte nach Art. 107–109.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Vermieter kennt Mangel",
+      "legal_basis": [
+        "OR 259b",
+        "OR 259d"
+      ],
+      "definition": "Kenntniszeitpunkt belegen; Meldung kann auch anders als schriftlich bewiesen werden. Fehlende schriftliche Meldung ist nicht automatisch fehlende Kenntnis.",
+      "input_refs": [
+        "notice"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vermieter kennt Mangel?",
+        "rule": "Kenntniszeitpunkt belegen; Meldung kann auch anders als schriftlich bewiesen werden. Fehlende schriftliche Meldung ist nicht automatisch fehlende Kenntnis.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Keine Behebung innert angemessener Zeit",
+      "legal_basis": [
+        "OR 259b"
+      ],
+      "definition": "Angemessenheit nach Dringlichkeit und technischer Machbarkeit würdigen; kalendarische Umsetzung extern.",
+      "input_refs": [
+        "repair_history",
+        "reasonable_time_assessment",
+        "deadline_repair"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Keine Behebung innert angemessener Zeit?",
+        "rule": "Angemessenheit nach Dringlichkeit und technischer Machbarkeit würdigen; kalendarische Umsetzung extern.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Vollwertiger Ersatz rechtzeitig geleistet",
+      "legal_basis": [
+        "OR 259c"
+      ],
+      "definition": "Vollwertigkeit bezogen auf vereinbarten Gebrauch; blosses Reparaturversprechen genügt nicht.",
+      "input_refs": [
+        "replacement"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vollwertiger Ersatz rechtzeitig geleistet?",
+        "rule": "Vollwertigkeit bezogen auf vereinbarten Gebrauch; blosses Reparaturversprechen genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Schwerer Mangel",
+      "legal_basis": [
+        "OR 259b lit. a"
+      ],
+      "definition": "Tauglichkeit der unbeweglichen Sache ausgeschlossen oder erheblich beeinträchtigt; Unbewohnbarkeit nicht allein notwendige Formulierung.",
+      "input_refs": [
+        "impairment",
+        "expert_report"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Schwerer Mangel?",
+        "rule": "Tauglichkeit der unbeweglichen Sache ausgeschlossen oder erheblich beeinträchtigt; Unbewohnbarkeit nicht allein notwendige Formulierung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Mittlerer Mangel",
+      "legal_basis": [
+        "OR 259b lit. b"
+      ],
+      "definition": "Gebrauch vermindert, aber nicht erheblich beeinträchtigt; Abgrenzung zu kleinem Unterhalt und schwerem Mangel.",
+      "input_refs": [
+        "impairment",
+        "repair_nature"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mittlerer Mangel?",
+        "rule": "Gebrauch vermindert, aber nicht erheblich beeinträchtigt; Abgrenzung zu kleinem Unterhalt und schwerem Mangel.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E11",
+      "label": "Vermögensschaden nachgewiesen",
+      "legal_basis": [
+        "OR 259e"
+      ],
+      "definition": "Konkrete unfreiwillige Vermögenseinbusse; Beeinträchtigung allein ist noch kein zusätzlicher Schadenersatzbetrag.",
+      "input_refs": [
+        "damage_items"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vermögensschaden nachgewiesen?",
+        "rule": "Konkrete unfreiwillige Vermögenseinbusse; Beeinträchtigung allein ist noch kein zusätzlicher Schadenersatzbetrag.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E12",
+      "label": "Natürliche und adäquate Kausalität",
+      "legal_basis": [
+        "OR 259e"
+      ],
+      "definition": "Schaden auf konkreten Mangel zurückführen; andere Ursachen abgrenzen.",
+      "input_refs": [
+        "causation"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Natürliche und adäquate Kausalität?",
+        "rule": "Schaden auf konkreten Mangel zurückführen; andere Ursachen abgrenzen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E13",
+      "label": "Vermieter hat fehlendes Verschulden bewiesen",
+      "legal_basis": [
+        "OR 259e"
+      ],
+      "definition": "Entlastungsbeweis liegt beim Vermieter; Mieter muss dessen Verschulden nicht positiv beweisen. Fehlende Angaben sind nicht automatisch gescheiterter Entlastungsbeweis.",
+      "input_refs": [
+        "exculpation"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vermieter hat fehlendes Verschulden bewiesen?",
+        "rule": "Entlastungsbeweis liegt beim Vermieter; Mieter muss dessen Verschulden nicht positiv beweisen. Fehlende Angaben sind nicht automatisch gescheiterter Entlastungsbeweis.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E14",
+      "label": "Mangelbeseitigung schriftlich verlangt und Frist gesetzt",
+      "legal_basis": [
+        "OR 259g Abs. 1"
+      ],
+      "definition": "Bei unbeweglicher Sache angemessene schriftliche Behebungsfrist; Beseitigung durch Vermieter muss als Druckziel möglich sein.",
+      "input_refs": [
+        "deposit_warning",
+        "remediability"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mangelbeseitigung schriftlich verlangt und Frist gesetzt?",
+        "rule": "Bei unbeweglicher Sache angemessene schriftliche Behebungsfrist; Beseitigung durch Vermieter muss als Druckziel möglich sein.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E15",
+      "label": "Hinterlegung für erfolglosen Ablauf angedroht",
+      "legal_basis": [
+        "OR 259g Abs. 1"
+      ],
+      "definition": "Schriftliche Androhung in Verbindung mit Behebungsfrist dokumentieren.",
+      "input_refs": [
+        "deposit_warning"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Hinterlegung für erfolglosen Ablauf angedroht?",
+        "rule": "Schriftliche Androhung in Verbindung mit Behebungsfrist dokumentieren.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E16",
+      "label": "Angemessene Frist erfolglos abgelaufen",
+      "legal_basis": [
+        "OR 259g Abs. 1"
+      ],
+      "definition": "Keine hinreichende Behebung nach angemessener Frist; Antwort des externen Fristendiensts beiziehen.",
+      "input_refs": [
+        "deadline_deposit",
+        "repair_history"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Angemessene Frist erfolglos abgelaufen?",
+        "rule": "Keine hinreichende Behebung nach angemessener Frist; Antwort des externen Fristendiensts beiziehen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E17",
+      "label": "Künftig fälliger Mietzins bei zuständiger Stelle hinterlegt",
+      "legal_basis": [
+        "OR 259g Abs. 1 und 2"
+      ],
+      "definition": "Nur noch nicht fällige Mietzinse bei kantonal bezeichneter Stelle; privates Sparkonto oder Einbehalt genügt nicht.",
+      "input_refs": [
+        "deposit_receipt",
+        "rent_due",
+        "deadline_deposit"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Künftig fälliger Mietzins bei zuständiger Stelle hinterlegt?",
+        "rule": "Nur noch nicht fällige Mietzinse bei kantonal bezeichneter Stelle; privates Sparkonto oder Einbehalt genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E18",
+      "label": "Hinterlegung schriftlich angekündigt",
+      "legal_basis": [
+        "OR 259g Abs. 1"
+      ],
+      "definition": "Ankündigung dokumentieren; fehlende Ankündigung nicht ohne Prüfung ihrer Ordnungsfunktion mit ungültiger Hinterlegung gleichsetzen.",
+      "input_refs": [
+        "deposit_announcement"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Hinterlegung schriftlich angekündigt?",
+        "rule": "Ankündigung dokumentieren; fehlende Ankündigung nicht ohne Prüfung ihrer Ordnungsfunktion mit ungültiger Hinterlegung gleichsetzen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E19",
+      "label": "Ansprüche nach Hinterlegung rechtzeitig geltend gemacht",
+      "legal_basis": [
+        "OR 259h Abs. 1"
+      ],
+      "definition": "30 Tage seit Fälligkeit des ersten hinterlegten Mietzinses, nicht seit Überweisung; externe Fristprüfung.",
+      "input_refs": [
+        "deadline_conciliation",
+        "conciliation_receipt"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Ansprüche nach Hinterlegung rechtzeitig geltend gemacht?",
+        "rule": "30 Tage seit Fälligkeit des ersten hinterlegten Mietzinses, nicht seit Überweisung; externe Fristprüfung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E20",
+      "label": "Mangel gemeldet oder Schaden durch Unterlassen",
+      "legal_basis": [
+        "OR 257g"
+      ],
+      "definition": "Meldepflicht und allfälliger Zusatzschaden getrennt prüfen; ein Mangel erzeugt nicht automatisch Haftung des Mieters.",
+      "input_refs": [
+        "notice",
+        "failure_damage"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mangel gemeldet oder Schaden durch Unterlassen?",
+        "rule": "Meldepflicht und allfälliger Zusatzschaden getrennt prüfen; ein Mangel erzeugt nicht automatisch Haftung des Mieters.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E21",
+      "label": "Übernahme trotz schwerem Mangel unter Festhalten an Erfüllung",
+      "legal_basis": [
+        "OR 258 Abs. 2"
+      ],
+      "definition": "Bei Übernahme und Beharren auf gehöriger Erfüllung Mängelrechte nach Art. 259a–259i statt Rückabwicklung nach 107–109.",
+      "input_refs": [
+        "handover_record"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Übernahme trotz schwerem Mangel unter Festhalten an Erfüllung?",
+        "rule": "Bei Übernahme und Beharren auf gehöriger Erfüllung Mängelrechte nach Art. 259a–259i statt Rückabwicklung nach 107–109.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E22",
+      "label": "Drittanspruch unvereinbar mit Mieterrecht angezeigt",
+      "legal_basis": [
+        "OR 259f"
+      ],
+      "definition": "Ein Dritter erhebt konkurrierenden Anspruch auf die Sache; Anzeige an Vermieter.",
+      "input_refs": [
+        "third_party_claim"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Drittanspruch unvereinbar mit Mieterrecht angezeigt?",
+        "rule": "Ein Dritter erhebt konkurrierenden Anspruch auf die Sache; Anzeige an Vermieter.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "not": {
+              "element": "E08"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Beseitigung des Mangels verlangen; keine zusätzliche pauschale Wartefrist für das Entstehen des Grundanspruchs.",
+      "legal_basis": [
+        "OR 259a Abs. 1 lit. a",
+        "OR 259c"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E06"
+          }
+        ]
+      },
+      "legal_effect": "Verhältnismässige Herabsetzung für Zeitraum ab Vermieterkenntnis bis Behebung; Höhe gesondert begründen, Vermieterverschulden nicht nötig.",
+      "legal_basis": [
+        "OR 259d"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E11"
+          },
+          {
+            "element": "E12"
+          },
+          {
+            "not": {
+              "element": "E13"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Ersatz des kausalen Schadens bei fehlendem Entlastungsbeweis.",
+      "legal_basis": [
+        "OR 259e"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E06"
+          },
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E10"
+          },
+          {
+            "not": {
+              "element": "E08"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Ersatzvornahme auf Vermieterkosten unter Art. 259b lit. b möglich; angemessenen Aufwand belegen.",
+      "legal_basis": [
+        "OR 259b lit. b"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O05",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E06"
+          },
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "not": {
+              "element": "E08"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Fristlose Mängelkündigung möglich; Form und Mitwirkung nach M03/M09 zusätzlich prüfen.",
+      "legal_basis": [
+        "OR 259b lit. a"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O06",
+      "when": {
+        "all": [
+          {
+            "all": [
+              {
+                "element": "E01"
+              },
+              {
+                "not": {
+                  "element": "E03"
+                }
+              },
+              {
+                "any": [
+                  {
+                    "not": {
+                      "element": "E04"
+                    }
+                  },
+                  {
+                    "element": "E05"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E14"
+          },
+          {
+            "element": "E15"
+          },
+          {
+            "element": "E16"
+          },
+          {
+            "element": "E17"
+          }
+        ]
+      },
+      "legal_effect": "Gesetzliche Hinterlegung kann Zahlung ersetzen; Ankündigung und nachfolgende Geltendmachung gesondert prüfen.",
+      "legal_basis": [
+        "OR 259g"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O07",
+      "when": {
+        "all": [
+          {
+            "element": "E17"
+          },
+          {
+            "not": {
+              "element": "E19"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Hinterlegte Mietzinse fallen nach Art. 259h Abs. 1 dem Vermieter zu; dies entscheidet nicht automatisch über sämtliche materiellen Mängelansprüche.",
+      "legal_basis": [
+        "OR 259h"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O08",
+      "when": {
+        "all": [
+          {
+            "element": "E05"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "not": {
+              "element": "E21"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Nichterfüllungsrechte bei Übergabe nach Art. 258 Abs. 1 i.V.m. 107–109 gesondert prüfen; keine automatische Rücktrittserklärung erzeugen.",
+      "legal_basis": [
+        "OR 258 Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O09",
+      "when": {
+        "element": "E22"
+      },
+      "legal_effect": "Übernahme des Rechtsstreits durch Vermieter verlangen.",
+      "legal_basis": [
+        "OR 259f"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR259G_REPAIR",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR259G_REPAIR",
+      "legal_basis": "OR 259g Abs. 1",
+      "trigger_event": "Zugang schriftliche Mängelaufforderung",
+      "legal_parameters": {
+        "duration": "legally_assessed_reasonable_period"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR259H_CLAIM",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR259H_CLAIM",
+      "legal_basis": "OR 259h Abs. 1",
+      "trigger_event": "Fälligkeit erster hinterlegter Mietzins",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "health_or_habitability",
+      "condition": "Gesundheitsgefahr oder erhebliche Unbenutzbarkeit berichtet",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "self_withholding",
+      "condition": "Mietzins eigenmächtig gekürzt oder einbehalten",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "deposit_planned",
+      "condition": "Hinterlegung geplant oder erfolgt",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [
+    {
+      "module_id": "M03",
+      "compatible_version": "1.x",
+      "when": "Fristlose Kündigung erwogen",
+      "purpose": "Erklärung und Parteien",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    }
+  ],
+  "limitations": [
+    "Kein automatisches Kürzen oder Einbehalten laufender Mietzinse aus einem positiven Herabsetzungsergebnis. Verrechnung und wirksame Hinterlegung sind eigene Rechtsfragen.",
+    "Schwere Übergabemängel ohne Übernahme und Sonderfälle von Unmöglichkeit/Art. 107–109 erfordern vertiefte Prüfung."
+  ],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UBE24",
+      "title": "Universität Bern, Dr. E. Bachofner: Musterlösung Mietrecht FS 2024",
+      "url": "https://www.ziv.unibe.ch/unibe/portal/fak_rechtwis/c_dep_private/ziv/content/e7676/e7684/e104370/e104397/e1553151/MusterloesungMietrecht2024mitStatistik_ger.pdf",
+      "kind": "university_teaching",
+      "edition": "2024",
+      "locator": "S. 1–6, Fragen 1–7",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Methodik und Plausibilisierung. Fallzahlen, konkrete Fristen, Prozentsätze und damaliges Prozessrecht nicht als allgemeine Regeln übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 256",
+    "OR 259a",
+    "OR 259d",
+    "OR 259a Abs. 1",
+    "OR 259",
+    "OR 258",
+    "OR 259b",
+    "OR 259c",
+    "OR 259b lit. a",
+    "OR 259b lit. b",
+    "OR 259e",
+    "OR 259g Abs. 1",
+    "OR 259g Abs. 1 und 2",
+    "OR 259h Abs. 1",
+    "OR 257g",
+    "OR 258 Abs. 2",
+    "OR 259f",
+    "OR 259a Abs. 1 lit. a",
+    "OR 259g",
+    "OR 259h",
+    "OR 258 Abs. 1"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "OR 259e: Vermieter führt Entlastungsbeweis.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

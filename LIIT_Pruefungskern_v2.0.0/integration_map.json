@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "source": "Legal Reasoning Guideline for bot.docx",
+  "mapping": [
+    [
+      "Introduction",
+      "K01",
+      "Ziel und Rollen vorläufig erfassen"
+    ],
+    [
+      "1 Property and applicable protections",
+      "K02",
+      "Qualifikation und besondere Schutzregeln"
+    ],
+    [
+      "2 Contractual obligations",
+      "K03",
+      "Eigenständige dokumentierte Pflichten-/Rechtspositionsprüfung"
+    ],
+    [
+      "3 Breach or other legally relevant event",
+      "K04",
+      "Tatsache, Pflichtverletzung und Rechtsausübung auseinanderhalten"
+    ],
+    [
+      "4 Requirements for the remedy",
+      "K05 und K06",
+      "Auswahl je Rechtsbehelf und Einzelmerkmalsprüfung"
+    ],
+    [
+      "5 Form and deadlines",
+      "K07 sowie laufende Ereignisverarbeitung",
+      "Form, Adressat, Reihenfolge, Belege; nur Fristenschnittstelle"
+    ],
+    [
+      "6 Legal consequences",
+      "K08",
+      "Strukturierte konkrete Rechtsfolge und offene Angaben"
+    ]
+  ],
+  "v1_changes": [
+    "K03/K04 ergänzt statt Pflichten und Ereignis nur implizit zu behandeln.",
+    "Starre Reihenfolge durch dokumentierte Abhängigkeiten ersetzt.",
+    "Globale Abbruchbedingung bei offener Anwendbarkeit durch bedingte Teilprüfung ersetzt.",
+    "Ergebnisfelder konkretisiert.",
+    "Annahmen werden je Ergebniszweig isoliert.",
+    "Dienstaufrufe unabhängig vom Abschluss der materiellen Prüfung."
+  ]
+}

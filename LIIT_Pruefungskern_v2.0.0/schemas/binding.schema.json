@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "binding_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "target_core": {
+      "type": "string"
+    },
+    "source_module": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "additionalProperties": false
+    },
+    "mode": {
+      "type": "string"
+    },
+    "legal_rules_changed": {
+      "type": "boolean"
+    },
+    "context_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "context_dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "detail_policy": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "context_dependencies",
+          "detail_policy"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "context_dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "context_dependencies"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "binding_id",
+    "version",
+    "target_core",
+    "source_module",
+    "mode",
+    "legal_rules_changed",
+    "context_dependencies",
+    "outcomes",
+    "elements",
+    "note"
+  ],
+  "additionalProperties": false
+}

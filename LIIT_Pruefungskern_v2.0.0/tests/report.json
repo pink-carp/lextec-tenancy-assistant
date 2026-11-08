@@ -1,0 +1,121 @@
+{
+  "checked_on": "2026-11-08",
+  "status": "passed",
+  "count": 28,
+  "tests": [
+    {
+      "name": "Negation unknown bleibt unknown",
+      "status": "passed"
+    },
+    {
+      "name": "AND entscheidendes false bewahrt offene Alternative",
+      "status": "passed"
+    },
+    {
+      "name": "OR entscheidendes true bewahrt offene Alternative",
+      "status": "passed"
+    },
+    {
+      "name": "Leere Gruppen verboten",
+      "status": "passed"
+    },
+    {
+      "name": "Unbekannte Kenntnis blockiert nicht eigenständige Beseitigungsprüfung",
+      "status": "passed"
+    },
+    {
+      "name": "Scope unbekannt erhält Teilbefunde und nur hypothetische Rechtsfolge",
+      "status": "passed"
+    },
+    {
+      "name": "Scope ausgeschlossen erzeugt keine hypothetische Rechtsfolge",
+      "status": "passed"
+    },
+    {
+      "name": "Historische Anwendbarkeit offen bleibt explizite Bedingung",
+      "status": "passed"
+    },
+    {
+      "name": "Bloss angenommener Ausschluss beendet Teilprüfung nicht",
+      "status": "passed"
+    },
+    {
+      "name": "Geänderte Tatsache invalidiert alte Subsumtion",
+      "status": "passed"
+    },
+    {
+      "name": "Behauptete Tatsache wird nicht zum bewiesenen positiven Ergebnis",
+      "status": "passed"
+    },
+    {
+      "name": "Widersprechende Tatsachen verhindern alte positive Bewertung",
+      "status": "passed"
+    },
+    {
+      "name": "Annahme eines Zweigs verunreinigt den anderen Zweig nicht",
+      "status": "passed"
+    },
+    {
+      "name": "Ergebnis bleibt bei umgekehrter Zweigreihenfolge stabil",
+      "status": "passed"
+    },
+    {
+      "name": "Fehlendes Formular aktiviert Nichtigkeitsprüfung",
+      "status": "passed"
+    },
+    {
+      "name": "Jahresprüfung Kaution negativ wird nicht übergangen",
+      "status": "passed"
+    },
+    {
+      "name": "Abgeleitete Staffelmerkmale werden rekursiv ausgewertet",
+      "status": "passed"
+    },
+    {
+      "name": "Familienwohnung ohne zweite Zustellung bleibt separat prüfbar",
+      "status": "passed"
+    },
+    {
+      "name": "Dienstanfrage bleibt trotz unbekanntem Kontext sichtbar",
+      "status": "passed"
+    },
+    {
+      "name": "Unbekannte Belegreferenz abgewiesen",
+      "status": "passed"
+    },
+    {
+      "name": "Verfälschter Modulhash abgewiesen",
+      "status": "passed"
+    },
+    {
+      "name": "Abgeleitete Merkmale nicht manuell überschreibbar",
+      "status": "passed"
+    },
+    {
+      "name": "Externer Fristenbefund braucht Dienstantwort",
+      "status": "passed"
+    },
+    {
+      "name": "Offene Ergebniskonkretisierung bleibt null",
+      "status": "passed"
+    },
+    {
+      "name": "Zusätzliches Schemafeld abgewiesen",
+      "status": "passed"
+    },
+    {
+      "name": "Alle neun Bindungen stimmen mit unveränderten Modulen überein",
+      "status": "passed"
+    },
+    {
+      "name": "Kernschema erfüllt",
+      "status": "passed"
+    },
+    {
+      "name": "Alte Kernfassung unverändert",
+      "status": "passed"
+    }
+  ],
+  "scope": "Struktur, Beleg-/Revisionsreferenzen, Modulbindung, Teilprüfung und deterministische Verknüpfung. Keine juristische Fachfreigabe und keine Produktintegration.",
+  "schema_validation": "Dokumentierter JSON-Schema-Teilumfang aus runtime/schema_check.mjs; keine Behauptung einer vollständigen Draft-2020-12-Implementierung."
+}

@@ -1,0 +1,536 @@
+{
+  "case_id": "DEMO-SCOPE-UNBEKANNT",
+  "case_revision": 1,
+  "core_id": "LIIT-CORE",
+  "core_version": "2.0.0",
+  "module_id": "M05",
+  "module_version": "1.0.0",
+  "binding_id": "LIIT-V1-TO-CORE2-M05",
+  "workflow_status": "partial",
+  "stage_records": [
+    {
+      "stage_id": "K01",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K02",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K03",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K04",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K05",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K06",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K07",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    },
+    {
+      "stage_id": "K08",
+      "status": "partial",
+      "reason": "Noch nicht dokumentiert."
+    }
+  ],
+  "factual_findings": [
+    {
+      "id": "fact_scope",
+      "revision": 1,
+      "value": "Synthetische Grundlage für scope",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_temporal",
+      "revision": 1,
+      "value": "Synthetische Grundlage für temporal",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E01",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E01",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E03",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E03",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E04",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E04",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E08",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E08",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E02",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E02",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    {
+      "id": "fact_E06",
+      "revision": 1,
+      "value": "Synthetische Grundlage für E06",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    }
+  ],
+  "element_results": [
+    {
+      "id": "E01",
+      "status": "satisfied",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E01",
+      "fact_refs": [
+        {
+          "id": "fact_E01",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 256",
+        "OR 259a"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E03",
+      "status": "not_satisfied",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E03",
+      "fact_refs": [
+        {
+          "id": "fact_E03",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 259a Abs. 1"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "status": "not_satisfied",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E04",
+      "fact_refs": [
+        {
+          "id": "fact_E04",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 259"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "status": "unknown",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Keine Bewertung vorhanden.",
+      "fact_refs": [],
+      "evidence_refs": [],
+      "legal_basis": [
+        "OR 258"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "status": "not_satisfied",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E08",
+      "fact_refs": [
+        {
+          "id": "fact_E08",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 259c"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "status": "satisfied",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E02",
+      "fact_refs": [
+        {
+          "id": "fact_E02",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 259a",
+        "OR 259d"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "status": "unknown",
+      "applicability": "conditional",
+      "assumed": false,
+      "stale": false,
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E06",
+      "fact_refs": [
+        {
+          "id": "fact_E06",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 259b",
+        "OR 259d"
+      ],
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcome_results": [
+    {
+      "id": "O01",
+      "status": "conditional_applicability",
+      "expression_status": "satisfied",
+      "applicability": "conditional",
+      "rule_effect": null,
+      "hypothetical_effect": {
+        "text": "Beseitigung des Mangels verlangen; keine zusätzliche pauschale Wartefrist für das Entstehen des Grundanspruchs.",
+        "context_requirements": [
+          "scope"
+        ],
+        "assumed_element_ids": []
+      },
+      "legal_basis": [
+        "OR 259a Abs. 1 lit. a",
+        "OR 259c"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid.",
+      "element_refs": [
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E08"
+      ],
+      "open_elements": [
+        "E05"
+      ],
+      "structured_details": {
+        "entitled_party": {
+          "status": "verified",
+          "value": "T",
+          "evidence_refs": [
+            "DOC"
+          ]
+        },
+        "obligated_party": {
+          "status": "verified",
+          "value": "V",
+          "evidence_refs": [
+            "DOC"
+          ]
+        },
+        "action": {
+          "status": "verified",
+          "value": "Behebung des im Beispiel festgestellten Mangels verlangen.",
+          "evidence_refs": [
+            "DOC"
+          ]
+        },
+        "amount_or_scope": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "starts_at": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "ends_at": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "lease_effect": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "remedy_relations": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "remaining_conditions": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        }
+      },
+      "open_detail_fields": [
+        "amount_or_scope",
+        "starts_at",
+        "ends_at",
+        "lease_effect",
+        "remedy_relations",
+        "remaining_conditions"
+      ],
+      "case_conclusion_complete": false,
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "O02",
+      "status": "conditional_applicability",
+      "expression_status": "unknown",
+      "applicability": "conditional",
+      "rule_effect": null,
+      "hypothetical_effect": null,
+      "legal_basis": [
+        "OR 259d"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid.",
+      "element_refs": [
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E02",
+        "E06"
+      ],
+      "open_elements": [
+        "E05",
+        "E06"
+      ],
+      "structured_details": {
+        "entitled_party": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "obligated_party": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "action": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "amount_or_scope": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "starts_at": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "ends_at": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "lease_effect": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "remedy_relations": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        },
+        "remaining_conditions": {
+          "status": "unknown",
+          "value": null,
+          "evidence_refs": []
+        }
+      },
+      "open_detail_fields": [
+        "entitled_party",
+        "obligated_party",
+        "action",
+        "amount_or_scope",
+        "starts_at",
+        "ends_at",
+        "lease_effect",
+        "remedy_relations",
+        "remaining_conditions"
+      ],
+      "case_conclusion_complete": false,
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "open_questions": [
+    {
+      "kind": "element",
+      "id": "E05",
+      "status": "unknown",
+      "question": "Mangel bereits bei Übergabe?",
+      "affected_outcomes": [
+        "O01",
+        "O02"
+      ]
+    },
+    {
+      "kind": "element",
+      "id": "E06",
+      "status": "unknown",
+      "question": "Vermieter kennt Mangel?",
+      "affected_outcomes": [
+        "O02"
+      ]
+    },
+    {
+      "kind": "context",
+      "id": "scope",
+      "status": "unknown",
+      "question": "Anwendbarkeit für scope klären und belegen.",
+      "affected_outcomes": [
+        "O01",
+        "O02"
+      ]
+    }
+  ],
+  "next_questions": [
+    {
+      "kind": "element",
+      "id": "E05",
+      "question": "Mangel bereits bei Übergabe?",
+      "affected_outcomes": [
+        "O01",
+        "O02"
+      ]
+    },
+    {
+      "kind": "element",
+      "id": "E06",
+      "question": "Vermieter kennt Mangel?",
+      "affected_outcomes": [
+        "O02"
+      ]
+    },
+    {
+      "kind": "context",
+      "id": "scope",
+      "question": "Anwendbarkeit für scope klären und belegen.",
+      "affected_outcomes": [
+        "O01",
+        "O02"
+      ]
+    }
+  ],
+  "service_request_refs": [],
+  "service_response_refs": []
+}

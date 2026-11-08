@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "compatibility": "LIIT-DEADLINE@1.0.0 und LIIT-ESCALATION@1.0.0 unverändert.",
+  "scheduling": "Anfrage bei Erfassung eines einschlägigen Ereignisses; nicht erst nach vollständiger Modulprüfung.",
+  "idempotency": "request_id stabil für case_id + case_revision + event_id + rule_key + recipient_id; unvollständige Anfrage nach Klärung als neue Revision senden.",
+  "binding": "Eure vorhandenen Dienste über Adapter auf logische Regelkennungen abbilden.",
+  "response": "service_responses referenzieren eine tatsächlich versandte Anfrage und erhalten den Originalstatus. Keine Datums- oder Lane-Inferenz im Kern.",
+  "fact_update": "Antwort oder neue Tatsache erhöht case_revision. Abhängige Beurteilungen mit geänderten Tatsachen müssen neu bewertet werden."
+}

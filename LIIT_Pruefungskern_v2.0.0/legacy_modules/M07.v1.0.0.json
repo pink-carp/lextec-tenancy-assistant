@@ -1,0 +1,980 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M07",
+  "version": "1.0.0",
+  "title": "Mitmietende und Wohngemeinschaft",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Gemeinsamer Vertrag, separate Zimmerverträge und Untermiete unterscheiden; gesellschaftsrechtliche Auflösung nur als Grenzfall.",
+  "legal_question": "Kann eine Person ausscheiden und welche Pflichten bleiben?",
+  "activation_tags": [
+    "co_tenant_exit",
+    "shared_flat",
+    "subletting",
+    "tenant_change"
+  ],
+  "inputs": [
+    {
+      "id": "lease_parties",
+      "type": "array",
+      "description": "Vertrag Nachträge Parteien",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "occupancy",
+      "type": "string",
+      "description": "Bewohner und Rollen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "release_agreement",
+      "type": "string",
+      "description": "Zustimmungen Umfang Wirksamkeitsdatum",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "joint_notice",
+      "type": "string",
+      "description": "Erklärung Vollmachten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "family_status",
+      "type": "string",
+      "description": "Geschützte Wohnfunktion",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "solidarity_clause",
+      "type": "string",
+      "description": "Vertragsklausel",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "society_facts",
+      "type": "string",
+      "description": "Gemeinsamer Zweck Beiträge Vertretung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "family_order",
+      "type": "string",
+      "description": "Dispositiv Wirksamkeit Zustellung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_residual",
+      "type": "object",
+      "description": "Externe Nachhaftungsprüfung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "contract_chain",
+      "type": "array",
+      "description": "Haupt- und Untermietvertrag",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "sublet_consent",
+      "type": "string",
+      "description": "Inhalt Form Umfang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "sublet_terms",
+      "type": "string",
+      "description": "Bedingungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "disclosure",
+      "type": "string",
+      "description": "Bekanntgegebene Bedingungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "sublet_price",
+      "type": "string",
+      "description": "Haupt- und Untermiete Leistungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "sublet_disadvantages",
+      "type": "string",
+      "description": "Konkrete Nachteile Rückkehrabsicht",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "move_out",
+      "type": "string",
+      "description": "Auszug Datum",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "litigation_parties",
+      "type": "array",
+      "description": "Parteien und Rollen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "co_tenant_position",
+      "type": "string",
+      "description": "Einverständnis oder Widerspruch",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Person ist Partei eines gemeinsamen Mietvertrags",
+      "legal_basis": [
+        "OR 1",
+        "OR 18",
+        "OR 253"
+      ],
+      "definition": "Unterschriften tatsächlichen Parteiwillen Nachträge und Vertretung prüfen; Melderegister oder blosse Bewohnerschaft genügt nicht.",
+      "input_refs": [
+        "lease_parties",
+        "occupancy"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Person ist Partei eines gemeinsamen Mietvertrags?",
+        "rule": "Unterschriften tatsächlichen Parteiwillen Nachträge und Vertretung prüfen; Melderegister oder blosse Bewohnerschaft genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Alle erforderlichen Beteiligten stimmen Austritt zu",
+      "legal_basis": [
+        "OR 1",
+        "OR 18"
+      ],
+      "definition": "Entlassung aus gemeinsamer Vertragsposition benötigt grundsätzlich Einigung mit Vermieter und verbleibenden/betroffenen Mietparteien; interner WG-Beschluss allein genügt nicht.",
+      "input_refs": [
+        "release_agreement"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Alle erforderlichen Beteiligten stimmen Austritt zu?",
+        "rule": "Entlassung aus gemeinsamer Vertragsposition benötigt grundsätzlich Einigung mit Vermieter und verbleibenden/betroffenen Mietparteien; interner WG-Beschluss allein genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Gemeinsame Kündigung wirksam erklärt",
+      "legal_basis": [
+        "OR 266a",
+        "OR 266l"
+      ],
+      "definition": "Gemeinsame Vertragsbeendigung durch alle Mieter oder wirksame Vertretung; Art. 266m zusätzlich. Keine einseitige Kündigung nur des eigenen Anteils unterstellen.",
+      "input_refs": [
+        "joint_notice",
+        "family_status"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Gemeinsame Kündigung wirksam erklärt?",
+        "rule": "Gemeinsame Vertragsbeendigung durch alle Mieter oder wirksame Vertretung; Art. 266m zusätzlich. Keine einseitige Kündigung nur des eigenen Anteils unterstellen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Solidarhaftung vereinbart oder gesetzlich begründet",
+      "legal_basis": [
+        "OR 143",
+        "OR 544 Abs. 3"
+      ],
+      "definition": "Solidarität aus Vereinbarung oder bei einschlägiger einfacher Gesellschaft nachweisen; weder pauschal jede WG noch jeden Bewohner als Solidarschuldner behandeln.",
+      "input_refs": [
+        "solidarity_clause",
+        "society_facts"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Solidarhaftung vereinbart oder gesetzlich begründet?",
+        "rule": "Solidarität aus Vereinbarung oder bei einschlägiger einfacher Gesellschaft nachweisen; weder pauschal jede WG noch jeden Bewohner als Solidarschuldner behandeln.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Gerichtliche Vertragsübertragung bei Scheidung",
+      "legal_basis": [
+        "ZGB 121 Abs. 1 und 2"
+      ],
+      "definition": "Wirksamer Entscheid über Übertragung von Rechten und Pflichten; bloss vorläufige Wohnungszuweisung nicht automatisch Vertragsentlassung. Nachhaftung bis nächstem Ende/Kündigungsmöglichkeit, höchstens zwei Jahre.",
+      "input_refs": [
+        "family_order",
+        "deadline_residual"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Gerichtliche Vertragsübertragung bei Scheidung?",
+        "rule": "Wirksamer Entscheid über Übertragung von Rechten und Pflichten; bloss vorläufige Wohnungszuweisung nicht automatisch Vertragsentlassung. Nachhaftung bis nächstem Ende/Kündigungsmöglichkeit, höchstens zwei Jahre.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "ZGB"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Eigenständiger Untermietvertrag",
+      "legal_basis": [
+        "OR 253",
+        "OR 262"
+      ],
+      "definition": "Hauptmieter ist Untervermieter; Ansprüche und Beendigung des Untermietvertrags separat zuordnen. Vertragliche Übertragung von Geschäftsräumen nach Art. 263 nicht auf Wohnraum übertragen.",
+      "input_refs": [
+        "contract_chain"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Eigenständiger Untermietvertrag?",
+        "rule": "Hauptmieter ist Untervermieter; Ansprüche und Beendigung des Untermietvertrags separat zuordnen. Vertragliche Übertragung von Geschäftsräumen nach Art. 263 nicht auf Wohnraum übertragen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Zustimmung zur Untermiete vorhanden",
+      "legal_basis": [
+        "OR 262 Abs. 1"
+      ],
+      "definition": "Gesetz verlangt Zustimmung; keine gesetzliche allgemeine Zweijahresgrenze und kein automatisches Schriftformerfordernis aus verworfenen Revisionsvorlagen. Vertragliche Modalitäten prüfen.",
+      "input_refs": [
+        "sublet_consent",
+        "sublet_terms"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Zustimmung zur Untermiete vorhanden?",
+        "rule": "Gesetz verlangt Zustimmung; keine gesetzliche allgemeine Zweijahresgrenze und kein automatisches Schriftformerfordernis aus verworfenen Revisionsvorlagen. Vertragliche Modalitäten prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Verweigerungsgrund bei Untermiete gegeben",
+      "legal_basis": [
+        "OR 262 Abs. 2"
+      ],
+      "definition": "Verweigerte Offenlegung ODER missbräuchliche Bedingungen ODER wesentliche Nachteile. Jede Alternative einzeln begründen; dauerhafte vollständige Weitergabe ohne Rückkehrabsicht vertieft prüfen.",
+      "input_refs": [
+        "disclosure",
+        "sublet_price",
+        "sublet_disadvantages"
+      ],
+      "assessment": {
+        "mode": "derived",
+        "question": "Verweigerungsgrund bei Untermiete gegeben?",
+        "rule": "Aus den einzeln geprüften Untermerkmalen ableiten; keine separate manuelle Überschreibung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert.",
+        "expression": {
+          "any": [
+            {
+              "element": "E08a"
+            },
+            {
+              "element": "E08b"
+            },
+            {
+              "element": "E08c"
+            }
+          ]
+        }
+      },
+      "source_refs": [
+        "OR",
+        "ZH_SUB"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Keine wirksame Entlassung oder Beendigung trotz Auszug",
+      "legal_basis": [
+        "OR 1",
+        "OR 266a",
+        "OR 264"
+      ],
+      "definition": "Tatsächlicher Auszug allein verändert den gemeinsamen Vertrag nicht. Prüfen, ob Vereinbarung, gerichtliche Übertragung oder gemeinsame Beendigung vorliegt.",
+      "input_refs": [
+        "move_out",
+        "release_agreement",
+        "joint_notice",
+        "family_order"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Keine wirksame Entlassung oder Beendigung trotz Auszug?",
+        "rule": "Tatsächlicher Auszug allein verändert den gemeinsamen Vertrag nicht. Prüfen, ob Vereinbarung, gerichtliche Übertragung oder gemeinsame Beendigung vorliegt.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Prozessbeteiligung der Mitmieter vollständig",
+      "legal_basis": [
+        "OR 271",
+        "BGE 145 III 281 E. 3.4"
+      ],
+      "definition": "Bei gemeinsamer Anfechtung gesamte notwendige Beteiligung sicherstellen; widersprechende gemeinsam mietende Eheperson gegebenenfalls neben Vermieter beklagen. Andere Mitmietkonstellationen fachlich prüfen.",
+      "input_refs": [
+        "litigation_parties",
+        "co_tenant_position"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Prozessbeteiligung der Mitmieter vollständig?",
+        "rule": "Bei gemeinsamer Anfechtung gesamte notwendige Beteiligung sicherstellen; widersprechende gemeinsam mietende Eheperson gegebenenfalls neben Vermieter beklagen. Andere Mitmietkonstellationen fachlich prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "BGE145"
+      ]
+    },
+    {
+      "id": "E08a",
+      "label": "Offenlegung verweigert",
+      "legal_basis": [
+        "OR 262 Abs. 2 lit. a"
+      ],
+      "definition": "Mieter weigert sich, Bedingungen der Untermiete offenzulegen.",
+      "input_refs": [
+        "disclosure"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Offenlegung verweigert?",
+        "rule": "Mieter weigert sich, Bedingungen der Untermiete offenzulegen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_SUB"
+      ]
+    },
+    {
+      "id": "E08b",
+      "label": "Untermietbedingungen missbräuchlich",
+      "legal_basis": [
+        "OR 262 Abs. 2 lit. b"
+      ],
+      "definition": "Vergleich mit Hauptvertrag, sachlich gerechtfertigte Zusatzleistungen berücksichtigen.",
+      "input_refs": [
+        "sublet_price"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Untermietbedingungen missbräuchlich?",
+        "rule": "Vergleich mit Hauptvertrag, sachlich gerechtfertigte Zusatzleistungen berücksichtigen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_SUB"
+      ]
+    },
+    {
+      "id": "E08c",
+      "label": "Wesentliche Nachteile aus Untermiete",
+      "legal_basis": [
+        "OR 262 Abs. 2 lit. c"
+      ],
+      "definition": "Konkrete Nachteile einschliesslich zweckwidrigem Gebrauch und rechtlich relevanter dauerhafter Vertragsweitergabe würdigen.",
+      "input_refs": [
+        "sublet_disadvantages"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Wesentliche Nachteile aus Untermiete?",
+        "rule": "Konkrete Nachteile einschliesslich zweckwidrigem Gebrauch und rechtlich relevanter dauerhafter Vertragsweitergabe würdigen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_SUB"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E02"
+          }
+        ]
+      },
+      "legal_effect": "Vertragsaustritt nach vereinbartem Umfang und Zeitpunkt; alte Forderungen und Sicherheiten nach Vereinbarung gesondert behandeln.",
+      "legal_basis": [
+        "OR 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E09"
+          }
+        ]
+      },
+      "legal_effect": "Mietvertragliche Bindung besteht trotz Auszug weiter.",
+      "legal_basis": [
+        "OR 1",
+        "OR 266a"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "element": "E04"
+          }
+        ]
+      },
+      "legal_effect": "Fortdauernde Solidarhaftung für erfasste Forderungen; interne Aufteilung befreit gegenüber Vermieter nicht automatisch.",
+      "legal_basis": [
+        "OR 143",
+        "OR 544 Abs. 3"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "element": "E05"
+      },
+      "legal_effect": "Gerichtliche Übertragung und zeitlich beschränkte Nachhaftung nach Art. 121 Abs. 2 ZGB anwenden.",
+      "legal_basis": [
+        "ZGB 121"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O05",
+      "when": {
+        "all": [
+          {
+            "element": "E06"
+          },
+          {
+            "not": {
+              "element": "E07"
+            }
+          },
+          {
+            "not": {
+              "element": "E08"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Zustimmung darf nicht beliebig verweigert werden; Feststellung der Zulässigkeit prüfen, keine automatische Erlaubnis zur eigenmächtigen Untervermietung.",
+      "legal_basis": [
+        "OR 262"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "ZGB121_RESIDUAL",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "ZGB121_RESIDUAL",
+      "legal_basis": "ZGB 121 Abs. 2",
+      "trigger_event": "Wirksame Vertragsübertragung",
+      "legal_parameters": {
+        "until": "next_contractual_or_statutory_end",
+        "maximum_years": 2
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "co_tenant_conflict",
+      "condition": "Notwendige Mitwirkung fehlt",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "contract_type_unclear",
+      "condition": "Mitmiete Untermiete gemischte Wohnform unklar",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [
+    {
+      "module_id": "M03",
+      "compatible_version": "1.x",
+      "when": "Gemeinsame Kündigung oder vollständige Rückgabe",
+      "purpose": "Frist Form Ersatzmieter",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M09",
+      "compatible_version": "1.x",
+      "when": "Ehe Partnerschaft Trennung",
+      "purpose": "Sonderschutz",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M02",
+      "compatible_version": "1.x",
+      "when": "Kündigung Untermiete",
+      "purpose": "OR 273b: grundsätzlich nur bis Ende Hauptmiete; Umgehungsfall Abs. 2 separat",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M04",
+      "compatible_version": "1.x",
+      "when": "Anfangsmietzins oder Erhöhung im Untermietvertrag",
+      "purpose": "Eigenständige Formular- und Mietzinsprüfung auch gegenüber Untervermieter",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Mietzinsfrage offen lassen."
+    }
+  ],
+  "limitations": [
+    "Kein eigenständiges Auflösungsmodul für einfache Gesellschaft. Interne WG-Abrechnung, Scheidungsverfahren und Missbrauchskonstellationen vertieft prüfen."
+  ],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZGB",
+      "title": "Schweizerisches Zivilgesetzbuch, SR 210",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 8, 121, 169",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_SUB",
+      "title": "Zürcher Gerichte: Voraussetzungen der Untermiete",
+      "url": "https://www.gerichte-zh.ch/de/themen/miete/rechte-und-pflichten/untermiete/voraussetzungen",
+      "kind": "official_guidance",
+      "edition": null,
+      "locator": "Art. 262 Abs. 2 OR",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "BGE145",
+      "title": "Bundesgericht: BGE 145 III 281, 4A_570/2018",
+      "url": "https://search.bger.ch/ext/eurospider/live/de/php/clir/http/index.php?highlight_docid=atf%3A%2F%2F145-III-281%3Ade&lang=de&type=show_document",
+      "kind": "judgment",
+      "edition": "2019-07-31",
+      "locator": "E. 3.4.1–3.4.2",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Gemeinsam mietende Ehegatten: widersprechenden Mitmieter in den Prozess einbeziehen.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UZH_AT",
+      "title": "Universität Zürich, Babusiaux/Dedual: OR I, Drittbeziehungen",
+      "url": "https://www.ius.uzh.ch/dam/jcr%3A9abc9148-52c7-4a5f-ad49-52afe1291c07/OR%20I%20HS%202023%20Abschnitt%203%20Drittbeziehungen.pdf",
+      "kind": "university_teaching",
+      "edition": "2023",
+      "locator": "S. 104: Rückgabe bei mehreren Mietern",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Nur die konkret abrufbare Passage zur Unteilbarkeit/Hilfspersonenhaftung verwendet.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 1",
+    "OR 18",
+    "OR 253",
+    "OR 266a",
+    "OR 266l",
+    "OR 143",
+    "OR 544 Abs. 3",
+    "ZGB 121 Abs. 1 und 2",
+    "OR 262",
+    "OR 262 Abs. 1",
+    "OR 262 Abs. 2",
+    "OR 264",
+    "OR 271",
+    "BGE 145 III 281 E. 3.4",
+    "OR 262 Abs. 2 lit. a",
+    "OR 262 Abs. 2 lit. b",
+    "OR 262 Abs. 2 lit. c",
+    "ZGB 121"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "Gesetzliche Spezialregeln und Beweiserleichterungen im Einzelfall prüfen.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

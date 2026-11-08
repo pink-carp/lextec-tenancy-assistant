@@ -12,7 +12,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
-from . import events, modules, outputs, pipeline
+from . import kern, events, modules, outputs, pipeline
 
 app = FastAPI(title="Tenancy information assistant for social workers")
 STATIC = Path(__file__).resolve().parent / "static"
@@ -110,7 +110,7 @@ def create(body: NewCase):
     pipeline.gather_sources(case)
     case["provisional_lane"] = pipeline.provisional_lane(case)
     case["event_names"] = events.events()
-    case["module_titles"] = {k: v["title"] for k, v in modules.load().items()}
+    case["module_titles"] = kern.titles()
     return _out(case, ["sentences", "masking", "understanding", "facts", "disputes", "signals", "events",
                        "documents", "intents", "situations", "deadlines", "provisional_lane", "event_status", "event_names", "modules_suggested", "module_titles",
                        "vulnerability_score", "vulnerability_source",
@@ -148,7 +148,7 @@ def document(body: Doc):
 def assess(body: Answers):
     case = _load(body.state)
     outputs.apply_answers(case, body.answers)
-    modules.apply_answers(case)  # answers set events and the facts used for deadlines
+    kern.run(case, reselect=False)  # v6: elements re-examined with the answers as numbered facts
     pipeline.assemble_issues(case)
     pipeline.assess(case)
     pipeline.score(case, override=body.override)

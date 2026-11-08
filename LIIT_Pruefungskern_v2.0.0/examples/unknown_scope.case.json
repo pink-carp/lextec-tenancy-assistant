@@ -1,0 +1,327 @@
+{
+  "schema_version": "2.0.0",
+  "case_id": "DEMO-SCOPE-UNBEKANNT",
+  "case_revision": 1,
+  "module_id": "M05",
+  "module_version": "1.0.0",
+  "legal_event_date": "2026-11-08",
+  "selection_reason": "Nur genannte Zweige im synthetischen Test prüfen.",
+  "selected_outcome_ids": [
+    "O01",
+    "O02"
+  ],
+  "review_element_ids": [],
+  "parties": [
+    {
+      "id": "T",
+      "role": "tenant",
+      "label": "Mietpartei im Test"
+    },
+    {
+      "id": "V",
+      "role": "landlord",
+      "label": "Vermietpartei im Test"
+    }
+  ],
+  "goals": [
+    "Relevante Rechtspositionen klären"
+  ],
+  "evidence_registry": {
+    "DOC": {
+      "kind": "document",
+      "locator": "synthetic://fixture",
+      "summary": "Synthetischer Nachweis ohne Bezug zu einer realen Person."
+    }
+  },
+  "facts": {
+    "fact_scope": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für scope",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_temporal": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für temporal",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E01": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E01",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E03": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E03",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E04": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E04",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E08": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E08",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E02": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E02",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    },
+    "fact_E06": {
+      "revision": 1,
+      "value": "Synthetische Grundlage für E06",
+      "status": "verified",
+      "evidence_refs": [
+        "DOC"
+      ],
+      "origin": "test_fixture"
+    }
+  },
+  "context_checks": {
+    "scope": {
+      "status": "unknown",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest scope",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_scope",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "temporal": {
+      "status": "satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest temporal",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_temporal",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    }
+  },
+  "element_assessments": {
+    "E01": {
+      "status": "satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E01",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E01",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "E03": {
+      "status": "not_satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E03",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E03",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "E04": {
+      "status": "not_satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E04",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E04",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "E08": {
+      "status": "not_satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E08",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E08",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "E02": {
+      "status": "satisfied",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E02",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E02",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    },
+    "E06": {
+      "status": "unknown",
+      "reasoning": "Synthetische Einzelbewertung für Regressionstest E06",
+      "assessor": "fixture_not_legal_review",
+      "evaluated_at": "2026-11-08T14:00:00Z",
+      "epistemic_basis": "verified_record",
+      "fact_refs": [
+        {
+          "id": "fact_E06",
+          "revision": 1
+        }
+      ],
+      "evidence_refs": [
+        "DOC"
+      ]
+    }
+  },
+  "rights_duties": [
+    {
+      "id": "RD1",
+      "kind": "duty",
+      "holder_party_id": "T",
+      "obligated_party_id": "V",
+      "content": "Geschuldeten Gebrauchszustand aus Vertrag und einschlägigem Modul feststellen.",
+      "contract_evidence_refs": [
+        "DOC"
+      ],
+      "legal_basis": [
+        "OR 256"
+      ],
+      "mandatory_law_check": "satisfied",
+      "reasoning": "Im synthetischen Beispiel wird die Erhaltungspflicht als einschlägig beurteilt."
+    }
+  ],
+  "events": [
+    {
+      "id": "EV1",
+      "observed_fact_refs": [
+        "fact_E01",
+        "fact_E02"
+      ],
+      "classification": "unresolved",
+      "legal_basis": [
+        "OR 256",
+        "OR 259a"
+      ],
+      "reasoning": "Heizungsausfall geschildert; Ursache, Kenntniszeitpunkt und rechtliche Einordnung gesondert."
+    }
+  ],
+  "remedies": [
+    {
+      "outcome_id": "O01",
+      "requested_result": "Beseitigung prüfen",
+      "selection_reason": "Zustand der Wohnung betroffen.",
+      "related_rights_duties": [
+        "RD1"
+      ],
+      "related_events": [
+        "EV1"
+      ]
+    },
+    {
+      "outcome_id": "O02",
+      "requested_result": "Herabsetzung prüfen",
+      "selection_reason": "Gebrauchsbeeinträchtigung geschildert.",
+      "related_rights_duties": [
+        "RD1"
+      ],
+      "related_events": [
+        "EV1"
+      ]
+    }
+  ],
+  "procedure_checks": [],
+  "stage_records": [],
+  "remedy_details": {
+    "O01": {
+      "entitled_party": {
+        "status": "verified",
+        "value": "T",
+        "evidence_refs": [
+          "DOC"
+        ]
+      },
+      "obligated_party": {
+        "status": "verified",
+        "value": "V",
+        "evidence_refs": [
+          "DOC"
+        ]
+      },
+      "action": {
+        "status": "verified",
+        "value": "Behebung des im Beispiel festgestellten Mangels verlangen.",
+        "evidence_refs": [
+          "DOC"
+        ]
+      }
+    }
+  },
+  "service_requests": [],
+  "service_responses": []
+}

@@ -1,0 +1,1017 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M06",
+  "version": "1.0.0",
+  "title": "Mietkaution und Rückzahlung",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Geld- und Wertpapiersicherheit nach OR 257e; Bürgschaft/Versicherung als gesonderter Vertrag zu kennzeichnen. Rückgabeschäden als Gegenforderung.",
+  "legal_question": "Wie ist die Sicherheit zu halten und unter welchen Voraussetzungen freizugeben?",
+  "activation_tags": [
+    "deposit_refund",
+    "security",
+    "return_damage"
+  ],
+  "inputs": [
+    {
+      "id": "security_contract",
+      "type": "string",
+      "description": "Abrede",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "security_payment",
+      "type": "string",
+      "description": "Betrag Datum Empfänger Art",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "security_type",
+      "type": "string",
+      "description": "Geld Wertpapier Bürgschaft Versicherung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "security_total",
+      "type": "number",
+      "description": "Gesamtsicherheit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "monthly_rent_basis",
+      "type": "number",
+      "description": "Belegte monatliche Mietzinsbasis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "bank_record",
+      "type": "string",
+      "description": "Bank Kontotyp Inhaber Saldo",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "legal_end",
+      "type": "string",
+      "description": "Vertragsende und Grundlage",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "physical_return",
+      "type": "string",
+      "description": "Rückgabe separat",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "release_consent",
+      "type": "string",
+      "description": "Freigabe beider Parteien",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "release_title",
+      "type": "string",
+      "description": "Titel Betrag Rechtskraftnachweis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_security",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "claim_proceedings",
+      "type": "string",
+      "description": "Verfahrensart Eingang Anspruch Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "entry_record",
+      "type": "string",
+      "description": "Einzugszustand",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "return_record",
+      "type": "string",
+      "description": "Rückgabezustand",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "component_age",
+      "type": "string",
+      "description": "Alter und Lebensdauer",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "damage_notice",
+      "type": "string",
+      "description": "Inhalt Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "visibility",
+      "type": "string",
+      "description": "Erkennbarkeit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "discovery",
+      "type": "string",
+      "description": "Entdeckung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "damage_amount",
+      "type": "string",
+      "description": "Reparatur Zeitwert Kostenbelege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "causation",
+      "type": "string",
+      "description": "Zurechnung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "exculpation",
+      "type": "string",
+      "description": "Entlastungsbeweise",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "other_claims",
+      "type": "array",
+      "description": "Weitere Forderungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Sicherheit vereinbart und geleistet",
+      "legal_basis": [
+        "OR 257e"
+      ],
+      "definition": "Vertragsgrundlage, Leistender, Empfänger, Betrag und Sicherheitsart bestimmen.",
+      "input_refs": [
+        "security_contract",
+        "security_payment"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Sicherheit vereinbart und geleistet?",
+        "rule": "Vertragsgrundlage, Leistender, Empfänger, Betrag und Sicherheitsart bestimmen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Geld- oder Wertpapiersicherheit",
+      "legal_basis": [
+        "OR 257e Abs. 1"
+      ],
+      "definition": "Bankhinterlegungsregime auf Geld oder Wertpapiere; Garantieprämie ist keine automatisch rückzahlbare Bankkaution.",
+      "input_refs": [
+        "security_type"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Geld- oder Wertpapiersicherheit?",
+        "rule": "Bankhinterlegungsregime auf Geld oder Wertpapiere; Garantieprämie ist keine automatisch rückzahlbare Bankkaution.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Höchstens drei Monatszinse verlangt",
+      "legal_basis": [
+        "OR 257e Abs. 2"
+      ],
+      "definition": "Bei Wohnraum Obergrenze drei Monatszinse; Berechnungsbasis und Zusatzsicherheiten prüfen, keine Umgehung über mehrere Sicherheiten.",
+      "input_refs": [
+        "security_total",
+        "monthly_rent_basis"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Höchstens drei Monatszinse verlangt?",
+        "rule": "Bei Wohnraum Obergrenze drei Monatszinse; Berechnungsbasis und Zusatzsicherheiten prüfen, keine Umgehung über mehrere Sicherheiten.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Bankkonto oder Depot auf Mieternamen",
+      "legal_basis": [
+        "OR 257e Abs. 1"
+      ],
+      "definition": "Banknachweis und Kontoinhaber; Vermieterkonto erfüllt diese Vorgabe nicht.",
+      "input_refs": [
+        "bank_record"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Bankkonto oder Depot auf Mieternamen?",
+        "rule": "Banknachweis und Kontoinhaber; Vermieterkonto erfüllt diese Vorgabe nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Mietverhältnis rechtlich beendet",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "definition": "Vertragsende bestimmen; Schlüsselrückgabe und vorzeitiger Auszug sind nicht ohne Weiteres Vertragsende.",
+      "input_refs": [
+        "legal_end",
+        "physical_return"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mietverhältnis rechtlich beendet?",
+        "rule": "Vertragsende bestimmen; Schlüsselrückgabe und vorzeitiger Auszug sind nicht ohne Weiteres Vertragsende.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Beide Parteien stimmen Auszahlung zu",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "definition": "Nachvollziehbare übereinstimmende Freigabe, Umfang und Zahlungsempfänger bestimmen.",
+      "input_refs": [
+        "release_consent"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Beide Parteien stimmen Auszahlung zu?",
+        "rule": "Nachvollziehbare übereinstimmende Freigabe, Umfang und Zahlungsempfänger bestimmen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Rechtskräftiger Zahlungsbefehl oder rechtskräftiges Urteil",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "definition": "Rechtskraft und vom Titel erfassten Betrag prüfen; blosse Rechnung, Mahnung oder bestrittene Betreibung genügt nicht als Auszahlungsgrund.",
+      "input_refs": [
+        "release_title"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Rechtskräftiger Zahlungsbefehl oder rechtskräftiges Urteil?",
+        "rule": "Rechtskraft und vom Titel erfassten Betrag prüfen; blosse Rechnung, Mahnung oder bestrittene Betreibung genügt nicht als Auszahlungsgrund.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Ein Jahr seit Beendigung verstrichen",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "definition": "Anknüpfung ist Beendigung des Mietverhältnisses, nicht automatisch Rückgabe. Nur externe Kalenderprüfung.",
+      "input_refs": [
+        "deadline_security",
+        "legal_end"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Ein Jahr seit Beendigung verstrichen?",
+        "rule": "Anknüpfung ist Beendigung des Mietverhältnisses, nicht automatisch Rückgabe. Nur externe Kalenderprüfung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Vermieteranspruch innerhalb Jahresfrist rechtlich geltend gemacht",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "definition": "Zum Beispiel rechtzeitige Betreibung/Schlichtung/Klage und deren Gegenstand konkret prüfen; blosse interne Behauptung oder Rechnung reicht nicht. Keine Gleichsetzung mit Rechtskraft.",
+      "input_refs": [
+        "claim_proceedings",
+        "deadline_security"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vermieteranspruch innerhalb Jahresfrist rechtlich geltend gemacht?",
+        "rule": "Zum Beispiel rechtzeitige Betreibung/Schlichtung/Klage und deren Gegenstand konkret prüfen; blosse interne Behauptung oder Rechnung reicht nicht. Keine Gleichsetzung mit Rechtskraft.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Rückgabeschaden über vertragsgemässe Abnutzung hinaus",
+      "legal_basis": [
+        "OR 267 Abs. 1"
+      ],
+      "definition": "Sollzustand aus vertragsgemässem Gebrauch, Einzugszustand, Alter und Lebensdauer bestimmen; gewöhnliche Abnutzung nicht belasten.",
+      "input_refs": [
+        "entry_record",
+        "return_record",
+        "component_age"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Rückgabeschaden über vertragsgemässe Abnutzung hinaus?",
+        "rule": "Sollzustand aus vertragsgemässem Gebrauch, Einzugszustand, Alter und Lebensdauer bestimmen; gewöhnliche Abnutzung nicht belasten.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E11",
+      "label": "Erkennbarer Schaden sofort gerügt",
+      "legal_basis": [
+        "OR 267a Abs. 1 und 2"
+      ],
+      "definition": "Prüfung bei Rückgabe und unverzügliche hinreichend bestimmte Anzeige der einzustehenden Mängel; kein allgemeiner starrer Drei-Tage-Rechner. Bei ausschliesslich verdecktem Schaden ist dieses Merkmal für diesen Schadensposten nicht erfüllt; dafür E12 prüfen.",
+      "input_refs": [
+        "return_record",
+        "damage_notice",
+        "visibility"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Erkennbarer Schaden sofort gerügt?",
+        "rule": "Prüfung bei Rückgabe und unverzügliche hinreichend bestimmte Anzeige der einzustehenden Mängel; kein allgemeiner starrer Drei-Tage-Rechner. Bei ausschliesslich verdecktem Schaden ist dieses Merkmal für diesen Schadensposten nicht erfüllt; dafür E12 prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E12",
+      "label": "Verdeckter Schaden sofort nach Entdeckung gerügt",
+      "legal_basis": [
+        "OR 267a Abs. 2 und 3"
+      ],
+      "definition": "Bei üblicher Untersuchung nicht erkennbar und nach tatsächlicher Entdeckung sofort gemeldet. Bei erkennbaren Schäden ist diese Ausnahme nicht erfüllt. Je Schadensposten gesondert bewerten.",
+      "input_refs": [
+        "visibility",
+        "discovery",
+        "damage_notice"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Verdeckter Schaden sofort nach Entdeckung gerügt?",
+        "rule": "Bei üblicher Untersuchung nicht erkennbar und nach tatsächlicher Entdeckung sofort gemeldet. Bei erkennbaren Schäden ist diese Ausnahme nicht erfüllt. Je Schadensposten gesondert bewerten.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E13",
+      "label": "Höhe und Zurechnung der Gegenforderung begründet",
+      "legal_basis": [
+        "OR 267",
+        "OR 97"
+      ],
+      "definition": "Schaden, Vertragsverletzung, Kausalität, Entlastung und Zeitwert nachvollziehen. Keine automatische Neuwertentschädigung; andere Gegenforderungen jeweils eigener Rechtsgrund.",
+      "input_refs": [
+        "damage_amount",
+        "causation",
+        "exculpation",
+        "other_claims"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Höhe und Zurechnung der Gegenforderung begründet?",
+        "rule": "Schaden, Vertragsverletzung, Kausalität, Entlastung und Zeitwert nachvollziehen. Keine automatische Neuwertentschädigung; andere Gegenforderungen jeweils eigener Rechtsgrund.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E02"
+          },
+          {
+            "not": {
+              "element": "E03"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Überschiessende Sicherheit beanstanden und Rückleistung/Anpassung verlangen.",
+      "legal_basis": [
+        "OR 257e Abs. 2"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E02"
+          },
+          {
+            "not": {
+              "element": "E04"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Gesetzeskonforme Hinterlegung beziehungsweise nach Beendigung Rückzahlung gegenüber Vermieter prüfen.",
+      "legal_basis": [
+        "OR 257e Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "any": [
+              {
+                "element": "E06"
+              },
+              {
+                "element": "E07"
+              }
+            ]
+          }
+        ]
+      },
+      "legal_effect": "Bankfreigabe im Umfang der Zustimmung oder des rechtskräftigen Titels möglich.",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "all": [
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "element": "E05"
+          },
+          {
+            "element": "E08"
+          },
+          {
+            "not": {
+              "element": "E09"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Mieter kann Rückerstattung der Sicherheit von der Bank verlangen.",
+      "legal_basis": [
+        "OR 257e Abs. 3"
+      ],
+      "qualification": "Vermieterforderung erlischt dadurch nicht automatisch; Sicherheit und Forderung getrennt."
+    },
+    {
+      "id": "O05",
+      "when": {
+        "all": [
+          {
+            "element": "E10"
+          },
+          {
+            "any": [
+              {
+                "element": "E11"
+              },
+              {
+                "element": "E12"
+              }
+            ]
+          },
+          {
+            "element": "E13"
+          }
+        ]
+      },
+      "legal_effect": "Schadenersatz-Gegenforderung kann bestehen; Bankauszahlung benötigt trotzdem gesetzlichen Freigabegrund.",
+      "legal_basis": [
+        "OR 267",
+        "OR 267a",
+        "OR 257e"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O06",
+      "when": {
+        "all": [
+          {
+            "element": "E10"
+          },
+          {
+            "not": {
+              "element": "E11"
+            }
+          },
+          {
+            "not": {
+              "element": "E12"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Anspruchsverlust wegen unterlassener rechtzeitiger Mängelrüge prüfen.",
+      "legal_basis": [
+        "OR 267a"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR257E_RELEASE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR257E_RELEASE",
+      "legal_basis": "OR 257e Abs. 3",
+      "trigger_event": "Rechtliche Beendigung Mietverhältnis",
+      "legal_parameters": {
+        "years": 1
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR267A_NOTICE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR267A_NOTICE",
+      "legal_basis": "OR 267a",
+      "trigger_event": "Rückgabe oder Entdeckung verborgener Mängel",
+      "legal_parameters": {
+        "duration": "immediate_legal_assessment_no_fixed_days"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "security_not_segregated",
+      "condition": "Kaution auf Vermieterkonto oder Inhaber unklar",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "damage_dispute",
+      "condition": "Rüge Zurechnung oder Höhe streitig",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [],
+  "limitations": [],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UBE24",
+      "title": "Universität Bern, Dr. E. Bachofner: Musterlösung Mietrecht FS 2024",
+      "url": "https://www.ziv.unibe.ch/unibe/portal/fak_rechtwis/c_dep_private/ziv/content/e7676/e7684/e104370/e104397/e1553151/MusterloesungMietrecht2024mitStatistik_ger.pdf",
+      "kind": "university_teaching",
+      "edition": "2024",
+      "locator": "S. 1–6, Fragen 1–7",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Methodik und Plausibilisierung. Fallzahlen, konkrete Fristen, Prozentsätze und damaliges Prozessrecht nicht als allgemeine Regeln übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 257e",
+    "OR 257e Abs. 1",
+    "OR 257e Abs. 2",
+    "OR 257e Abs. 3",
+    "OR 267 Abs. 1",
+    "OR 267a Abs. 1 und 2",
+    "OR 267a Abs. 2 und 3",
+    "OR 267",
+    "OR 97",
+    "OR 267a"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "OR 97: Entlastungsbeweis gesondert.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

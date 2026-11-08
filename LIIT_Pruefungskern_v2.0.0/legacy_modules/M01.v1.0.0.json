@@ -1,0 +1,1037 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M01",
+  "version": "1.0.0",
+  "title": "Mietzinsrückstand und Zahlungsaufforderung",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Wohnraummiete nach Übernahme; Nebenkosten als Vorfrage. Kaution, Schadenersatz und Mahngebühren sind nicht allein Forderungen nach Art. 257d OR.",
+  "legal_question": "Trägt der behauptete Rückstand eine Kündigung nach Art. 257d OR?",
+  "activation_tags": [
+    "arrears",
+    "payment_warning",
+    "termination_nonpayment"
+  ],
+  "inputs": [
+    {
+      "id": "handover_date",
+      "type": "date",
+      "description": "Zeitpunkt der Besitzübernahme",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "claim_items",
+      "type": "array",
+      "description": "Betrag und Rechtsgrund jeder Position",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "lease_cost_terms",
+      "type": "string",
+      "description": "Wortlaut der Mietzins- und Nebenkostenabrede",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "cost_statement",
+      "type": "string",
+      "description": "Nebenkostenabrechnung und Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "due_terms",
+      "type": "string",
+      "description": "Vereinbarter oder ortsüblicher Zahlungstermin",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "payments",
+      "type": "array",
+      "description": "Zahlungsdatum Betrag Zuordnung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "setoff",
+      "type": "string",
+      "description": "Verrechnungserklärung und Gegenforderung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deposit_payment",
+      "type": "string",
+      "description": "Hinterlegungsbelege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "warning_document",
+      "type": "string",
+      "description": "Vollständige Zahlungsaufforderung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "warning_receipts",
+      "type": "array",
+      "description": "Getrennte Empfangsereignisse und Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "family_status",
+      "type": "string",
+      "description": "Ehe Partnerschaft und Wohnfunktion",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_warning",
+      "type": "object",
+      "description": "Signierte/zuordenbare Antwort des Fristendienstes",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "termination_document",
+      "type": "string",
+      "description": "Kündigung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_sequence",
+      "type": "object",
+      "description": "Externe Ereignisreihenfolge",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "form_approval",
+      "type": "string",
+      "description": "Kantonale Genehmigung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_termination",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "termination_receipts",
+      "type": "array",
+      "description": "Zugänge Kündigung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Sache bereits übernommen",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Art. 257d setzt die Übernahme der Sache voraus. Vorher andere Nichterfüllungsregeln gesondert prüfen.",
+      "input_refs": [
+        "handover_date"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Sache bereits übernommen?",
+        "rule": "Art. 257d setzt die Übernahme der Sache voraus. Vorher andere Nichterfüllungsregeln gesondert prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Forderung betrifft Mietzins oder vereinbarte Nebenkosten",
+      "legal_basis": [
+        "OR 257",
+        "OR 257a Abs. 2",
+        "OR 257b"
+      ],
+      "definition": "Jede Position einzeln qualifizieren. Nebenkosten erfordern besondere vertragliche Vereinbarung und gebrauchsbetriebliche Kosten; bei Akonto Abrechnung und Belege prüfen.",
+      "input_refs": [
+        "claim_items",
+        "lease_cost_terms",
+        "cost_statement"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Forderung betrifft Mietzins oder vereinbarte Nebenkosten?",
+        "rule": "Jede Position einzeln qualifizieren. Nebenkosten erfordern besondere vertragliche Vereinbarung und gebrauchsbetriebliche Kosten; bei Akonto Abrechnung und Belege prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_NK"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Forderung fällig",
+      "legal_basis": [
+        "OR 257c",
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Vertragliche oder ortsübliche Zahlungstermine gehen dem gesetzlichen Auffangtermin vor; Abrechnungsforderungen auf Fälligkeit gesondert prüfen.",
+      "input_refs": [
+        "due_terms",
+        "claim_items",
+        "cost_statement"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Forderung fällig?",
+        "rule": "Vertragliche oder ortsübliche Zahlungstermine gehen dem gesetzlichen Auffangtermin vor; Abrechnungsforderungen auf Fälligkeit gesondert prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Fälliger Betrag bei Mahnung unbezahlt",
+      "legal_basis": [
+        "OR 257d Abs. 1",
+        "OR 265"
+      ],
+      "definition": "Zahlungen, Gutschriften, wirksame Verrechnung und rechtmässige Hinterlegung berücksichtigen. Bestrittene Forderung ist nicht schon deswegen ungeschuldet.",
+      "input_refs": [
+        "payments",
+        "setoff",
+        "deposit_payment",
+        "claim_items"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Fälliger Betrag bei Mahnung unbezahlt?",
+        "rule": "Zahlungen, Gutschriften, wirksame Verrechnung und rechtmässige Hinterlegung berücksichtigen. Bestrittene Forderung ist nicht schon deswegen ungeschuldet.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Schriftliche Zahlungsaufforderung",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Inhalt und gesetzliche Schriftlichkeit der konkreten Aufforderung prüfen; blosse telefonische Mahnung genügt nicht.",
+      "input_refs": [
+        "warning_document"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Schriftliche Zahlungsaufforderung?",
+        "rule": "Inhalt und gesetzliche Schriftlichkeit der konkreten Aufforderung prüfen; blosse telefonische Mahnung genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Ausstehender Betrag genügend bestimmbar",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Mieter muss erkennen können, welche rückständigen Mietzins- oder Nebenkostenforderungen zur Vermeidung der Kündigung zu bezahlen sind; falsche oder vermischte Forderungen individuell würdigen.",
+      "input_refs": [
+        "warning_document",
+        "claim_items"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Ausstehender Betrag genügend bestimmbar?",
+        "rule": "Mieter muss erkennen können, welche rückständigen Mietzins- oder Nebenkostenforderungen zur Vermeidung der Kündigung zu bezahlen sind; falsche oder vermischte Forderungen individuell würdigen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Kündigung für Nichtzahlung angedroht",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Aufforderung muss Kündigung bei unbenütztem Ablauf der Zahlungsfrist androhen.",
+      "input_refs": [
+        "warning_document"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Kündigung für Nichtzahlung angedroht?",
+        "rule": "Aufforderung muss Kündigung bei unbenütztem Ablauf der Zahlungsfrist androhen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Zahlungsaufforderung wirksam zugegangen",
+      "legal_basis": [
+        "OR 257d Abs. 1",
+        "OR 266n"
+      ],
+      "definition": "Zugang für jeden gesetzlich erforderlichen Empfänger belegen; Versanddatum allein genügt nicht. Familienwohnung zusätzlich M09.",
+      "input_refs": [
+        "warning_receipts",
+        "family_status"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Zahlungsaufforderung wirksam zugegangen?",
+        "rule": "Zugang für jeden gesetzlich erforderlichen Empfänger belegen; Versanddatum allein genügt nicht. Familienwohnung zusätzlich M09.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Mindestnachfrist eingehalten",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "definition": "Vom bestehenden Fristendienst bestätigte gesetzeskonforme Zahlungsfrist, bei Wohnraum mindestens 30 Tage.",
+      "input_refs": [
+        "deadline_warning"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Mindestnachfrist eingehalten?",
+        "rule": "Vom bestehenden Fristendienst bestätigte gesetzeskonforme Zahlungsfrist, bei Wohnraum mindestens 30 Tage.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Keine vollständige Tilgung innerhalb der Nachfrist",
+      "legal_basis": [
+        "OR 257d Abs. 2",
+        "OR 265"
+      ],
+      "definition": "Fristende und rechtlich massgeblichen Zahlungszeitpunkt extern prüfen; rechtzeitige vollständige Tilgung schliesst diesen Kündigungsgrund aus. Teilzahlung ist gesondert zuzuordnen.",
+      "input_refs": [
+        "payments",
+        "deadline_warning",
+        "setoff"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Keine vollständige Tilgung innerhalb der Nachfrist?",
+        "rule": "Fristende und rechtlich massgeblichen Zahlungszeitpunkt extern prüfen; rechtzeitige vollständige Tilgung schliesst diesen Kündigungsgrund aus. Teilzahlung ist gesondert zuzuordnen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E11",
+      "label": "Kündigung erst nach unbenütztem Fristablauf erklärt",
+      "legal_basis": [
+        "OR 257d Abs. 2"
+      ],
+      "definition": "Zahlungsaufforderung beendet den Vertrag nicht. Zeitpunkt und Erklärung einer nachfolgenden Kündigung gesondert prüfen.",
+      "input_refs": [
+        "termination_document",
+        "deadline_sequence"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Kündigung erst nach unbenütztem Fristablauf erklärt?",
+        "rule": "Zahlungsaufforderung beendet den Vertrag nicht. Zeitpunkt und Erklärung einer nachfolgenden Kündigung gesondert prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E12",
+      "label": "Kündigung erfüllt Schrift- und Formularform",
+      "legal_basis": [
+        "OR 266l",
+        "OR 266o",
+        "VMWG 9"
+      ],
+      "definition": "Kantonal genehmigtes Kündigungsformular mit gesetzlicher Schriftform; Erleichterung von OR 269d Abs. 4 gilt nicht automatisch für Kündigungen.",
+      "input_refs": [
+        "termination_document",
+        "form_approval"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Kündigung erfüllt Schrift- und Formularform?",
+        "rule": "Kantonal genehmigtes Kündigungsformular mit gesetzlicher Schriftform; Erleichterung von OR 269d Abs. 4 gilt nicht automatisch für Kündigungen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG",
+        "ZH_FORMS"
+      ]
+    },
+    {
+      "id": "E13",
+      "label": "Kündigungsfrist und Monatsende eingehalten",
+      "legal_basis": [
+        "OR 257d Abs. 2"
+      ],
+      "definition": "Mindestens 30 Tage auf Ende eines Monats; externe Berechnung einschliesslich Zugang.",
+      "input_refs": [
+        "deadline_termination"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Kündigungsfrist und Monatsende eingehalten?",
+        "rule": "Mindestens 30 Tage auf Ende eines Monats; externe Berechnung einschliesslich Zugang.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E14",
+      "label": "Familienwohnungsschutz eingehalten oder nicht anwendbar",
+      "legal_basis": [
+        "OR 266n",
+        "OR 266o"
+      ],
+      "definition": "Bei geschützter Wohnung müssen sowohl Zahlungsfristansetzung mit Androhung als auch Kündigung separat zugestellt sein. Unbekannter Familienstatus genügt nicht für Nichtanwendbarkeit.",
+      "input_refs": [
+        "family_status",
+        "warning_receipts",
+        "termination_receipts"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Familienwohnungsschutz eingehalten oder nicht anwendbar?",
+        "rule": "Bei geschützter Wohnung müssen sowohl Zahlungsfristansetzung mit Androhung als auch Kündigung separat zugestellt sein. Unbekannter Familienstatus genügt nicht für Nichtanwendbarkeit.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E03"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "element": "E05"
+          },
+          {
+            "element": "E06"
+          },
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E08"
+          },
+          {
+            "element": "E09"
+          }
+        ]
+      },
+      "legal_effect": "Qualifizierte Zahlungsaufforderung liegt vor; sie beendet das Mietverhältnis noch nicht.",
+      "legal_basis": [
+        "OR 257d Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E03"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "element": "E05"
+          },
+          {
+            "element": "E06"
+          },
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E08"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "element": "E10"
+          },
+          {
+            "element": "E11"
+          },
+          {
+            "element": "E12"
+          },
+          {
+            "element": "E13"
+          },
+          {
+            "element": "E14"
+          }
+        ]
+      },
+      "legal_effect": "Voraussetzungen der Zahlungsverzugskündigung vorläufig erfüllt; Missbrauchskontrolle nach M02 bleibt offen. Bei wirksamer Kündigung keine Erstreckung.",
+      "legal_basis": [
+        "OR 257d",
+        "OR 272a Abs. 1 lit. a"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "any": [
+          {
+            "not": {
+              "element": "E12"
+            }
+          },
+          {
+            "not": {
+              "element": "E14"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Formmangel der Kündigung bzw. fehlerhafte vorausgehende Familienzustellung prüfen; daraus folgende Unwirksamkeit gesondert feststellen lassen.",
+      "legal_basis": [
+        "OR 266n",
+        "OR 266o"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "not": {
+          "element": "E10"
+        }
+      },
+      "legal_effect": "Rechtzeitige vollständige Erfüllung: Kündigung nach Art. 257d auf diesen Rückstand nicht gestützt.",
+      "legal_basis": [
+        "OR 257d Abs. 2"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR257D_PAYMENT",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR257D_PAYMENT",
+      "legal_basis": "OR 257d Abs. 1",
+      "trigger_event": "Zugang Zahlungsaufforderung",
+      "legal_parameters": {
+        "minimum_days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR257D_NOTICE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR257D_NOTICE",
+      "legal_basis": "OR 257d Abs. 2",
+      "trigger_event": "Zugang Kündigung",
+      "legal_parameters": {
+        "minimum_days": 30,
+        "termination_alignment": "month_end"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR273_CHALLENGE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR273_CHALLENGE",
+      "legal_basis": "OR 273 Abs. 1",
+      "trigger_event": "Zugang Kündigung",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "housing_loss",
+      "condition": "Zahlungsandrohung, Kündigung oder Räumungsverfahren",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "claim_disputed",
+      "condition": "Forderung oder Tilgung streitig",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [
+    {
+      "module_id": "M09",
+      "compatible_version": "1.x",
+      "when": "Familienstatus möglich oder unklar",
+      "purpose": "Zustellungen",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M02",
+      "compatible_version": "1.x",
+      "when": "Kündigung vorhanden",
+      "purpose": "Anfechtung und Wirksamkeitsfolgen",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    }
+  ],
+  "limitations": [],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_NK",
+      "title": "Zürcher Gerichte: Nebenkosten",
+      "url": "https://www.gerichte-zh.ch/de/themen/miete/mietzinsgestaltung/nebenkosten",
+      "kind": "official_guidance",
+      "edition": null,
+      "locator": "Vereinbarung, Akonto, Belege",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "VMWG",
+      "title": "Verordnung über die Miete und Pacht von Wohn- und Geschäftsräumen, SR 221.213.11",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1990/835_835_835/20251001/de",
+      "kind": "regulation",
+      "edition": "2025-10-01",
+      "locator": "Art. 1–26",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_FORMS",
+      "title": "Kanton Zürich: Formulare im Mietwesen",
+      "url": "https://www.zh.ch/de/direktion-der-justiz-und-des-innern/generalsekretariat/formulare-mietwesen.html",
+      "kind": "official_guidance",
+      "edition": null,
+      "locator": "Mietwesen und amtliche Formulare",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Aktive Formularpflicht amtlich bestätigt; dynamische Seite am Prüftag.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UZH23",
+      "title": "Universität Zürich: Soziales Mietrecht, Lösungsskizze HS 2023",
+      "url": "https://www.ius.uzh.ch/dam/jcr:b2e52461-2ab7-416c-8c26-5822ebc29e67/soziales_mietrecht_ml_hs23.pdf",
+      "kind": "university_teaching",
+      "edition": "2023",
+      "locator": "Fall 1, S. 1–4; Fall 2, S. 5 ff.",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Anspruchsbezogener Aufbau; alte verfahrensrechtliche Schwellenwerte nicht übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 257d Abs. 1",
+    "OR 257",
+    "OR 257a Abs. 2",
+    "OR 257b",
+    "OR 257c",
+    "OR 265",
+    "OR 266n",
+    "OR 257d Abs. 2",
+    "OR 266l",
+    "OR 266o",
+    "VMWG 9",
+    "OR 257d",
+    "OR 272a Abs. 1 lit. a"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "Gesetzliche Spezialregeln und Beweiserleichterungen im Einzelfall prüfen.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

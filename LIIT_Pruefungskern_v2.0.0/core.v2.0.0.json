@@ -1,0 +1,311 @@
+{
+  "schema_version": "2.0.0",
+  "core_id": "LIIT-CORE",
+  "version": "2.0.0",
+  "language": "de-CH",
+  "created_on": "2026-11-08",
+  "release_status": "integration_reference",
+  "expert_approval": null,
+  "purpose": "Einheitliche juristische Prüfungsmethode für LIIT, integriert aus der bisherigen Legal Reasoning Guidance und Kern 1.0.0.",
+  "scope": {
+    "method": "Anspruchs-, Gestaltungs-, Anfechtungs-, Nichtigkeits- und Erstreckungsprüfung.",
+    "deployment": "Wohnraummietrecht Schweiz, Fokus Zürich; konkrete Grenzen aus dem ausgewählten Regelmodul.",
+    "uncertain_qualification": "Ungeklärte Vertragsart ist eine offene Vorfrage und kein Nachweis der Nichtanwendbarkeit."
+  },
+  "immutability": {
+    "unit": "Freigegebene Version, ihre Bedeutung und veröffentlichte Bytefolge.",
+    "enforcement": "SHA-256 ausserhalb des Pakets pinnen; Signatur/Freigabestatus in eigener Releaseverwaltung führen.",
+    "changes": "Methoden- oder Bedeutungsänderungen erhalten eine neue Major-Version. Alte Fassungen und Fallauswertungen bleiben nachvollziehbar.",
+    "dialogue_order": "Gesprächsreihenfolge ist flexibel. Materielle Voraussetzungen und Abhängigkeiten dürfen weder übersprungen noch umgedeutet werden.",
+    "law": "Normen, Fristdauern, Rechtsprechung und materielle Ausnahmen bleiben in separat versionierten Modulen."
+  },
+  "stages": [
+    {
+      "id": "K01",
+      "title": "Sachverhalt Beteiligte und Ziel erfassen",
+      "question": "Was ist passiert, wer ist beteiligt und was soll erreicht werden?",
+      "required_actions": [
+        "Parteien und blosse Vertreter/Bewohner unterscheiden.",
+        "Chronologie und Dokumente mit Herkunft erfassen.",
+        "Behauptete, belegte, widersprüchliche und fehlende Tatsachen trennen.",
+        "Gewünschtes Ergebnis erfragen, ohne es schon als Anspruch zu bestätigen."
+      ],
+      "outputs": [
+        "parties",
+        "goals",
+        "facts",
+        "evidence_registry"
+      ],
+      "source_sections": [
+        "Guidance introduction",
+        "v1 K01",
+        "v1 K03"
+      ]
+    },
+    {
+      "id": "K02",
+      "title": "Rechtsverhältnis und Schutzregeln bestimmen",
+      "question": "Welche Regeln gelten für diese Beziehung, dieses Objekt und diesen Zeitpunkt?",
+      "required_actions": [
+        "Vertragsart, Wohnfunktion, Ort und zeitliche Normfassung klären.",
+        "Besondere Schutzregeln und Ausnahmen als eigene Vorfragen führen.",
+        "Unklaren Anwendungsbereich offen halten; Teilprüfung unter ausdrücklich benannter Annahme zulassen."
+      ],
+      "outputs": [
+        "context_checks"
+      ],
+      "source_sections": [
+        "Guidance 1",
+        "v1 K02"
+      ]
+    },
+    {
+      "id": "K03",
+      "title": "Massgebliche Rechte und Pflichten feststellen",
+      "question": "Welche Rechtsposition besteht und was schuldet jede Partei?",
+      "required_actions": [
+        "Vertragsinhalt, Vereinbarungen und gesetzliche Regeln nebeneinander erfassen.",
+        "Gesetzliche Ergänzung und zwingende Grenzen der Vertragsgestaltung prüfen.",
+        "Berechtigte und verpflichtete Person, Gegenstand, Umfang und Quelle der Pflicht zuordnen.",
+        "Bei Gestaltungsrechten statt einer künstlich verlangten Pflichtverletzung die einschlägige Rechtsposition bestimmen."
+      ],
+      "outputs": [
+        "rights_duties"
+      ],
+      "source_sections": [
+        "Guidance 2",
+        "v1 K05/K07 teilweise"
+      ]
+    },
+    {
+      "id": "K04",
+      "title": "Rechtserhebliches Ereignis einordnen",
+      "question": "Welcher tatsächliche Vorgang löst welche rechtliche Frage aus?",
+      "required_actions": [
+        "Tatsachenbeschreibung von rechtlicher Qualifikation trennen.",
+        "Pflichtverletzung, Rechtsausübung und sonstigen rechtserheblichen Vorgang unterscheiden.",
+        "Bei Pflichtverletzung Sollzustand und tatsächlichen Zustand vergleichen.",
+        "Kündigung oder Mietzinsmitteilung nicht allein wegen ihres Vorliegens als Pflichtverletzung behandeln."
+      ],
+      "outputs": [
+        "events"
+      ],
+      "source_sections": [
+        "Guidance 3",
+        "v1 K01/K03/K04 verteilt"
+      ]
+    },
+    {
+      "id": "K05",
+      "title": "Rechtsbehelfe und Regelmodule auswählen",
+      "question": "Wer kann von wem was verlangen oder welches Recht ausüben?",
+      "required_actions": [
+        "Mögliche Ansprüche, Gestaltung, Nichtigkeit, Anfechtung und Erstreckung getrennt auswählen.",
+        "Für jeden Zweig Modulversion, Rechtsgrundlage und Auswahlbegründung speichern.",
+        "Alternativen und mögliche Kumulation erfassen; unpassende Zweige als nicht ausgewählt kennzeichnen."
+      ],
+      "outputs": [
+        "remedies",
+        "selected_outcome_ids",
+        "selection_reason"
+      ],
+      "source_sections": [
+        "Guidance 4",
+        "v1 K03/K04"
+      ]
+    },
+    {
+      "id": "K06",
+      "title": "Jede Voraussetzung subsumieren",
+      "question": "Tragen die dokumentierten Tatsachen das einzelne Tatbestandsmerkmal?",
+      "required_actions": [
+        "Rechtssatz → Definition → Tatsachenreferenzen → kurze begründete Subsumtion → Status.",
+        "Kumulative Voraussetzungen, Alternativen, Ausnahmen und Gegenrechte getrennt prüfen.",
+        "Beweislast und gesetzliche Vermutungen entsprechend Modul berücksichtigen.",
+        "Wertungsbegriffe ohne erfundene Schwellenwerte beurteilen.",
+        "Unabhängige Prüfungen fortsetzen; jede Änderung einer Tatsache invalidiert ihre abhängigen Bewertungen."
+      ],
+      "outputs": [
+        "element_assessments",
+        "element_results"
+      ],
+      "source_sections": [
+        "Guidance 4",
+        "v1 K05/K06/K07"
+      ]
+    },
+    {
+      "id": "K07",
+      "title": "Ausübung und Verfahren prüfen",
+      "question": "Wie, gegenüber wem und nach welchen vorgängigen Schritten wird das Recht ausgeübt?",
+      "required_actions": [
+        "Form, Adressaten, Reihenfolge, Nachweis und Zuständigkeit für jeden Rechtsbehelf prüfen.",
+        "Entstehung eines Rechts von wirksamer Ausübung und Durchsetzbarkeit unterscheiden.",
+        "Fristrelevante Ereignisse an bestehenden Fristendienst geben; Ergebnis mit Anfrage und Belegen verknüpfen.",
+        "Verfahrensschritte und vorgängige Abhilfemöglichkeiten nicht aus einem positiven materiellen Ergebnis ableiten."
+      ],
+      "outputs": [
+        "procedure_checks",
+        "service_requests",
+        "service_responses"
+      ],
+      "source_sections": [
+        "Guidance 5",
+        "v1 K08"
+      ]
+    },
+    {
+      "id": "K08",
+      "title": "Konkretes Ergebnis und offene Punkte ausgeben",
+      "question": "Wer muss was tun oder zahlen, ab wann, wie lange und unter welchen noch offenen Voraussetzungen?",
+      "required_actions": [
+        "Rechtsfolge je Rechtsbehelf mit Beteiligten, Leistung, Umfang und zeitlicher Wirkung ausgeben.",
+        "Mögliche Kumulation, Ausschluss oder Konkurrenz sichtbar machen.",
+        "Vorläufig bestätigte Regelvoraussetzungen, bedingte Aussagen und offene Fragen auseinanderhalten.",
+        "Entscheidungserhebliche nächste Fragen mit betroffenen Ergebniszweigen verknüpfen.",
+        "Eskalationssignale an vorhandenen Dienst geben; erfolgte Weiterleitung nur bei entsprechender Bestätigung melden."
+      ],
+      "outputs": [
+        "outcome_results",
+        "open_questions",
+        "next_questions",
+        "workflow_status"
+      ],
+      "source_sections": [
+        "Guidance 6",
+        "v1 K09/K10"
+      ]
+    }
+  ],
+  "execution": {
+    "mode": "dependency_driven_iterative",
+    "default_order": [
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08"
+    ],
+    "required_coverage": "Jede Stufe erhält completed, partial oder not_applicable mit Begründung. Unabhängige Teilprüfungen bleiben bei partial zulässig.",
+    "background_events": [
+      "Fristrelevante Schreiben/Ereignisse sofort melden.",
+      "Risiko-/Eskalationssignale sofort melden.",
+      "Neue oder korrigierte Tatsachen versionieren und abhängige Bewertungen neu prüfen."
+    ],
+    "early_exit": "Bekannte Nichtanwendbarkeit sperrt materielle Anwendung der betreffenden Regeln; Dokumentation und Dienstschnittstellen bleiben verfügbar."
+  },
+  "statuses": {
+    "elements": [
+      "satisfied",
+      "not_satisfied",
+      "unknown",
+      "disputed",
+      "legal_review_required"
+    ],
+    "facts": [
+      "verified",
+      "asserted",
+      "disputed",
+      "unknown"
+    ],
+    "applicability": [
+      "applicable",
+      "conditional",
+      "excluded"
+    ],
+    "outcomes": [
+      "rule_conditions_supported",
+      "rule_conditions_not_supported",
+      "unresolved",
+      "conditional_applicability",
+      "conditional_facts",
+      "not_applicable"
+    ]
+  },
+  "logic": {
+    "language": "LIIT-EXPR-1",
+    "operators": [
+      "element",
+      "all",
+      "any",
+      "not"
+    ],
+    "all": "Ein not_satisfied entscheidet negativ; nur ausschliesslich satisfied entscheidet positiv.",
+    "any": "Ein satisfied entscheidet positiv; nur ausschliesslich not_satisfied entscheidet negativ.",
+    "not": "Invertiert nur satisfied/not_satisfied; unknown/disputed/legal_review_required bleiben unverändert.",
+    "unresolved_precedence": [
+      "legal_review_required",
+      "disputed",
+      "unknown"
+    ],
+    "open_tracking": "Alle offenen Blätter bleiben unabhängig von einem bereits entscheidenden AND/OR-Ergebnis sichtbar.",
+    "facts_policy": "Behauptete Tatsachen dürfen als ausdrücklich deklarierte Annahme geprüft werden; dadurch wird nichts bewiesen.",
+    "context_policy": "Offener Anwendungsbereich erlaubt eine gekennzeichnete hypothetische Prüfung. Er erzeugt keinen unbedingten Anspruch. Festgestellte Nichtanwendbarkeit erzeugt keine hypothetische Rechtsfolge aus diesem Modul.",
+    "isolation": "Annahmen eines anderen Ergebniszweigs dürfen die Einstufung dieses Zweigs nicht verändern."
+  },
+  "result_contract": {
+    "required": [
+      "case_id",
+      "case_revision",
+      "core_id",
+      "core_version",
+      "module_id",
+      "module_version",
+      "binding_id",
+      "element_results",
+      "outcome_results",
+      "open_questions",
+      "next_questions",
+      "workflow_status",
+      "service_request_refs",
+      "service_response_refs"
+    ],
+    "per_remedy": [
+      "entitled_party",
+      "obligated_party",
+      "action",
+      "amount_or_scope",
+      "starts_at",
+      "ends_at",
+      "lease_effect",
+      "remedy_relations",
+      "remaining_conditions"
+    ],
+    "unknown_field": "status=unknown, value=null; fehlende Konkretisierung nicht aus dem allgemeinen Regeltext erraten.",
+    "time_fields": "Nur dokumentiertes Datum oder Antwort des vorhandenen Dienstes übernehmen; keine lokale Kalenderarithmetik.",
+    "explanation": "Kurze überprüfbare Subsumtion mit Belegen und Quellen; keine Forderung nach Offenlegung interner Modellgedankengänge."
+  },
+  "invariants": [
+    "Keine erfundenen Tatsachen, Quellen, Fristenden oder Zustellungen.",
+    "Keine automatische Gleichsetzung einer Parteibehauptung mit Beweis.",
+    "Kein unbekanntes Merkmal als verneint behandeln.",
+    "Keine feste Gesprächsreihenfolge erzwingen, wenn Sachzusammenhang oder Dringlichkeit anderes verlangt.",
+    "Gesetzliche Rang- und Spezialitätsfragen nach den Modulen prüfen; ein Vertrag verdrängt zwingendes Recht nicht allein durch seinen Wortlaut.",
+    "Jeden Rechtsbehelf eigenständig prüfen; aus einem Mangel folgen nicht automatisch alle Mängelrechte.",
+    "Nichtigkeit, Unwirksamkeit, Anfechtbarkeit und Erstreckung nicht vermischen.",
+    "Keine Lane-Zuweisung, Kalenderberechnung oder automatische externe Fallübermittlung in diesem Kern.",
+    "Bei neuem Fallstand keine alten Bewertungen ohne Prüfung ihrer Tatsachenreferenzen weiterverwenden.",
+    "Scope unbekannt ist nicht scope ausgeschlossen.",
+    "Technische Testabdeckung ist keine juristische Fachfreigabe."
+  ],
+  "boundaries": {
+    "core": "Methode, Zustandsbedeutung, Mindestbegründung, Teilprüfung und Ergebnisvertrag.",
+    "modules": "Materielle Normen, Definitionen, Fristparameter, Rechtsfolgen und Quellen.",
+    "dialogue": "Fragen, Reihenfolge im Gespräch, verständliche Erläuterung und Ausgabeform.",
+    "external_services": "Fristenberechnung, Eskalationsentscheidung, Behördenauflösung und autorisierte Weiterleitung."
+  },
+  "provenance": [
+    {
+      "source": "Legal Reasoning Guideline for bot.docx",
+      "role": "Vom Nutzer bereitgestellte sechs Schritte; inhaltliche Integrationsgrundlage."
+    },
+    {
+      "source": "LIIT-CORE 1.0.0",
+      "role": "Einzelmerkmalsprüfung, Unsicherheitszustände, Quellen- und Schnittstellenregeln."
+    }
+  ],
+  "compatibility": "M01–M09 1.0.0 werden ausschliesslich über die mitgelieferten expliziten Bindungen gelesen. Ihre alte Kernbindung wird nicht umgeschrieben."
+}

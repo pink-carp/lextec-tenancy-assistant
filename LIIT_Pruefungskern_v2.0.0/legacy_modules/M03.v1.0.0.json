@@ -1,0 +1,1074 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M03",
+  "version": "1.0.0",
+  "title": "Kündigung durch die mietende Partei und vorzeitiger Auszug",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Ordentliche Kündigung, Befristung, Aufhebungsvertrag, Ersatzmieter; besondere Beendigungsgründe gekennzeichnet.",
+  "legal_question": "Wann endet die Vertragsbindung beziehungsweise Zahlungspflicht?",
+  "activation_tags": [
+    "tenant_termination",
+    "early_return",
+    "replacement_tenant"
+  ],
+  "inputs": [
+    {
+      "id": "duration_terms",
+      "type": "string",
+      "description": "Laufzeit und Verlängerung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "continued_use",
+      "type": "string",
+      "description": "Fortsetzung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "tenant_notice",
+      "type": "string",
+      "description": "Kündigung Unterschriften Vollmachten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "lease_parties",
+      "type": "array",
+      "description": "Parteien",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "family_status",
+      "type": "string",
+      "description": "Ehe Partnerschaft Wohnfunktion",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "spouse_consent",
+      "type": "string",
+      "description": "Ausdrückliche Erklärung oder Gerichtsentscheid",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "tenant_notice_receipt",
+      "type": "string",
+      "description": "Empfänger Datum Beleg",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_ordinary",
+      "type": "object",
+      "description": "Externes Ergebnis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "property_type",
+      "type": "string",
+      "description": "Mietobjekt",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "return_event",
+      "type": "string",
+      "description": "Datum Schlüssel und Angebot",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "candidate",
+      "type": "object",
+      "description": "Person und Unterlagen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "proposal_receipt",
+      "type": "string",
+      "description": "Zugang des Vorschlags",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "candidate_finance",
+      "type": "string",
+      "description": "Einkommen Verpflichtungen Bonitätsbelege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "candidate_suitability",
+      "type": "string",
+      "description": "Nutzung Belegung und Ablehnungsgründe",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "candidate_acceptance",
+      "type": "string",
+      "description": "Erklärung Bedingungen Datum",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "review_opportunity",
+      "type": "string",
+      "description": "Prüfgelegenheit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "release_agreement",
+      "type": "string",
+      "description": "Vereinbarung Parteien Inhalt",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "defect_termination_assessment",
+      "type": "object",
+      "description": "M05-Prüfung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "important_reason",
+      "type": "string",
+      "description": "Grund und Unzumutbarkeit",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_special",
+      "type": "object",
+      "description": "Externes Ergebnis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Vertragsende durch echte Befristung",
+      "legal_basis": [
+        "OR 255",
+        "OR 266"
+      ],
+      "definition": "Vereinbarter automatischer Ablauf; keine stillschweigende Fortsetzung.",
+      "input_refs": [
+        "duration_terms",
+        "continued_use"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vertragsende durch echte Befristung?",
+        "rule": "Vereinbarter automatischer Ablauf; keine stillschweigende Fortsetzung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Ordentliche Kündigung vertraglich möglich",
+      "legal_basis": [
+        "OR 266a"
+      ],
+      "definition": "Unbefristeter Vertrag oder vereinbartes Kündigungsrecht; Mindestdauer beachten.",
+      "input_refs": [
+        "duration_terms"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Ordentliche Kündigung vertraglich möglich?",
+        "rule": "Unbefristeter Vertrag oder vereinbartes Kündigungsrecht; Mindestdauer beachten.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Erforderliche Mietparteien erklären schriftlich",
+      "legal_basis": [
+        "OR 266l Abs. 1",
+        "OR 1"
+      ],
+      "definition": "Alle gemeinsam mietenden Parteien oder wirksame Vertretung; Schriftform der Erklärung. Kein amtliches Formular vorgeschrieben.",
+      "input_refs": [
+        "tenant_notice",
+        "lease_parties"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Erforderliche Mietparteien erklären schriftlich?",
+        "rule": "Alle gemeinsam mietenden Parteien oder wirksame Vertretung; Schriftform der Erklärung. Kein amtliches Formular vorgeschrieben.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Familienzustimmung liegt vor oder ist entbehrlich",
+      "legal_basis": [
+        "OR 266m",
+        "OR 266o"
+      ],
+      "definition": "Ausdrückliche Zustimmung geschützter Partnerperson oder gerichtlicher Ersatz; Entbehrlichkeit muss begründet sein.",
+      "input_refs": [
+        "family_status",
+        "spouse_consent"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Familienzustimmung liegt vor oder ist entbehrlich?",
+        "rule": "Ausdrückliche Zustimmung geschützter Partnerperson oder gerichtlicher Ersatz; Entbehrlichkeit muss begründet sein.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Kündigung dem Vermieter zugegangen",
+      "legal_basis": [
+        "OR 266a",
+        "OR 266l"
+      ],
+      "definition": "Zugang beim Vermieter oder empfangsberechtigter Vertretung, nicht bloss Versand.",
+      "input_refs": [
+        "tenant_notice_receipt"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Kündigung dem Vermieter zugegangen?",
+        "rule": "Zugang beim Vermieter oder empfangsberechtigter Vertretung, nicht bloss Versand.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Ordentliche Frist und Termin eingehalten",
+      "legal_basis": [
+        "OR 266a",
+        "OR 266c",
+        "OR 266e"
+      ],
+      "definition": "Wohnung mindestens drei Monate; möbliertes Zimmer Sonderregime. Keine kantonsweite pauschale Annahme ortsüblicher Termine.",
+      "input_refs": [
+        "deadline_ordinary",
+        "duration_terms",
+        "property_type"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Ordentliche Frist und Termin eingehalten?",
+        "rule": "Wohnung mindestens drei Monate; möbliertes Zimmer Sonderregime. Keine kantonsweite pauschale Annahme ortsüblicher Termine.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Sache vorzeitig zurückgegeben oder gehörig angeboten",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Besitzrückgabe beziehungsweise rechtlich genügendes Rückgabeangebot bestimmen; blosser Umzugswunsch genügt nicht.",
+      "input_refs": [
+        "return_event"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Sache vorzeitig zurückgegeben oder gehörig angeboten?",
+        "rule": "Besitzrückgabe beziehungsweise rechtlich genügendes Rückgabeangebot bestimmen; blosser Umzugswunsch genügt nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Konkreter Ersatzmieter vorgeschlagen",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Ein geeigneter Ersatzmieter genügt; keine gesetzliche Pflicht zu drei Kandidaten. Vollständige Angaben müssen die Prüfung ermöglichen.",
+      "input_refs": [
+        "candidate",
+        "proposal_receipt"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Konkreter Ersatzmieter vorgeschlagen?",
+        "rule": "Ein geeigneter Ersatzmieter genügt; keine gesetzliche Pflicht zu drei Kandidaten. Vollständige Angaben müssen die Prüfung ermöglichen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Ersatzmieter zahlungsfähig",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Finanzielle Leistungsfähigkeit für den konkreten Vertrag aufgrund belastbarer Angaben; keine starre universelle Einkommensquote.",
+      "input_refs": [
+        "candidate_finance"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Ersatzmieter zahlungsfähig?",
+        "rule": "Finanzielle Leistungsfähigkeit für den konkreten Vertrag aufgrund belastbarer Angaben; keine starre universelle Einkommensquote.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Ersatzmieter zumutbar",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Objektive Eignung für vereinbarten Gebrauch; sachlich begründete Einwendungen würdigen.",
+      "input_refs": [
+        "candidate_suitability"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Ersatzmieter zumutbar?",
+        "rule": "Objektive Eignung für vereinbarten Gebrauch; sachlich begründete Einwendungen würdigen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E11",
+      "label": "Bereitschaft zur Übernahme zu gleichen Bedingungen",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Ernsthafte Bereitschaft zu unverändertem Mietzins und übrigen Bedingungen zum relevanten Übernahmezeitpunkt.",
+      "input_refs": [
+        "candidate_acceptance"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Bereitschaft zur Übernahme zu gleichen Bedingungen?",
+        "rule": "Ernsthafte Bereitschaft zu unverändertem Mietzins und übrigen Bedingungen zum relevanten Übernahmezeitpunkt.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E12",
+      "label": "Prüfung und Übernahme zeitlich möglich",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "definition": "Vermieter erhielt rechtzeitig ausreichende Unterlagen und angemessene Prüfgelegenheit; Befreiungszeitpunkt nicht pauschal mit Vorschlagstag gleichsetzen.",
+      "input_refs": [
+        "proposal_receipt",
+        "candidate_acceptance",
+        "review_opportunity"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Prüfung und Übernahme zeitlich möglich?",
+        "rule": "Vermieter erhielt rechtzeitig ausreichende Unterlagen und angemessene Prüfgelegenheit; Befreiungszeitpunkt nicht pauschal mit Vorschlagstag gleichsetzen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E13",
+      "label": "Einvernehmliche Aufhebung wirksam",
+      "legal_basis": [
+        "OR 1",
+        "ZGB 169",
+        "PartG 14"
+      ],
+      "definition": "Einigung über Beendigungszeitpunkt und Abrechnung durch alle nötigen Beteiligten; Schutz der Familienwohnung beachten.",
+      "input_refs": [
+        "release_agreement",
+        "family_status"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Einvernehmliche Aufhebung wirksam?",
+        "rule": "Einigung über Beendigungszeitpunkt und Abrechnung durch alle nötigen Beteiligten; Schutz der Familienwohnung beachten.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZGB",
+        "PARTG"
+      ]
+    },
+    {
+      "id": "E14",
+      "label": "Fristlose Mängelkündigung begründet",
+      "legal_basis": [
+        "OR 259b lit. a"
+      ],
+      "definition": "Schwerer Mangel sowie Kenntnis und ausbleibende Behebung innert angemessener Zeit nach M05; keine blosse Auszugserklärung.",
+      "input_refs": [
+        "defect_termination_assessment"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Fristlose Mängelkündigung begründet?",
+        "rule": "Schwerer Mangel sowie Kenntnis und ausbleibende Behebung innert angemessener Zeit nach M05; keine blosse Auszugserklärung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E15",
+      "label": "Wichtiger Grund rechtfertigt Sonderkündigung",
+      "legal_basis": [
+        "OR 266g"
+      ],
+      "definition": "Gesetzliche Kündigungsfrist trotz wichtigem Grund; Unzumutbarkeit und Vermögensfolgen gesondert beurteilen.",
+      "input_refs": [
+        "important_reason",
+        "deadline_special"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Wichtiger Grund rechtfertigt Sonderkündigung?",
+        "rule": "Gesetzliche Kündigungsfrist trotz wichtigem Grund; Unzumutbarkeit und Vermögensfolgen gesondert beurteilen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "element": "E01"
+      },
+      "legal_effect": "Vertrag endet mit Befristung ohne Kündigung.",
+      "legal_basis": [
+        "OR 266 Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E03"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "element": "E05"
+          },
+          {
+            "element": "E06"
+          }
+        ]
+      },
+      "legal_effect": "Ordentliche Beendigung zum bestätigten Termin.",
+      "legal_basis": [
+        "OR 266a",
+        "OR 266c",
+        "OR 266e"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "element": "E02"
+          },
+          {
+            "element": "E03"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "element": "E05"
+          },
+          {
+            "not": {
+              "element": "E06"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Ordentliche Kündigung wirkt grundsätzlich zum nächstmöglichen Termin.",
+      "legal_basis": [
+        "OR 266a Abs. 2"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "all": [
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E08"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "element": "E10"
+          },
+          {
+            "element": "E11"
+          },
+          {
+            "element": "E12"
+          }
+        ]
+      },
+      "legal_effect": "Befreiung nach Art. 264 ab rechtlich bestimmtem Ersatzübernahmezeitpunkt möglich; tatsächlicher Vertragsschluss des Vermieters mit Kandidat nicht zwingend.",
+      "legal_basis": [
+        "OR 264 Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O05",
+      "when": {
+        "all": [
+          {
+            "element": "E07"
+          },
+          {
+            "any": [
+              {
+                "not": {
+                  "element": "E08"
+                }
+              },
+              {
+                "not": {
+                  "element": "E09"
+                }
+              },
+              {
+                "not": {
+                  "element": "E10"
+                }
+              },
+              {
+                "not": {
+                  "element": "E11"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "legal_effect": "Grundsätzlich Mietzins bis nächstem ordentlichen Ende; ersparte Auslagen, anderweitigen Gewinn und absichtlich unterlassenen Gewinn anrechnen.",
+      "legal_basis": [
+        "OR 264 Abs. 2 und 3"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O06",
+      "when": {
+        "element": "E13"
+      },
+      "legal_effect": "Aufhebung nach vereinbarten Bedingungen.",
+      "legal_basis": [
+        "OR 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR266_TENANT_NOTICE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR266_TENANT_NOTICE",
+      "legal_basis": "OR 266a, 266c, 266e",
+      "trigger_event": "Zugang Mieterkündigung",
+      "legal_parameters": {
+        "regime": "contract_local_custom_statutory_fallback"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "exit_liability_disputed",
+      "condition": "Ersatzmieter oder fortdauernde Haftung streitig",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "special_termination",
+      "condition": "Fristlose oder wichtige-Gründe-Kündigung",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [
+    {
+      "module_id": "M07",
+      "compatible_version": "1.x",
+      "when": "Mehrere Mietparteien",
+      "purpose": "Gemeinsame Erklärung",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M09",
+      "compatible_version": "1.x",
+      "when": "Familienstatus möglich",
+      "purpose": "Zustimmung",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M05",
+      "compatible_version": "1.x",
+      "when": "Mängelkündigung",
+      "purpose": "Spezialprüfung",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    }
+  ],
+  "limitations": [],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZGB",
+      "title": "Schweizerisches Zivilgesetzbuch, SR 210",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 8, 121, 169",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "PARTG",
+      "title": "Partnerschaftsgesetz, SR 211.231",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2005/782/20250101/de",
+      "kind": "statute",
+      "edition": "2025-01-01",
+      "locator": "Art. 14",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "UBE24",
+      "title": "Universität Bern, Dr. E. Bachofner: Musterlösung Mietrecht FS 2024",
+      "url": "https://www.ziv.unibe.ch/unibe/portal/fak_rechtwis/c_dep_private/ziv/content/e7676/e7684/e104370/e104397/e1553151/MusterloesungMietrecht2024mitStatistik_ger.pdf",
+      "kind": "university_teaching",
+      "edition": "2024",
+      "locator": "S. 1–6, Fragen 1–7",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Methodik und Plausibilisierung. Fallzahlen, konkrete Fristen, Prozentsätze und damaliges Prozessrecht nicht als allgemeine Regeln übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 255",
+    "OR 266",
+    "OR 266a",
+    "OR 266l Abs. 1",
+    "OR 1",
+    "OR 266m",
+    "OR 266o",
+    "OR 266l",
+    "OR 266c",
+    "OR 266e",
+    "OR 264 Abs. 1",
+    "ZGB 169",
+    "PartG 14",
+    "OR 259b lit. a",
+    "OR 266g",
+    "OR 266 Abs. 1",
+    "OR 266a Abs. 2",
+    "OR 264 Abs. 2 und 3"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "Gesetzliche Spezialregeln und Beweiserleichterungen im Einzelfall prüfen.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

@@ -1,0 +1,872 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M08",
+  "version": "1.0.0",
+  "title": "Haustiere, Hausordnung und Sorgfaltspflichten",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Privatrechtlicher Mietgebrauch; Tierschutz-, Hunde- und öffentliches Recht sowie besondere Assistenztiersituationen nur als gesonderter Prüfbedarf.",
+  "legal_question": "Ist die Nutzung vertragsgemäss und trägt ein Verstoss eine Kündigung?",
+  "activation_tags": [
+    "pet",
+    "house_rules",
+    "noise",
+    "conduct_warning"
+  ],
+  "inputs": [
+    {
+      "id": "lease_rules",
+      "type": "string",
+      "description": "Klauseln Hausordnung Version Einbezug",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "rule_changes",
+      "type": "string",
+      "description": "Spätere Änderungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "pet_details",
+      "type": "string",
+      "description": "Tierart Anzahl Haltung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "nuisance",
+      "type": "string",
+      "description": "Konkrete Auswirkungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "pet_permission",
+      "type": "string",
+      "description": "Erlaubnis Bedingungen",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "toleration",
+      "type": "string",
+      "description": "Kenntnis Dauer Verhalten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "special_needs",
+      "type": "string",
+      "description": "Assistenzbedarf soweit entscheidungserheblich",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "conduct",
+      "type": "string",
+      "description": "Verhalten Zeit Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "damage",
+      "type": "string",
+      "description": "Sachschäden",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "complaints",
+      "type": "array",
+      "description": "Beschwerden und Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "conduct_warning",
+      "type": "string",
+      "description": "Schriftstück Inhalt Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "post_warning_events",
+      "type": "array",
+      "description": "Ereignisse nach Mahnung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "severity",
+      "type": "string",
+      "description": "Gesamtschau und Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_conduct",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "intent",
+      "type": "string",
+      "description": "Vorsatz",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Vertragsregel wirksam vereinbart",
+      "legal_basis": [
+        "OR 1",
+        "OR 18",
+        "OR 257f"
+      ],
+      "definition": "Vertrag und wirksam einbezogene Hausordnung auslegen; spätere einseitige Verschärfung nicht automatisch Vertragsbestandteil.",
+      "input_refs": [
+        "lease_rules",
+        "rule_changes"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vertragsregel wirksam vereinbart?",
+        "rule": "Vertrag und wirksam einbezogene Hausordnung auslegen; spätere einseitige Verschärfung nicht automatisch Vertragsbestandteil.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "Übliche unproblematische Kleintierhaltung",
+      "legal_basis": [
+        "OR 253",
+        "OR 257f",
+        "OGer ZH PD140011 E. 6.1"
+      ],
+      "definition": "Art Anzahl Haltungsweise Gerüche Lärm Schäden und Gefahren konkret prüfen. Übliche Kleintiere grundsätzlich normaler Mietgebrauch; keine pauschale Gleichsetzung aller kleinen Tiere.",
+      "input_refs": [
+        "pet_details",
+        "nuisance"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Übliche unproblematische Kleintierhaltung?",
+        "rule": "Art Anzahl Haltungsweise Gerüche Lärm Schäden und Gefahren konkret prüfen. Übliche Kleintiere grundsätzlich normaler Mietgebrauch; keine pauschale Gleichsetzung aller kleinen Tiere.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_PETS"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "Zustimmung oder wirksame Erlaubnis für konkrete Haltung",
+      "legal_basis": [
+        "OR 1",
+        "OR 18",
+        "OR 257f"
+      ],
+      "definition": "Ausdrückliche Erlaubnis, Umfang und rechtlich relevante Duldung prüfen. Längere Kenntnis allein nicht mechanisch in unwiderrufliche Zustimmung umrechnen.",
+      "input_refs": [
+        "pet_permission",
+        "toleration"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Zustimmung oder wirksame Erlaubnis für konkrete Haltung?",
+        "rule": "Ausdrückliche Erlaubnis, Umfang und rechtlich relevante Duldung prüfen. Längere Kenntnis allein nicht mechanisch in unwiderrufliche Zustimmung umrechnen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "BG_PETS"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "Wirksame Einschränkung erfasst Haltung",
+      "legal_basis": [
+        "OR 1",
+        "OR 18",
+        "OR 257f"
+      ],
+      "definition": "Bei Hunden/Katzen können Vertragsverbote/Zustimmungsvorbehalte zulässig sein; konkreten Wortlaut, Klein-tier-Ausnahme, Zustimmung und besondere Umstände prüfen. Schweigender Vertrag ist kein automatisch geltendes Tierverbot.",
+      "input_refs": [
+        "lease_rules",
+        "pet_details",
+        "special_needs"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Wirksame Einschränkung erfasst Haltung?",
+        "rule": "Bei Hunden/Katzen können Vertragsverbote/Zustimmungsvorbehalte zulässig sein; konkreten Wortlaut, Klein-tier-Ausnahme, Zustimmung und besondere Umstände prüfen. Schweigender Vertrag ist kein automatisch geltendes Tierverbot.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_PETS"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "Sorgfaltspflicht verletzt",
+      "legal_basis": [
+        "OR 257f Abs. 1"
+      ],
+      "definition": "Konkrete unsorgfältige Nutzung der Sache nachweisen; blosse Beschwerde ersetzt Feststellung nicht.",
+      "input_refs": [
+        "conduct",
+        "damage"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Sorgfaltspflicht verletzt?",
+        "rule": "Konkrete unsorgfältige Nutzung der Sache nachweisen; blosse Beschwerde ersetzt Feststellung nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "Rücksichtnahmepflicht verletzt",
+      "legal_basis": [
+        "OR 257f Abs. 2"
+      ],
+      "definition": "Konkrete erhebliche Beeinträchtigung von Hausbewohnern oder Nachbarn würdigen; sozialübliche Nutzung abgrenzen.",
+      "input_refs": [
+        "nuisance",
+        "complaints"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Rücksichtnahmepflicht verletzt?",
+        "rule": "Konkrete erhebliche Beeinträchtigung von Hausbewohnern oder Nachbarn würdigen; sozialübliche Nutzung abgrenzen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E07",
+      "label": "Schriftliche konkrete Mahnung zugestellt",
+      "legal_basis": [
+        "OR 257f Abs. 3"
+      ],
+      "definition": "Vermieter mahnt konkret beanstandetes Verhalten schriftlich; Zugang und verständliche Abhilfeaufforderung. Keine gesetzliche Standardanzahl mehrerer Mahnungen erfinden.",
+      "input_refs": [
+        "conduct_warning"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Schriftliche konkrete Mahnung zugestellt?",
+        "rule": "Vermieter mahnt konkret beanstandetes Verhalten schriftlich; Zugang und verständliche Abhilfeaufforderung. Keine gesetzliche Standardanzahl mehrerer Mahnungen erfinden.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "Pflichtverletzung nach Mahnung fortgesetzt",
+      "legal_basis": [
+        "OR 257f Abs. 3"
+      ],
+      "definition": "Fortsetzung gerade des abgemahnten oder sachlich zusammenhängenden Verhaltens; zeitliche Reihenfolge prüfen.",
+      "input_refs": [
+        "post_warning_events"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Pflichtverletzung nach Mahnung fortgesetzt?",
+        "rule": "Fortsetzung gerade des abgemahnten oder sachlich zusammenhängenden Verhaltens; zeitliche Reihenfolge prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "Fortsetzung Mietverhältnis unzumutbar",
+      "legal_basis": [
+        "OR 257f Abs. 3"
+      ],
+      "definition": "Schwere Dauer Wiederholung Abhilfemöglichkeiten und Interessen abwägen; Vertragsabweichung allein beweist diese Schwelle nicht.",
+      "input_refs": [
+        "severity"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Fortsetzung Mietverhältnis unzumutbar?",
+        "rule": "Schwere Dauer Wiederholung Abhilfemöglichkeiten und Interessen abwägen; Vertragsabweichung allein beweist diese Schwelle nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E10",
+      "label": "Besondere Kündigungsfrist eingehalten",
+      "legal_basis": [
+        "OR 257f Abs. 3"
+      ],
+      "definition": "Wohnraum mindestens 30 Tage auf Monatsende, extern geprüft.",
+      "input_refs": [
+        "deadline_conduct"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Besondere Kündigungsfrist eingehalten?",
+        "rule": "Wohnraum mindestens 30 Tage auf Monatsende, extern geprüft.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "E11",
+      "label": "Schwerer Sachschaden vorsätzlich zugefügt",
+      "legal_basis": [
+        "OR 257f Abs. 4"
+      ],
+      "definition": "Vorsatz und schwerer Sachschaden kumulativ; Tierhaltung ohne Erlaubnis ist nicht von selbst dieser Fall.",
+      "input_refs": [
+        "intent",
+        "damage"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Schwerer Sachschaden vorsätzlich zugefügt?",
+        "rule": "Vorsatz und schwerer Sachschaden kumulativ; Tierhaltung ohne Erlaubnis ist nicht von selbst dieser Fall.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "element": "E02"
+          },
+          {
+            "not": {
+              "element": "E05"
+            }
+          },
+          {
+            "not": {
+              "element": "E06"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Übliche unproblematische Kleintierhaltung grundsätzlich vom normalen Mietgebrauch umfasst.",
+      "legal_basis": [
+        "OR 253",
+        "OR 257f"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "E04"
+          },
+          {
+            "not": {
+              "element": "E03"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Vertraglicher Nutzungskonflikt; Zulässigkeit und Abhilfe prüfen. Noch kein automatischer Nachweis ausserordentlicher Kündigung.",
+      "legal_basis": [
+        "OR 1",
+        "OR 18",
+        "OR 257f"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "any": [
+              {
+                "element": "E05"
+              },
+              {
+                "element": "E06"
+              },
+              {
+                "all": [
+                  {
+                    "element": "E01"
+                  },
+                  {
+                    "element": "E04"
+                  },
+                  {
+                    "not": {
+                      "element": "E03"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "element": "E07"
+          },
+          {
+            "element": "E08"
+          },
+          {
+            "element": "E09"
+          },
+          {
+            "element": "E10"
+          }
+        ]
+      },
+      "legal_effect": "Materielle Voraussetzungen einer ausserordentlichen Kündigung können vorliegen; Form, Zustellung und Rechtsschutz nach M02/M09 zusätzlich.",
+      "legal_basis": [
+        "OR 257f Abs. 3"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "element": "E11"
+      },
+      "legal_effect": "Fristlose Kündigung nach Art. 257f Abs. 4 kann eröffnet sein; übrige Formanforderungen bleiben.",
+      "legal_basis": [
+        "OR 257f Abs. 4"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR257F_NOTICE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR257F_NOTICE",
+      "legal_basis": "OR 257f Abs. 3",
+      "trigger_event": "Zugang Kündigung",
+      "legal_parameters": {
+        "minimum_days": 30,
+        "alignment": "month_end"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR273_CHALLENGE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR273_CHALLENGE",
+      "legal_basis": "OR 273 Abs. 1",
+      "trigger_event": "Zugang Kündigung",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "conduct_termination",
+      "condition": "Mahnung Kündigungsandrohung oder Kündigung",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "pet_special_case",
+      "condition": "Assistenzbedarf Gefährdung oder Vertragsauslegung offen",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [
+    {
+      "module_id": "M02",
+      "compatible_version": "1.x",
+      "when": "Kündigung vorhanden",
+      "purpose": "Nichtigkeit Anfechtung Erstreckungsausschluss",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M04",
+      "compatible_version": "1.x",
+      "when": "Hausordnung einseitig nachteilig geändert",
+      "purpose": "Vertragsänderung",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    },
+    {
+      "module_id": "M09",
+      "compatible_version": "1.x",
+      "when": "Familienwohnung möglich",
+      "purpose": "Zustellung",
+      "dependency": "optional_context_enrichment",
+      "failure_behavior": "Betroffene Frage offen lassen; unabhängige Prüfung fortsetzen."
+    }
+  ],
+  "limitations": [],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_PETS",
+      "title": "Obergericht Zürich: PD140011-O, Urteil vom 16. Juni 2015",
+      "url": "https://www.gerichte-zh.ch/fileadmin/user_upload/entscheide/oeffentlich/PD140011-O3.pdf",
+      "kind": "judgment",
+      "edition": "2015-06-16",
+      "locator": "E. 6.1 ff., S. 13 ff.",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Vertrag und übliche Kleintierhaltung; kein schematisches Tierartenverbot.",
+      "role": "rule_support"
+    },
+    {
+      "id": "BG_PETS",
+      "title": "Bundesgericht: 4C.324/2002",
+      "url": "https://search.bger.ch/ext/eurospider/live/de/php/aza/http/index.php?highlight_docid=aza%3A%2F%2F03-03-2003-4C-324-2002&lang=de&type=show_document",
+      "kind": "judgment",
+      "edition": "2003-03-03",
+      "locator": "E. 3.3.3",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Bedeutung geduldeter Hundehaltung im konkreten Vertragsverhältnis.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UZH26",
+      "title": "Universität Zürich: Soziales Mietrecht HS 2026",
+      "url": "https://ius.uzh.ch/de/staff/professorships/alphabetical/dedual/lehrveranstaltungen/soziales-mietrecht.html",
+      "kind": "university_course",
+      "edition": "2026",
+      "locator": "Vorlesungsinhalt und Zeitplan",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Nur Stoffsystematik; Folien auf OLAT nicht öffentlich geprüft. Kein Beleg einzelner Tatbestandsmerkmale.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 1",
+    "OR 18",
+    "OR 257f",
+    "OR 253",
+    "OGer ZH PD140011 E. 6.1",
+    "OR 257f Abs. 1",
+    "OR 257f Abs. 2",
+    "OR 257f Abs. 3",
+    "OR 257f Abs. 4"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "Gesetzliche Spezialregeln und Beweiserleichterungen im Einzelfall prüfen.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

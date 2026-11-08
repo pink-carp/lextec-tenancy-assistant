@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "core_id": {
+      "type": "string"
+    },
+    "version": {
+      "const": "2.0.0"
+    },
+    "language": {
+      "type": "string"
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "release_status": {
+      "type": "string"
+    },
+    "expert_approval": {
+      "type": "null"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "uncertain_qualification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "deployment",
+        "uncertain_qualification"
+      ],
+      "additionalProperties": false
+    },
+    "immutability": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "type": "string"
+        },
+        "enforcement": {
+          "type": "string"
+        },
+        "changes": {
+          "type": "string"
+        },
+        "dialogue_order": {
+          "type": "string"
+        },
+        "law": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "enforcement",
+        "changes",
+        "dialogue_order",
+        "law"
+      ],
+      "additionalProperties": false
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "required_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source_sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "question",
+          "required_actions",
+          "outputs",
+          "source_sections"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "default_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_coverage": {
+          "type": "string"
+        },
+        "background_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "early_exit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "default_order",
+        "required_coverage",
+        "background_events",
+        "early_exit"
+      ],
+      "additionalProperties": false
+    },
+    "statuses": {
+      "type": "object",
+      "properties": {
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "elements",
+        "facts",
+        "applicability",
+        "outcomes"
+      ],
+      "additionalProperties": false
+    },
+    "logic": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "operators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "all": {
+          "type": "string"
+        },
+        "any": {
+          "type": "string"
+        },
+        "not": {
+          "type": "string"
+        },
+        "unresolved_precedence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_tracking": {
+          "type": "string"
+        },
+        "facts_policy": {
+          "type": "string"
+        },
+        "context_policy": {
+          "type": "string"
+        },
+        "isolation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "language",
+        "operators",
+        "all",
+        "any",
+        "not",
+        "unresolved_precedence",
+        "open_tracking",
+        "facts_policy",
+        "context_policy",
+        "isolation"
+      ],
+      "additionalProperties": false
+    },
+    "result_contract": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "per_remedy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknown_field": {
+          "type": "string"
+        },
+        "time_fields": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "required",
+        "per_remedy",
+        "unknown_field",
+        "time_fields",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "properties": {
+        "core": {
+          "type": "string"
+        },
+        "modules": {
+          "type": "string"
+        },
+        "dialogue": {
+          "type": "string"
+        },
+        "external_services": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "core",
+        "modules",
+        "dialogue",
+        "external_services"
+      ],
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "role"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "compatibility": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "core_id",
+    "version",
+    "language",
+    "created_on",
+    "release_status",
+    "expert_approval",
+    "purpose",
+    "scope",
+    "immutability",
+    "stages",
+    "execution",
+    "statuses",
+    "logic",
+    "result_contract",
+    "invariants",
+    "boundaries",
+    "provenance",
+    "compatibility"
+  ],
+  "additionalProperties": false
+}

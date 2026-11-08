@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "implementation": "contracts_only",
+  "binding": "Logische LIIT-Schnittstellen. Tatsächliche Endpunkte, Authentisierung und bestehende rule_key-Werte sind nicht bekannt und müssen im Adapter gebunden werden.",
+  "deadline": {
+    "id": "LIIT-DEADLINE@1.0.0",
+    "request_required": [
+      "request_id",
+      "case_id",
+      "module_id",
+      "module_version",
+      "rule_key",
+      "legal_basis",
+      "legal_event_date",
+      "events",
+      "recipient_id",
+      "contract_terms",
+      "uncertainties"
+    ],
+    "event_shape": {
+      "event_id": "string",
+      "event_type": "string",
+      "date": "ISO-8601 oder null",
+      "timezone": "Europe/Zurich",
+      "service_method": "personal|ordinary_mail|registered_mail|electronic|other|unknown",
+      "evidence_refs": "string[]",
+      "date_status": "verified|asserted|disputed|unknown"
+    },
+    "response_required": [
+      "request_id",
+      "status",
+      "applicable_rule_version",
+      "deadline_at",
+      "reason",
+      "evidence_refs"
+    ],
+    "response_status": [
+      "calculated",
+      "insufficient_facts",
+      "legal_review_required",
+      "not_applicable",
+      "error"
+    ],
+    "rules": [
+      "deadline_at null bei ungeklärtem Ergebnis; keine Ersatzberechnung.",
+      "Kalender, Empfangstheorie, Feiertage, Stillstand und Übergangsrecht bestimmt nur vorhandener Dienst.",
+      "Empfangstheorie nach Erklärungsart differenzieren; nicht einheitliche Zustellfiktion unterstellen.",
+      "Pro Empfänger und Rechtsbehelf eigener Aufruf; Deduplizierung case_id+event_id+rule_key+recipient_id.",
+      "Antwort muss Anfrage und verwendete Normversion referenzieren.",
+      "Rechtsschutzanfragen auch bei vermuteter Nichtigkeit auslösen."
+    ]
+  },
+  "escalation": {
+    "id": "LIIT-ESCALATION@1.0.0",
+    "request_required": [
+      "signal_id",
+      "case_id",
+      "module_id",
+      "module_version",
+      "signal_code",
+      "factual_description",
+      "evidence_refs",
+      "open_questions",
+      "deadline_response_refs"
+    ],
+    "response_required": [
+      "signal_id",
+      "accepted",
+      "decision_ref",
+      "routing_status"
+    ],
+    "rules": [
+      "Keine Lane-Schwellen, automatische Empfänger oder Eskalationsprioritäten in diesen Modulen.",
+      "Bekannte Vulnerabilität kann Signal sein; verändert keine materiellen Tatbestandsmerkmale.",
+      "accepted bestätigt Empfang durch Dienst, nicht Annahme durch eine Fachperson.",
+      "Keine Nachrichten an Dritte oder Fallübermittlung ohne bestehende autorisierte LIIT-Abläufe."
+    ]
+  },
+  "procedure_context": {
+    "jurisdiction": "CH-ZH",
+    "forum_rule": "ZPO 33: Ort der gelegenen Sache; ZPO 35 Abs. 1 lit. b beachten.",
+    "ordinary_entry": "Grundsätzlich paritätische Schlichtung nach ZPO 197 und 200; Ausnahmen nach Streitgegenstand prüfen.",
+    "authority_lookup_input": [
+      "property_municipality",
+      "property_postcode",
+      "dispute_type",
+      "procedural_stage"
+    ],
+    "authority_lookup_output": [
+      "authority_id",
+      "name",
+      "official_url",
+      "verified_on"
+    ],
+    "court_documents": "Klagebewilligung, Urteilsvorschlag, gerichtliche Fristansetzung und Vollstreckung sofort an bestehenden Verfahrens-/Fristendienst. Keine Fristen aus alten Lehrunterlagen übernehmen.",
+    "eviction": "Rechtsschutz in klaren Fällen setzt nach ZPO 257 unbestrittenen/sofort beweisbaren Sachverhalt und klare Rechtslage voraus; Kündigung allein ist kein Vollstreckungstitel."
+  }
+}

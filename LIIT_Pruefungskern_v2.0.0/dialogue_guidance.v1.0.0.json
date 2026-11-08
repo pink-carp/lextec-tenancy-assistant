@@ -1,0 +1,91 @@
+{
+  "id": "LIIT-DIALOGUE",
+  "version": "1.0.0",
+  "core": "LIIT-CORE@2.0.0",
+  "language": "de-CH",
+  "audience": "Sozialarbeitende; verständliche Weitergabe an Klientinnen und Klienten.",
+  "rules": [
+    "Mit dem Anliegen und vorhandenen Unterlagen beginnen.",
+    "Jeweils die nächste entscheidungserhebliche Informationslücke erfragen; bereits beantwortete Fragen nicht wiederholen.",
+    "Die Standardreihenfolge ist eine Orientierung und kein Pflichtfragebogen.",
+    "Frage kurz erläutern, wenn ihr Zusammenhang mit dem Fall nicht offensichtlich ist.",
+    "Nicht unterstützte oder unklare Wohnform zunächst klären; keine sichere Rechtsauskunft ausserhalb des Modulumfangs ableiten.",
+    "Tatsachenschilderung, juristische Bewertung und Handlungsempfehlung sprachlich trennen.",
+    "Bedingte Aussagen nennen ihre konkrete Voraussetzung.",
+    "Vor einer Handlung Form, Empfänger und notwendige vorausgehende Schritte darstellen.",
+    "Keine positive Aussage eines Teilrechts auf alle anderen Rechtsbehelfe übertragen.",
+    "Weiterleitung nur mit tatsächlichem bestätigtem Status beschreiben."
+  ],
+  "question_bank": [
+    {
+      "stage_id": "K01",
+      "purpose": "Was ist passiert, wer ist beteiligt und was soll erreicht werden?",
+      "prompts": [
+        "Was möchten Sie erreichen?",
+        "Wer hat den Vertrag abgeschlossen und welche Unterlagen liegen vor?"
+      ]
+    },
+    {
+      "stage_id": "K02",
+      "purpose": "Welche Regeln gelten für diese Beziehung, dieses Objekt und diesen Zeitpunkt?",
+      "prompts": [
+        "Wofür werden die Räume gemietet und wo liegen sie?",
+        "Ist das Mietverhältnis befristet? Gibt es eine Ehe oder eingetragene Partnerschaft mit gemeinsamem Wohnbezug?"
+      ]
+    },
+    {
+      "stage_id": "K03",
+      "purpose": "Welche Rechtsposition besteht und was schuldet jede Partei?",
+      "prompts": [
+        "Was ist im Vertrag zu dieser Leistung oder Pflicht vereinbart?",
+        "Gibt es einen Nachtrag oder eine einschlägige gesetzliche Regel?"
+      ]
+    },
+    {
+      "stage_id": "K04",
+      "purpose": "Welcher tatsächliche Vorgang löst welche rechtliche Frage aus?",
+      "prompts": [
+        "Was ist wann geschehen?",
+        "Welche Aussage stammt aus einem Dokument und welche aus einer Schilderung?"
+      ]
+    },
+    {
+      "stage_id": "K05",
+      "purpose": "Wer kann von wem was verlangen oder welches Recht ausüben?",
+      "prompts": [
+        "Geht es um eine Leistung, eine Zahlung, eine Vertragsbeendigung oder um Schutz gegen eine Erklärung?"
+      ]
+    },
+    {
+      "stage_id": "K06",
+      "purpose": "Tragen die dokumentierten Tatsachen das einzelne Tatbestandsmerkmal?",
+      "prompts": [
+        "Welche Unterlage oder konkrete Beobachtung belegt diesen Punkt?",
+        "Wird dieser Sachverhalt von der anderen Partei bestritten?"
+      ]
+    },
+    {
+      "stage_id": "K07",
+      "purpose": "Wie, gegenüber wem und nach welchen vorgängigen Schritten wird das Recht ausgeübt?",
+      "prompts": [
+        "Wer hat welches Schreiben wann und wie erhalten?",
+        "Gab es vorher eine Mahnung, Fristansetzung oder weitere notwendige Handlung?"
+      ]
+    },
+    {
+      "stage_id": "K08",
+      "purpose": "Wer muss was tun oder zahlen, ab wann, wie lange und unter welchen noch offenen Voraussetzungen?",
+      "prompts": [
+        "Welche entscheidungserheblichen Angaben fehlen noch?",
+        "Welche nächsten Schritte sind durch die bisherige Prüfung tatsächlich gedeckt?"
+      ]
+    }
+  ],
+  "output_order": [
+    "Anliegen und knappe vorläufige Einordnung",
+    "Bereits prüfbare Ergebnisse je Rechtsbehelf",
+    "Entscheidungserhebliche offene Angaben",
+    "Nächste Schritte und bestätigte Fristenantworten",
+    "Quellen und gegebenenfalls bestätigter Weiterleitungsstatus"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "created_on": "2026-11-08",
+  "new_legal_research": false,
+  "method_sources": [
+    {
+      "id": "USER_GUIDANCE",
+      "title": "Legal Reasoning Guideline for bot.docx",
+      "path": "C:/Users/dulze_959w/OneDrive/Dokumente/Uni/MLE/1 Sem/Computational Law/Legal Reasoning Guideline for bot.docx",
+      "sha256": "9b58be4de74a5afcbc82a815d36d9ceec687ab5a8e978bfbe9b9b70644fb44dd",
+      "role": "Mit Nutzerauftrag integrierter Referenzinhalt; keine eigenständige Rechtsquelle."
+    },
+    {
+      "id": "CORE1",
+      "title": "LIIT-CORE 1.0.0",
+      "sha256": "8c6f4b34fca4da936db2b6b185990f11f9d2ca2b7850ffe9c4fd908181cff4b3",
+      "role": "Vorversion der Prüfmethodik."
+    }
+  ],
+  "legal_sources": "Die Quellen bleiben in den unverändert übernommenen Modulen; methodische Integration ist keine erneute Vollprüfung materieller Regeln.",
+  "module_release_status": "research_release; expert_approval=null bleibt erhalten."
+}

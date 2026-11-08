@@ -1,0 +1,2090 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "M04",
+  "version": "1.0.0",
+  "title": "Mietzins und einseitige Vertragsänderungen",
+  "language": "de-CH",
+  "jurisdiction": [
+    "CH",
+    "CH-ZH"
+  ],
+  "legal_checked_on": "2026-11-08",
+  "release_status": "research_release",
+  "expert_approval": null,
+  "compatible_core": "LIIT-CORE@1.0.0",
+  "scope": "Vier eigenständige Zweige A Erhöhung, B Anfangsmietzins, C Senkung, D andere Änderung; Index und Staffel als Sonderregime. Art. 253b-Ausnahmen vorab prüfen.",
+  "legal_question": "Sind Anfangsmietzins, Erhöhung, Senkung oder andere Änderungen rechtlich begründet?",
+  "activation_tags": [
+    "rent_increase",
+    "initial_rent",
+    "rent_reduction",
+    "contract_change",
+    "ancillary_cost_change"
+  ],
+  "inputs": [
+    {
+      "id": "use_and_duration",
+      "type": "string",
+      "description": "Nutzungszweck Mietdauer",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "luxury_and_rooms",
+      "type": "string",
+      "description": "Ausstattung und Wohnraumzahl",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "subsidy_and_control",
+      "type": "string",
+      "description": "Förderung und behördliche Mietzinskontrolle",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "change_type",
+      "type": "string",
+      "description": "Erhöhung Anfangsmiete Senkung sonstige Änderung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "old_rent",
+      "type": "object",
+      "description": "Bisherige Miete",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "new_rent",
+      "type": "object",
+      "description": "Neue Miete",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "rent_notice",
+      "type": "string",
+      "description": "Vollständige Mitteilung und Beilage",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "notice_date",
+      "type": "date",
+      "description": "Rechtserhebliches Datum",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "approval",
+      "type": "string",
+      "description": "Formulargenehmigung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_increase",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "lease_terms",
+      "type": "string",
+      "description": "Kündigungsregime",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "last_fixing",
+      "type": "string",
+      "description": "Letzte verbindliche Festsetzung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "cost_change",
+      "type": "string",
+      "description": "Kosten und Belege",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "reference_data",
+      "type": "string",
+      "description": "Datierte amtliche Zinssätze und Indexstände",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "investment",
+      "type": "string",
+      "description": "Werterhöhung Erhaltung Förderbeiträge",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "calculation",
+      "type": "string",
+      "description": "Rechenweg und Vorbehalte",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "yield_records",
+      "type": "string",
+      "description": "Kapital Kosten Erträge",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "comparables",
+      "type": "array",
+      "description": "Vergleichsobjekte",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_challenge",
+      "type": "object",
+      "description": "Fristendienst je Mitteilung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "new_contract",
+      "type": "string",
+      "description": "Vertrag und Vorgängerverhältnis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "handover",
+      "type": "string",
+      "description": "Übernahmeereignis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "housing_pressure",
+      "type": "string",
+      "description": "Wohnsituation Gründe und lokale Marktverhältnisse",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "previous_rent",
+      "type": "string",
+      "description": "Vormiete Objekt Vergleichsbasis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "property_location",
+      "type": "string",
+      "description": "Belegenheitskanton und Gemeinde",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "contract_date",
+      "type": "date",
+      "description": "Vertragsdatum",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "form_duty_at_date",
+      "type": "string",
+      "description": "Datierter amtlicher Nachweis",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "initial_form",
+      "type": "string",
+      "description": "Formular Inhalt Zustellung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_initial",
+      "type": "object",
+      "description": "Fristendienst mit Formularsachverhalt",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "reduction_request",
+      "type": "string",
+      "description": "Begehren Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "combined_challenge",
+      "type": "string",
+      "description": "Gleichzeitiger Antrag",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "landlord_response",
+      "type": "string",
+      "description": "Inhalt Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_response",
+      "type": "object",
+      "description": "Fristendienst",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_reduction",
+      "type": "array",
+      "description": "Externe Antworten",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "changed_terms",
+      "type": "string",
+      "description": "Bisherige und neue Regelung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "cost_effect",
+      "type": "string",
+      "description": "Gesamte Belastung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "index_clause",
+      "type": "string",
+      "description": "Bindungsdauer Index",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "index_notice",
+      "type": "string",
+      "description": "Formular Indexstand Zeitpunkt",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "step_clause",
+      "type": "object",
+      "description": "Dauer Intervalle Frankenbeträge",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "step_notice",
+      "type": "string",
+      "description": "Inhalt Schriftform Zugang",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "deadline_step",
+      "type": "object",
+      "description": "Externe Zeitprüfung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "step_duration",
+      "type": "string",
+      "description": "Vertragsdauer",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "step_intervals",
+      "type": "array",
+      "description": "Erhöhungszeitpunkte",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "step_amounts",
+      "type": "array",
+      "description": "Vereinbarte Frankenbeträge",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    },
+    {
+      "id": "change_justification",
+      "type": "string",
+      "description": "Begründung und Gegenleistung",
+      "evidence_required": true,
+      "missing_value": "unknown",
+      "accepted_evidence": [
+        "document",
+        "party_statement",
+        "authority_record",
+        "professional_assessment",
+        "external_service"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "E01",
+      "label": "Mietzinsschutz anwendbar",
+      "legal_basis": [
+        "OR 253a",
+        "OR 253b"
+      ],
+      "definition": "Wohnraum; keine Ferienwohnung bis drei Monate. Luxuriös UND mindestens sechs Wohnräume ohne Küche schliesst Mietzinsschutz aus. Öffentlich gefördert UND behördlich kontrollierter Mietzins: besondere Zuständigkeit/Schutzregime statt pauschaler OR-Anfechtung.",
+      "input_refs": [
+        "use_and_duration",
+        "luxury_and_rooms",
+        "subsidy_and_control"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mietzinsschutz anwendbar?",
+        "rule": "Wohnraum; keine Ferienwohnung bis drei Monate. Luxuriös UND mindestens sechs Wohnräume ohne Küche schliesst Mietzinsschutz aus. Öffentlich gefördert UND behördlich kontrollierter Mietzins: besondere Zuständigkeit/Schutzregime statt pauschaler OR-Anfechtung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "A01",
+      "label": "Einseitige Erhöhung bestehenden Mietzinses",
+      "legal_basis": [
+        "OR 269d Abs. 1"
+      ],
+      "definition": "Bisherigen und neuen Nettomietzins, Akonto/Pauschalen und geltend gemachte Erhöhungsgründe getrennt erfassen.",
+      "input_refs": [
+        "change_type",
+        "old_rent",
+        "new_rent"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Einseitige Erhöhung bestehenden Mietzinses?",
+        "rule": "Bisherigen und neuen Nettomietzins, Akonto/Pauschalen und geltend gemachte Erhöhungsgründe getrennt erfassen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "A02",
+      "label": "Vorgeschriebenes Formular wirksam mitgeteilt",
+      "legal_basis": [
+        "OR 269d Abs. 1 und 4",
+        "VMWG 19"
+      ],
+      "definition": "Kantonal genehmigtes Formular und gesetzlicher Inhalt; seit 1.10.2025 mechanisch nachgebildete Unterschrift ausreichend. Ältere Mitteilungen verlangen historische Rechtsprüfung.",
+      "input_refs": [
+        "rent_notice",
+        "notice_date",
+        "approval"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vorgeschriebenes Formular wirksam mitgeteilt?",
+        "rule": "Kantonal genehmigtes Formular und gesetzlicher Inhalt; seit 1.10.2025 mechanisch nachgebildete Unterschrift ausreichend. Ältere Mitteilungen verlangen historische Rechtsprüfung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG",
+        "ZH_FORMS"
+      ]
+    },
+    {
+      "id": "A03",
+      "label": "Erhöhung hinreichend begründet",
+      "legal_basis": [
+        "OR 269d Abs. 2 lit. b",
+        "VMWG 19 Abs. 1 und 1bis"
+      ],
+      "definition": "Klare Gründe, mehrere Gründe einzeln beziffert; Begründung im Begleitschreiben nur bei ausdrücklichem Verweis im Formular. Mehrleistungen: Förderbeiträge angeben.",
+      "input_refs": [
+        "rent_notice"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Erhöhung hinreichend begründet?",
+        "rule": "Klare Gründe, mehrere Gründe einzeln beziffert; Begründung im Begleitschreiben nur bei ausdrücklichem Verweis im Formular. Mehrleistungen: Förderbeiträge angeben.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "A04",
+      "label": "Keine Kündigung oder Androhung mit Erhöhung",
+      "legal_basis": [
+        "OR 269d Abs. 2 lit. c"
+      ],
+      "definition": "Gleichzeitige Kündigung oder Kündigungsandrohung zur Mitteilung führt zur gesetzlichen Nichtigkeitsfolge.",
+      "input_refs": [
+        "rent_notice"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Keine Kündigung oder Androhung mit Erhöhung?",
+        "rule": "Gleichzeitige Kündigung oder Kündigungsandrohung zur Mitteilung führt zur gesetzlichen Nichtigkeitsfolge.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "A05",
+      "label": "Änderungsmitteilung rechtzeitig",
+      "legal_basis": [
+        "OR 269d Abs. 1"
+      ],
+      "definition": "Mindestens zehn Tage vor Beginn der Kündigungsfrist auf nächstmöglichen Kündigungstermin; verspätete Mitteilung von Nichtigkeit unterscheiden.",
+      "input_refs": [
+        "deadline_increase",
+        "lease_terms"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Änderungsmitteilung rechtzeitig?",
+        "rule": "Mindestens zehn Tage vor Beginn der Kündigungsfrist auf nächstmöglichen Kündigungstermin; verspätete Mitteilung von Nichtigkeit unterscheiden.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "A06",
+      "label": "Relative Erhöhungsgründe belegt",
+      "legal_basis": [
+        "OR 269a lit. b und e",
+        "VMWG 12–14, 16, 18, 20"
+      ],
+      "definition": "Seit letzter massgeblicher Festsetzung: Referenzzinsbewegung und frühere Anpassungen, belegte Kostensteigerung, Mehrleistungen abzüglich Förderbeiträge, Teuerung auf risikotragendem Kapital und gültige Vorbehalte prüfen. Keine Doppelzählung; konkrete Daten und Berechnungsnachweis verlangen.",
+      "input_refs": [
+        "last_fixing",
+        "cost_change",
+        "reference_data",
+        "investment",
+        "calculation"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Relative Erhöhungsgründe belegt?",
+        "rule": "Seit letzter massgeblicher Festsetzung: Referenzzinsbewegung und frühere Anpassungen, belegte Kostensteigerung, Mehrleistungen abzüglich Förderbeiträge, Teuerung auf risikotragendem Kapital und gültige Vorbehalte prüfen. Keine Doppelzählung; konkrete Daten und Berechnungsnachweis verlangen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "A07",
+      "label": "Mietzins materiell missbräuchlich",
+      "legal_basis": [
+        "OR 269",
+        "OR 269a",
+        "VMWG 10–16"
+      ],
+      "definition": "Übersetzter Ertrag/übersetzter Kaufpreis und einschlägige Gegenkriterien prüfen. Absolute und relative Methode nicht vermischen. Vergleich nach Lage Grösse Ausstattung Zustand Bauperiode; Renditeprüfung braucht Kapital-/Kostenbelege und aktuelle Rechtsprechung. Keine feste Renditezulage im Modul. Die Beurteilung ist legal_review_required, solange die erforderliche aktuelle Rechtsprechung zur gewählten Berechnungsmethode oder die Belege fehlen.",
+      "input_refs": [
+        "yield_records",
+        "comparables",
+        "calculation"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mietzins materiell missbräuchlich?",
+        "rule": "Übersetzter Ertrag/übersetzter Kaufpreis und einschlägige Gegenkriterien prüfen. Absolute und relative Methode nicht vermischen. Vergleich nach Lage Grösse Ausstattung Zustand Bauperiode; Renditeprüfung braucht Kapital-/Kostenbelege und aktuelle Rechtsprechung. Keine feste Renditezulage im Modul. Die Beurteilung ist legal_review_required, solange die erforderliche aktuelle Rechtsprechung zur gewählten Berechnungsmethode oder die Belege fehlen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "A08",
+      "label": "Anfechtung der Änderung rechtzeitig",
+      "legal_basis": [
+        "OR 270b"
+      ],
+      "definition": "Externe Fristprüfung ab Mitteilung, regelmässig 30 Tage. Nachforderung einer Begründung nach VMWG 20 hemmt diese Frist nicht.",
+      "input_refs": [
+        "deadline_challenge"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Anfechtung der Änderung rechtzeitig?",
+        "rule": "Externe Fristprüfung ab Mitteilung, regelmässig 30 Tage. Nachforderung einer Begründung nach VMWG 20 hemmt diese Frist nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "B01",
+      "label": "Neuer Mietvertrag und Übernahme",
+      "legal_basis": [
+        "OR 270 Abs. 1"
+      ],
+      "definition": "Echter Neuabschluss und tatsächliche Übernahme; blosse Fortsetzung oder Vertragsänderung nicht automatisch Anfangsmietzins.",
+      "input_refs": [
+        "new_contract",
+        "handover"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Neuer Mietvertrag und Übernahme?",
+        "rule": "Echter Neuabschluss und tatsächliche Übernahme; blosse Fortsetzung oder Vertragsänderung nicht automatisch Anfangsmietzins.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "B02",
+      "label": "Persönliche/familiäre Notlage oder örtlicher Marktdruck",
+      "legal_basis": [
+        "OR 270 Abs. 1 lit. a"
+      ],
+      "definition": "Zum Abschluss gezwungen infolge persönlicher/familiärer Notlage oder Verhältnissen auf örtlichem Markt; Alternativen nicht kumulativ verlangen.",
+      "input_refs": [
+        "housing_pressure"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Persönliche/familiäre Notlage oder örtlicher Marktdruck?",
+        "rule": "Zum Abschluss gezwungen infolge persönlicher/familiärer Notlage oder Verhältnissen auf örtlichem Markt; Alternativen nicht kumulativ verlangen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "B03",
+      "label": "Erhebliche Erhöhung gegenüber Vormiete",
+      "legal_basis": [
+        "OR 270 Abs. 1 lit. b"
+      ],
+      "definition": "Vergleich derselben Mietsache; erhebliche Erhöhung ist eigenständige Alternative zu lit. a. Keine pauschale gesetzliche Prozentgrenze erfinden.",
+      "input_refs": [
+        "previous_rent",
+        "new_rent"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Erhebliche Erhöhung gegenüber Vormiete?",
+        "rule": "Vergleich derselben Mietsache; erhebliche Erhöhung ist eigenständige Alternative zu lit. a. Keine pauschale gesetzliche Prozentgrenze erfinden.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "B04",
+      "label": "Zürcher Anfangsmietzinsformular erforderlich",
+      "legal_basis": [
+        "OR 270 Abs. 2",
+        "ZH EG ZGB § 229b"
+      ],
+      "definition": "Aktive Zürcher Formularpflicht am Vertragsdatum prüfen. Aktuelle amtliche Seite bestätigt sie; bei historischen Fällen damalige Anordnung heranziehen.",
+      "input_refs": [
+        "property_location",
+        "contract_date",
+        "form_duty_at_date"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Zürcher Anfangsmietzinsformular erforderlich?",
+        "rule": "Aktive Zürcher Formularpflicht am Vertragsdatum prüfen. Aktuelle amtliche Seite bestätigt sie; bei historischen Fällen damalige Anordnung heranziehen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "ZH_EG",
+        "ZH_FORMS"
+      ]
+    },
+    {
+      "id": "B05",
+      "label": "Anfangsmietzinsformular rechtzeitig und vollständig",
+      "legal_basis": [
+        "OR 270 Abs. 2",
+        "VMWG 19 Abs. 3"
+      ],
+      "definition": "Pflichtformular auf Vollständigkeit und Übergabezeitpunkt prüfen; seit 1.10.2025 auch Referenzzinssatz und Landesindexstand der Vormiete erforderlich. Verspätung/Fehler nach konkreter Art und Rechtsprechung bewerten. Bei echter Erstvermietung gibt es keine Vormiete: Hinweis auf Erstvermietung statt erfundener Vormietdaten; strukturell erheblich geändertes Objekt gesondert qualifizieren.",
+      "input_refs": [
+        "initial_form",
+        "handover",
+        "contract_date"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Anfangsmietzinsformular rechtzeitig und vollständig?",
+        "rule": "Pflichtformular auf Vollständigkeit und Übergabezeitpunkt prüfen; seit 1.10.2025 auch Referenzzinssatz und Landesindexstand der Vormiete erforderlich. Verspätung/Fehler nach konkreter Art und Rechtsprechung bewerten. Bei echter Erstvermietung gibt es keine Vormiete: Hinweis auf Erstvermietung statt erfundener Vormietdaten; strukturell erheblich geändertes Objekt gesondert qualifizieren.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG",
+        "ZH_FORMS",
+        "BGE140",
+        "BG_FIRST"
+      ]
+    },
+    {
+      "id": "B06",
+      "label": "Anfangsmietzinsanfechtung fristgerecht",
+      "legal_basis": [
+        "OR 270 Abs. 1"
+      ],
+      "definition": "Regelfall 30 Tage ab Übernahme. Fehlendes/verspätetes Pflichtformular separat bewerten; kein automatisches Verwerfen wegen Ablaufs von 30 Tagen.",
+      "input_refs": [
+        "deadline_initial"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Anfangsmietzinsanfechtung fristgerecht?",
+        "rule": "Regelfall 30 Tage ab Übernahme. Fehlendes/verspätetes Pflichtformular separat bewerten; kein automatisches Verwerfen wegen Ablaufs von 30 Tagen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "C01",
+      "label": "Wesentlich veränderte Berechnungsgrundlagen",
+      "legal_basis": [
+        "OR 270a Abs. 1"
+      ],
+      "definition": "Vor allem Kostensenkung seit massgeblicher letzter Festsetzung; Senkung des Referenzzinssatzes ist Indiz, kein automatischer Endbetrag. Gegenpositionen und Vorbehalte prüfen.",
+      "input_refs": [
+        "last_fixing",
+        "reference_data",
+        "cost_change"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Wesentlich veränderte Berechnungsgrundlagen?",
+        "rule": "Vor allem Kostensenkung seit massgeblicher letzter Festsetzung; Senkung des Referenzzinssatzes ist Indiz, kein automatischer Endbetrag. Gegenpositionen und Vorbehalte prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "C02",
+      "label": "Schriftliches Senkungsbegehren oder gesetzliche Ausnahme",
+      "legal_basis": [
+        "OR 270a Abs. 2 und 3"
+      ],
+      "definition": "Schriftlich an Vermieter; kein Vorverfahren nötig bei gleichzeitigem Senkungsbegehren mit Anfechtung einer Erhöhung.",
+      "input_refs": [
+        "reduction_request",
+        "combined_challenge"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Schriftliches Senkungsbegehren oder gesetzliche Ausnahme?",
+        "rule": "Schriftlich an Vermieter; kein Vorverfahren nötig bei gleichzeitigem Senkungsbegehren mit Anfechtung einer Erhöhung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "C03",
+      "label": "Vermieter entspricht nicht vollständig oder antwortet nicht fristgerecht",
+      "legal_basis": [
+        "OR 270a Abs. 2"
+      ],
+      "definition": "Antwort und Zugangsdatum oder Ausbleiben der Antwort erfassen; externe 30-Tage-Prüfung.",
+      "input_refs": [
+        "landlord_response",
+        "deadline_response"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Vermieter entspricht nicht vollständig oder antwortet nicht fristgerecht?",
+        "rule": "Antwort und Zugangsdatum oder Ausbleiben der Antwort erfassen; externe 30-Tage-Prüfung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "C04",
+      "label": "Senkungsbegehren verfahrensrechtlich rechtzeitig",
+      "legal_basis": [
+        "OR 270a Abs. 1–3"
+      ],
+      "definition": "Nächstmöglichen Kündigungstermin, Antwortfrist und anschliessende Anrufungsfrist extern prüfen; bei Abs. 3 Route über Erhöhungsanfechtung.",
+      "input_refs": [
+        "deadline_reduction"
+      ],
+      "assessment": {
+        "mode": "external_service",
+        "question": "Senkungsbegehren verfahrensrechtlich rechtzeitig?",
+        "rule": "Nächstmöglichen Kündigungstermin, Antwortfrist und anschliessende Anrufungsfrist extern prüfen; bei Abs. 3 Route über Erhöhungsanfechtung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "D01",
+      "label": "Andere einseitige Änderung zulasten der Mietpartei",
+      "legal_basis": [
+        "OR 269d Abs. 3",
+        "OR 270b Abs. 2"
+      ],
+      "definition": "Verminderung von Leistungen, neue Nebenkosten oder andere potenziell nachteilige Änderung. Kostenneutrale Nebenkostenausscheidung ebenfalls auf Formularpflicht prüfen.",
+      "input_refs": [
+        "changed_terms",
+        "cost_effect"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Andere einseitige Änderung zulasten der Mietpartei?",
+        "rule": "Verminderung von Leistungen, neue Nebenkosten oder andere potenziell nachteilige Änderung. Kostenneutrale Nebenkostenausscheidung ebenfalls auf Formularpflicht prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "UZH23"
+      ]
+    },
+    {
+      "id": "S01",
+      "label": "Gültige Indexvereinbarung",
+      "legal_basis": [
+        "OR 269b",
+        "VMWG 17"
+      ],
+      "definition": "Vermieter mindestens fünf Jahre gebunden und Landesindex der Konsumentenpreise vereinbart. Indexanpassung nur entsprechend Indexbewegung, Mitteilung nach öffentlicher Bekanntgabe.",
+      "input_refs": [
+        "index_clause",
+        "index_notice"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Gültige Indexvereinbarung?",
+        "rule": "Vermieter mindestens fünf Jahre gebunden und Landesindex der Konsumentenpreise vereinbart. Indexanpassung nur entsprechend Indexbewegung, Mitteilung nach öffentlicher Bekanntgabe.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "S02",
+      "label": "Gültige Staffelvereinbarung",
+      "legal_basis": [
+        "OR 269c"
+      ],
+      "definition": "Mindestens drei Jahre Vertragsdauer, höchstens jährliche Erhöhung und Erhöhungsbetrag in Franken festgelegt; jedes Kriterium in Begründung gesondert ausweisen.",
+      "input_refs": [
+        "step_clause"
+      ],
+      "assessment": {
+        "mode": "derived",
+        "question": "Gültige Staffelvereinbarung?",
+        "rule": "Aus den einzeln geprüften Untermerkmalen ableiten; keine separate manuelle Überschreibung.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert.",
+        "expression": {
+          "all": [
+            {
+              "element": "S02a"
+            },
+            {
+              "element": "S02b"
+            },
+            {
+              "element": "S02c"
+            }
+          ]
+        }
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "S03",
+      "label": "Staffelerhöhung vertragsgemäss schriftlich angekündigt",
+      "legal_basis": [
+        "OR 269d Abs. 5",
+        "VMWG 19a"
+      ],
+      "definition": "Seit 1.10.2025 schriftliche Mitteilung ausreichend, frühestens vier Monate vor Eintritt. Keine allgemeine Formularpflicht für solche vereinbarten Staffelschritte.",
+      "input_refs": [
+        "step_notice",
+        "deadline_step"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Staffelerhöhung vertragsgemäss schriftlich angekündigt?",
+        "rule": "Seit 1.10.2025 schriftliche Mitteilung ausreichend, frühestens vier Monate vor Eintritt. Keine allgemeine Formularpflicht für solche vereinbarten Staffelschritte.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "VMWG"
+      ]
+    },
+    {
+      "id": "S02a",
+      "label": "Mindestvertragsdauer drei Jahre",
+      "legal_basis": [
+        "OR 269c lit. a"
+      ],
+      "definition": "Vertrag für mindestens drei Jahre abgeschlossen.",
+      "input_refs": [
+        "step_duration"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Mindestvertragsdauer drei Jahre?",
+        "rule": "Vertrag für mindestens drei Jahre abgeschlossen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "S02b",
+      "label": "Staffelerhöhung höchstens einmal jährlich",
+      "legal_basis": [
+        "OR 269c lit. b"
+      ],
+      "definition": "Zeitabstand der vereinbarten Erhöhungen prüfen.",
+      "input_refs": [
+        "step_intervals"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Staffelerhöhung höchstens einmal jährlich?",
+        "rule": "Zeitabstand der vereinbarten Erhöhungen prüfen.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "S02c",
+      "label": "Erhöhungsbetrag in Franken festgelegt",
+      "legal_basis": [
+        "OR 269c lit. c"
+      ],
+      "definition": "Bestimmter Frankenbetrag; blosse Prozentangabe erfüllt diese Vorgabe nicht.",
+      "input_refs": [
+        "step_amounts"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Erhöhungsbetrag in Franken festgelegt?",
+        "rule": "Bestimmter Frankenbetrag; blosse Prozentangabe erfüllt diese Vorgabe nicht.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR"
+      ]
+    },
+    {
+      "id": "D02",
+      "label": "Andere Vertragsänderung materiell ungerechtfertigt",
+      "legal_basis": [
+        "OR 269d Abs. 3",
+        "OR 270b Abs. 2"
+      ],
+      "definition": "Konkrete Gegenleistung und sachliche Rechtfertigung einer qualitativen oder finanziellen Schlechterstellung prüfen; eine Renditeüberschreitung ist nicht für jede qualitative Änderung das passende Kriterium.",
+      "input_refs": [
+        "changed_terms",
+        "change_justification"
+      ],
+      "assessment": {
+        "mode": "legal_assessment",
+        "question": "Andere Vertragsänderung materiell ungerechtfertigt?",
+        "rule": "Konkrete Gegenleistung und sachliche Rechtfertigung einer qualitativen oder finanziellen Schlechterstellung prüfen; eine Renditeüberschreitung ist nicht für jede qualitative Änderung das passende Kriterium.",
+        "allowed_statuses": [
+          "satisfied",
+          "not_satisfied",
+          "unknown",
+          "disputed",
+          "legal_review_required"
+        ],
+        "evidence_rule": "Jede Bewertung braucht Tatsachenreferenzen und Begründung. Parteibehauptung ist kein automatischer Beweis. Streit und Rechtsunsicherheit bleiben gesondert gespeichert."
+      },
+      "source_refs": [
+        "OR",
+        "UZH23"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O01",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "any": [
+              {
+                "element": "A01"
+              },
+              {
+                "element": "D01"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "not": {
+                  "element": "A02"
+                }
+              },
+              {
+                "not": {
+                  "element": "A03"
+                }
+              },
+              {
+                "not": {
+                  "element": "A04"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "legal_effect": "Bei formularpflichtiger einseitiger Änderung gesetzliche Nichtigkeit prüfen.",
+      "legal_basis": [
+        "OR 269d Abs. 2 und 3"
+      ],
+      "qualification": "Nicht auf gültig vereinbarte Staffelschritte übertragen; Sonderregime vor Normalzweig auswählen."
+    },
+    {
+      "id": "O02",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "A01"
+          },
+          {
+            "element": "A02"
+          },
+          {
+            "element": "A03"
+          },
+          {
+            "element": "A04"
+          },
+          {
+            "element": "A07"
+          },
+          {
+            "element": "A08"
+          }
+        ]
+      },
+      "legal_effect": "Materielle Anfechtung/Herabsetzung begründet möglich.",
+      "legal_basis": [
+        "OR 270b"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O03",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "B01"
+          },
+          {
+            "any": [
+              {
+                "element": "B02"
+              },
+              {
+                "element": "B03"
+              }
+            ]
+          },
+          {
+            "element": "A07"
+          },
+          {
+            "element": "B06"
+          }
+        ]
+      },
+      "legal_effect": "Anfangsmietzins kann wegen Missbräuchlichkeit herabgesetzt werden.",
+      "legal_basis": [
+        "OR 270 Abs. 1"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O04",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "B01"
+          },
+          {
+            "element": "B04"
+          },
+          {
+            "not": {
+              "element": "B05"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Eigenständige Prüfung der Teilnichtigkeit der Mietzinsabrede, gerichtlichen Festsetzung und Rückforderung erforderlich; übriger Vertrag nicht automatisch nichtig.",
+      "legal_basis": [
+        "OR 270 Abs. 2"
+      ],
+      "qualification": "Art des Formularfehlers, spätere Mitteilung, Rechtsmissbrauch und Verjährung fachlich prüfen; kein automatischer Nullmietzins."
+    },
+    {
+      "id": "O05",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "C01"
+          },
+          {
+            "element": "C02"
+          },
+          {
+            "element": "C03"
+          },
+          {
+            "element": "C04"
+          },
+          {
+            "element": "A07"
+          }
+        ]
+      },
+      "legal_effect": "Herabsetzung auf massgeblichen künftigen Kündigungstermin möglich; Höhe aus belegten Berechnungsgrundlagen.",
+      "legal_basis": [
+        "OR 270a"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O06",
+      "when": {
+        "all": [
+          {
+            "element": "S01"
+          }
+        ]
+      },
+      "legal_effect": "Indexregime: nach Anfangsmietzinsanfechtung beschränkte Anpassungskontrolle nach Indexbewegung.",
+      "legal_basis": [
+        "OR 270c"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O07",
+      "when": {
+        "all": [
+          {
+            "element": "S02"
+          },
+          {
+            "element": "S03"
+          }
+        ]
+      },
+      "legal_effect": "Vereinbarter Staffelschritt grundsätzlich wirksam; Art. 270d schränkt Anfechtung ein, Vertragsgültigkeit und Anfangsmietzins bleiben gesondert.",
+      "legal_basis": [
+        "OR 269c",
+        "OR 269d Abs. 5",
+        "OR 270d"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    },
+    {
+      "id": "O08",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "any": [
+              {
+                "element": "A01"
+              },
+              {
+                "element": "D01"
+              }
+            ]
+          },
+          {
+            "element": "A02"
+          },
+          {
+            "element": "A03"
+          },
+          {
+            "element": "A04"
+          },
+          {
+            "not": {
+              "element": "A05"
+            }
+          }
+        ]
+      },
+      "legal_effect": "Bei bloss verspäteter Mitteilung Wirksamkeit erst auf den zulässigen späteren Termin prüfen; kein automatischer Nichtigkeitsgrund.",
+      "legal_basis": [
+        "OR 269d Abs. 1"
+      ],
+      "qualification": "Anfechtungsfrist läuft unabhängig von der Verschiebung des Wirksamkeitstermins; externe Prüfung erforderlich."
+    },
+    {
+      "id": "O09",
+      "when": {
+        "all": [
+          {
+            "element": "E01"
+          },
+          {
+            "element": "D01"
+          },
+          {
+            "element": "A02"
+          },
+          {
+            "element": "A03"
+          },
+          {
+            "element": "A04"
+          },
+          {
+            "element": "D02"
+          },
+          {
+            "element": "A08"
+          }
+        ]
+      },
+      "legal_effect": "Anfechtung der nachteiligen einseitigen Vertragsänderung kann materiell begründet sein.",
+      "legal_basis": [
+        "OR 269d Abs. 3",
+        "OR 270b Abs. 2"
+      ],
+      "qualification": "Vorläufige rechtliche Schlussfolgerung auf der dokumentierten Tatsachenbasis; kein gerichtlicher Entscheid."
+    }
+  ],
+  "deadline_requests": [
+    {
+      "id": "OR270B_RENT_CHALLENGE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR270B_RENT_CHALLENGE",
+      "legal_basis": "OR 270b",
+      "trigger_event": "Mitteilung Änderung",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR269D_INCREASE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR269D_INCREASE",
+      "legal_basis": "OR 269d Abs. 1",
+      "trigger_event": "Mitteilung Erhöhung",
+      "legal_parameters": {
+        "minimum_days_before_notice_period": 10
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR270_INITIAL",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR270_INITIAL",
+      "legal_basis": "OR 270",
+      "trigger_event": "Übernahme und Formularzustellung",
+      "legal_parameters": {
+        "days": 30,
+        "exception_context": "missing_or_late_initial_form"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR270A_RESPONSE",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR270A_RESPONSE",
+      "legal_basis": "OR 270a Abs. 2",
+      "trigger_event": "Zugang Senkungsbegehren",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "OR270A_CONCILIATION",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "OR270A_CONCILIATION",
+      "legal_basis": "OR 270a Abs. 2–3",
+      "trigger_event": "Antwort oder Ablauf Antwortfrist",
+      "legal_parameters": {
+        "days": 30
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "VMWG17_INDEX",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "VMWG17_INDEX",
+      "legal_basis": "VMWG 17 Abs. 3",
+      "trigger_event": "Mitteilung Indexanpassung",
+      "legal_parameters": {
+        "minimum_days": 30,
+        "alignment": "month_end"
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    },
+    {
+      "id": "VMWG19A_STEP",
+      "interface": "LIIT-DEADLINE@1.0.0",
+      "rule_key": "VMWG19A_STEP",
+      "legal_basis": "VMWG 19a",
+      "trigger_event": "Datum vereinbarter Staffelschritt",
+      "legal_parameters": {
+        "earliest_months_before": 4
+      },
+      "recipient_scope": "pro_betroffene_person",
+      "required_payload": [
+        "case_id",
+        "event_id",
+        "event_date_or_unknown",
+        "service_method",
+        "receipt_evidence_refs",
+        "contract_terms",
+        "legal_event_date",
+        "module_version"
+      ],
+      "dispatch_policy": "Sobald ein einschlägiges Ereignis behauptet oder belegt ist, auch bei vermuteter Nichtigkeit; fehlende Angaben explizit übertragen. Keine lokale Berechnung."
+    }
+  ],
+  "escalation_signals": [
+    {
+      "code": "rent_method_review",
+      "condition": "Rendite Vergleichsmiete Index Staffel oder unklare Berechnung",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    },
+    {
+      "code": "initial_form_defect",
+      "condition": "Pflichtformular fehlt ist verspätet oder fehlerhaft",
+      "interface": "LIIT-ESCALATION@1.0.0",
+      "payload": [
+        "case_id",
+        "module_id",
+        "element_ids",
+        "evidence_refs",
+        "deadline_response_refs",
+        "open_questions"
+      ],
+      "action": "Nur Sachverhaltssignal übergeben; Einstufung und Weiterleitung durch bestehenden Dienst."
+    }
+  ],
+  "cross_checks": [],
+  "limitations": [
+    "Keine automatische Renditeberechnung oder pauschale Prozenttabelle. Rechtsfragen zu Vergleichsobjekten, Rendite, Formel und Verjährung werden als legal_review_required erfasst.",
+    "Sonderregime Index/Staffel vor Normalzweigen auswählen. Senkungsbegehren nach OR 270a und Mängelherabsetzung nach OR 259d nicht verwechseln."
+  ],
+  "sources": [
+    {
+      "id": "OR",
+      "title": "Obligationenrecht, SR 220",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/20261001/de",
+      "kind": "statute",
+      "edition": "2026-10-01",
+      "locator": "Art. 1, 18, 97, 143, 253–273c, 544",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Mietrecht vollständig über Fedlex Connector gelesen; übrige Artikel gezielt geprüft.",
+      "role": "rule_support"
+    },
+    {
+      "id": "VMWG",
+      "title": "Verordnung über die Miete und Pacht von Wohn- und Geschäftsräumen, SR 221.213.11",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1990/835_835_835/20251001/de",
+      "kind": "regulation",
+      "edition": "2025-10-01",
+      "locator": "Art. 1–26",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_FORMS",
+      "title": "Kanton Zürich: Formulare im Mietwesen",
+      "url": "https://www.zh.ch/de/direktion-der-justiz-und-des-innern/generalsekretariat/formulare-mietwesen.html",
+      "kind": "official_guidance",
+      "edition": null,
+      "locator": "Mietwesen und amtliche Formulare",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Aktive Formularpflicht amtlich bestätigt; dynamische Seite am Prüftag.",
+      "role": "rule_support"
+    },
+    {
+      "id": "ZH_EG",
+      "title": "EG ZGB Zürich, LS 230",
+      "url": "https://www.notes.zh.ch/appl/zhlex_r.nsf/WebView/C8B85ED26AFFAB51C1258DFF004AF3FB/%24File/230_2.4.11_133.pdf",
+      "kind": "cantonal_statute",
+      "edition": null,
+      "locator": "§ 229b",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Aktueller auffindbarer amtlicher PDF-Text; vollständiger Versionsnachweis nicht aus dem Artikelabruf verfügbar. Aktuelle Anwendung zusätzlich ZH_FORMS.",
+      "role": "rule_support"
+    },
+    {
+      "id": "BGE140",
+      "title": "Bundesgericht: BGE 140 III 583",
+      "url": "https://www.bger.ch/ext/eurospider/live/de/php/clir/http/index.php?highlight_docid=atf%3A%2F%2F140-III-583%3Ade&type=show_document",
+      "kind": "judgment",
+      "edition": "2014-10-30",
+      "locator": "E. 3.1–3.3",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Pflichtformular und Teilnichtigkeit; Verjährung und Rechtsmissbrauch separat.",
+      "role": "rule_support"
+    },
+    {
+      "id": "BG_FIRST",
+      "title": "Bundesgericht: 4A_56/2023",
+      "url": "https://www.bger.ch/ext/eurospider/live/de/php/aza/http/index.php?highlight_docid=aza%3A%2F%2F14-04-2023-4A_56-2023&lang=de&type=show_document",
+      "kind": "judgment",
+      "edition": "2023-04-14",
+      "locator": "E. 3.2–3.3",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Erstvermietung ohne Vormiete; erhebliche Objektveränderung.",
+      "role": "rule_support"
+    },
+    {
+      "id": "UZH23",
+      "title": "Universität Zürich: Soziales Mietrecht, Lösungsskizze HS 2023",
+      "url": "https://www.ius.uzh.ch/dam/jcr:b2e52461-2ab7-416c-8c26-5822ebc29e67/soziales_mietrecht_ml_hs23.pdf",
+      "kind": "university_teaching",
+      "edition": "2023",
+      "locator": "Fall 1, S. 1–4; Fall 2, S. 5 ff.",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Anspruchsbezogener Aufbau; alte verfahrensrechtliche Schwellenwerte nicht übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "UBE24",
+      "title": "Universität Bern, Dr. E. Bachofner: Musterlösung Mietrecht FS 2024",
+      "url": "https://www.ziv.unibe.ch/unibe/portal/fak_rechtwis/c_dep_private/ziv/content/e7676/e7684/e104370/e104397/e1553151/MusterloesungMietrecht2024mitStatistik_ger.pdf",
+      "kind": "university_teaching",
+      "edition": "2024",
+      "locator": "S. 1–6, Fragen 1–7",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Methodik und Plausibilisierung. Fallzahlen, konkrete Fristen, Prozentsätze und damaliges Prozessrecht nicht als allgemeine Regeln übernommen.",
+      "role": "method_or_teaching_context"
+    },
+    {
+      "id": "ZPO",
+      "title": "Zivilprozessordnung, SR 272",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2010/262/20260701/de",
+      "kind": "statute",
+      "edition": "2026-07-01",
+      "locator": "Art. 33, 35, 197, 200, 257",
+      "checked_on": "2026-11-08",
+      "verification": "retrieved",
+      "note": "Verfahrensschnittstelle; keine vollständige Prozessordnung implementiert.",
+      "role": "rule_support"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-08",
+      "change": "Erstausgabe; recherchierter Regelstand, keine behauptete fachliche Freigabe."
+    }
+  ],
+  "legal_basis": [
+    "OR 253a",
+    "OR 253b",
+    "OR 269d Abs. 1",
+    "OR 269d Abs. 1 und 4",
+    "VMWG 19",
+    "OR 269d Abs. 2 lit. b",
+    "VMWG 19 Abs. 1 und 1bis",
+    "OR 269d Abs. 2 lit. c",
+    "OR 269a lit. b und e",
+    "VMWG 12–14, 16, 18, 20",
+    "OR 269",
+    "OR 269a",
+    "VMWG 10–16",
+    "OR 270b",
+    "OR 270 Abs. 1",
+    "OR 270 Abs. 1 lit. a",
+    "OR 270 Abs. 1 lit. b",
+    "OR 270 Abs. 2",
+    "ZH EG ZGB § 229b",
+    "VMWG 19 Abs. 3",
+    "OR 270a Abs. 1",
+    "OR 270a Abs. 2 und 3",
+    "OR 270a Abs. 2",
+    "OR 270a Abs. 1–3",
+    "OR 269d Abs. 3",
+    "OR 270b Abs. 2",
+    "OR 269b",
+    "VMWG 17",
+    "OR 269c",
+    "OR 269d Abs. 5",
+    "VMWG 19a",
+    "OR 269c lit. a",
+    "OR 269c lit. b",
+    "OR 269c lit. c",
+    "OR 269d Abs. 2 und 3",
+    "OR 270a",
+    "OR 270c",
+    "OR 270d"
+  ],
+  "scope_gate": {
+    "required": "case.scope_status = satisfied",
+    "temporal": "case.temporal_applicability_status = satisfied",
+    "historical_policy": "Die gelesenen Fassungen belegen den Rechtsstand 2026-11-08. Frühere Ereignisse erfordern Vergleich mit damaliger Fassung; keine pauschale Rückwirkung.",
+    "selection": "Nur sachlich einschlägige outcome_ids auswählen und begründen. Fehlendes Ereignis ist Nichtanwendbarkeit, kein negatives Tatbestandsmerkmal."
+  },
+  "interpretation": "Maschinenlesbare juristische Wissensmodule. Natürliche Sprache wird nicht automatisch in bewiesene Tatsachen oder freigegebene Subsumtionen umgewandelt. Zusammensetzung geprüfter Merkmale ist deterministisch.",
+  "procedure": {
+    "forum": "Grundsätzlich Ort der gelegenen Sache; Zürcher Bezirk aus Objektadresse auflösen.",
+    "legal_basis": [
+      "ZPO 33",
+      "ZPO 35 Abs. 1 lit. b",
+      "ZPO 197",
+      "ZPO 200"
+    ],
+    "interface": "interfaces.json#procedure_context"
+  },
+  "evidence_policy": {
+    "general": "ZGB 8: Rechtsableitende Partei trägt grundsätzlich den Tatsachennachweis, soweit Spezialregeln nichts anderes vorsehen.",
+    "special": "Gesetzliche Spezialregeln und Beweiserleichterungen im Einzelfall prüfen.",
+    "record": "Jede Merkmalsbewertung enthält evidence_refs, reasoning, assessor, epistemic_basis und evaluated_at."
+  }
+}

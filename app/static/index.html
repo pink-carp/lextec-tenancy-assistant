@@ -94,9 +94,10 @@
   <div class="note"><strong>What this tool does:</strong> it reads your description of a tenancy problem, lets you confirm
   the facts that decide the case, asks the follow-up questions that matter, calculates deadlines and suggests a lane:
   information (1), information with open questions (2) or referral to a specialist (3).
-  <strong>Checked guidance is available for:</strong> unpaid rent and payment demands, termination by the landlord, giving
-  notice as a tenant, rent increases, defects (mould, heating), getting the deposit back, a co-tenant leaving, pets and house
-  rules, and protecting a spouse's home. For other situations the tool gives no legal guidance and suggests a referral.
+  <strong>Version v6 (Prüfungskern):</strong> the AI examines the case with the team's legal method (LIIT Prüfungskern 2.0.0)
+  in nine modules: unpaid rent and payment demands, termination by the landlord, giving notice as a tenant, rent and contract
+  changes, defects, the deposit, co-tenants, pets and house rules, and protecting the family home. The AI judges each legal
+  element with the client's sentence; code combines the elements. For other situations the tool suggests a referral.
   <strong>What it does not do:</strong> give legal advice, decide disputes, or replace your professional judgement. You stay
   responsible for what you pass on. Please do not type names or ID numbers; give the municipality instead of the street address.</div>
   <p class="muted noprint">Try an example from the legal team: <select id="ex" style="width:auto"><option value="">—</option></select>
@@ -121,7 +122,7 @@
   <div id="facts"></div>
   <div id="disputesWrap"></div>
   <h3>Dates that may start a deadline</h3><div id="events"></div>
-  <h3>Situation</h3><p class="muted">The tool has checked guidance for these situations. The AI's suggestion is ticked; correct it if needed. If none fits, untick all: the tool will then not give legal guidance and will suggest a referral.</p>
+  <h3>Legal modules to examine</h3><p class="muted">Modules of the Prüfungskern. The AI's suggestion is ticked; correct it if needed. If none fits, untick all: the tool will then not examine the law and will suggest a referral. The examination itself runs when you click the button below (it takes up to a minute).</p>
   <div id="modsel"></div>
   <h3>Deciding facts</h3><p class="muted">These facts decide which rules can apply. The AI's reading is pre-filled with the client's sentence it relied on. Please check each one: a wrong answer here changes everything that follows.</p>
   <div id="evtable"></div>
@@ -188,6 +189,23 @@ async function api(path, body) {
   return send(path, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
 }
 function busy(btn, msgEl, on, text) { btn.disabled = on; msgEl.textContent = on ? text : ""; }
+const KTAG = {rule_conditions_supported: "", conditional_facts: "inferred", conditional_applicability: "inferred", unresolved: "disputed", rule_conditions_not_supported: "disputed", not_applicable: "disputed"};
+const ETAG = {satisfied: "", not_satisfied: "disputed", unknown: "inferred", disputed: "disputed", legal_review_required: "disputed"};
+const EEN = {satisfied: "met", not_satisfied: "not met", unknown: "unknown", disputed: "disputed", legal_review_required: "needs legal review"};
+function kernBlock(b) {
+  const k = b.kern || {}, ctx = k.context || {};
+  const cx = Object.entries(ctx).map(([n, c]) => `${n === "scope" ? "Residential tenancy rules apply" : "Current law version applies"}: <span class="tag ${ETAG[c.status]}">${EEN[c.status]}</span> <span class="muted">${esc(c.why || "")}</span>`).join("<br>");
+  return `<h3>${esc(b.title)}</h3><p class="muted">${esc(b.summary)}</p>
+   ${k.error ? `<div class="warn">${esc(k.error)}</div>` : ""}
+   <p class="src">${cx}${k.right_or_duty ? `<br>Right or duty (K03): ${esc(k.right_or_duty)}` : ""}${k.event ? `<br>Relevant event (K04): ${esc(k.event)}` : ""}</p>
+   ${(k.outcomes || []).length ? "" : "<p class='muted'>No remedy was selected for examination in this module.</p>"}
+   ${(k.outcomes || []).map(o => `<div class="card"><span class="tag ${KTAG[o.status]}">${esc(o.status_en)}</span> <strong>${esc(o.id)}</strong>
+      ${o.result ? `<p>${esc(o.result)}</p>` : ""}
+      <p class="muted">Rule (module text): ${esc(o.legal_effect)} ${(o.basis || []).map(chip).join("")}</p>
+      <p class="muted">Why examined (K05): ${esc(o.reason)}</p>
+      ${o.open_labels.length ? `<p><strong>Still open:</strong> ${o.open_labels.map(esc).join("; ")}</p>` : ""}
+      <details><summary class="muted">Element by element (K06)</summary><ul>${o.elements.map(t => `<li>${esc(t.label)}: <span class="tag ${ETAG[t.status]}">${EEN[t.status]}</span>${t.assumed ? ' <span class="muted">(client\'s account)</span>' : ""} <span class="muted">${esc(t.why || "")}</span>${(t.quotes || []).map(q => `<br><span class="muted">“${esc(q)}”</span>`).join("")}</li>`).join("")}</ul></details></div>`).join("")}`;
+}
 function chip(id) { return `<span class="chip" onclick="showSrc('${esc(id).replace(/'/g, "\\'")}')">${esc(id)}</span>`; }
 function showSrc(id) {
   const s = SOURCES[id];
@@ -387,8 +405,8 @@ function renderResult() {
    <p><strong>Facts</strong></p><ul>${facts}</ul>
    ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
    ${s.out_of_scope ? `<div class="warn">${esc(s.out_of_scope)}</div>` : ""}
-   ${(s.modules || []).map(b => `<h3>${esc(b.title)}</h3><p class="muted">${esc(b.summary)}</p><ul>${b.points.map(p => `<li>${esc(p.text)} ${(p.basis || []).map(chip).join("")}</li>`).join("")}</ul>`).join("")}
-   ${(s.modules || []).length ? `<p class="muted">Legal points: written from the official German text and checked against it in a second pass (not reviewed by a lawyer). They are shown only when the confirmed facts meet their conditions.</p>` : ""}
+   ${(s.modules || []).map(b => kernBlock(b)).join("")}
+   ${(s.modules || []).length ? `<p class="muted">Examination (Prüfungskern 2.0.0): the AI chose the remedies to examine and judged each element with the client's sentences; code combined the elements (AND/OR logic). A statement by the client is not proof, so most results hold "on the client's account". The module's rule text (German) is the team's research release, not reviewed by a lawyer. AI-written results are shown only where the combined conditions are met.</p>` : ""}
    <h3 class="${(s.issues || []).length ? "" : "hidden"}">What this means for the client</h3>
 
    ${(s.issues || []).map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`
