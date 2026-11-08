@@ -1,7 +1,7 @@
 [
   {
     "case_no": 1,
-    "file": "hack the law-9.md",
+    "file": "case-1.md",
     "prompt": "Hi, I am Cristina and I found mold in my apartment. I live in a 3-room flat in Zurich and moved in about two years ago. Last month I noticed black spots on the wall behind the bed in the bedroom, and now it is also starting in the corner near the window. It smells bad.\n\nI told my landlord’s property manager about it by phone, and he said it’s because I don’t ventilate enough and that I should just wipe it with vinegar. But I do open the windows every morning!\n\nI took a few photos on my phone. I’m so angry that I’m thinking of just paying less rent this month, maybe 30%, until they fix it. Or should I move out? I can’t afford a lawyer. What are my rights and what should I do now?",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 1 - lane 1 or 2",
@@ -35,7 +35,7 @@
   },
   {
     "case_no": 2,
-    "file": "hack the law-10.md",
+    "file": "case-2.md",
     "prompt": "I lost my job two months ago and couldn’t pay the rent for two months. Today I received a registered letter from my landlord. It says I have to pay the arrears or they will terminate my lease. I have two children. I don’t understand what this means. Will we have to leave the apartment? What should I do?",
     "expected_lane": 3,
     "expected_lane_raw": "CASE 2: lane 3",
@@ -142,7 +142,7 @@
   },
   {
     "case_no": 3,
-    "file": "hack the law-11.md",
+    "file": "case-3.md",
     "prompt": "Hey, I’m Luca, 23, I live in a 2-room flat in Zurich, which I rent since last year. I’m an apprentice-turned-junior employee and money has been tight. I missed rent in September and October because my hours got cut. Last week I got a registered letter from the property management. I didn’t pick it up at first, and when I did, it was a lot of legal text and it says something about “Kündigung” if I don’t pay. My friend says this means I’m getting evicted.\n\nMy parents live in the same city and my dad said he can help, but I don’t want to ask him because we had an argument about me moving out. I’m also not sure if I should just ignore the letter, because I’m going to get paid at the end of the month anyway.\n\nCan they really throw me out? How long do I have? What can I do?",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 3: should be lane 2 as more information is needed -> information hinting at no flagging regarding existential crisis",
@@ -257,7 +257,7 @@
   },
   {
     "case_no": 4,
-    "file": "hack the law-12.md",
+    "file": "case-4.md",
     "prompt": "Hi, I’m Sandro and I moved out of my flat in Winterthur four months ago. The handover was fine, the property manager just said he would still look everything over. My deposit (3 months’ rent) is at the bank, but they won’t release it because the landlord won’t sign. He also no longer answers my emails. Can he just do that? I need the money for my new place.",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 4 - lane 2 needing more information",
@@ -306,7 +306,7 @@
   },
   {
     "case_no": 5,
-    "file": "hack the law-13.md",
+    "file": "case-5.md",
     "prompt": "Hello I am Greta. I now live for 25 years in my 3-room flat in Uster. I want to get a cat as a mental support animal, as my husband passed away last month. Now the property management has told me that the house rules say “pets are prohibited” and I can’t keep any at all. Is that even allowed? We’ve already promised to take the cat.",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 5 - should be lane 2 but depends on information given maybe mention mental support organisation",
@@ -376,7 +376,7 @@
   },
   {
     "case_no": 6,
-    "file": "hack the law-14.md",
+    "file": "case-6.md",
     "prompt": "Hello, I am Maria and I don’t know what to do. Together with my husband and four kids we live in our apartment in Zurich-Altstetten. My husband works in a warehouse, I clean part-time. We already receive premium subsidies. Last week a letter came from the property management saying our rent will go up by 280 francs from January. We currently pay 1,850. I didn’t read the letter closely because we were so shocked. We can’t afford this and we’re afraid of losing the flat. Do we just have to accept it?",
     "expected_lane": 3,
     "expected_lane_raw": "CASE 6 - lane 3",
@@ -471,7 +471,7 @@
   },
   {
     "case_no": 7,
-    "file": "hack the law-15.md",
+    "file": "case-7.md",
     "prompt": "We’re a family with two small children (1 and 4 years old) in Zurich-Oerlikon. The heating hasn’t worked for ten days and it’s only 14 degrees in the flat. We phoned the property management twice and a technician came once, but nothing has changed. Now they say there are supply problems with the spare part. We don’t know what to do and feel completely helpless. Our youngest already has a cold. Are we allowed to pay less rent?",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 7 probably lane 2, if landlord doesn’t react reevaluation probably to lane 3",
@@ -554,7 +554,7 @@
   },
   {
     "case_no": 8,
-    "file": "hack the law-16.md",
+    "file": "case-8.md",
     "prompt": "My name is Fatima and I’ve lived in a flat in Zurich-Wiedikon for six years. Three weeks ago I emailed the property management that there is mould in the bathroom and water standing in the cellar. Last week a termination for the end of March arrived by registered mail, without any reason. I’ve never caused problems and always paid on time. I think this is because of my report. Can I fight it? I didn’t fully understand the deadline.",
     "expected_lane": 3,
     "expected_lane_raw": "CASE 8 - lane 3",
@@ -671,7 +671,7 @@
   },
   {
     "case_no": 9,
-    "file": "hack the law-17.md",
+    "file": "case-9.md",
     "prompt": "Hello, my boyfriend and I have lived together for three years in a 3-room flat in Schlieren, and we both signed the lease. We’ve now split up. He moved in with his parents last week and no longer wants to pay anything. I have our 2-year-old daughter with me. The property management has already asked why only part of the rent is arriving. I don’t know whether I can stay in the flat alone and who is liable for what. He says he has given notice.",
     "expected_lane": 2,
     "expected_lane_raw": "CASE 9 - lane 2",

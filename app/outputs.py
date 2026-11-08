@@ -94,9 +94,9 @@ def add_document(case, name, text):
 
 # ---------------------------------------------------------------- handout
 
-# docs/disclosure.md section A (draft for the legal team). The data sentence uses the cautious variant because
+# Client disclosure printed on the handout. The data sentence uses the cautious variant because
 # the AI provider's and the host's data retention have not been verified.
-CLIENT_DISCLOSURE = (  # docs/versions/v4-scoped-live/disclosure.md, section A
+CLIENT_DISCLOSURE = (
     "About this sheet: Your social worker made this sheet with a computer tool and checked it. Its legal texts were "
     "checked in advance; artificial intelligence (AI) wrote the summary. It may contain mistakes. This is general legal "
     "information, not legal advice. It does not replace a lawyer. Our tool does not save your case. Your information was "

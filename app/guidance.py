@@ -7,12 +7,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def _read(name):
-    return (ROOT / name).read_text(encoding="utf-8")
+    return (ROOT / "legal-team-materials" / name).read_text(encoding="utf-8")
 
 
 @lru_cache(maxsize=None)
 def legal_workflow():
-    t = _read("legal_workflow.md")
+    t = _read("legal-workflow.md")
     t = t.replace("\\[DR1\\]", "")
     t = re.sub(r"\n---\s*\n.*$", "", t, flags=re.S)  # leftover editor note "[DR1] ... chatgpt"
     # the team asked to ignore the unfinished last sentence
@@ -23,17 +23,17 @@ def legal_workflow():
 
 @lru_cache(maxsize=None)
 def escalation():
-    return _read("escalation.md").strip()
+    return _read("escalation-indices.md").strip()
 
 
 @lru_cache(maxsize=None)
 def output_rules():
-    return _read("output.md").strip()
+    return _read("output-specification.md").strip()
 
 
 @lru_cache(maxsize=None)
 def deadlines():
-    return _read("deadlines.md").strip()
+    return _read("deadline-calculation-rules.md").strip()
 
 
 def section(text, start, end=None):

@@ -4,7 +4,7 @@ confirmed facts meet each item's conditions.
 Why: on 2026-11-08 every generative option was measured (blind Claude reviews, 11 cases). Even with confirmed facts,
 code gating and two Apertus checks, about 1 in 4 AI-written legal sentences shown was wrong. So legal points,
 questions and actions now come from modules drafted from the German text and checked in a second pass
-(corpus/modules/*.json, format in SPEC.md). Apertus still reads the description, pre-fills the deciding events and
+(corpus/modules/*.json). Apertus still reads the description, pre-fills the deciding events and
 the answers the description already gives, writes the neutral situation summary and translates the handout.
 Situations without a module get no legal guidance, only a referral."""
 import json

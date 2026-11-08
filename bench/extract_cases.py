@@ -1,4 +1,4 @@
-"""Build bench/cases.json from the 9 'hack the law-N.md' example cases (files 9..17 = cases 1..9).
+"""Build bench/cases.json from the legal team's 9 example cases (legal-team-materials/example-cases/case-1.md to case-9.md).
 
 Source files are read-only. All judgement calls are encoded in the SPEC dict below.
 Markdown clean-up applied to extracted strings: remove ** / * emphasis markers and backslash
@@ -10,7 +10,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-SRC = ROOT / "Example cases"
+SRC = ROOT / "legal-team-materials" / "example-cases"
 CORPUS = ROOT / "corpus" / "law_paragraphs.jsonl"
 OUT = HERE / "cases.json"
 
@@ -156,7 +156,7 @@ def main():
     corpus = load_corpus()
     cases = []
     for n in range(1, 10):
-        fname = f"hack the law-{n + 8}.md"
+        fname = f"case-{n}.md"
         lines = (SRC / fname).read_text(encoding="utf-8").splitlines()
         sp = SPEC[n]
         a, b = sp["prompt"]

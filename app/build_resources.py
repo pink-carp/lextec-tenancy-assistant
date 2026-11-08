@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 HERE = Path(__file__).resolve().parent
-SRC = HERE.parent / "resources.md"
+SRC = HERE.parent / "legal-team-materials" / "social-service-contacts.md"
 OUT = HERE / "data" / "resources.json"
 SOURCE_NOTE = ("resources.md (legal team), contact details to be verified by the social worker "
                "before passing on")

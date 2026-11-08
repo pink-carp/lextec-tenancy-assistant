@@ -1,9 +1,0 @@
-harness_final_apertus70b 1 lane 2 True recall 0.57 claims {'supported': 0, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 2 lane 3 True recall 0.67 claims {'supported': 3, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 3 lane 3 False recall 0.75 claims {'supported': 4, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 4 lane 2 True recall 0.0 claims {'supported': 0, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 5 lane 3 False recall 0.0 claims {'supported': 2, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 6 lane 2 False recall 0.75 claims {'supported': 4, 'conditional': 0, 'partly': 0, 'not_supported': 0, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 7 lane 3 True recall 0.5 claims {'supported': 3, 'conditional': 0, 'partly': 0, 'not_supported': 2, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 8 lane 3 True recall 0.57 claims {'supported': 3, 'conditional': 0, 'partly': 1, 'not_supported': 1, 'not_applicable': 0, 'no_valid_citation': 0}
-harness_final_apertus70b 9 lane 3 False recall 0.22 claims {'supported': 3, 'conditional': 0, 'partly': 0, 'not_supported': 2, 'not_applicable': 0, 'no_valid_citation': 0}

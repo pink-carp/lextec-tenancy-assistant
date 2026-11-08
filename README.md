@@ -1,562 +1,416 @@
-# Tenancy information assistant for social workers (LexTec challenge, HSG Hackathon 2026)
+# LIITmus test — AI Tenancy Assistant for Social Workers
 
-## 1. What it is
+**Technical report and README — draft 0.5 | 8 November 2026**  
+**Version:** v4 limited scope, powered by Apertus through Public AI  
+**Demo:** https://liit.bouveng.org/  
+**Repository:** [pink-carp/lextec-tenancy-assistant](https://github.com/pink-carp/lextec-tenancy-assistant)  
+**Release commit:** [TEAM TO COMPLETE]  
+**Team:** Benjamin Bouveng, Shanaya Harjai, Malin Da Ros and Dong Hui Ryu
 
-**Live:** https://liit.bouveng.org (no login) · **Status:** hackathon prototype, state of 8 November 2026 ·
-**Legal content:** checked by AI, **not reviewed by a lawyer** · Use invented cases only.
+> Hackathon prototype for fictional cases only. LIITmus test supports social workers with initial legal information, clarification and referral. The social worker confirms the facts and assesses vulnerability. Legal accuracy, evaluation limits and deployment requirements are discussed in Sections 6–9.
 
-The tool helps a social worker in the canton of Zurich deal with a client's residential tenancy problem. The social
-worker types the client's story in their own words. The tool reads it, asks the social worker to confirm the facts
-that decide the case, and then asks only the follow-up questions that matter. It calculates deadlines and suggests a
-lane: 1 information, 2 information with open questions, or 3 referral to a specialist. It then shows action
-recommendations, a neutral case summary with clickable sources, a client handout and an expert brief for a lawyer.
-The legal content comes from pre-written, checked texts for nine common situations. The AI model (Apertus 1.5 70B,
-run through Public AI) reads the description, suggests and pre-fills answers for the social worker to confirm,
-writes a two-sentence neutral summary and translates the handout. Code does the dates, the lane and the contacts.
-Everything the tool produces is **legal information, not legal advice**.
+## 1. Purpose and legal problem
 
-Contents: [2 Problem and users](#2-the-legal-problem-and-the-users) · [3 How to use it](#3-how-to-use-it-step-by-step) ·
-[4 How it works](#4-how-it-works-under-the-hood) · [5 Sources and data](#5-legal-sources-and-data) ·
-[6 Design decisions and evaluation](#6-design-decisions-and-the-evidence-behind-them) · [7 Versions](#7-the-four-versions-and-how-to-compare-them) ·
-[8 Verify results](#8-how-to-verify-results-step-by-step) · [9 Run and deploy](#9-running-locally-and-deploying) ·
-[10 Repository map](#10-repository-map) · [11 Limitations](#11-limitations-risks-and-open-points) · [12 Credits and licence](#12-credits-licence-and-ai-assistance)
+Social workers regularly encounter legal problems embedded in wider difficulties: a client cannot pay rent after losing employment, receives a notice they do not understand, or lives with unresolved defects. Effective assistance requires identifying the relevant facts, preserving documents, recognising urgency and knowing when specialist support is needed. Social-work expertise does not necessarily include the detailed legal knowledge needed to distinguish a payment warning from a termination or to identify the appropriate legal procedure.
 
----
+Our project supports this first encounter. It helps the social worker structure the client's account, ask relevant questions, identify possible deadlines, explain supported next steps and prepare a referral where necessary. The social worker remains the operator and confirms the information on which the system acts. The client receives an accessible handout; a specialist can receive a structured case brief.
 
-## 2. The legal problem and the users
+The broader ambition is an adaptable assistant for different social-work situations. The implemented prototype deliberately focuses on **residential tenancy problems in the canton of Zurich**. Swiss tenancy law provides a useful testing ground because factual distinctions, formal requirements and deadlines can determine the outcome of a case. Support for other legal fields is a future objective.
 
-**Users.** Social workers in the canton of Zurich. They are not lawyers, but clients bring them tenancy problems: a
-payment demand, a termination, mould, a rent increase, a deposit that is not returned.
+The intended function is initial legal information and triage. The tool does not represent clients, file applications, contact a lawyer automatically, determine benefit eligibility or make binding decisions.
 
-**The problem.** Swiss tenancy law (Art. 253–273c of the Code of Obligations, OR) has short, strict time limits.
-A termination must be challenged within 30 days of receipt (Art. 273 OR). A payment demand gives at least 30 days to
-pay before the landlord may terminate (Art. 257d OR). Small mistakes have large effects. For example, a tenant who
-simply pays less rent because of mould risks a payment demand and termination; the lawful route is to deposit the
-rent (Art. 259g OR). A social worker needs to know which facts matter, which deadline may be running, and when a
-case must go to a specialist.
+## 2. Scope and current capabilities
 
-**Scope.**
+V4 covers nine tenancy situations:
 
-| In scope | Out of scope |
+| Module | Situation covered |
 |---|---|
-| Residential tenancy, canton of Zurich (federal law applies everywhere, but contacts are for Zurich) | Business premises, other cantons' contacts, other areas of law |
-| Legal information for the social worker and the client | Legal advice, deciding disputes, replacing professional judgement |
-| Nine common situations with checked guidance (see [4.4](#44-situation-modules)) | Other situations: the tool gives no legal guidance and suggests a referral |
+| `payment_demand.json` | Unpaid rent and a payment demand |
+| `termination_by_landlord.json` | Termination by the landlord |
+| `tenant_notice.json` | Tenant notice or early departure |
+| `defects.json` | Defects such as mould, failed heating or damp |
+| `rent_increase.json` | A rent-increase notice |
+| `pets_house_rules.json` | Pets and house rules |
+| `deposit_return.json` | Return of the rent deposit |
+| `co_tenant_leaves.json` | A co-tenant leaves or stops paying |
+| `family_home_protection.json` | Protection of a marital family home |
 
-**The challenge it answers.** LexTec challenge, HSG Hackathon 2026:
+Cases without a confirmed module receive no module-based legal guidance and are assigned at least Lane 2. Adding a new situation requires its own legal content, selection rules and tests.
 
-| Sub-challenge | What was asked | Where it is answered |
+| Capability | Current status |
+|---|---|
+| Narrative intake and structured fact extraction | Implemented |
+| Human confirmation of facts, situation and deciding events | Implemented |
+| Targeted questions and three-lane routing | Implemented |
+| Selected deadline calculations with explanation | Implemented, with material receipt-rule limitations |
+| Client handout, optional translation and expert brief | Implemented |
+| Downloadable JSON audit trail | Implemented |
+| Document text extraction and photo transcription | Implemented; photo privacy remains unresolved |
+| Independent lawyer validation of all modules | Not documented |
+| Unseen-case and professional user evaluation | Not demonstrated |
+| Support across multiple legal fields | Future objective |
+| Swiss hosting and revDSG compliance | Stated by Public AI Switzerland; scope for the API account and the whole application remains to be confirmed |
+| Complete deletion across browser, hosting and inference services | Not established |
+
+## 3. Key design decisions
+
+### 3.1 From OpenJustice to a custom harness
+
+We initially tried to build our legal-reasoning workflow in OpenJustice. The workflow we used required all questions to be written in advance. This meant anticipating the questions needed for clients whose circumstances could vary considerably. We chose to build our own harness so we could control how the client's account, interview questions, legal rules and referral decisions work together.
+
+The **harness** is the software surrounding the language model. It manages intake, model calls, validation, human confirmation, legal modules, deadlines, referrals and outputs. We built this application around Apertus, an existing foundation model.
+
+We can maintain legal modules separately from model calls, inspect referral rules and reuse case information across the social worker's screen, client handout and expert brief. This makes it easier to add new legal modules.
+
+Our decision reflects our experience with the OpenJustice workflow we used. OpenJustice also offers model flexibility, source-linked reasoning protocols and evaluation tools [S3]. We have not compared all of its capabilities with our implementation.
+
+Our experiments later led us to retain prewritten questions within v4's legal modules. The benefit of our harness is therefore control over how questions are selected, combined and reused within the wider workflow. We sought greater adaptability while keeping the prototype's legal content limited to situations we could define and test.
+
+### 3.2 Apertus and Public AI
+
+We use `swiss-ai/apertus-v1.5-70b` through Public AI's OpenAI-compatible endpoint at `https://api.publicai.co/v1`, with an older Apertus model as a fallback. Apertus processes the model requests, Public AI hosts inference, and our harness manages the workflow.
+
+We chose Apertus for its open model foundation and transparency. The 1.5 70B release is available under Apache 2.0 [S4]. Public AI gives us hosted access without having to operate model-serving infrastructure during the hackathon [S5]. Public AI Switzerland's cooperative model also fits our interest in publicly accessible AI infrastructure [S6].
+
+Public AI Switzerland's privacy notice states that services and data are hosted in Switzerland and that personal data is processed in accordance with the revised Swiss Data Protection Act [S6a]. This supports our preference for Swiss-hosted AI infrastructure. Our web application separately uses Vercel's Frankfurt region. Section 9 explains the remaining questions about the API account, processing arrangements and application-level compliance.
+
+V4 uses Apertus for inference. “OpenAI-compatible” describes the API format. We used an OpenAI model in the separate v5 comparison branch.
+
+### 3.3 Prewritten legal modules instead of generated legal guidance
+
+We limited the model's role in writing legal guidance after earlier experiments produced persistent errors. Automated checks did not reliably remove them. Some statements described the law correctly but applied it to the wrong facts.
+
+V4 therefore assembles legal points, actions and questions from prewritten modules. AI still interprets the narrative, suggests classifications, prefills some answers, writes a short neutral summary and translates text. It does not freely draft the main legal guidance.
+
+This reduces one source of variability but transfers substantial responsibility to module design, correct fact confirmation and selection logic. AI-cross-checked text can still be legally wrong. A correct paragraph can still be inappropriate if its display conditions are incomplete.
+
+### 3.4 Trade-offs
+
+| Choice | Intended benefit | Cost or remaining risk |
 |---|---|---|
-| 1 (technical) | When to ask, when to refer, an expert brief, citation checking | Deciding events and questions ([4.5](#45-deciding-events-and-the-article-requirements-table)), lanes ([4.7](#47-lanes-and-hard-triggers)), expert brief ([3](#3-how-to-use-it-step-by-step)), clickable official sources ([8](#8-how-to-verify-results-step-by-step)) |
-| 2 (framework) | A framework, 10+ scenarios, regulatory notes, disclosure | `docs/versions/v4-scoped-live/framework.md`, `docs/scenarios.md`, `docs/versions/<version>/regulatory.md`, `docs/versions/v4-scoped-live/disclosure.md` |
+| Custom harness | Direct control over workflow, rules and outputs | More engineering and maintenance responsibility |
+| Hosted Apertus | Open model foundation without operating inference hardware | External processing, availability and provider dependence |
+| Narrow tenancy scope | More manageable legal coverage and evaluation | Many social-work issues remain unsupported |
+| Prewritten legal modules | More consistent, inspectable guidance | Requires substantive review and updates for every module |
+| Human confirmation | Corrects model misunderstandings before assessment | Adds workload and can create confirmation bias |
+| Social-worker-only vulnerability scoring | Places contextual professional judgment with the social worker | Requires clear criteria and consistent practice across users |
+| Code-based routing and dates | Repeatable and inspectable execution | Incorrect rules or inputs produce repeatable errors |
+| Browser-held case state | Avoids an intended central case database | Does not eliminate hosting, inference or export retention |
+| Structured handouts and briefs | Supports accessible communication and handover | Translation and summary errors remain possible |
 
-The legal team's inputs drive the tool: `output.md` (output format and lanes), `escalation.md` (five indices),
-`deadlines.md` (deadline rules), `legal_workflow.md` (method), `resources.md` (contacts), and nine example cases in
-`Example cases/`.
+Our architecture is designed to accommodate additional modules and workflows. We have not established its capacity under concurrent use, operating costs at scale or performance in other legal fields.
 
----
+## 4. User workflow
 
-## 3. How to use it, step by step
+1. **Describe the situation.** The social worker enters a fictional or appropriately authorised case account, selects the client's language and acknowledges AI use. The interface asks users to avoid identifying information.
+2. **Check what the system understood.** The social worker reviews extracted facts, source quotations, dates, suggested modules, warning signs and deciding events. The social worker independently assesses vulnerability and assigns its score; the AI does not propose the score.
+3. **Clarify material gaps.** The system presents questions from the confirmed modules. Unknown and unobtainable answers remain possible. Document text must be confirmed after extraction.
+4. **Assess.** Code calculates supported deadlines, applies the lane rules and selects contacts. The system assembles relevant module content and adds a brief AI-generated factual summary.
+5. **Review and hand over.** The social worker checks the result, generates a client handout or expert brief, and may download the audit trail. A lane override requires a recorded reason.
+6. **End the case.** The interface clears the case from the browser. Provider logs and downloaded files are subject to separate retention arrangements.
 
-| Screen | What the social worker does | What the tool does |
-|---|---|---|
-| **1 Describe** | Types the client's situation in their own words (no names or ID numbers; the municipality instead of the street). Picks the client's language. Ticks that the client knows an AI tool is used. Clicks **Analyse**. | Masks phone numbers, e-mails, IBAN and AHV numbers, then reads the text (about 10 seconds). An example case from the legal team can be loaded from a menu. |
-| **2 Check what was understood** | Corrects the **facts** (each shows the client's sentence it came from), checks the **dates** that may start a deadline, confirms or changes the **situation** (the AI's suggestion is ticked; untick all if none fits), checks each **deciding fact** (yes / no / unknown, pre-filled with the sentence the AI relied on), unticks wrong **warning signs**, and sets **personal vulnerability** from 1 to 10 (a suggestion is pre-set). Clicks **Confirm and show questions**. | Shows a provisional lane and, if a letter was received, a banner: "A deadline may be running". This confirmation step is the main safeguard: a wrong answer here changes everything that follows. |
-| **3 Ask your client** | Asks the questions (at most 8, urgent ones first, 5 shown before "Show more questions"). Confirms or corrects pre-filled answers. "I don't know" and "Can't get this" are always allowed; unknown never counts as "no". Can upload a document where a question asks for one, and must confirm the extracted text. Clicks **Assess**. | Questions come from the checked situation texts. Free-text, date and number answers that the description already gives are pre-filled, with the sentence. Yes/no questions are never pre-filled. |
-| **4 Result** | Reads the result. | **A. Action recommendations**, **deadlines** (with "How this was calculated"), **contacts**; **B. Case summary**: two neutral AI sentences plus the checked legal points for the confirmed situation, each with clickable paragraph references; **C. Lane assessment** with the rule applied and the reasons. |
+The expert brief supports a roughly two-minute initial review: immediate concern, client's objective, chronology and facts, preliminary legal issues, evidence and open questions, and the decision requested from the specialist. The social worker remains responsible for arranging the referral.
 
-Buttons on the result screen:
+## 5. Technical architecture
 
-- **Client handout**: the checked client texts, deadlines, contacts and a disclosure, in English. If another language
-  was chosen, an AI translation is shown next to it; code warns if any number differs from the English version.
-- **Expert brief**: a six-part brief for a lawyer (immediate concern, client's objective, facts and chronology with
-  the confirmed deciding facts, preliminary legal points, evidence and open questions, decision needed). It is
-  marked "Draft from the tool - please check before sending".
-- **Download audit trail**: a JSON file with the whole case, including every AI prompt and reply. It contains client
-  information: handle it like a case note.
-- **Change lane**: the social worker overrides the lane and gives a reason; the reason is recorded.
-- **Update answers and reassess**.
-- **End case (delete data)**: clears the case in the browser. Nothing is stored on the server.
-
----
-
-## 4. How it works under the hood
-
-### 4.1 Architecture
+The backend uses Python and FastAPI (`app/server.py`). The frontend is a single HTML application (`app/static/index.html`).
 
 ```mermaid
 flowchart TD
-    B["Browser: holds the whole case and sends it back with every step"] --> I["1 Intake (code): mask numbers, split sentences"]
-    I --> U["2 Understand (Apertus, 5 parallel calls): facts, letters and household, situation and scope, vulnerability, legal issues"]
-    U --> G["Code: drop every item whose quote is not in the text; parse dates"]
-    G --> E["3 Deciding events (Apertus, 1 closed call per event) + code cross-checks"]
-    E --> S["4 Situation (Apertus, 1 closed call over the 9 module titles)"]
-    S --> C{"5 Social worker confirms facts, events, situation, vulnerability"}
-    C --> Q["6 Questions from the checked modules; Apertus pre-fills non-yes/no answers"]
-    Q --> A{"Social worker asks the client and confirms answers"}
-    A --> D["7 Deadlines (code)"]
-    D --> L["8 Lane (code) + optional override"]
-    L --> R["9 Result: checked module content + 2-sentence AI summary + contacts (code)"]
-    R --> H["10 Handout and expert brief (code); optional AI translation"]
-    R --> T["11 Audit trail (JSON, built in the browser)"]
-    M[("corpus/modules/*.json")] --> Q
-    M --> R
-    RQ[("corpus/article_requirements.json")] --> E
-    LP[("corpus/law_paragraphs.jsonl")] --> R
-    RS[("app/data/resources.json")] --> R
+    UI["Browser: case intake and review"] --> API["FastAPI orchestration"]
+    API --> AI["Apertus through Public AI"]
+    AI --> CHECK["Validate quotes and structured output"]
+    CHECK --> HUMAN{"Social worker confirms"}
+    HUMAN -->|Correct or clarify| UI
+    HUMAN -->|Confirmed facts| RULES["Deadline and lane rules"]
+    MODULES["Versioned legal modules and sources"] --> RULES
+    RULES --> OUT["Guidance, handout and expert brief"]
+    OUT --> AUDIT["Downloadable audit record"]
 ```
 
-The server is a FastAPI app (`app/server.py`) with one endpoint per step: `POST /api/case`, `/api/case/questions`,
-`/api/case/upload`, `/api/case/document`, `/api/case/assess`, `/api/case/handout`, `/api/case/brief`. The front end
-is one HTML file (`app/static/index.html`).
+### 5.1 Components
 
-### 4.2 Pipeline (live version)
-
-| # | Step | Done by | Code file |
-|---|---|---|---|
-| 1 | Intake: masking, sentence split | code | `app/pipeline.py` (`mask`, `new_case`) |
-| 2 | Understand: 5 single-job calls in parallel. Every extracted item must carry the client's exact words; code drops items whose quote is not in the text. Dates are parsed by code. | Apertus + code | `app/pipeline.py` (`understand`), `app/dates.py` |
-| 3 | Deciding events: only the events relevant to the articles in question, one closed call per event | Apertus + code | `app/events.py` |
-| 4 | Situation: pick the matching module(s) or none, each pick citing a sentence | Apertus | `app/modules.py` (`suggest_ai`) |
-| 5 | Confirmation of facts, warning signs, vulnerability, events and situation | social worker | `app/pipeline.py` (`confirm`) |
-| 6 | Questions from the confirmed modules; pre-fill of free-text, date and number answers | modules + Apertus | `app/modules.py` (`questions`) |
-| 7 | Deadlines | code | `app/pipeline.py` (`deadlines`), `app/deadlines.py` |
-| 8 | Lane from five indices, hard triggers, override | code + social worker | `app/pipeline.py` (`score`), `app/scoring.py` |
-| 9 | Result: module points and actions whose conditions hold; 2-sentence situation summary; contacts | modules + Apertus + code | `app/modules.py` (`assemble`), `app/pipeline.py` (`write`, `verify`), `app/contacts.py` |
-| 10 | Handout, translation, expert brief | code (+ Apertus for translation) | `app/outputs.py` |
-| 11 | Audit trail | code (browser) | `app/llm.py` (records each call), `app/static/index.html` |
-
-### 4.3 Which parts are AI and which are code
-
-| AI (Apertus) does | Code does | The social worker does |
-|---|---|---|
-| Extracts facts, letters, household, situation, scope, vulnerability indicators and legal issues, each with a quote | Masks numbers; checks every quote against the text; parses dates | Confirms or corrects facts and warning signs |
-| Pre-fills deciding events (A yes / B no / C unknown + sentence number) | Cross-checks events (see 4.5); decides E10 from dates | Confirms every deciding event |
-| Suggests the situation from the module menu | Shows only module items whose conditions hold | Confirms the situation |
-| Pre-fills free-text, date and number answers | Never pre-fills yes/no; converts dates | Confirms answers with the client |
-| Writes a 2-sentence neutral summary | Removes sentences naming articles or dates that are not in the case | — |
-| Translates the handout (on request) | Checks that all numbers survive the translation | — |
-| Transcribes photos of documents | Reads PDF text layers itself; warns on low resolution | Confirms the extracted text |
-| — | Deadlines, lane, contacts, handout and brief assembly | Rates vulnerability; may override the lane |
-
-The AI never writes legal statements, actions or questions in the live version. Those come from the checked modules.
-
-### 4.4 Situation modules
-
-Nine modules in `corpus/modules/*.json`, format in `corpus/modules/SPEC.md`:
-
-| Module file | Title |
+| Component | Responsibility |
 |---|---|
-| `payment_demand.json` | Unpaid rent and a payment demand |
-| `termination_by_landlord.json` | The landlord has terminated the lease |
-| `tenant_notice.json` | The tenant wants to end the lease or leave early |
-| `defects.json` | Defects in the flat (mould, heating, hot water, damp); warns against unilateral rent cuts and explains the deposit procedure of Art. 259g |
-| `rent_increase.json` | A rent-increase notice |
-| `pets_house_rules.json` | Pets and house rules |
-| `deposit_return.json` | Getting the rent deposit back after moving out |
-| `co_tenant_leaves.json` | A co-tenant moves out or stops paying |
-| `family_home_protection.json` | Protecting the family home when the lease is in the other spouse's name |
+| `app/pipeline.py` | Orchestrates intake, understanding, confirmation, assessment and output |
+| `app/llm.py` | Calls Public AI, handles retries and records model-call traces |
+| `app/events.py` | Suggests and cross-checks legally relevant events |
+| `app/modules.py` | Selects module questions and assembles conditional content |
+| `app/dates.py`, `app/deadlines.py` | Parse dates and calculate supported deadlines |
+| `app/scoring.py` | Applies lane-selection rules |
+| `app/contacts.py` | Selects contacts from a maintained resource list |
+| `app/outputs.py` | Assembles handouts and expert briefs; requests translations |
+| `corpus/modules/` | Stores questions, legal points, actions and display conditions |
+| `corpus/article_requirements.json` | Maps statutory provisions to deciding events |
+| `corpus/law_paragraphs.jsonl` | Stores legal paragraphs, version metadata and source links |
 
-Each module has up to 6 questions, 5–6 legal points, 5 actions, lawyer questions for the brief, and the deadline kinds
-code may calculate. Every item has a `basis` (paragraph ids such as `OR Art. 257d Abs. 1`) and `show_if` conditions
-on confirmed facts (for example `E3=A`, `q:<question>=yes`, `deadline:payment_demand`). An item is shown only when all
-its conditions hold, so each item must be correct whenever its conditions are met. Each point has a social-worker text
-and a separate client text for the handout. The first confirmed module shows all its visible questions; secondary
-modules show at most 3 each.
+The API endpoints are `POST /api/case`, `/api/case/questions`, `/api/case/upload`, `/api/case/document`, `/api/case/assess`, `/api/case/handout` and `/api/case/brief`.
 
-### 4.5 Deciding events and the article-requirements table
+### 5.2 Model calls and validation
 
-Many rules apply only once something has happened: the landlord has terminated, a payment demand was sent, the tenant
-is married. `corpus/article_requirements.json` lists 21 such events (E1–E21) and, for 161 paragraphs of OR Art.
-253–273c (plus Art. 143 and 544), which events each paragraph needs (`needs_all`, `needs_any`) and what it excludes.
-It was built from the German text by Claude and checked in a second Claude pass; every change is listed in its
-`review_log`. It is not lawyer-reviewed.
+The model extracts structured information from the client's account. Each extracted item must include a quotation found in the input. Events that determine which legal rules apply receive separate constrained calls, followed by code checks and human confirmation. The social worker assesses vulnerability without an AI-generated score.
 
-How the events are filled:
+The development documentation describes five parallel extraction tasks. The exact call layout for the submission version remains to be recorded, including whether it retains a task that extracts contextual vulnerability indicators.
 
-1. The events relevant to the articles in question are selected from the table (plus the basic ones E1, E2, E3, E4,
-   E8, E9).
-2. Apertus answers one closed question per event: A yes, B no (also for threats, plans, fears), C not said, plus the
-   number of the sentence that decides it.
-3. Code cross-checks: an A or B without a valid sentence becomes C; a termination (E1, E2) cannot be "yes" if its
-   sentence contains words like "if", "otherwise" or "will"; if the letter type from step 2 disagrees with the answer,
-   the event becomes C with a note; the same happens if two readings of the marital status disagree. E10 (payment
-   deadline passed) is decided by code from the receipt date, never asked.
-4. The social worker confirms every event in step 2. Answers to later questions can set events too (`sets_event`).
+A quotation can be genuine while the model's interpretation is wrong. For example, a warning that a landlord *will terminate* is not evidence that termination has already occurred. Checking quotations helps trace an interpretation to its source; the social worker must still check its meaning.
 
-Code then uses the confirmed events to remove articles whose event has clearly not happened (for example, the rules
-on challenging a termination when no termination has happened), and to decide which module items are shown.
+Deciding events may be prefilled for confirmation, but the subsequent yes/no interview questions are not prefilled. Free-text, numerical and date answers can be prefilled with a supporting sentence.
 
-### 4.6 Deadlines
+Our model client parses and validates JSON responses, stops repetitive output during streaming, retries rate-limited requests and can fall back to an older Apertus model. These measures address behaviour observed during development. Evaluation records should identify the model that actually handled each call.
 
-All deadlines are calculated by code (`app/deadlines.py`, 14 tests; `app/dates.py`, 76 tests), from the legal team's
-table in `deadlines.md`:
+### 5.3 Case storage and audit trail
 
-| Trigger | Deadline | Basis |
-|---|---|---|
-| Payment demand with termination warning | Pay within the period in the letter (for flats at least 30 days; the date in the letter governs) | OR Art. 257d Abs. 1 |
-| Termination by the landlord | Challenge at the conciliation authority within 30 days of receipt | OR Art. 273 Abs. 1 |
-| Termination by the landlord | Request an extension within 30 days (not after a termination for unpaid rent) | OR Art. 273 Abs. 2 |
-| Rent-increase notice | Challenge within 30 days of receipt | OR Art. 270b Abs. 1 |
-| Tenant wants to leave | Latest day the signed notice must reach the landlord: counted back from the desired end date by the notice period in months | OR Art. 266a, 266l (as cited in `app/modules.py`) |
-| Court or conciliation document | Not calculated: "have a professional check it today" | — |
+The browser holds the case and sends it with each request. The application does not maintain a persistent case database. Temporary processing, infrastructure logs and provider retention are separate considerations, discussed in Section 9.
 
-Rules applied: a final day on a Saturday, Sunday or Zurich public holiday moves to the next working day (Art. 77–78
-OR, the federal Saturday law SR 173.110.3; the nine statutory Zurich holidays, with Easter computed). Vague dates
-("last week") become an estimate range, labelled as such, and the deadline is then shown as a range; the handout says
-"this date is an estimate: act earlier". An unknown receipt date gives no date, a question, and at least medium
-urgency: an unknown date is never proof that there is time left. Each deadline lists its calculation steps.
+The audit export contains facts, answers, events, calculated dates, referral reasons and model traces, including prompts and responses. It allows a reviewer to trace an output back to its inputs and processing steps. The export contains sensitive case information and requires access and retention controls. Its accuracy and integrity still need to be checked.
 
-### 4.7 Lanes and hard triggers
+## 6. How legal rules shape the system
 
-Five indices, each with its reasons (`app/scoring.py`, `app/pipeline.py`):
+### 6.1 Legal reasoning structure
 
-| Index | Set by | High when |
-|---|---|---|
-| Urgency | code | Termination or court step received; a client deadline within 10 days or possibly passed |
-| Severity | code | Landlord termination or court step; immediate danger; no heating, water or power; payment demand and the client cannot pay |
-| Complexity | code | Another area of law needing a specialist (migration, debt enforcement, criminal), or a deadline that cannot be determined |
-| Vulnerability | social worker (1–10; 7+ is high) | Suggested from the indicators in `escalation.md`: 0 → 2, 1 → 4, 2 → 7, 3+ → 8, violence or exploitation → 9 |
-| Information | code | An urgent question unanswered, or a deadline that cannot be dated |
+Our legal framework examines the legal relationship, applicable law, relevant duties, established facts, requirements for a remedy, formalities, deadlines and legal consequences. We check urgency at intake and reassess it as new information becomes available.
 
-`decide_lane` checks, in order: urgency high → 3; complexity high → 3; severity high and urgency or vulnerability at
-least medium → 3; vulnerability high and urgency or severity at least medium → 3; information at least medium → 2;
-otherwise 1.
+V4 applies this approach to nine tenancy situations through event requirements and conditional modules. Each module item links to statutory paragraph identifiers and `show_if` conditions. An item is displayed only when its conditions hold. Unknown facts must remain unknown; they must not silently become negative answers.
 
-On top of that:
+The article-requirements table covers 161 paragraphs and 21 deciding events. This supports structured applicability checks but is not a complete executable representation of Swiss tenancy law.
 
-- **Hard lane-3 triggers:** violence or threats, exploitation or dependency, immediate danger, migration status. These
-  always go to a human.
-- **No module confirmed:** at least lane 2 ("this tool has no checked guidance for this situation").
-- **Confirmed urgent answers:** a module question can raise urgency and severity to high when answered "yes"
-  (currently one question in `defects.json`: heating out in winter, or children in the flat).
-- **Override:** the social worker can set any lane with a reason, which is recorded.
+### 6.2 Referral lanes
 
-### 4.8 Contacts
-
-Contacts are never written by the AI. `app/build_resources.py` turns the legal team's `resources.md` into
-`app/data/resources.json` (23 entries) with explicit tagging rules. `app/contacts.py` then selects by rule:
-
-- immediate danger: police (117) and victim support (142);
-- tenancy-law advice when the lane is 2 or 3, or urgency or complexity is not low;
-- a place filter (city of Zurich, Winterthur, rest of the canton; if the place is unknown, only canton-wide and
-  national services);
-- women-only services only when the description says the client is a woman, or violence was stated;
-- at most 2 other-support services (one per topic, such as debt or language).
-
-The screen asks the social worker to verify contact details before passing them on.
-
-### 4.9 Masking and stateless design
-
-- **Masking by code** before any text is sent to the model: e-mail addresses, Swiss IBANs, AHV numbers and Swiss
-  phone numbers. It also applies to edited facts, answers and uploaded document text. Names and addresses in free text
-  are not masked; the screen asks the social worker not to type names or ID numbers.
-- **Photos of documents are sent to the model as images and are not masked.** Text PDFs are read by code
-  (`pdfplumber`) and are not sent as images.
-- **Stateless server:** the browser holds the case and sends it back with each step. Nothing is stored on the
-  server. "End case" discards the case in the browser.
-- **Optional access code:** if the environment variable `APP_ACCESS_CODE` is set, every case endpoint needs the
-  header `X-Access-Code`. The live site does not set it.
-
-### 4.10 The Apertus / Public AI client and its observed quirks
-
-`app/llm.py` calls the Public AI inference service (`https://api.publicai.co/v1`, OpenAI-compatible) with
-`swiss-ai/apertus-v1.5-70b`, falling back to `swiss-ai/apertus-70b-instruct`. Every call is recorded with prompt,
-reply, tokens, seconds and cost (USD 0.82 input / 2.92 output per million tokens, read from the provider's model list
-on 7 November 2026).
-
-Workarounds for behaviour observed during development (each is commented in the code):
-
-| Observed | Workaround |
+| Lane | Intended function |
 |---|---|
-| Requests with a system message were rejected about 1 in 3 times (HTTP 400/500); without one, 0 of 8 failed | Instructions travel in the first user message |
-| In forced JSON-schema mode the model stalled in whitespace and was pushed into wrong categories; free JSON was valid in 8 of 8 probes at 2–5 s per call | The model writes free JSON; code extracts and validates it (`ask_json`, `extract_json`) |
-| Degenerate output: endless blank lines or a repeated short chunk | Replies are streamed and cut early; a retry changes the seed and temperature |
-| HTTP 429 rate limits under parallel load | Wait and retry after 5, 15 and 30 seconds |
-| Intermittent server errors | One retry, then the older Apertus model |
+| 1 — Information | Provide supported information for a sufficiently understood, lower-risk case |
+| 2 — Clarification | Provide supported information while resolving material gaps |
+| 3 — Human referral | Prioritise appropriate human involvement because of urgency, consequences, vulnerability or complexity |
 
-Speed and cost on the 11 test cases: about 10 seconds for the first step, under 1 to 25 seconds for later steps,
-about USD 0.02 per case.
+The implementation uses five indices: urgency, severity, complexity, vulnerability and information uncertainty. The rules are applied in this order: high urgency; high complexity; specified severity combinations; specified vulnerability combinations; then information uncertainty. Higher-priority conditions lead to Lane 3; material uncertainty otherwise leads to Lane 2.
 
----
+Violence or threats, exploitation or dependency, immediate danger, and migration-related indicators are hard referral triggers. We need to review the migration-related triggers to ensure they respond to relevant legal complexity rather than personal status alone.
 
-## 5. Legal sources and data
+**The social worker assesses vulnerability without an AI-generated score.** The routing rules use that professional assessment alongside the other four dimensions. The current scale and thresholds remain to be recorded for the submission version. These thresholds are project policy choices, not statutory standards or validated clinical measures.
 
-| Source | File(s) | Notes |
-|---|---|---|
-| Official federal law from Fedlex: OR (SR 220, version 2026-10-01), ZPO (SR 272, 2026-07-01), ZGB (SR 210, 2026-07-01), VMWG (SR 221.213.11, 2025-10-01), Saturday law (SR 173.110.3) | `corpus/fedlex/*.xml`, split by `corpus/build_law_corpus.py` into `corpus/law_paragraphs.jsonl` | 6,951 paragraphs in German, each with its version date and an official Fedlex link |
-| Plain-English summaries of 235 paragraphs | `corpus/paragraph_summaries.json`, `corpus/build_summaries.py` | Drafted by Apertus from the German text; each reviewed by Claude against the German text; 109 of 235 drafts needed a correction. Shown in step 2 next to the legal issues |
-| Article-requirements table | `corpus/article_requirements.json` | 161 paragraphs, 21 events; see [4.5](#45-deciding-events-and-the-article-requirements-table) |
-| Situation modules | `corpus/modules/*.json` | Drafted by Claude from the official German text, checked in a separate second pass; fixes logged in each file's `review` array. **Not reviewed by a lawyer** (the legal team was not available for it) |
-| Court decisions | `corpus/decisions/*.json` (332), `corpus/leading_cases_index.json` | From the public OpenCaseLaw API (data CC0): the decisions cited by the legal team plus the most-cited decisions per tenancy and procedure article (`corpus/fetch_decisions.py`, `corpus/fetch_leading_cases.py`). Used by earlier versions and the benchmark; the live result screen cites statute paragraphs only |
-| Contacts | `resources.md` → `app/data/resources.json` | Written by the legal team; details to be verified before passing on |
-| Commentary extracts supplied by the legal team | not in the repository | Third-party copyright; kept out by `.gitignore` |
+Some example cases use a separate urgency scale that includes “Level 4.” The application has three referral lanes; the relationship between the two scales needs to be clarified.
 
-The legal team's documents (`output.md`, `escalation.md`, `deadlines.md`, `legal_workflow.md`, `resources.md`) are
-loaded verbatim where prompts need them (`app/guidance.py`) and define the rules in code.
+### 6.3 Deadline calculations
 
----
+The deadline calculator covers payment demands, termination challenges, certain extension requests, rent-increase challenges and the tenant's notice cut-off. Court and conciliation documents are flagged for professional verification.
 
-## 6. Design decisions and the evidence behind them
+For every calculation, a reviewer needs the triggering event, legally effective receipt date, applicable rule, intermediate steps and final action required. A date taken from a client's narrative is not automatically a legally established receipt date.
 
-### 6.1 The three main decisions
+**Material limitation:** v4 does not fully model the different receipt rules for registered private notices. It also does not cover every tenancy deadline, procedural holiday regime or local holiday. A general “add 30 days and shift the weekend” formula is not an adequate substitute for legal classification. Backwards-calculated notice cut-offs particularly require separate treatment.
 
-**Checked content instead of AI-written law.** On 8 November 2026 every generative option was measured with
-Apertus. Even with confirmed facts, code gating and two AI checks, about a quarter of the AI-written legal sentences
-shown were harmful (see 6.3). A much stronger model (OpenAI gpt-5.6-sol) wrote the law correctly with the same
-safeguards, but asked ill-fitting questions and is not a Swiss sovereign model. Checked content for common situations
-gave the best accuracy, at the cost of coverage: situations without a module get a referral, not guidance.
+Our legal framework covers more deadline rules than v4 implements. Extending the calculator requires implementing and testing those rules separately.
 
-**Yes/no answers are not pre-filled.** In tests Apertus answered "yes" where the text only implied it (for example a
-payment demand read as a termination). A wrong "yes" on a deciding question changes which rules are shown, so the
-social worker asks these questions directly. Free-text, date and number answers are pre-filled with the sentence they
-come from, and the social worker confirms them.
+### 6.4 Legal sources
 
-**The social worker confirms the deciding events.** According to the note in `app/events.py`, Apertus misread
-deciding events in 15–30% of test cases, mostly a threat read as a termination, and every such error came with a
-genuine quote. Quote checks therefore cannot catch these errors. Human confirmation is the real safeguard.
+Our local legal corpus contains official German-language texts from Fedlex: OR, ZPO, ZGB, VMWG and the federal Saturday legislation. It includes 6,951 paragraphs with version metadata and official links, 235 plain-English summaries and 332 court decisions obtained through OpenCaseLaw.
 
-### 6.2 Final three-way blind comparison
+V4's result screen cites statutory paragraphs. We used the case-law corpus in earlier versions and evaluation work. OpenCaseLaw supplies legal data; OpenJustice was the platform we initially explored.
 
-Same reviewer, same rubric, the three outputs labelled P/Q/R and shuffled per case, 11 cases (the legal team's 9
-cases plus 2 extra scenarios). The reviewer was a Claude agent. This is a single reviewer on known cases, and the
-review was not checked by a lawyer.
+We used AI to draft and cross-check the modules and summaries. That process is not independent legal validation. Source versions, module revisions and review records need to remain traceable. Third-party commentary used during development is excluded from the repository; any further use requires checking access and reuse rights.
 
-| | v4 live (checked content, Apertus) | v5 OpenAI gpt-5.6-sol, no pre-written text | v3 Apertus, no pre-written text |
-|---|---|---|---|
-| Usefulness (1-5, mean) | 4.6 | 2.8 | 1.8 |
-| Cases where a lawyer would spot a clear error | 4/11 | 10/11 | 11/11 |
-| Legal statements ok / wrong law / inapplicable / noise | 54 / 0 / 0 / 1 | 55 / 0 / 3 / 7 | 0 shown (off) |
-| Actions ok / wrong or inapplicable | 49 / 0 | 23 / 0 (3 unhelpful) | 40 / 7 |
-| Questions relevant / irrelevant / already answered / legally wrong | 46 / 4 / 11 / 0 | 46 / 19 / 1 / 0 | 28 / 14 / 10 / 6 |
-| Obvious questions missing | 2 | 17 | 23 |
-| Wrong statements in summary, handout, brief | 3 | 6 | 34 |
-| Lanes appropriate | 11/11 | 10/11 | 9/11 |
-| Cost per case | ~USD 0.02 | ~USD 0.30 (third-party price estimate) | ~USD 0.03 |
+## 7. Evaluation results and limitations
 
-Remaining v4 issues found: 11 questions about facts the client had already stated; one wrong pre-fill ("since ~2
-years"); one raw question text in a risk line (fixed since). Lanes v4 vs the legal team's expectation: 11/11 (cases
-1–9: team lanes 2, 3, 2, 2, 2, 3, 2/3, 3, 2; case 10: 1; case 11: 3). The team notes that its own analysis may
-contain errors. Not yet tested: unseen cases.
+We compared three versions across 11 cases: v4's module-based Apertus workflow, a generative Apertus version and an OpenAI version. We anonymised and shuffled the outputs for each case. A single Claude reviewer applied the evaluation rubric. No independent lawyer review of that comparison is documented.
 
-### 6.3 History of the experiments
+Selected v4 results:
 
-All judges were Claude agents unless stated; one reviewer each; known cases; nothing was checked by a lawyer.
+| Measure | Outcome |
+|---|---|
+| Mean usefulness | 4.6 / 5 |
+| Main legal statements | 54 acceptable; 0 wrong law; 0 inapplicable; 1 noise item |
+| Actions | 49 acceptable; 0 wrong or inapplicable |
+| Lane agreement with expected labels | 11 / 11 |
+| Cases judged to contain a clear error | 4 / 11 |
+| Wrong statements in summary, handout or brief | 3 |
+| Questions judged already answered | 11 |
 
-| # | Experiment | Result |
-|---|---|---|
-| 1 | Early benchmark (v1), 9 team cases, judge Nemotron 120B; the harness was tuned on the same cases | Harness: lanes 5/9, claims supported 79%. Plain Apertus: lanes 3/9, claims 52%. Plain Nemotron: answered 7/8, claims 57% (`bench/results/summary.json`) |
-| 2 | Apertus plain-English article summaries, reviewed against the German text | 109 of 235 drafts (46%) needed a correction |
-| 3 | Structure-first writing with a round-trip check (Apertus) | Of the statements kept: 13% legally false, 26% true but inapplicable. The round trip wrongly dropped 39% of correct statements |
-| 4 | AI verifiers on a labelled set of 44 items, then 174 fresh sentences | Best combination on the labelled set: precision 0.78, recall 0.88. On the fresh sentences the two Apertus checks caught 16 of 24 harmful (67%) and removed 21 of 45 correct (47%) |
-| 5 | Gated writer, 11 cases, blind judge | Lawyer-level notes 29/90 harmful (32%); practical guidance 24/84 (29%). After both checks still 26% / 23% of shown sentences harmful |
-| 6 | Full generative Apertus version (v3), 11 cases | 63 questions, only 25 relevant (40%), 8 legally wrong; 49 actions, 37 ok; handout 10 wrong or misleading statements; brief 11 |
-| 7 | v4 first review | Legal points 54, 0 wrong law; actions 48, 0 wrong law; questions 64: 45 relevant, 14 already answered |
-| 8 | Final three-way blind comparison | Table in 6.2 |
+The results supported our choice to use prewritten legal modules. However, errors remained in the complete outputs: four of the eleven cases contained an error identified by the reviewer, even though none of the main legal statements was classified as wrong law or inapplicable.
 
-Interpretation: with Apertus, AI-written legal statements fail a lawyer's check even with confirmed facts, code
-gating and two checks. A strong model with the same safeguards wrote the law correctly but still asked ill-fitting
-questions. Checked content for common situations gives the best accuracy, at the cost of coverage.
+The evaluation has important limits. We knew the cases during development, set the expected referral lanes ourselves and used one AI reviewer. The comparison therefore does not establish performance on unseen cases or general legal reliability. The figures above come from the original evaluation recorded in [S2].
 
----
+The test suite contains 400 automated tests that run without model calls: 76 date tests, 14 deadline tests and 310 tests covering modules, references, conditions and known error patterns. These tests check specific implementation properties; they cannot establish that the legal framework is complete or correct.
 
-## 7. The four versions and how to compare them
+In the evaluation, model cost was approximately USD 0.02 per case. Initial analysis took roughly 10 seconds; later steps ranged from under one second to 25 seconds. These measurements describe the evaluation runs and may vary with model availability, input size and provider pricing.
 
-| Version | Git branch | Where | AI model at runtime | Pre-written legal text | Docs |
-|---|---|---|---|---|---|
-| **v4 limited scope (live, recommended)** | `main` (= `v4-scoped` plus one later fix) | https://liit.bouveng.org | Apertus 1.5 70B via Public AI only | Yes: 9 checked situation modules | `docs/versions/v4-scoped-live/` |
-| v2 baseline (earlier) | `v2-baseline` | Vercel preview (login) | Apertus 70B | Partly: checked paragraph summaries, some fixed checklist questions and warnings | `docs/versions/v2-baseline/` |
-| v3 generative | `v3-generative` | Vercel preview (login) | Apertus 70B | None (AI per-issue legal notes switched off after measurement) | `docs/versions/v3-generative/` |
-| v5 OpenAI comparison | `v5-openai` | Vercel preview (login) | OpenAI gpt-5.6-sol (reasoning effort low) | None; AI per-issue legal notes on | `docs/versions/v5-openai/` |
+### Proposed future validation
 
-All versions send the masked description to the model provider: Public AI for v2–v4, OpenAI for v5. v5 is for
-comparison and testing with invented cases only: OpenAI is a US provider and the data transfer has not been assessed.
+Freeze a release commit, corpus version, model identifiers and prompts. Run unseen synthetic cases, including ambiguous notices, contradictory dates, out-of-scope problems, failed model calls and unsupported languages. Have a qualified tenancy-law reviewer assess legal content and deadlines, and social workers assess interview usability and handover quality. Report severe missed referrals and incorrect actionable deadlines separately from average usefulness.
 
-**Run a version locally.** Check out its branch (for example `git switch v3-generative`, or
-`git worktree add ../v3 v3-generative` to keep `main` open), then start the server as in [9](#9-running-locally-and-deploying).
+## 8. Installation and testing
 
-- v2, v3, v4: `PUBLICAI_API_KEY` in `.env`.
-- v5: `OPENAI_API_KEY` in `.env` (or the environment), and `LLM_PROVIDER=openai` in the environment (it is not read
-  from `.env`). `LLM_MODEL` defaults to `gpt-5.6-sol` and `LLM_REASONING` to `low`:
+### 8.1 Prerequisites
 
-  ```bash
-  LLM_PROVIDER=openai LLM_MODEL=gpt-5.6-sol .venv/bin/uvicorn app.server:app --port 8000
-  ```
+You will need Git, Python 3.12, the repository's `requirements.txt`, and a Public AI API key with available credit. Clone the repository and enter its directory:
 
-**Preview links.** Each branch push creates a Vercel preview deployment. Previews are behind the Vercel login, so
-their URLs are not listed here. Team members with access to the Vercel project `lextec-tenancy-assistant` find them
-under *Deployments*, filtered by branch, or with the Vercel CLI (`vercel ls`, filtered by branch, for example
-`vercel ls -m githubCommitRef=v3-generative`). The v5 preview uses branch-specific environment variables
-(`LLM_PROVIDER`, `LLM_MODEL`, `OPENAI_API_KEY`).
+```bash
+git clone https://github.com/pink-carp/lextec-tenancy-assistant.git
+cd lextec-tenancy-assistant
+```
 
----
+Record the submission commit with `git rev-parse HEAD`; for a reproducible rerun, check out the recorded commit rather than relying on a changing branch. The exact submission commit and dependency versions remain to be recorded.
 
-## 8. How to verify results, step by step
-
-1. **Citations.** Every legal point and action shows its paragraph ids as chips. Clicking one opens the official
-   German text, its version date, and a link to the paragraph on Fedlex. The same texts are in
-   `corpus/law_paragraphs.jsonl` (field `url`).
-2. **Deadlines.** Each deadline has "How this was calculated": the receipt date and where it came from (the
-   description or the client's answer), the period and its basis, and any shift for a weekend or holiday. To check by
-   hand: receipt date + 30 days; if that day is a Saturday, Sunday or Zurich public holiday, the next working day. The
-   arithmetic is in `app/deadlines.py` and tested in `tests/test_deadlines.py`.
-3. **Lane.** The result shows the rule applied and the reasons for each index. The expert brief repeats the rule.
-4. **Audit trail.** "Download audit trail" saves `audit_<case id>.json`: the full case state (facts, events with
-   their source and sentence, answers, deadlines with steps, lane and reasons, an internal log of what code removed)
-   and `trace`, a list of every AI call with step name, model, prompt, reply, tokens, seconds, cost and attempts.
-5. **Module content.** Each module file has a `review` array (item, paragraphs checked against, note) and a `status`
-   line. `corpus/article_requirements.json` has a `review_log` of every change from the second pass.
-6. **Automatic tests.** `.venv/bin/python -m pytest tests` runs 400 tests without calling any AI: dates (76),
-   deadlines (14), and module format, paragraph references, conditions and known error phrases (310), for example that
-   no module text tells a tenant to withhold rent or to use the landlord's official form.
-7. **Evaluation.** The saved files of the 8 November evaluation are in `bench/results/evaluation_2026-11-08/`: the
-   blind inputs (`*_blind_input.json`), the reviews (`three_way_blind_review.json`, `v3_generative_review.json`,
-   `v4_first_review.json`, `writer_levels_*.json`) and the keys that map the letters P/Q/R to versions
-   (`three_way_key.json`, `writer_levels_key.json`). `bench/build_report.py` rebuilds the page at `/benchmark` from
-   these files.
-
-**Reproducing the evaluation.**
-
-- *Blind-review method:* run each version on the 11 cases (`bench/cases.json` holds the team's 9; cases 10 and 11
-  are in `docs/scenarios.md`); collect lane, deadlines, questions, summary, legal statements, actions, handout and brief
-  per case; label the versions P/Q/R in a shuffled order per case and keep the key separately; give the blind file to
-  a fresh reviewer that has not seen the development. The rubric counts questions (relevant, irrelevant, duplicate,
-  already answered, legally wrong) and missing questions, legal statements (ok, wrong law, inapplicable, misleading,
-  noise) and missing key points, actions (ok, wrong law, inapplicable, unsupported, unhelpful), wrong statements in
-  summary, handout and brief, lane appropriateness, usefulness 1–5, and whether a lawyer would spot a clear error.
-  Then unblind with the key. The review itself was done by Claude agents, not by a script.
-- *Early benchmark:* `.venv/bin/python bench/run_bench.py run [systems...]` writes raw outputs to
-  `bench/results/<system>/`, and `.venv/bin/python bench/run_bench.py score` writes `bench/results/summary.json`.
-  The harness systems run the pipeline of the branch that is checked out, so on `main` they now run v4.
-- *One case end to end:* `.venv/bin/python bench/dev_run.py 1` (case number 1–9) prints each step's time, the cost
-  and the result.
-- `bench/extract_cases.py` rebuilds `bench/cases.json` from `Example cases/` with its selection rules in code.
-
----
-
-## 9. Running locally and deploying
-
-Requirements: Python 3.12 and an API key for Public AI.
+From the repository root, run the following on Unix/macOS:
 
 ```bash
 python3.12 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-echo "PUBLICAI_API_KEY=your_key" > .env          # add OPENAI_API_KEY=... only for the v5 branch
-.venv/bin/uvicorn app.server:app --port 8000
-# open http://localhost:8000  (evaluation page: http://localhost:8000/benchmark)
+.venv/bin/python -m pip install -r requirements.txt
+# Create .env and add PUBLICAI_API_KEY=<your key>
+.venv/bin/python -m uvicorn app.server:app --port 8000
 ```
 
-Tests (pytest is not in `requirements.txt`):
+Equivalent Windows PowerShell commands:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# Create .env and add PUBLICAI_API_KEY=<your key>
+.\.venv\Scripts\python.exe -m uvicorn app.server:app --port 8000
+```
+
+Open `http://localhost:8000`; the evaluation page is `http://localhost:8000/benchmark`. Keep the API key server-side and out of commits, client-side code, screenshots and audit exports. Confirm the actual environment-loading behaviour against the release code.
+
+`APP_ACCESS_CODE` provides an optional access restriction using the `X-Access-Code` header. It is not enabled on the public prototype and is not a substitute for production identity and access management.
+
+### 8.2 Automated and end-to-end checks
+
+Unix/macOS:
 
 ```bash
-.venv/bin/pip install pytest
+.venv/bin/python -m pip install pytest
 .venv/bin/python -m pytest tests
+.venv/bin/python bench/dev_run.py 1
 ```
 
-| Environment variable | Needed for | Default |
+Windows:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install pytest
+.\.venv\Scripts\python.exe -m pytest tests
+.\.venv\Scripts\python.exe bench/dev_run.py 1
+```
+
+The automated tests make no AI calls. The end-to-end case run uses the inference service and may incur charges. These setup instructions come from the development README [S2]; they have not been independently rerun while preparing this report.
+
+The comparison branches are `main` for v4, `v2-baseline`, `v3-generative` and `v5-openai`. Preserve each branch's model and configuration. Do not assume an old benchmark command still reproduces an old version: the harness runs the checked-out pipeline.
+
+Evaluation artefacts are stored under `bench/results/evaluation_2026-11-08/`, with case data in `bench/cases.json` and additional scenarios in `docs/scenarios.md`. Include the rubric, blinded outputs, mapping key and review files in the reproducible release.
+
+### 8.3 Manual demonstration
+
+Use our fictional mould case:
+
+> A tenant in Zurich reports spreading mould, has notified the property manager by telephone, and is considering deducting 30% from the next rent payment. The manager attributes the problem to ventilation. No written notice, medical information or procedural document has been supplied.
+
+Verify step by step:
+
+1. The extraction preserves the disputed cause and does not treat either party's account as proven.
+2. The social worker can correct facts and confirm the defects module.
+3. Questions address material gaps; unknown health circumstances are not treated as absent.
+4. The result does not present a universal 30% reduction or instruct an unsupported unilateral deduction.
+5. Every legal point opens the relevant official source and version.
+6. The handout and expert brief preserve the same facts and uncertainty.
+7. Adding a termination notice or urgent safety concern causes reassessment and appropriate referral.
+8. The audit record explains which inputs, rules and model calls produced the result.
+
+This walkthrough defines checks to perform during a demonstration; a completed run should record the outcome of each check.
+
+## 9. Responsible and ethical design
+
+### 9.1 Privacy and confidentiality
+
+The masking function removes selected e-mail addresses, phone numbers, IBANs and AHV numbers. It does not comprehensively remove names, addresses or identifying context. Document photographs are sent unmasked for model transcription. This is partial masking, not reliable anonymisation.
+
+Public AI Switzerland explicitly states Swiss hosting and processing in accordance with the revDSG in its privacy notice [S6a]. The notice is labelled a draft pending formal incorporation. Separately, the publicai.co API portal links to terms identifying Metagov and allowing external-provider routing [S7]. We need to confirm which terms govern our API account and how they relate to the Swiss hosting assurance. Before real-client use, we must verify the contracting entity, inference provider, processing locations, subprocessors, retention, training use and deletion arrangements.
+
+A browser deletion button cannot promise erasure from inference services, hosting logs or downloaded case files. A future photo-deletion feature likewise would not undo an upload already sent externally.
+
+The applicable privacy regime depends on the deploying organisation. Federal data-protection requirements apply within their scope; Zurich cantonal and municipal public bodies require assessment under the relevant cantonal framework. Official guidance stresses transparency and assessment of AI-related processing risks [S8–S9]. A checkbox acknowledging AI use is not, by itself, a sufficient legal basis for all processing.
+
+Before deployment, assign responsibility for lawful processing, outsourcing, access control, retention, incident response and a data-protection impact assessment where required. Determine applicable professional or official confidentiality duties; do not promise lawyer-client privilege for ordinary chatbot use.
+
+### 9.2 Security and operational controls
+
+The public prototype has no login. Before operational use, assess authentication, authorisation, rate limits, cost controls, transport security, secret management and logging. Validate browser-submitted case state server-side. Test malicious document instructions, forged quotations, invalid JSON, oversized uploads and provider outages.
+
+These are deployment requirements and proposed checks, rather than a list of completed security measures. Fixed module output reduces some risks but does not prevent prompt injection from corrupting extraction, summaries or translation.
+
+### 9.3 Fairness and human oversight
+
+Vulnerability assessment is reserved to the social worker, without an AI-suggested score. This design avoids anchoring the professional's assessment to a model-generated rating and recognises the importance of contextual judgment. The assessment should guide support, not define legal rights or infer incapacity from identity. Clear criteria, training and review of consistency across users remain important.
+
+Test equivalent cases across languages and personal circumstances. Review contact-selection rules for exclusion risks. Checking that numbers survive translation is useful but does not verify that obligations, negation or urgency retain their meaning. Human language review remains necessary for consequential communications.
+
+The application allows a social worker to override a lane and records the reason. Before operational use, we need to define who may lower a referral level and whether hard referral triggers can be overridden.
+
+### 9.4 Accountability and regulatory boundaries
+
+Assign named owners for legal modules, technical maintenance, referral information and incident handling. Identify coverage gaps and complete the legal and operational review required for the intended real-client deployment. Describing the output as legal information does not remove responsibility for errors or settle the legal classification of the service.
+
+An EU AI Act assessment must consider territorial scope and intended use. A legal-information assistant is not automatically a high-risk system merely because it concerns law. Expansion into public-benefit eligibility assessment or specified judicial/ADR uses could materially change the analysis under Annex III [S10]. Model openness alone does not establish application-level compliance.
+
+### 9.5 Proposed user disclosure
+
+> This prototype uses AI to help your social worker organise information, identify questions and prepare next steps. It can misunderstand facts or make mistakes and does not replace professional legal advice. Your social worker checks the information, assesses vulnerability themselves and can involve a specialist. For this demonstration, use fictional cases only. Information entered into the tool is sent to external services for processing; uploaded photographs are not automatically anonymised. Ending the case clears it from this browser but does not guarantee deletion from external services or downloaded files.
+
+This is proposed disclosure text for the demonstration. Its implementation in the live interface remains to be confirmed.
+
+## 10. Team contributions, external resources and AI disclosure
+
+All four team members contributed to the legal work. Their additional responsibilities are listed below.
+
+| Team member | Shared contribution | Additional area of focus |
 |---|---|---|
-| `PUBLICAI_API_KEY` | v2–v4 (read from the environment or `.env`) | — |
-| `OPENAI_API_KEY` | v5 only | — |
-| `LLM_PROVIDER`, `LLM_MODEL`, `LLM_REASONING` | v5 only (environment) | `publicai`, `gpt-5.6-sol`, `low` |
-| `APP_ACCESS_CODE` | optional access code for the API | not set |
+| Benjamin Bouveng | Legal work | Technical lead, coding and implementation |
+| Shanaya Harjai | Legal work | Pitch development and presentation |
+| Malin Da Ros | Legal work | Swiss legal expertise and case development |
+| Dong Hui Ryu | Legal work | Swiss legal expertise and legal-reasoning framework |
 
-**Deploying (Vercel).** The repository is linked to the Vercel project `lextec-tenancy-assistant`. A push to `main`
-deploys production to https://liit.bouveng.org; a push to any other branch creates a preview. Vercel finds the app
-through `[tool.vercel] entrypoint = "app.server:app"` in `pyproject.toml`; `vercel.json` sets the region to `fra1`
-(Frankfurt). `.vercelignore` keeps tests, the raw Fedlex files, PDFs and Word files, and local secrets out of the
-deployment. Set `PUBLICAI_API_KEY` in the Vercel project's environment variables; the v5 variables are set for the
-`v5-openai` branch only.
+Our legal materials are in `legal-team-materials/` [S1a]; together with the implementation commits and review records, they provide the basis for documenting contributions. Responsibilities for maintaining the project after the hackathon remain to be assigned.
 
----
+**External resources and AI use:**
 
-## 10. Repository map
+- **Apertus / Swiss AI Initiative:** inference model used in v4; Apache 2.0 model licensing is identified by its publisher.
+- **Public AI:** external hosted inference API; contractual terms and charges are separate from the model licence.
+- **Fedlex:** official statutory sources used to construct the local legal corpus.
+- **OpenCaseLaw:** court-decision data used in development and evaluation; verify applicable data and service terms before redistribution.
+- **OpenJustice:** initial platform exploration; confirm whether any code, protocol or content was reused.
+- **FastAPI, Uvicorn, pdfplumber and other packages:** implementation components; use the actual dependency manifest for exact versions and licences.
+- **Claude:** used to draft and cross-check legal modules and review evaluation outputs. Exact model versions and review arrangements remain to be recorded.
+- **OpenAI:** used in the separate v5 comparison branch. The exact API model identifier remains to be recorded; v4 uses Apertus.
+- **ChatGPT/Codex:** assisted with drafting and editing this report using our project documents and public sources. We remain responsible for checking the final submission.
 
-```
-app/
-  server.py            FastAPI endpoints (one per step); stateless
-  pipeline.py          intake, understanding, issue assembly, deadlines table, lane scoring, result
-  events.py            deciding events: pre-fill, cross-checks, confirmation
-  modules.py           situation modules: conditions, suggestion, questions, pre-fill, result, tenant-notice deadline
-  deadlines.py         deadline arithmetic, Zurich holidays, court holidays
-  dates.py             client's "when" words -> exact date, estimate range or unknown
-  scoring.py           urgency, information, vulnerability levels; lane rules
-  contacts.py          contact selection by rule
-  checks.py            removes AI sentences naming law, decisions or dates outside the case
-  outputs.py           answers, uploads, client handout, translation, expert brief
-  llm.py               Public AI client, retries, cost and audit records
-  corpus.py            statute and decision corpus, cross-reference expansion
-  guidance.py          loads the legal team's documents
-  writer.py            AI writer used by the generative versions (v3, v5); not used for the live result
-  build_resources.py   resources.md -> data/resources.json
-  data/resources.json  structured contacts
-  static/index.html    the user interface
-  static/benchmark.html evaluation page (/benchmark)
-corpus/
-  modules/             9 situation modules + SPEC.md
-  article_requirements.json  events per paragraph, with review_log
-  law_paragraphs.jsonl official law, one paragraph per line
-  paragraph_summaries.json   reviewed plain-English summaries
-  decisions/, leading_cases_index.json   court decisions (OpenCaseLaw, CC0)
-  fedlex/              raw Fedlex XML/HTML
-  build_law_corpus.py, build_summaries.py, fetch_decisions.py, fetch_leading_cases.py
-bench/
-  cases.json           the legal team's 9 cases with expected lanes and articles
-  run_bench.py, dev_run.py, extract_cases.py, build_report.py
-  results/             benchmark outputs, summary.json, evaluation_2026-11-08/
-tests/                 test_dates.py, test_deadlines.py, test_modules.py
-docs/                  scenarios.md (test scenarios incl. cases 10 and 11)
-  versions/<version>/  framework, disclosure and regulatory notes per version
-                       (v4-scoped-live, v2-baseline, v3-generative, v5-openai)
-Example cases/         the legal team's example cases (hack the law-9.md ... -17.md)
-output.md, escalation.md, deadlines.md, legal_workflow.md, resources.md   the legal team's specifications
-requirements.txt, pyproject.toml, vercel.json, .vercelignore
-```
+A project licence remains to be selected. Apertus's model licence does not determine the licence for our application.
 
----
+## 11. Questions to resolve before submission
 
-## 11. Limitations, risks and open points
+1. **Release:** Which commit in the linked repository is the submission version of LIITmus test?
+2. **OpenJustice version:** Which product/version did the team use, and was any code, protocol or content reused?
+3. **Contribution evidence:** Which legal documents, commits and review records should accompany team contributions?
+4. **Evaluation release:** Which commit and model settings produced the evaluation results presented in Section 7?
+5. **Vulnerability implementation:** What scale and routing thresholds does the current social-worker-only assessment use?
+6. **Routing:** How should the three lanes relate to the urgency levels in the examples, and when may a worker override a hard referral?
+7. **Deadline gaps:** Which receipt and deadline limitations remain in the submitted commit?
+8. **Privacy:** What are the actual inference and hosting arrangements, and is the submitted demonstration restricted to fictional cases?
+9. **Evidence:** Where are the raw evaluation artefacts, dependency versions, model settings and test records?
+10. **Ownership and next steps:** Which licence will you choose, who maintains legal content and referral contacts, and which additional social-work domain would be evaluated first?
 
-**Legal content**
-- Only 9 situations have guidance. Everything else gets a referral and no legal information.
-- The modules, the article-requirements table and the summaries were written and checked by AI (Claude). **No lawyer
-  has reviewed them.** The legal team was not available for this review.
-- Known routing error: subletting was routed to the co-tenant module in testing.
-- Questions may ask for facts the client has already stated (11 cases of this in the final review). Yes/no questions
-  are deliberately never pre-filled, which adds questions.
-- Deadlines are calculated only for the four triggers in the table and for the tenant's own notice. The receipt date
-  is taken as the client gives it. The finer receipt rules in `deadlines.md` (absolute vs relative receipt principle,
-  registered mail not collected) are not modelled. Court documents are not calculated. Only the nine statutory
-  Zurich holidays are used; local municipal holidays are not.
+## 12. Sources and documentation
 
-**Evaluation**
-- All reviews used one AI reviewer (a Claude agent) on known cases; none was checked by a lawyer. The early benchmark
-  harness was tuned on the same cases it was scored on.
-- The team's expected lanes come from its own analysis, which the team says may contain errors.
-- Generalisation to unseen cases has not been tested.
+This report draws on our legal working materials [S1], development README and evaluation records [S2], and the project details set out by the team. External sources explain the models, services and regulatory context. Evaluation figures refer to the comparison recorded in [S2].
 
-**Data protection and safety** (details: `docs/versions/<version>/regulatory.md` for `v4-scoped-live`,
-`v2-baseline`, `v3-generative`, `v5-openai`; `docs/versions/v4-scoped-live/disclosure.md`)
-- The masked description is sent to Public AI. Where Public AI processes data and how long it keeps it has not been
-  verified.
-- Masking covers only e-mails, IBANs, AHV numbers and phone numbers. Names and other details typed in free text are
-  sent as typed. Document photos are sent unmasked.
-- The live site is hosted on Vercel (region Frankfurt; Vercel is a US company).
-- The downloaded audit trail contains client information and must be handled like a case note.
-- v5 sends data to OpenAI (US); the transfer has not been assessed. Use invented cases only.
-- Contact details come from the legal team's `resources.md` and must be verified before passing on. The victim-support
-  number 142 is still to be verified.
-- The live site has no login. Anyone with the link can use it and spend API credit.
+- **[S1] Team working document:** [hack the law](https://docs.google.com/document/d/1CPMh81fa_T7U3ELXTHhUgR0i6awTPp4umefUFyrn3Cg/edit). Includes examples, legal workflow, output specifications, escalation, regulatory notes and pitch notes.
+- **[S1a] Team legal materials in this repository:** [`legal-team-materials/`](legal-team-materials/). `legal-workflow.md`, `escalation-indices.md`, `output-specification.md` and `deadline-calculation-rules.md` are loaded into the AI prompts; `social-service-contacts.md` is the source of the contact list (`app/data/resources.json`); `regulatory-questions-and-user-disclosure.md` contains the user-facing disclosure, liability waiver and data-protection guideline; `example-cases/case-1.md` to `case-9.md` are the team's example cases (source of `bench/cases.json`).
+- **[S2] Development documentation:** [README.md — v4 limited scope](https://drive.google.com/file/d/1Fqru4TuR5_rnl2cYjV5pbPTxLEW8JCN4/view). Main source for implementation, code paths and reported evaluation.
+- **Project repository:** [pink-carp/lextec-tenancy-assistant](https://github.com/pink-carp/lextec-tenancy-assistant). Source code and reproduction materials.
+- **[S3] OpenJustice:** [Product description](https://openjustice.ai/). Description of the platform's current capabilities.
+- **[S4] Apertus:** [Official documentation and model releases](https://www.apertus-ai.org/pages/documentation/).
+- **[S5] Public AI:** [Developer documentation](https://platform.publicai.co/docs).
+- **[S6] Public AI Switzerland:** [Organisation and service information](https://publicai.ch/).
+- **[S6a] Public AI Switzerland:** [Privacy notice](https://publicai.ch/privacy.html), especially sections 2 and 6 on revDSG and Swiss hosting; notice labelled draft when consulted.
+- **[S7] Public AI Inference Utility:** [Terms and Privacy](https://publicai.co/tc).
+- **[S8] Federal Data Protection and Information Commissioner:** [AI and data protection](https://www.edoeb.admin.ch/de/ki-und-datenschutz).
+- **[S9] Zurich Data Protection Commissioner:** [Guidance on AI use by public bodies](https://www.datenschutz.ch/mitteilungen/2025/neues-merkblatt-vorgehen-beim-einsatz-von-ki-bei-oeffentlichen-organen).
+- **[S10] European Commission:** [AI Act, Annex III](https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3).
 
----
+Sources consulted on 8 November 2026. This report was prepared from project documentation and team input. It does not constitute an independent code audit or a fresh execution of the benchmark. Section 11 lists the release details and outstanding decisions needed to complete the submission.
 
-## 12. Credits, licence and AI assistance
-
-- **Team:** HSG Hackathon 2026 team. The legal team wrote `output.md`, `escalation.md`, `deadlines.md`,
-  `legal_workflow.md`, `resources.md` and the example cases. *(Team member names to be added by the team.)*
-- **Challenge:** LexTec challenge, HSG Hackathon 2026.
-- **Model:** Apertus, by the Swiss AI Initiative; inference by Public AI.
-- **Data:** Swiss federal law from Fedlex; court decisions from OpenCaseLaw (CC0).
-- **Licence:** to be decided by the team. There is no LICENSE file yet.
-- **AI assistance:** the code, the situation modules, the article-requirements table, the reviews of the summaries,
-  the evaluations and this README were produced with the help of Claude Code (Anthropic). The runtime model of the
-  live version is Apertus only.

@@ -1,9 +1,0 @@
-harness_checklist_apertus70b 2 75.2s
-harness_checklist_apertus70b 4 75.2s
-harness_checklist_apertus70b 1 79.5s
-harness_checklist_apertus70b 3 92.2s
-harness_checklist_apertus70b 5 ERROR LLMError: swiss-ai/apertus-v1.5-70b returned invalid JSON 3 times in step '2 understand': Expecting ',' delimiter: line 
-harness_checklist_apertus70b 6 89.3s
-harness_checklist_apertus70b 7 101.4s
-harness_checklist_apertus70b 8 93.2s
-harness_checklist_apertus70b 9 84.0s

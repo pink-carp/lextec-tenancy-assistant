@@ -650,7 +650,7 @@ def score(case, override=None):
                 ind[k] = "high"
                 reasons[k] = [f"Confirmed in the follow-up questions. {r['by']}"]
     lane, rule = scoring.decide_lane(ind)
-    # hard triggers (docs/framework.md): violence, exploitation or migration status always go to a human
+    # hard triggers (legal-team-materials/escalation-indices.md): violence, exploitation or migration status always go to a human
     hard = [t for t, hit in [("violence, threats or coercion", "violence_threats_or_coercion" in ind_v),
                              ("exploitation or dependency", "exploitation_or_dependency" in ind_v),
                              ("immediate danger", bool(case["understanding"].get("immediate_danger"))),
