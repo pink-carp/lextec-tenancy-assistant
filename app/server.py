@@ -12,7 +12,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
-from . import events, outputs, pipeline
+from . import events, modules, outputs, pipeline
 
 app = FastAPI(title="Tenancy information assistant for social workers")
 STATIC = Path(__file__).resolve().parent / "static"
@@ -57,6 +57,7 @@ class Confirm(BaseModel):
     signals: list | None = None
     vulnerability_score: int | None = None
     events: dict | None = None
+    modules: list | None = None
 
 
 class Answers(BaseModel):
@@ -109,8 +110,9 @@ def create(body: NewCase):
     pipeline.gather_sources(case)
     case["provisional_lane"] = pipeline.provisional_lane(case)
     case["event_names"] = events.events()
+    case["module_titles"] = {k: v["title"] for k, v in modules.load().items()}
     return _out(case, ["sentences", "masking", "understanding", "facts", "disputes", "signals", "events",
-                       "documents", "intents", "situations", "deadlines", "provisional_lane", "event_status", "event_names",
+                       "documents", "intents", "situations", "deadlines", "provisional_lane", "event_status", "event_names", "modules_suggested", "module_titles",
                        "vulnerability_score", "vulnerability_source", "vulnerability_indicators",
                        "municipality", "articles_expanded"])
 
@@ -118,7 +120,7 @@ def create(body: NewCase):
 @app.post("/api/case/questions")
 def ask(body: Confirm):
     case = _load(body.state)
-    pipeline.confirm(case, body.facts, body.signals, body.vulnerability_score, body.events)
+    pipeline.confirm(case, body.facts, body.signals, body.vulnerability_score, body.events, body.modules)
     pipeline.questions(case)
     case["provisional_lane"] = pipeline.provisional_lane(case)
     return _out(case, ["questions", "dropped_questions", "sources", "provisional_lane"])
@@ -142,7 +144,8 @@ def document(body: Doc):
 def assess(body: Answers):
     case = _load(body.state)
     outputs.apply_answers(case, body.answers)
-    pipeline.assemble_issues(case)  # answers may have changed events
+    modules.apply_answers(case)  # answers set events and the facts used for deadlines
+    pipeline.assemble_issues(case)
     pipeline.assess(case)
     pipeline.score(case, override=body.override)
     pipeline.write(case)

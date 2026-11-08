@@ -1,0 +1,406 @@
+{
+  "id": "termination_by_landlord",
+  "title": "The landlord has terminated the lease",
+  "triggers": [
+    "doc:termination_by_landlord",
+    "E1=A"
+  ],
+  "summary_for_sw": "The client has received a termination from the landlord. A challenge or a request for more time must be filed with the conciliation authority within 30 days of receipt, even if no reason was given; a termination that breaks the form rules is void.",
+  "questions": [
+    {
+      "id": "tl_receipt_date",
+      "text": "On what date did you receive the termination? If it came by registered mail, also tell us the date on the collection slip and the date you collected it.",
+      "why": "The 30-day period for a challenge runs from when the termination was received.",
+      "input": "date",
+      "show_if": [
+        "E1!=B"
+      ],
+      "basis": [
+        "OR Art. 273 Abs. 1"
+      ],
+      "prefill": true,
+      "fact": "receipt_date:termination_by_landlord",
+      "urgent": true
+    },
+    {
+      "id": "tl_official_form",
+      "text": "Did the termination come on an official printed form that explains how to challenge it or ask for more time?",
+      "why": "A landlord must terminate on a form approved by the canton; otherwise the termination is void.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E1!=B"
+      ],
+      "basis": [
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "tl_married",
+      "text": "Are you married or in a registered partnership, and is this flat your family home?",
+      "why": "If so, the landlord must send the termination to your spouse or partner separately as well.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E8=C"
+      ],
+      "basis": [
+        "OR Art. 266n"
+      ],
+      "prefill": true,
+      "sets_event": "E8"
+    },
+    {
+      "id": "tl_spouse_copy",
+      "text": "Did your spouse or partner receive their own, separate copy of the termination?",
+      "why": "A termination of a family home that is not sent separately to both spouses or partners is void.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E1!=B",
+        "E8=A"
+      ],
+      "basis": [
+        "OR Art. 266n",
+        "OR Art. 266o"
+      ],
+      "prefill": false
+    },
+    {
+      "id": "tl_before_termination",
+      "text": "What happened between you and the landlord before the termination? For example, did you report a defect, ask for repairs or a rent reduction, or is there a dispute or procedure with the landlord?",
+      "why": "A termination given because the tenant asserted claims under the lease in good faith can be challenged.",
+      "input": "short_text",
+      "show_if": [
+        "E1!=B"
+      ],
+      "basis": [
+        "OR Art. 271a Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "tl_end_date_and_reason",
+      "text": "What end date does the termination give, and does it state a reason?",
+      "why": "The landlord must give the reasons on request, and the end date shows when the lease would end.",
+      "input": "short_text",
+      "show_if": [
+        "E1!=B"
+      ],
+      "basis": [
+        "OR Art. 271 Abs. 2",
+        "OR Art. 266a Abs. 1"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "tl_form",
+      "text": "A landlord must terminate a flat lease in writing, on a form approved by the canton that explains how to challenge the termination or ask for an extension. A termination without this form is void (has no legal effect).",
+      "client_text": "A landlord must end a flat lease in writing, on an official form from the canton. The form explains how to contest the termination or ask for more time. A termination without this form has no effect.",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_challenge",
+      "text": "A termination can be challenged at the conciliation authority (Schlichtungsbehörde) within 30 days of receipt. The 30 days run from receipt, not from the end date of the lease. A challenge is possible even if the termination gives no reason. A termination is challengeable if it breaks the principle of good faith; the law names examples, such as a termination given because the tenant asserted claims under the lease in good faith (for example, asking for a defect to be repaired). Such a termination is not automatically void: it must be challenged in time, and the outcome is not certain. Conciliation proceedings in disputes about flat leases are free of court fees.",
+      "client_text": "You can contest the termination at the conciliation authority (Schlichtungsbehörde) within 30 days of receiving it, even if no reason was given. The 30 days count from when you received it, not from the date the lease is meant to end. One example the law names is a termination because you asked in good faith for your rights, such as a repair. The result is not certain, but if you miss the 30 days, this option may be lost. The conciliation procedure has no court fees.",
+      "basis": [
+        "OR Art. 271 Abs. 1",
+        "OR Art. 271a Abs. 1",
+        "OR Art. 259a Abs. 1",
+        "OR Art. 273 Abs. 1",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_reasons",
+      "text": "The landlord must give the reasons for the termination if the tenant asks. Asking for the reasons does not change the 30-day deadline for a challenge.",
+      "client_text": "You can ask the landlord to explain the reasons for the termination, and the landlord must answer. Do not wait for the answer: the 30-day deadline keeps running.",
+      "basis": [
+        "OR Art. 271 Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_extension",
+      "text": "If the end of the lease would cause the tenant or the family a hardship that the landlord's interests do not justify, the tenant can ask for an extension of the tenancy (Erstreckung: extra time before having to leave). For a flat, the authority can grant up to four years in total, in one or two steps. For an open-ended lease, the request must be filed with the conciliation authority within 30 days of receipt of the termination. If a challenge is rejected, the authority checks on its own whether an extension can be granted. An extension is excluded after some terminations, for example for unpaid rent after a payment demand, for a serious breach of the duty of care and consideration, or for the tenant's bankruptcy; it is usually excluded if the landlord offers an equivalent replacement flat.",
+      "client_text": "If moving out would be a real hardship for you or your family, you can ask for more time to stay in the flat; for a flat, the authority can grant up to four years in total. This request also has a 30-day deadline from when you received the termination. It is not possible after every termination, for example not after a termination for unpaid rent.",
+      "basis": [
+        "OR Art. 272 Abs. 1",
+        "OR Art. 272a Abs. 1",
+        "OR Art. 272a Abs. 2",
+        "OR Art. 272b Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "OR Art. 273 Abs. 5"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_spouse",
+      "text": "Because the flat is the family home of a married couple or registered partners, the landlord must send the termination separately to the tenant and to the spouse or partner. A termination that does not meet this rule is void. The spouse or partner can also challenge the termination or ask for an extension in their own name.",
+      "client_text": "Because you are married or in a registered partnership and live here as a family, the landlord must send the termination separately to you and to your spouse or partner. If that was not done, the termination has no effect. Your spouse or partner can also contest it or ask for more time.",
+      "basis": [
+        "OR Art. 266n",
+        "OR Art. 266o",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "show_if": [
+        "E1=A",
+        "E8=A"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "tl_refer_now",
+      "text": "Refer the client today to a tenancy advice service or lawyer and send the expert brief. Do not wait for all documents: the 30-day deadline runs regardless.",
+      "client_text": "Get advice from a tenancy advice service or lawyer today. Do not wait until you have all the documents, because the 30-day deadline keeps running.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ],
+      "deadline": "termination_challenge"
+    },
+    {
+      "id": "tl_file_request",
+      "text": "If the client wants to contest the termination or needs more time, file the request with the conciliation authority for the place where the flat is (the termination form lists the authorities), before the deadline and as early as possible. The request can be submitted in writing or stated orally at the authority. Keep proof of when it was submitted.",
+      "client_text": "If you want to contest the termination or need more time, file a request with the conciliation authority (Schlichtungsbehörde) for the place where your flat is, as early as possible and before the deadline. You can do this in writing or in person at the authority. Keep proof of the date.",
+      "who": "client",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "ZPO Art. 33",
+        "ZPO Art. 202 Abs. 1",
+        "VMWG Art. 9 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ],
+      "deadline": "termination_challenge"
+    },
+    {
+      "id": "tl_ask_reasons",
+      "text": "Help the client ask the landlord in writing for the reasons for the termination, sent by registered post, with a copy kept. Do not wait for the reply before filing.",
+      "client_text": "Ask the landlord in a letter, by registered post, to explain the reasons for the termination. Keep a copy. Do not wait for the reply before you file your request.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 271 Abs. 2"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_collect_documents",
+      "text": "Ask the client to collect every page of the termination, the envelope and collection slip, the lease, and all messages with the landlord from before and after the termination (for example a defect report and any reply), with photos of any defect.",
+      "client_text": "Collect every page of the termination, the envelope and post office slip, your lease, and all messages with the landlord before and after the termination, for example your defect report and any reply. Add photos of any defect.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 271a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "id": "tl_note_hardship",
+      "text": "If an extension may be possible, note with the client the facts that matter for it: how long the client has lived in the flat, the family, health and financial situation, the local housing market, and the search for another flat so far.",
+      "client_text": "Write down what would make moving hard for you (how long you have lived here, your family, health and money situation) and keep a record of your flat search.",
+      "who": "social_worker",
+      "group": "needs_clarification",
+      "basis": [
+        "OR Art. 272 Abs. 1",
+        "OR Art. 272 Abs. 2"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Does the termination meet the requirements of Art. 266l–266n, and is it void under Art. 266o?",
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "text": "Are there grounds to challenge the termination under Art. 271 or 271a, given what happened before it?",
+      "show_if": [
+        "E1=A"
+      ]
+    },
+    {
+      "text": "Is an extension under Art. 272 possible or excluded under Art. 272a, and for how long could it be granted?",
+      "show_if": [
+        "E1=A"
+      ]
+    }
+  ],
+  "deadlines": [
+    "termination_challenge"
+  ],
+  "review": [
+    {
+      "item": "tl_receipt_date",
+      "checked_against": [
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "273 Abs. 1 'nach Empfang'. Second pass: show_if E1!=B added. Question does not assert a theory of when uncollected registered mail counts as received."
+    },
+    {
+      "item": "tl_official_form",
+      "checked_against": [
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o"
+      ],
+      "note": "266l Abs. 2 + 266o. Second pass: show_if E1!=B."
+    },
+    {
+      "item": "tl_married",
+      "checked_against": [
+        "OR Art. 266n"
+      ],
+      "note": "266n."
+    },
+    {
+      "item": "tl_spouse_copy",
+      "checked_against": [
+        "OR Art. 266n",
+        "OR Art. 266o"
+      ],
+      "note": "266n 'separat zuzustellen', 266o nullity. Second pass: show_if E1!=B added."
+    },
+    {
+      "item": "tl_before_termination",
+      "checked_against": [
+        "OR Art. 271a Abs. 1"
+      ],
+      "note": "271a Abs. 1 lit. a. Second pass: 'rights' changed to 'claims' to match 'Ansprüche'."
+    },
+    {
+      "item": "tl_end_date_and_reason",
+      "checked_against": [
+        "OR Art. 271 Abs. 2",
+        "OR Art. 266a Abs. 1"
+      ],
+      "note": "271 Abs. 2 'muss auf Verlangen begründet werden'."
+    },
+    {
+      "item": "tl_form",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o"
+      ],
+      "note": "266l Abs. 1 and 2 (form must say how to challenge or request extension); 266o."
+    },
+    {
+      "item": "tl_challenge",
+      "checked_against": [
+        "OR Art. 271 Abs. 1",
+        "OR Art. 271a Abs. 1",
+        "OR Art. 259a Abs. 1",
+        "OR Art. 273 Abs. 1",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "note": "271 Abs. 1, 271a Abs. 1 lit. a, 273 Abs. 1. Says challengeable, not void. Second pass: added 259a Abs. 1 (repair claim is a claim under the lease); client_text limited 'no court fees' to the conciliation procedure (ZPO 113 Abs. 2 lit. c)."
+    },
+    {
+      "item": "tl_reasons",
+      "checked_against": [
+        "OR Art. 271 Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "271 Abs. 2. That asking does not suspend the 273 deadline follows from 273 Abs. 1 having no suspension; not stated expressly in the text."
+    },
+    {
+      "item": "tl_extension",
+      "checked_against": [
+        "OR Art. 272 Abs. 1",
+        "OR Art. 272a Abs. 1",
+        "OR Art. 272a Abs. 2",
+        "OR Art. 272b Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "OR Art. 273 Abs. 5"
+      ],
+      "note": "272 Abs. 1, 272b Abs. 1 (4 years, one or two extensions), 273 Abs. 2 lit. a, 273 Abs. 5, 272a Abs. 1 lit. a-c, 272a Abs. 2 ('in der Regel'). Second pass: removed article ref from text; 'up to four years' limited to authority-granted extensions (272b Abs. 2 sets no maximum for agreed ones)."
+    },
+    {
+      "item": "tl_spouse",
+      "checked_against": [
+        "OR Art. 266n",
+        "OR Art. 266o",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "note": "266n, 266o, 273a Abs. 1 and 3."
+    },
+    {
+      "item": "tl_refer_now",
+      "checked_against": [
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "273 Abs. 1."
+    },
+    {
+      "item": "tl_file_request",
+      "checked_against": [
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "ZPO Art. 33",
+        "ZPO Art. 202 Abs. 1",
+        "VMWG Art. 9 Abs. 1"
+      ],
+      "note": "Says 'file within', not 'must reach', because whether ZPO 143 posting rules apply to the 273 period was not verified. Second pass: added VMWG 9 Abs. 1 lit. e (form lists conciliation authorities)."
+    },
+    {
+      "item": "tl_ask_reasons",
+      "checked_against": [
+        "OR Art. 271 Abs. 2"
+      ],
+      "note": "271 Abs. 2."
+    },
+    {
+      "item": "tl_collect_documents",
+      "checked_against": [
+        "OR Art. 271a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "No legal claim."
+    },
+    {
+      "item": "tl_note_hardship",
+      "checked_against": [
+        "OR Art. 272 Abs. 1",
+        "OR Art. 272 Abs. 2"
+      ],
+      "note": "Second pass: replaced a duplicate of question tl_spouse_copy with this action; factors from 272 Abs. 2 lit. b, c, e. Conditional on extension being possible (272a)."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

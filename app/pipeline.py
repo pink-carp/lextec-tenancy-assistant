@@ -18,7 +18,7 @@ from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
-from . import checks, contacts, corpus, events, guidance, scoring, writer
+from . import checks, contacts, corpus, events, guidance, modules, scoring, writer
 from .dates import parse_when
 from .deadlines import DeadlineSpec, compute_deadline
 from .llm import ask_json
@@ -371,6 +371,8 @@ def understand(case):
     arts = [a for i in case["understanding"]["issues"] for a in i["articles"]]
     events.prefill(case, only=events.needed_for(arts))  # one closed call per event, confirmed in step 2
     assemble_issues(case)
+    case["modules_suggested"], case["modules_suggested_by"] = modules.suggest_ai(case)
+    case["modules"] = list(case["modules_suggested"])
     deadlines(case)  # no AI involved: available already for the provisional lane
     return case
 
@@ -445,9 +447,11 @@ def _topics(vind, areas, cannot_pay):
     return t
 
 
-def confirm(case, facts=None, signals=None, vulnerability_score=None, event_edits=None):
+def confirm(case, facts=None, signals=None, vulnerability_score=None, event_edits=None, modules_selected=None):
     """Step 3: the social worker's corrections replace the AI's reading; issues are rebuilt from the confirmed events."""
     events.confirm(case, event_edits)
+    if modules_selected is not None:
+        case["modules"] = [m for m in modules_selected if m in modules.load()]
     assemble_issues(case)
     if facts is not None:
         for f in facts:
@@ -481,6 +485,8 @@ def gather_sources(case):
                             "summary": summaries().get(p["id"], {}).get("summary", "")}
     bases = [pid for d in case.get("deadlines", []) for pid in d["legal_basis"]]  # always citable
     bases += [pid for q in case.get("questions", []) for pid in q.get("legal_basis", [])]
+    bases += [pid for m in modules.active(case) for k in ("questions", "points", "actions")
+              for it in m.get(k) or [] for pid in it.get("basis") or []]
     for pid in bases:
         p = corpus.by_id().get(pid)
         if p:
@@ -520,11 +526,10 @@ def _articles(case):
 
 
 def questions(case):
-    """Step 5: Apertus writes one question per fact that decides the rules at issue (see writer.questions)."""
-    arts = _articles(case)
-    st = writer.statuses(case, arts)
-    qs, dropped = writer.questions(case, arts, st)
-    case["questions"], case["dropped_questions"], case["statuses"] = qs, dropped, st
+    """Step 5: the checked questions of the confirmed situation modules; Apertus pre-fills answers the description
+    already gives (with the sentence), the social worker confirms. (v3 generative questions: writer.questions.)"""
+    modules.questions(case)
+    case["dropped_questions"] = []
     return case
 
 
@@ -547,12 +552,15 @@ DEADLINE_TABLE = {
 }
 
 
+DEADLINE_KIND = {"OR Art. 257d Abs. 1": "payment_demand", "OR Art. 273 Abs. 1": "termination_challenge",
+                 "OR Art. 273 Abs. 2": "termination_extension", "OR Art. 270b Abs. 1": "rent_increase_challenge"}
+
+
 def deadlines(case):
-    today = date.fromisoformat(case["today"])
     out = []
     for e in case.get("events", []):
         for action, basis in DEADLINE_TABLE.get(e.get("doc_type"), []):
-            d = {"id": f"D{len(out) + 1}", "action": action, "legal_basis": [basis], "who_must_act": "client",
+            d = {"id": f"D{len(out) + 1}", "kind": DEADLINE_KIND[basis], "action": action, "legal_basis": [basis], "who_must_act": "client",
                  "direction": "forward", "trigger_event_id": e["id"], "check": "legal team's deadline table"}
             if e["precision"] == "exact" and _d(e["date"]):
                 t0 = t1 = _d(e["date"])
@@ -576,6 +584,10 @@ def deadlines(case):
                         "earliest": None, "latest": None, "determinable": False, "precautionary": False,
                         "not_determinable_reason": "legal_uncertainty", "check": "code",
                         "steps": ["The time limit depends on the document and the procedure; it is not calculated here."]})
+    if any("tenant_notice" in (m.get("deadlines") or []) for m in modules.active(case)):
+        d = modules.tenant_notice_deadline(case)
+        if d:
+            out.append({**d, "id": f"D{len(out) + 1}"})
     case["deadlines"] = out
     return case
 
@@ -640,7 +652,29 @@ def score(case, override=None):
     reasons = {"urgency": ur, "severity": sr, "complexity": cr,
                "vulnerability": [f"Rated {case['vulnerability_score']}/10 ({case['vulnerability_source']})"],
                "information": ir}
+    ind_v = set(case.get("vulnerability_indicators", []))
+    if "essential_needs" in {x["kind"] for x in sig} and ind["urgency"] == "low":
+        ind["urgency"] = "medium"
+        reasons["urgency"].append("No heating, water or power right now.")
+    if "violence_threats_or_coercion" in ind_v or case["understanding"].get("immediate_danger"):
+        ind["urgency"], ind["severity"] = "high", "high"
+        reasons["urgency"].append("Violence, threats or danger were stated: safety comes first.")
+        reasons["severity"] = ["Violence, threats or danger were stated: the client's safety and home are at risk."]
+    for r in case.get("raised", []):  # a confirmed answer such as "no heating in winter, children in the flat"
+        for k in r["indices"]:
+            if k in ind:
+                ind[k] = "high"
+                reasons[k] = [f"Confirmed: {r['by']}"]
     lane, rule = scoring.decide_lane(ind)
+    # hard triggers (docs/framework.md): violence, exploitation or migration status always go to a human
+    hard = [t for t, hit in [("violence, threats or coercion", "violence_threats_or_coercion" in ind_v),
+                             ("exploitation or dependency", "exploitation_or_dependency" in ind_v),
+                             ("immediate danger", bool(case["understanding"].get("immediate_danger"))),
+                             ("migration status", "migration" in case["understanding"]["scope"].get("other_areas_of_law", []))] if hit]
+    if hard and lane < 3:
+        lane, rule = 3, "Lane 3: hard trigger (" + ", ".join(hard) + ") - always referred to a human."
+    if not case.get("modules") and lane < 2:
+        lane, rule = 2, "Lane 2: this tool has no checked guidance for this situation."
     if override:
         lane, rule = int(override["lane"]), f"Lane {override['lane']}: set by the social worker ({override['reason']})."
     case["indices"], case["index_reasons"], case["lane"], case["lane_rule"] = ind, reasons, lane, rule
@@ -687,69 +721,39 @@ def allowed_dates(case):
     return {x for x in out if x} | checks.mentioned_dates(facts_block(case))
 
 
+def situation_summary(case):
+    """Apertus: two neutral sentences on the client's situation and goal (facts only); code removes law and dates."""
+    prompt = ("Write two neutral sentences for a social worker summarising the client's situation and what the client "
+              "wants. Facts only, from the client's words; no legal rules, no advice, no article numbers, no dates that "
+              "the client did not give. 'Kündigung' means termination (not eviction).\nAnswer JSON only: {\"situation\": \"...\"}\n\nCLIENT'S WORDS:\n"
+              + "\n".join(case["sentences"]))
+    try:
+        return str(ask_json(prompt, trace=case["trace"], step="9 situation summary", max_tokens=200).get("situation", ""))
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def write(case):
-    """Step 9: one Apertus call per issue (note) and one for the actions and situation, all gated by code statuses."""
-    arts = _articles(case)
-    st = writer.statuses(case, arts)
-    issues = case["understanding"]["issues"]
-    with ThreadPoolExecutor(4) as ex:
-        fut = ex.submit(writer.actions, case, arts, st)
-        # AI notes applying the law: off. Measured 2026-11-08 (11 cases, blind Claude judge): even gated by confirmed
-        # events and checked twice, about 1 in 4 shown legal sentences was wrong. Switch: writer.SHOW_NOTES.
-        notes = list(ex.map(lambda i: writer.note(i, st, case), issues)) if writer.SHOW_NOTES else [([], [], None)] * len(issues)
-        situation, acts, act_dropped = fut.result()
-    screen_issues, dropped = [], list(act_dropped)
-    for iss, (kept, drop, err) in zip(issues, notes):
-        dropped += [{**d, "where": iss["issue"]} for d in drop]
-        screen_issues.append({"issue": iss["issue"], "articles": iss["articles"], "source": iss.get("source"),
-                              "sentences": kept, "error": err,
-                              "rules": [{"statement": f"{a.replace('OR ', 'Art. ')} OR: {iss['summaries'].get(a, '')}",
-                                         "sources": [p["id"] for p in corpus.by_article().get(a, [])][:3],
-                                         "check": "reviewed summary"} for a in iss["articles"]]})
-    for n, a in enumerate(acts):
-        a["id"] = f"A{n + 1}"
-        a["sources"] = a.pop("basis", [])
-        a["when"] = ""
-    case["statuses"] = st
-    case["screen"] = {"situation": situation, "actions": acts, "issues": screen_issues, "open_points": [],
+    """Step 9 (v4): checked module content whose conditions hold; Apertus writes only the situation summary."""
+    blocks, acts, lawyer = modules.assemble(case)
+    note = None
+    if not blocks:
+        note = ("This tool has no checked guidance for this situation. Please refer the client to the tenant association "
+                "or another advice service listed below.")
+    case["screen"] = {"situation": situation_summary(case), "modules": blocks, "actions": acts, "issues": [],
+                      "open_points": [], "lawyer_questions": lawyer, "out_of_scope": note,
                       "lane_explanation": lane_explanation(case)}
-    case["write_dropped"] = dropped
     return case
 
 
 def verify(case, applicability=True):
-    """Step 10: code checks (unknown articles and dates) and the two Apertus checks on every legal sentence."""
-    removed = list(case.get("write_dropped", []))
+    """Step 10 (v4): the only AI-written text on screen is the situation summary: code removes article references and
+    dates that are not in the case. Module content is checked offline (corpus/modules, review entries)."""
+    removed = []
     law_articles = {s["article"] for s in case["sources"].values() if s["type"] == "law"}
-    ok_dates = allowed_dates(case)
     scr = case["screen"]
-    scr["situation"] = checks.clean_text(scr["situation"], law_articles, [], ok_dates, "situation", removed)
-    for a in scr["actions"]:
-        a["what"] = checks.clean_text(a["what"], law_articles, [], ok_dates, f"action {a['id']}", removed)
-    items = []
-    for n, iss in enumerate(scr["issues"]):
-        for s in iss["sentences"]:
-            s["text"] = checks.clean_text(s["text"], law_articles, [], ok_dates, f"issue {n + 1}", removed)
-            if s["text"]:
-                items.append(({"text": s["text"], "para": s["para"]}, ("issue", n, s)))
-    for a in scr["actions"]:
-        if a["what"] and a["sources"]:
-            items.append(({"text": a["what"], "para": a["sources"][0]}, ("action", None, a)))
-    checked = 0
-    if applicability and items:
-        kept, rem = writer.check([it for it, _ in items], case)
-        checked = len(items)
-        bad = {r["sentence"] for r in rem}
-        removed += rem
-        for it, (kind, n, obj) in items:
-            if it["text"] in bad:
-                if kind == "issue":
-                    scr["issues"][n]["sentences"].remove(obj)
-                else:
-                    obj["what"] = ""
-    scr["actions"] = [a for a in scr["actions"] if a["what"]]
-    case["verification"] = {"removed": removed, "warnings": [], "rules_checked": checked, "rules_total": checked,
-                            "unverifiable": False}
+    scr["situation"] = checks.clean_text(scr["situation"], law_articles, [], allowed_dates(case), "situation", removed)
+    case["verification"] = {"removed": removed, "warnings": [], "rules_checked": 0, "rules_total": 0, "unverifiable": False}
     return case
 
 

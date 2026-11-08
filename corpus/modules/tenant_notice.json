@@ -1,0 +1,400 @@
+{
+  "id": "tenant_notice",
+  "title": "The tenant wants to end the lease or leave early",
+  "triggers": [
+    "situation:moving_out_or_early_departure",
+    "doc:notice_given_by_tenant_or_cotenant",
+    "E2=A",
+    "situation:termination & E1!=A & E3!=A"
+  ],
+  "summary_for_sw": "The client wants to give notice or move out early. The notice must be a signed letter that reaches the landlord in time for a permitted end date; leaving earlier needs a suitable replacement tenant, and a married client needs the spouse's express consent for the family home.",
+  "questions": [
+    {
+      "id": "tn_desired_end_date",
+      "text": "On which date do you want your lease to end?",
+      "why": "The end date and the notice period together decide by when the landlord must have your letter.",
+      "input": "date",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266a Abs. 1"
+      ],
+      "prefill": true,
+      "fact": "desired_end_date"
+    },
+    {
+      "id": "tn_notice_months",
+      "text": "How many months' notice does your lease require?",
+      "why": "The notice period in the lease applies if it is longer than the three months set by law for flats.",
+      "input": "number",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "prefill": true,
+      "fact": "notice_months"
+    },
+    {
+      "id": "tn_end_dates",
+      "text": "To which dates does your lease allow you to give notice, for example 'the end of any month except December'?",
+      "why": "Notice can end the lease only on a date allowed by the lease or the law.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "tn_married",
+      "text": "Are you married or in a registered partnership, and is this flat your family home?",
+      "why": "If so, you can give notice only with the express consent of your spouse or partner.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E8=C"
+      ],
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3"
+      ],
+      "prefill": true,
+      "sets_event": "E8"
+    },
+    {
+      "id": "tn_fixed_term",
+      "text": "Does your lease end on a fixed date agreed in the contract?",
+      "why": "A lease for a fixed period ends on that date without notice; the notice rules are for leases without an end date.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E14=C"
+      ],
+      "basis": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266a Abs. 1"
+      ],
+      "prefill": true,
+      "sets_event": "E14"
+    },
+    {
+      "id": "tn_leave_early",
+      "text": "Do you want to move out before the lease can end by notice, for example because your new flat is free earlier?",
+      "why": "If you hand back the flat early, you are released only if you propose a suitable new tenant; otherwise rent stays due.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 264 Abs. 1",
+        "OR Art. 264 Abs. 2"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "tn_periods",
+      "text": "If the lease is open-ended (has no fixed end date), the tenant of a flat can give notice of at least three months to a date that is customary locally, or, where there is no local custom, to the end of a three-month rental period. If the lease sets a longer notice period or other end dates, the lease applies. So the lease is the first thing to check.",
+      "client_text": "If your lease has no fixed end date, the law gives a notice period of three months for a flat. If your lease sets a longer period or particular end dates, the lease applies. Check your lease first.",
+      "basis": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "show_if": [
+        "E14!=A"
+      ]
+    },
+    {
+      "id": "tn_receipt",
+      "text": "The notice period is counted back from the chosen end date, and the full period must lie between the landlord's receipt of the letter and that date. What counts is when the landlord receives the letter, not when it is posted. If the notice arrives too late for the chosen date, it is not void: it takes effect on the next possible date, so rent is owed for longer.",
+      "client_text": "The landlord must receive your letter before the notice period starts. Posting it on the last day is not enough. If it arrives too late, the lease ends on the next possible date instead, and you pay rent until then.",
+      "basis": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266a Abs. 2"
+      ],
+      "show_if": [
+        "E14!=A"
+      ]
+    },
+    {
+      "id": "tn_form",
+      "text": "The tenant must give notice in writing, in a letter signed by hand. Only a qualified electronic signature with a qualified time stamp counts as a handwritten one, so an ordinary e-mail or text message does not meet the requirement and should not be relied on. A notice that is not in writing is void. The tenant does not need an official form; only the landlord must use one.",
+      "client_text": "Give notice in a letter that you sign by hand. A normal e-mail or text message is not enough. You do not need an official form; only the landlord must use one.",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o",
+        "OR Art. 13 Abs. 1",
+        "OR Art. 14 Abs. 1",
+        "OR Art. 14 Abs. 2bis"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "tn_spouse",
+      "text": "Because the flat is the family home of a married couple or registered partners, the tenant can give notice only with the express consent of the spouse or partner. A notice without that consent is void. If consent cannot be obtained, or is refused without good reason, the tenant can ask the court to decide. This rule does not apply to unmarried couples.",
+      "client_text": "Because you are married or in a registered partnership and live here as a family, your spouse or partner must expressly agree to the notice. The simplest way is for both of you to sign the letter. Without this consent, the notice has no effect.",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 2",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266o",
+        "ZGB Art. 169 Abs. 1"
+      ],
+      "show_if": [
+        "E8=A"
+      ]
+    },
+    {
+      "id": "tn_early_return",
+      "text": "Unless the landlord agrees to an earlier end: if the tenant hands back the flat without keeping to the notice period or date, the tenant is released early only by proposing a new tenant whom the landlord can reasonably accept, who can pay the rent and is willing to take over the lease on the same terms. Otherwise the rent stays due until the lease ends, or could have been ended, under the contract or the law. The landlord must deduct costs saved and what is earned, or deliberately not earned, by using the flat otherwise.",
+      "client_text": "If you move out before the lease can end, and the landlord does not agree to an earlier end, you are free of the rent only if you propose a new tenant who can pay the rent, is willing to take over the lease on the same terms, and whom the landlord can reasonably accept. Otherwise you keep paying rent until the lease could have ended. If the landlord re-lets the flat earlier, that rent counts in your favour.",
+      "basis": [
+        "OR Art. 264 Abs. 1",
+        "OR Art. 264 Abs. 2",
+        "OR Art. 264 Abs. 3"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "tn_fixed_term_lease",
+      "text": "If the lease was agreed for a fixed term, it ends on the agreed date without notice. If both parties tacitly continue it after that date, it becomes an open-ended lease. Whether and how a fixed-term lease can be ended earlier depends on the contract and should be checked by a specialist.",
+      "client_text": "Your lease ends on the agreed date without notice. If you want to leave earlier, ask an advice service to check your contract.",
+      "basis": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266 Abs. 2"
+      ],
+      "show_if": [
+        "E14=A"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "tn_check_lease",
+      "text": "Go through the lease with the client: does it have a fixed end date, what notice period and end dates are agreed, who is named as landlord or property manager (and at which address), and who is named as tenant.",
+      "client_text": "Check your lease: the notice period, the dates you can give notice for, and the name and address of the landlord or property manager.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "tn_write_letter",
+      "text": "Help the client write a short notice letter: name, address of the flat, a sentence ending the lease for the chosen end date, place and date, and a handwritten signature. If the flat is the family home of a married couple or registered partners, the spouse or partner also signs. Keep a copy.",
+      "client_text": "Write a short letter with your name, the flat's address, the sentence 'I terminate the lease for [end date]', the place and date, and your handwritten signature. If you are married or in a registered partnership, your spouse or partner signs too. Keep a copy.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266m Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "tn_send_registered",
+      "text": "Send the letter by registered post to the landlord or property manager named in the lease, early enough that it arrives well before the last day. Keep the postal receipt and tracking record, and ask the landlord to confirm receipt in writing.",
+      "client_text": "Send the letter by registered post to the landlord or property manager named in your lease, well before the last day. Keep the post office receipt and ask the landlord to confirm in writing.",
+      "who": "client",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266a Abs. 2"
+      ],
+      "show_if": [],
+      "deadline": "tenant_notice"
+    },
+    {
+      "id": "tn_replacement_tenant",
+      "text": "If the client wants to leave early, look for a replacement tenant who can pay the rent and would take over the lease on the same terms, give the landlord that person's details in writing, and keep a copy. Any agreement on an early end should be in writing.",
+      "client_text": "If you want to leave early, look for a new tenant who can pay the rent and would take over the lease on the same terms. Give the landlord the details in writing, keep a copy, and get any agreement in writing.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 264 Abs. 1"
+      ],
+      "show_if": [
+        "q:tn_leave_early=yes"
+      ]
+    },
+    {
+      "id": "tn_cotenant_check",
+      "text": "Someone else is also named as a tenant. Before the notice is sent, clarify with a tenancy advice service how it must be given and who must sign it.",
+      "client_text": null,
+      "who": "social_worker",
+      "group": "needs_clarification",
+      "basis": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "show_if": [
+        "E15=A"
+      ]
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Which notice period and termination dates apply under the lease and Art. 266a and 266c OR, including any local custom?",
+      "show_if": []
+    },
+    {
+      "text": "Does the planned notice meet the form requirements, given who signed the lease and the client's family situation?",
+      "show_if": []
+    },
+    {
+      "text": "If the client leaves early, does the proposed replacement tenant meet the requirements of Art. 264 Abs. 1?",
+      "show_if": [
+        "q:tn_leave_early=yes"
+      ]
+    }
+  ],
+  "deadlines": [
+    "tenant_notice"
+  ],
+  "review": [
+    {
+      "item": "tn_desired_end_date",
+      "checked_against": [
+        "OR Art. 266a Abs. 1"
+      ],
+      "note": "Fact for tenant_notice deadline."
+    },
+    {
+      "item": "tn_notice_months",
+      "checked_against": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "266c three months; 266a Abs. 1 lease prevails if longer."
+    },
+    {
+      "item": "tn_end_dates",
+      "checked_against": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "266a Abs. 1 'anderen Termin', 266c 'ortsüblichen Termin'."
+    },
+    {
+      "item": "tn_married",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3"
+      ],
+      "note": "266m Abs. 1 and 3."
+    },
+    {
+      "item": "tn_fixed_term",
+      "checked_against": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266a Abs. 1"
+      ],
+      "note": "266 Abs. 1; 266a Abs. 1 covers 'unbefristete' leases only."
+    },
+    {
+      "item": "tn_leave_early",
+      "checked_against": [
+        "OR Art. 264 Abs. 1",
+        "OR Art. 264 Abs. 2"
+      ],
+      "note": "264 Abs. 1 and 2."
+    },
+    {
+      "item": "tn_periods",
+      "checked_against": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "266c and 266a Abs. 1. Says nothing about shorter agreed periods (not settled by the text). Local Zurich dates left out: not in corpus."
+    },
+    {
+      "item": "tn_receipt",
+      "checked_against": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266a Abs. 2"
+      ],
+      "note": "266a Abs. 2 (late notice valid for next possible date). The receipt principle is general law/case law, not in the text; included because SPEC requires it."
+    },
+    {
+      "item": "tn_form",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266o",
+        "OR Art. 13 Abs. 1",
+        "OR Art. 14 Abs. 1",
+        "OR Art. 14 Abs. 2bis"
+      ],
+      "note": "266l Abs. 1 and 2, 266o, 13 Abs. 1, 14 Abs. 1. Second pass: added 'with a qualified time stamp' per 14 Abs. 2bis."
+    },
+    {
+      "item": "tn_spouse",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 2",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266o",
+        "ZGB Art. 169 Abs. 1"
+      ],
+      "note": "266m Abs. 1-3, 266o, ZGB 169 Abs. 1. Text says 'ausdrückliche' consent, not written; written signature is given as the practical way, not as a legal requirement."
+    },
+    {
+      "item": "tn_early_return",
+      "checked_against": [
+        "OR Art. 264 Abs. 1",
+        "OR Art. 264 Abs. 2",
+        "OR Art. 264 Abs. 3"
+      ],
+      "note": "264 Abs. 1-3; conditional on returning without keeping notice. Second pass: added 'unless the landlord agrees to an earlier end' so 'only if' is not overstated."
+    },
+    {
+      "item": "tn_fixed_term_lease",
+      "checked_against": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266 Abs. 2"
+      ],
+      "note": "266 Abs. 1 and 2. Early exit from fixed term left to a specialist."
+    },
+    {
+      "item": "tn_check_lease",
+      "checked_against": [
+        "OR Art. 266 Abs. 1",
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "No legal claim."
+    },
+    {
+      "item": "tn_write_letter",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266m Abs. 1"
+      ],
+      "note": "266l Abs. 1; spouse signature as practical form of 266m consent."
+    },
+    {
+      "item": "tn_send_registered",
+      "checked_against": [
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266a Abs. 2"
+      ],
+      "note": "Practical; receipt matters (see tn_receipt)."
+    },
+    {
+      "item": "tn_replacement_tenant",
+      "checked_against": [
+        "OR Art. 264 Abs. 1"
+      ],
+      "note": "264 Abs. 1 criteria."
+    },
+    {
+      "item": "tn_cotenant_check",
+      "checked_against": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "note": "Joint notice by co-tenants is case law not in the corpus, so the action only says to clarify."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

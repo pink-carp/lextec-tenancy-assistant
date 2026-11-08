@@ -1,0 +1,398 @@
+{
+  "id": "payment_demand",
+  "title": "Unpaid rent and a payment demand",
+  "triggers": [
+    "situation:rent_arrears",
+    "doc:payment_demand_with_termination_warning",
+    "E3=A",
+    "E9=A"
+  ],
+  "summary_for_sw": "The client is behind with rent or ancillary costs, and the landlord may have sent a written payment deadline with a termination warning. Paying the full amount within the deadline is what protects the lease; a missed deadline lets the landlord terminate, and no extension is then possible.",
+  "questions": [
+    {
+      "id": "pd_receipt_date",
+      "text": "On what date did you receive the landlord's letter, or collect it from the post office? If you did not collect it, on what date was the collection slip left for you?",
+      "why": "This date helps work out by when the full amount must be paid.",
+      "input": "date",
+      "show_if": [
+        "E3!=B"
+      ],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true,
+      "fact": "receipt_date:payment_demand_with_termination_warning",
+      "urgent": true
+    },
+    {
+      "id": "pd_deadline_in_letter",
+      "text": "What payment deadline does the letter give, what amount does it ask for, and does it say the lease will be terminated if you do not pay?",
+      "why": "The deadline and the amount in the letter decide what must be paid, and by when, to avoid a termination.",
+      "input": "short_text",
+      "show_if": [
+        "E3!=B"
+      ],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pd_termination_received",
+      "text": "Have you already received a letter from the landlord that terminates (ends) your lease?",
+      "why": "If the arrears are not paid within the deadline, the landlord may terminate, and a termination has its own 30-day deadline for a challenge.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E1=C"
+      ],
+      "basis": [
+        "OR Art. 257d Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "prefill": true,
+      "sets_event": "E1",
+      "urgent": true
+    },
+    {
+      "id": "pd_paid_since",
+      "text": "How much of the amount owed have you paid so far, and on which dates?",
+      "why": "Only payment of what is owed within the deadline stops the landlord from terminating on the basis of the letter.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pd_can_raise_funds",
+      "text": "Can you raise the full amount owed in time, for example from savings, family or social services?",
+      "why": "If the full amount is not paid within the deadline, the landlord may terminate the lease.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pd_married",
+      "text": "Are you married or in a registered partnership, and is this flat your family home?",
+      "why": "If so, the landlord must send the payment demand and any termination to your spouse or partner separately as well.",
+      "input": "yes_no_unknown",
+      "show_if": [
+        "E8=C"
+      ],
+      "basis": [
+        "OR Art. 266n"
+      ],
+      "prefill": true,
+      "sets_event": "E8"
+    }
+  ],
+  "points": [
+    {
+      "id": "pd_two_steps",
+      "text": "A payment demand is not yet a termination. It is the first of two steps: the landlord sets a written payment deadline, which for a flat must be at least 30 days, and warns that the lease will be terminated if the deadline passes without payment. Only if the deadline passes without payment may the landlord take the second step: a separate termination on the official cantonal form, with at least 30 days' notice to the end of a month. The lease does not end by itself when the deadline passes, and a flat cannot be terminated with immediate effect for arrears.",
+      "client_text": "The letter is a warning, not yet a termination. For a flat, the landlord must give you at least 30 days to pay. Only if you do not pay in time can the landlord end the lease, in a separate letter on an official form, and with at least 30 days' notice to the end of a month.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 266l Abs. 2"
+      ],
+      "show_if": [
+        "E3=A"
+      ]
+    },
+    {
+      "id": "pd_full_payment",
+      "text": "If the full amount owed is paid within the deadline, the landlord cannot terminate the lease on the basis of this payment demand. A part payment may not be enough. The law makes no exception for hardship such as job loss, children or a pending application for social assistance, so more time is only possible if the landlord agrees to it.",
+      "client_text": "If you pay the full amount by the deadline, the landlord cannot end your lease because of this letter. Paying only part may not be enough. The deadline keeps running even if you lost your job or applied for help, unless the landlord agrees to give you more time.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "show_if": [
+        "E3=A"
+      ]
+    },
+    {
+      "id": "pd_no_extension",
+      "text": "If the landlord terminates because the arrears were not paid within the deadline, the law excludes an extension of the tenancy (Erstreckung: extra time to stay in the flat). Whether such a termination can be challenged is a separate question; a challenge must be filed with the conciliation authority (Schlichtungsbehörde) within 30 days of receiving the termination.",
+      "client_text": "If the landlord ends the lease because the arrears were not paid in time, the law does not allow extra time to stay in the flat. If you want to contest such a termination, you must act within 30 days of receiving it, so get advice at once.",
+      "basis": [
+        "OR Art. 272a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E3=A"
+      ]
+    },
+    {
+      "id": "pd_spouse",
+      "text": "Because the flat is the family home of a married couple or registered partners, the landlord must send the payment demand, and any later termination, separately to the tenant and to the spouse or partner. A termination that does not meet these rules is void (has no legal effect).",
+      "client_text": "Because you are married or in a registered partnership and live here as a family, the landlord must send the payment letter and any termination separately to you and to your spouse or partner. A termination that breaks this rule has no effect.",
+      "basis": [
+        "OR Art. 266n",
+        "OR Art. 266o"
+      ],
+      "show_if": [
+        "E3=A",
+        "E8=A"
+      ]
+    },
+    {
+      "id": "pd_arrears_before_demand",
+      "text": "Rent is due on the date set in the lease; if the lease sets none and there is no local custom, at the end of each month. If rent or ancillary costs that are already due remain unpaid, the landlord may send a written payment demand with a termination warning (for a flat, a deadline of at least 30 days). Paying the missing amount before such a letter arrives leaves no arrears on which it could be based; any payment plan agreed with the landlord should be put in writing.",
+      "client_text": "Rent must be paid on the date in your lease. If rent stays unpaid, the landlord can send a formal letter giving you at least 30 days to pay, with a warning that the lease will be ended otherwise. Paying what is missing, or agreeing a plan with the landlord in writing, helps avoid this.",
+      "basis": [
+        "OR Art. 257c",
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": [
+        "E9=A",
+        "E3!=A"
+      ]
+    },
+    {
+      "id": "pd_no_withholding",
+      "text": "If the client is paying less rent because of a defect: withholding or cutting rent on one's own is not allowed and can lead to a payment demand and termination. A tenant who wants a defect repaired can instead set the landlord a reasonable written deadline, warn that future rent will be deposited with the office designated by the canton, announce the deposit in writing, and then deposit the rent there. Deposited rent counts as paid. The tenant must then bring the claims to the conciliation authority within 30 days of the due date of the first deposited rent; otherwise the deposited rent goes to the landlord.",
+      "client_text": "Do not hold back or cut your rent because of a defect. That can lead to a payment demand and the end of your lease. There is a legal way: give the landlord a written deadline to repair, announce in writing that you will pay future rent to an official office instead, and then pay it there. Get advice before you do this.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1",
+        "OR Art. 259g Abs. 2",
+        "OR Art. 259h Abs. 1"
+      ],
+      "show_if": [
+        "E4=A"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "pd_check_funds",
+      "text": "Check with the client today whether the full amount owed can be raised (savings, family, social services), and start any application for help at once. If a payment demand has arrived, the money must be paid before its deadline.",
+      "client_text": "Check today whether you can raise the full amount, for example from savings, family or social services, and apply for help straight away. If you have received a payment demand, the money must be paid before its deadline.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "show_if": [],
+      "deadline": "payment_demand"
+    },
+    {
+      "id": "pd_pay_in_full",
+      "text": "Pay the full amount claimed as early as possible so that it reaches the landlord before the deadline. Use the payment details in the letter, state which months are being paid, and keep the payment receipt.",
+      "client_text": "Pay the full amount as early as you can, so that the money reaches the landlord before the deadline. Use the payment details in the letter, write which months you are paying, and keep the receipt.",
+      "who": "client",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "show_if": [
+        "E3=A"
+      ],
+      "deadline": "payment_demand"
+    },
+    {
+      "id": "pd_contact_landlord",
+      "text": "If the full amount cannot be paid in time, contact the landlord at once to ask for more time or a payment plan, and get any agreement in writing. Asking alone does not stop a deadline that has already been set.",
+      "client_text": "If you cannot pay everything in time, contact the landlord now and ask for more time or a payment plan. Get any agreement in writing. Asking alone does not stop the deadline.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pd_keep_documents",
+      "text": "Ask the client to keep and bring the landlord's letter with all pages, the envelope, any collection slip or tracking record, the lease and proof of all rent payments.",
+      "client_text": "Keep the landlord's letter with all pages, the envelope, any post office slip, your lease and proof of all rent payments, and bring them to your next appointment.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pd_refer_if_terminated",
+      "text": "If the payment deadline has passed without full payment, or a termination has arrived, refer the client today to a tenancy advice service or lawyer and send the expert brief. A challenge of a termination must be filed with the conciliation authority within 30 days of receipt.",
+      "client_text": "If the deadline has passed without full payment, or you have received a termination, get advice from a tenancy advice service or lawyer today. There is a 30-day deadline to contest a termination.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "OR Art. 257d Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E3=A",
+        "E10!=B"
+      ],
+      "deadline": "termination_challenge"
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Does the payment demand meet the requirements of Art. 257d Abs. 1 (written form, amounts actually due, period, express termination warning), and what follows if the stated period is shorter than 30 days?",
+      "show_if": [
+        "E3=A"
+      ]
+    },
+    {
+      "text": "On which date is the payment demand deemed received, given the delivery and collection dates, and when does the payment period end?",
+      "show_if": [
+        "E3=A"
+      ]
+    },
+    {
+      "text": "Were the payment demand and any termination delivered separately to the spouse or registered partner (Art. 266n), and what follows if not?",
+      "show_if": [
+        "E3=A",
+        "E8=A"
+      ]
+    }
+  ],
+  "deadlines": [
+    "payment_demand",
+    "termination_challenge"
+  ],
+  "review": [
+    {
+      "item": "pd_receipt_date",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "why states no rule; receipt-based start of the period is case law, not in the text, so it is not claimed."
+    },
+    {
+      "item": "pd_deadline_in_letter",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Matches 257d Abs. 1: written deadline plus termination warning."
+    },
+    {
+      "item": "pd_termination_received",
+      "checked_against": [
+        "OR Art. 257d Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "why matches 257d Abs. 2 ('kann ... kündigen') and 273 Abs. 1 ('innert 30 Tagen nach Empfang')."
+    },
+    {
+      "item": "pd_paid_since",
+      "checked_against": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "'Bezahlt der Mieter innert der gesetzten Frist nicht' -> only payment within the deadline matters."
+    },
+    {
+      "item": "pd_can_raise_funds",
+      "checked_against": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "No rule beyond 257d Abs. 2."
+    },
+    {
+      "item": "pd_married",
+      "checked_against": [
+        "OR Art. 266n"
+      ],
+      "note": "266n names spouse and registered partner; family-home condition from heading '2. Wohnung der Familie'."
+    },
+    {
+      "item": "pd_two_steps",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 266l Abs. 2"
+      ],
+      "note": "30 days minimum for Wohnräume (Abs. 1); termination 'mit einer Frist von mindestens 30 Tagen auf Ende eines Monats' (Abs. 2), never immediate for flats; official form 266l Abs. 2."
+    },
+    {
+      "item": "pd_full_payment",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "Second pass: replaced 'only the landlord can agree to more time' with 'the law makes no exception for hardship', which the text supports by omission. 'Part payment may not be enough' kept conditional."
+    },
+    {
+      "item": "pd_no_extension",
+      "checked_against": [
+        "OR Art. 272a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "272a Abs. 1 lit. a. Second pass: client_text changed from 'you cannot ask' to 'the law does not allow'. Challenge itself left open (271a Abs. 3 only excludes lit. d and e)."
+    },
+    {
+      "item": "pd_spouse",
+      "checked_against": [
+        "OR Art. 266n",
+        "OR Art. 266o"
+      ],
+      "note": "266n covers both termination and 257d deadline; 266o voids a termination that breaks 266l-266n. Did not claim the demand itself is void."
+    },
+    {
+      "item": "pd_arrears_before_demand",
+      "checked_against": [
+        "OR Art. 257c",
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "257c due date wording incl. 'vereinbart oder ortsüblich'. Second pass: dropped the claim that a payment plan 'avoids' a demand; now only says to put it in writing."
+    },
+    {
+      "item": "pd_no_withholding",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1",
+        "OR Art. 259g Abs. 2",
+        "OR Art. 259h Abs. 1"
+      ],
+      "note": "259g Abs. 1 (written reasonable deadline, threat, written announcement, canton office), Abs. 2 (counts as paid). Second pass: added 259h Abs. 1 30-day conciliation requirement."
+    },
+    {
+      "item": "pd_check_funds",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "Second pass: text made correct when no demand has arrived yet (show_if is empty)."
+    },
+    {
+      "item": "pd_pay_in_full",
+      "checked_against": [
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "Practical advice only; no claim on when a payment legally counts as made."
+    },
+    {
+      "item": "pd_contact_landlord",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "No legal claim beyond 257d Abs. 1."
+    },
+    {
+      "item": "pd_keep_documents",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "No legal claim."
+    },
+    {
+      "item": "pd_refer_if_terminated",
+      "checked_against": [
+        "OR Art. 257d Abs. 2",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "Conditional wording; 30 days from receipt per 273 Abs. 1."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

@@ -1,0 +1,398 @@
+{
+  "id": "co_tenant_leaves",
+  "title": "A co-tenant moves out or stops paying",
+  "triggers": [
+    "situation:co_tenant_left_or_gave_notice"
+  ],
+  "summary_for_sw": "Several people signed the lease and one of them has moved out, says they gave notice, or no longer pays their part. This module covers who owes the rent, whether one person's notice ends the lease, the risk of a payment demand, and the deposit.",
+  "questions": [
+    {
+      "id": "ct_both_signed",
+      "text": "Who signed the lease as tenant? Are both your name and your co-tenant's name on it as tenants?",
+      "why": "If both of you signed, both of you are tenants, and the lease and the law decide who owes what.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 143 Abs. 1",
+        "OR Art. 544 Abs. 3"
+      ],
+      "prefill": true,
+      "sets_event": "E15"
+    },
+    {
+      "id": "ct_landlord_letter",
+      "text": "Has the landlord or the property manager sent you or your co-tenant a letter about the rent or the lease? If yes, does it set a payment deadline or say the lease will be ended?",
+      "why": "A written payment deadline with a termination warning starts a period within which the arrears must be paid.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true,
+      "urgent": true
+    },
+    {
+      "id": "ct_letter_receipt",
+      "text": "If the letter sets a payment deadline and warns that the lease will be ended, on what date did it arrive?",
+      "why": "The arrival date is needed to check the time to pay, which must be at least 30 days for a flat.",
+      "input": "date",
+      "show_if": [
+        "q:ct_landlord_letter=yes"
+      ],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true,
+      "urgent": true,
+      "fact": "receipt_date:payment_demand_with_termination_warning"
+    },
+    {
+      "id": "ct_notice_in_writing",
+      "text": "Has your co-tenant, or anyone else, given the landlord notice in writing? Do you have a copy, and did you sign it too?",
+      "why": "A tenant's notice must be in writing, and a notice signed by only one co-tenant needs to be checked.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "ct_arrears_amount",
+      "text": "How much rent is unpaid so far (in CHF), and for which months?",
+      "why": "Unpaid rent that is due can lead to a payment demand with a termination warning.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "ct_married",
+      "text": "Are you married to, or in a registered partnership with, your co-tenant?",
+      "why": "Some extra protections for the family home apply only to married couples and registered partners.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "ct_joint_liability",
+      "text": "Usually, if both signed the lease, each co-tenant owes the landlord the whole rent, not just a share (joint and several liability, 'solidarisch'). Leases often say this expressly, so check the lease for such a clause; the law also provides it for people who jointly took on an obligation as a simple partnership, unless they agreed otherwise. Where this applies, the landlord can claim the whole rent or part of it from either co-tenant, and both stay bound until the whole amount is paid. One co-tenant moving out does not change this by itself.",
+      "client_text": "Usually, if you both signed the lease, the landlord can ask either of you for the whole rent, not just half. Check your lease for a clause on this ('solidarisch'). One of you moving out does not change this by itself.",
+      "basis": [
+        "OR Art. 143 Abs. 1",
+        "OR Art. 143 Abs. 2",
+        "OR Art. 544 Abs. 3",
+        "OR Art. 144 Abs. 1",
+        "OR Art. 144 Abs. 2"
+      ],
+      "show_if": [
+        "q:ct_both_signed!=no"
+      ]
+    },
+    {
+      "id": "ct_internal_share",
+      "text": "Where the co-tenants are jointly liable, a co-tenant who pays more than his or her share can usually claim the excess back from the other. Unless something else follows from their relationship, each bears an equal share.",
+      "client_text": "If you pay more than your share of the rent, you may be able to claim the extra back from your co-tenant. Unless something else was agreed or follows from your situation, each of you usually bears an equal share.",
+      "basis": [
+        "OR Art. 148 Abs. 1",
+        "OR Art. 148 Abs. 2"
+      ],
+      "show_if": [
+        "q:ct_both_signed!=no"
+      ]
+    },
+    {
+      "id": "ct_partial_payment_risk",
+      "text": "If only part of the rent arrives, the rest is in arrears. The landlord can then set a written payment deadline of at least 30 days and warn that the lease will be terminated. If the arrears are not paid within that deadline, the landlord can terminate with at least 30 days' notice to the end of a month. After such a termination, an extension of the tenancy is not possible.",
+      "client_text": "If only part of the rent is paid, the rest counts as unpaid. The landlord can then give a written deadline of at least 30 days to pay, with a warning that the lease will be ended. If it is not paid in time, the landlord can end the lease with at least 30 days' notice to the end of a month.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 272a Abs. 1"
+      ],
+      "show_if": [
+        "E9!=B"
+      ]
+    },
+    {
+      "id": "ct_notice_by_one",
+      "text": "A tenant's notice must be in writing. A notice given by only one co-tenant may not end the lease for everyone. Whether it has any effect, for that person or for both, is not settled by the law text and is a question for a tenancy professional. Until that is clear, do not assume the lease has ended, and keep the full rent paid where possible.",
+      "client_text": "Notice by a tenant must be in writing. If only your co-tenant gave notice, this may not end the lease for both of you. A tenancy adviser needs to check this. Until then, do not assume the lease has ended, and try to keep the full rent paid.",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": [
+        "q:ct_notice_in_writing!=no"
+      ]
+    },
+    {
+      "id": "ct_deposit_both",
+      "text": "If a deposit was paid in cash or securities, the landlord must keep it at a bank on an account in the tenant's name. If the co-tenants paid it together or the account is in both names, it usually belongs to both. The bank may pay it out only with the agreement of both the landlord and the tenant side, or on a final payment order or court judgment, so one co-tenant moving out does not by itself release the deposit or a share of it.",
+      "client_text": "If a deposit was paid together or is in both your names, it usually belongs to both of you. The bank may pay it out only if the landlord and the tenants agree, or on a final court decision or payment order. It is not paid out just because one of you moves out.",
+      "basis": [
+        "OR Art. 257e Abs. 1",
+        "OR Art. 257e Abs. 3",
+        "OR Art. 544 Abs. 1"
+      ],
+      "show_if": [
+        "E13!=B"
+      ]
+    },
+    {
+      "id": "ct_spouse_rules_unmarried",
+      "text": "The special family-home rules (a tenant spouse may terminate only with the other spouse's express consent; the landlord must send terminations and payment demands separately to the spouse; the spouse's own right to challenge a termination) apply only to married couples and registered partners. They do not apply to unmarried partners, even with a child together. Under tenancy law, an unmarried partner's position comes from being a tenant herself or himself, if she or he signed the lease.",
+      "client_text": "The extra protections for the family home apply only to married couples and registered partners, not to unmarried partners, even with a child. Your position comes from being a tenant yourself, if you signed the lease.",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "show_if": [
+        "q:ct_married=no"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "ct_check_full_rent",
+      "text": "Check with the client today whether the full rent, including the missing part, can be paid on time (own income, social services, family), so that no payment demand follows.",
+      "client_text": "Check today whether the full rent, including the missing part, can be paid on time, for example from your income, social services or family.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": [
+        "E9!=B"
+      ],
+      "deadline": "payment_demand"
+    },
+    {
+      "id": "ct_letter_urgent",
+      "text": "If a letter from the landlord sets a payment deadline or ends the lease, note the date it arrived and get advice from a tenancy advice service or lawyer the same week.",
+      "client_text": "If a letter from the landlord sets a payment deadline or ends the lease, write down the date it arrived and get advice this week.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "q:ct_landlord_letter=yes"
+      ]
+    },
+    {
+      "id": "ct_ask_landlord_copy",
+      "text": "Ask the landlord or property manager in writing for a copy of any notice they received from the co-tenant and for a written statement of the unpaid amount.",
+      "client_text": "Ask the landlord or property manager in writing for a copy of any notice they received from your co-tenant, and for a written statement of what is unpaid.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ct_no_signature",
+      "text": "Advise the client not to sign a notice, a termination agreement or a new lease before getting advice.",
+      "client_text": "Do not sign a notice, an agreement to end the lease or a new lease before you have had advice.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ct_referral",
+      "text": "Refer to a tenancy advice service or lawyer to clarify whether the co-tenant's notice has any effect, whether the client can stay alone or take over the lease, and how rent and deposit are shared between the co-tenants.",
+      "client_text": null,
+      "who": "professional",
+      "group": "referral",
+      "basis": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 143 Abs. 1",
+        "OR Art. 544 Abs. 3",
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": []
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Does a notice given by only one co-tenant have any effect, for that co-tenant or for the lease as a whole?",
+      "show_if": [
+        "q:ct_notice_in_writing!=no"
+      ]
+    },
+    {
+      "text": "Are the co-tenants jointly and severally liable for the rent (lease clause, Art. 143 or Art. 544 Abs. 3), and how are payments shared between them?",
+      "show_if": []
+    },
+    {
+      "text": "Can the remaining co-tenant continue the lease alone, and what would that require?",
+      "show_if": []
+    }
+  ],
+  "deadlines": [
+    "payment_demand",
+    "termination_challenge"
+  ],
+  "review": [
+    {
+      "item": "ct_both_signed",
+      "checked_against": [
+        "OR Art. 143 Abs. 1",
+        "OR Art. 544 Abs. 3"
+      ],
+      "note": "Sets E15 (yes = co-tenants)."
+    },
+    {
+      "item": "ct_landlord_letter",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Asks what the landlord sent; does not address the client as landlord."
+    },
+    {
+      "item": "ct_letter_receipt",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Second pass: 'why' no longer says the period runs from receipt, which the text does not state; it now says only that the period is at least 30 days for flats."
+    },
+    {
+      "item": "ct_notice_in_writing",
+      "checked_against": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "ct_arrears_amount",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "ct_married",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n"
+      ],
+      "note": "Added (not in the requested list) so the unmarried-partner point can be gated; no sets_event, because 'yes' alone does not prove the flat is still the family home (E8)."
+    },
+    {
+      "item": "ct_joint_liability",
+      "checked_against": [
+        "OR Art. 143 Abs. 1",
+        "OR Art. 143 Abs. 2",
+        "OR Art. 544 Abs. 3",
+        "OR Art. 144 Abs. 1",
+        "OR Art. 144 Abs. 2"
+      ],
+      "note": "Kept as 'usually': 143 needs a declaration (lease clause) or a statutory case; 544 Abs. 3 applies to a simple partnership, and whether co-tenants form one is not in the text. Second pass: gendered 'His moving out' made neutral."
+    },
+    {
+      "item": "ct_internal_share",
+      "checked_against": [
+        "OR Art. 148 Abs. 1",
+        "OR Art. 148 Abs. 2"
+      ],
+      "note": "Second pass: 'usually' added and client text widened to 'agreed or follows from your situation' to match 'aus dem Rechtsverhältnisse ... nicht etwas anderes ergibt'."
+    },
+    {
+      "item": "ct_partial_payment_risk",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 272a Abs. 1"
+      ],
+      "note": "30 days / 30 days to end of month for flats; extension excluded only for 257d terminations (lit. a)."
+    },
+    {
+      "item": "ct_notice_by_one",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "The text does not say whether one co-tenant can terminate alone; stated as 'may not' and left to a professional."
+    },
+    {
+      "item": "ct_deposit_both",
+      "checked_against": [
+        "OR Art. 257e Abs. 1",
+        "OR Art. 257e Abs. 3",
+        "OR Art. 544 Abs. 1"
+      ],
+      "note": "Second pass: first sentence changed from 'it is held' to 'the landlord must keep it' (Abs. 1 is a duty, and only for cash or securities). Joint ownership kept as 'usually' (544 Abs. 1 is a partnership rule)."
+    },
+    {
+      "item": "ct_spouse_rules_unmarried",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "note": "The texts name only Ehegatte and eingetragene Partnerschaft."
+    },
+    {
+      "item": "ct_check_full_rent",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "ct_letter_urgent",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "ct_ask_landlord_copy",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Practical step."
+    },
+    {
+      "item": "ct_no_signature",
+      "checked_against": [
+        "OR Art. 266l Abs. 1"
+      ],
+      "note": "Practical caution."
+    },
+    {
+      "item": "ct_referral",
+      "checked_against": [
+        "OR Art. 266l Abs. 1",
+        "OR Art. 143 Abs. 1",
+        "OR Art. 544 Abs. 3",
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Open points routed to a professional."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

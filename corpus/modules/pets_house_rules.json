@@ -1,0 +1,353 @@
+{
+  "id": "pets_house_rules",
+  "title": "Pets and house rules",
+  "triggers": [
+    "situation:house_rules_or_pets",
+    "E21=A"
+  ],
+  "summary_for_sw": "The client wants to keep an animal, or the landlord points to the house rules (for example a pet ban). What matters is what the lease and any agreed house rules say, and the tenant's duty of care and consideration.",
+  "questions": [
+    {
+      "id": "pr_lease_clause",
+      "text": "What does your signed lease itself say about animals or pets?",
+      "why": "What you agreed with the landlord in the lease decides whether you may keep an animal.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pr_house_rules_with_lease",
+      "text": "Did you sign or receive the house rules together with the lease (for example, does the lease say they are part of it)?",
+      "why": "Whether the house rules are part of what you agreed affects whether a ban in them binds you.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 1 Abs. 2"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pr_rule_added_later",
+      "text": "Was the pet ban added to the house rules after you signed the lease?",
+      "why": "A change to the lease that the landlord makes later, on their own, follows special rules.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269d Abs. 3"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pr_animal_details",
+      "text": "What animal is it, will it stay only inside the flat, and is it already living with you?",
+      "why": "How an animal is kept matters for your duty to take care of the flat and to show consideration for neighbours.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "pr_written_warning",
+      "text": "Have you received a written warning (Mahnung) from the landlord about the animal or the house rules?",
+      "why": "Except for deliberate serious damage, a landlord can end a lease early for a breach of care or consideration only after a written warning.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257f Abs. 3"
+      ],
+      "prefill": true,
+      "sets_event": "E21"
+    },
+    {
+      "id": "pr_earlier_permission",
+      "text": "Has the landlord ever allowed animals in your flat or in the building, in writing or by knowingly accepting them?",
+      "why": "An agreement can also be made without words, so earlier permission can matter for what was agreed.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 1 Abs. 2"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "pr_care_and_consideration",
+      "text": "A tenant must use the flat with care and, in a building, must show consideration for other residents and neighbours. This also applies to keeping an animal: for example, no damage to the flat and no unreasonable disturbance of others.",
+      "client_text": "You must take good care of the flat and show consideration for your neighbours. This also applies if you keep an animal.",
+      "basis": [
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pr_lease_decides",
+      "text": "The rental provisions of the Code of Obligations contain no specific rule that allows or forbids pets. Whether an animal may be kept therefore depends on what was agreed in the lease, including the house rules if they are part of it. Whether a particular ban is valid, or applies to a particular animal, is not settled by the statute text; the tenant association can advise on this.",
+      "client_text": "The law has no general rule allowing or forbidding pets in rented flats. What counts is what your lease says. The tenant association can tell you how a pet clause is usually treated.",
+      "basis": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 257f Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pr_house_rules_part_of_lease",
+      "text": "A contract is formed by the agreement of both parties, which can be express or implied. House rules therefore bind the tenant as part of the lease if they were agreed, for example if the lease refers to them and the tenant signed or received them with the lease. If it is unclear whether the house rules were part of the lease, check the lease documents before taking a position.",
+      "client_text": "House rules are part of your lease if you agreed to them, for example if you signed or received them with the lease. Check your lease papers.",
+      "basis": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 1 Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pr_later_rule_change",
+      "text": "If the pet ban was added after the lease was signed and the tenant did not agree to it, it may be a one-sided change of the lease at the tenant's expense. The law requires such changes to be sent on the official cantonal form with reasons, and allows a challenge at the conciliation authority within 30 days. Whether a change to house rules counts as such a change depends on the case; ask the tenant association or a lawyer.",
+      "client_text": "If the pet ban was added after you signed the lease and you did not agree to it, it may not bind you in the same way. Ask the tenant association.",
+      "basis": [
+        "OR Art. 269d Abs. 2",
+        "OR Art. 269d Abs. 3",
+        "OR Art. 270b Abs. 2"
+      ],
+      "show_if": [
+        "q:pr_rule_added_later=yes"
+      ]
+    },
+    {
+      "id": "pr_termination_only_after_warning",
+      "text": "The landlord can end the lease early for a breach of care or consideration only if the tenant continues the breach despite a written warning and continuing the lease has become unreasonable for the landlord or the other residents. Even then, for a flat the notice period is at least 30 days to the end of a month, and the landlord must use the official cantonal form. The only exception without a warning is where the tenant deliberately causes serious damage to the flat. Separately, a landlord can give ordinary notice under the lease; any termination can be challenged at the conciliation authority within 30 days of receipt.",
+      "client_text": "The landlord can end your lease early for this kind of breach only after a written warning, and only if the problem continues and becomes unreasonable for others. Any termination can be challenged within 30 days of receiving it.",
+      "basis": [
+        "OR Art. 257f Abs. 3",
+        "OR Art. 257f Abs. 4",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 271 Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "pr_check_documents",
+      "text": "Read the lease, its annexes and the version of the house rules that applied when the lease was signed, plus any later changes. Note whether the lease mentions animals and whether the house rules were part of it.",
+      "client_text": "Find your lease, any attachments, and the house rules you received when you signed, plus any later versions.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "pr_ask_permission",
+      "text": "If the client wants an animal and the lease or agreed house rules restrict animals, help the client ask the landlord in writing for permission: describe the animal and how it will be kept, and mention any personal reasons. This is a request, not a legal claim. Keep a copy and wait for the answer before bringing the animal home.",
+      "client_text": "Ask the landlord in writing for permission. Describe the animal and how you will keep it, and explain your personal reasons. Keep a copy, and wait for the answer before bringing the animal home.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "show_if": [
+        "q:pr_written_warning!=yes"
+      ]
+    },
+    {
+      "id": "pr_warning_received",
+      "text": "A written warning has arrived: read exactly what it asks the tenant to stop or change. Continuing the conduct named in the warning can lead to termination. Get advice from the tenant association before deciding whether to comply or contest it.",
+      "client_text": "Take the written warning seriously. Continuing what it complains about can lead to the end of your lease. Get advice before you decide what to do.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257f Abs. 3"
+      ],
+      "show_if": [
+        "E21=A"
+      ]
+    },
+    {
+      "id": "pr_termination_received",
+      "text": "A termination has arrived: the 30-day challenge deadline runs from receipt. Refer the client to the tenant association or the conciliation authority at once.",
+      "client_text": "You have received a termination. You have 30 days from receipt to challenge it. Get help straight away.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 271 Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ],
+      "deadline": "termination_challenge"
+    },
+    {
+      "id": "pr_referral",
+      "text": "Refer the client to the tenant association, which can advise on how pet clauses and house rules are handled in practice, since the statute text does not settle this.",
+      "client_text": "Ask the tenant association for advice on pet clauses and house rules.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "show_if": []
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Are the house rules containing the pet ban part of the lease, and if they were changed after signing, was the change validly made (Art. 269d Abs. 3)?",
+      "show_if": []
+    },
+    {
+      "text": "Is the animal ban in the lease or house rules valid and enforceable against this animal?",
+      "show_if": []
+    },
+    {
+      "text": "Could keeping the animal be a breach of care or consideration that supports a termination under Art. 257f Abs. 3?",
+      "show_if": [
+        "E21=A"
+      ]
+    }
+  ],
+  "deadlines": [
+    "termination_challenge"
+  ],
+  "review": [
+    {
+      "item": "pr_lease_clause",
+      "checked_against": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_house_rules_with_lease",
+      "checked_against": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 1 Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_rule_added_later",
+      "checked_against": [
+        "OR Art. 269d Abs. 3"
+      ],
+      "note": "Asks only for the fact; 'why' hedged ('follows special rules', 269d Abs. 3)."
+    },
+    {
+      "item": "pr_animal_details",
+      "checked_against": [
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_written_warning",
+      "checked_against": [
+        "OR Art. 257f Abs. 3"
+      ],
+      "note": "Fixed 'why': 257f Abs. 4 allows termination without warning for deliberate serious damage."
+    },
+    {
+      "item": "pr_earlier_permission",
+      "checked_against": [
+        "OR Art. 1 Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_care_and_consideration",
+      "checked_against": [
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_lease_decides",
+      "checked_against": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 257f Abs. 1"
+      ],
+      "note": "Checked: no pet rule in OR Art. 253-274 (searched the corpus). Small-animal practice not stated: not supported by the text."
+    },
+    {
+      "item": "pr_house_rules_part_of_lease",
+      "checked_against": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 1 Abs. 2"
+      ],
+      "note": "OR Art. 1 only sets out agreement (express or tacit); incorporation by reference/receipt given as an example, not a rule."
+    },
+    {
+      "item": "pr_later_rule_change",
+      "checked_against": [
+        "OR Art. 269d Abs. 2",
+        "OR Art. 269d Abs. 3",
+        "OR Art. 270b Abs. 2"
+      ],
+      "note": "Fixed duplicate id (was the same as the question id). 269d Abs. 3 covers one-sided changes at the tenant's expense; whether a house-rules change counts is left open and referred."
+    },
+    {
+      "item": "pr_termination_only_after_warning",
+      "checked_against": [
+        "OR Art. 257f Abs. 3",
+        "OR Art. 257f Abs. 4",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 271 Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "257f Abs. 3 conditions (written warning, continued breach, unreasonable) and Abs. 4 exception stated; 266l Abs. 2 form; 273 Abs. 1 30 days."
+    },
+    {
+      "item": "pr_check_documents",
+      "checked_against": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_ask_permission",
+      "checked_against": [
+        "OR Art. 1 Abs. 1",
+        "OR Art. 257f Abs. 1",
+        "OR Art. 257f Abs. 2"
+      ],
+      "note": "Framed as a request, not a legal claim; no 'support animal' concept used."
+    },
+    {
+      "item": "pr_warning_received",
+      "checked_against": [
+        "OR Art. 257f Abs. 3"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_termination_received",
+      "checked_against": [
+        "OR Art. 271 Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "pr_referral",
+      "checked_against": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

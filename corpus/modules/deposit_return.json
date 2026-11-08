@@ -1,0 +1,361 @@
+{
+  "id": "deposit_return",
+  "title": "Getting the rent deposit back after moving out",
+  "triggers": [
+    "situation:deposit_return"
+  ],
+  "summary_for_sw": "The tenancy has ended and the flat has been handed back, but the deposit is still blocked at the bank because the landlord does not agree to release it. This module covers the handover inspection, what condition the flat must be in, and when the bank may pay out the deposit.",
+  "questions": [
+    {
+      "id": "dr_end_date",
+      "text": "On what date did your lease officially end, and on what date did you hand back the flat and the keys?",
+      "why": "The one year after which you may ask the bank alone for the deposit counts from the end of the tenancy.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "dr_legal_steps",
+      "text": "Have you received a payment order (Zahlungsbefehl) from the debt-enforcement office, or a letter from the conciliation authority or a court about this flat?",
+      "why": "If the landlord has taken legal steps, the one-year route through the bank alone is closed, and a final payment order or judgment allows the bank to pay out.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "prefill": true,
+      "urgent": true
+    },
+    {
+      "id": "dr_handover_report",
+      "text": "Was a handover report (protocol) made when you gave back the flat? Did you sign it, and what does it say about damage or cleaning?",
+      "why": "It shows what the landlord checked at the handover and what he reported to you.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 267a Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "dr_defects_reported",
+      "text": "Since the handover, has the landlord or the property manager told you, in writing or in person, about any damage or other problem with the flat? If yes, bring the message and note when you got it.",
+      "why": "The landlord must report damage you are responsible for at once, and a late report can matter.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 267a Abs. 1",
+        "OR Art. 267a Abs. 2",
+        "OR Art. 267a Abs. 3"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "dr_open_amounts",
+      "text": "Has the landlord said that you still owe anything, for example rent or a bill for ancillary costs (Nebenkostenabrechnung)?",
+      "why": "Open amounts can be the reason the landlord does not agree to release the deposit.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "dr_deposit_account",
+      "text": "How much is the deposit, and at which bank is it held? Is the account in your name?",
+      "why": "A cash deposit for a flat must be kept at a bank in the tenant's name.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257e Abs. 1",
+        "OR Art. 257e Abs. 2"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "dr_bank_release",
+      "text": "The bank may pay out the deposit only if both the landlord and the tenant agree, or on the basis of a final payment order (from debt enforcement) or a final court judgment. 'Final' means it can no longer be challenged. So the bank is following the law when it refuses to pay out without the landlord's agreement.",
+      "client_text": "The bank may pay out the deposit only if both you and the landlord agree, or if there is a final payment order or a final court judgment. So the bank is following the law when it waits for the landlord's signature.",
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": [
+        "E13!=B"
+      ]
+    },
+    {
+      "id": "dr_one_year",
+      "text": "If the landlord has not legally asserted a claim against the tenant within one year after the tenancy ended (for example through debt enforcement or a case at the conciliation authority or court), the tenant can ask the bank alone to pay back the deposit. The year counts from the end of the tenancy, which may differ from the day of the handover.",
+      "client_text": "If the landlord has not taken legal steps against you within one year after your tenancy ended (for example debt enforcement or a case at the conciliation authority or court), you can ask the bank alone to pay back the deposit. The year counts from the end of the tenancy.",
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": [
+        "E13!=B",
+        "E7!=B"
+      ]
+    },
+    {
+      "id": "dr_inspection_notice",
+      "text": "At the handover, the landlord must check the condition of the flat and report at once to the tenant any defects the tenant is responsible for. If he fails to do so, he loses his claims for those defects, except for defects that could not be seen in a normal inspection. If he discovers such hidden defects later, he must report them to the tenant at once. Whether a report came in time, and whether a defect was hidden, depends on the facts of the case.",
+      "client_text": "At the handover, the landlord must check the flat and tell you at once about any damage you are responsible for. If he does not, he loses his claims for that damage, unless it could not be seen in a normal check. If he finds such hidden damage later, he must tell you at once.",
+      "basis": [
+        "OR Art. 267a Abs. 1",
+        "OR Art. 267a Abs. 2",
+        "OR Art. 267a Abs. 3"
+      ],
+      "show_if": [
+        "E6!=B"
+      ]
+    },
+    {
+      "id": "dr_return_condition",
+      "text": "The tenant must return the flat in the condition that results from use in line with the lease, not in new condition. If the lease commits the tenant in advance to pay compensation at the end that covers more than actual damage (for example a fixed fee due whether or not there is damage), that clause is void.",
+      "client_text": "You must return the flat in the condition that comes from normal use under the lease, not as new. A clause agreed in advance that makes you pay at the end for more than actual damage is void.",
+      "basis": [
+        "OR Art. 267 Abs. 1",
+        "OR Art. 267 Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "dr_before_one_year",
+      "text": "Before the year has passed, the tenant cannot get the deposit from the bank alone. The main options are to ask the landlord in writing to sign the release, or to apply to the conciliation authority for tenancy matters (Schlichtungsbehörde). It tries to bring the parties to an agreement, and it also acts as a legal advice office for tenancy matters. No court costs are charged in the conciliation procedure for disputes about renting a flat.",
+      "client_text": "Before the year is over, you cannot get the deposit from the bank alone. You can ask the landlord in writing to sign the release. If he does not, you can turn to the conciliation authority for tenancy matters. It tries to help both sides agree, and no court costs are charged there for disputes about renting a flat.",
+      "basis": [
+        "OR Art. 257e Abs. 3",
+        "ZPO Art. 197",
+        "ZPO Art. 201 Abs. 1",
+        "ZPO Art. 201 Abs. 2",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "show_if": [
+        "E13!=B"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "dr_collect_documents",
+      "text": "Collect the lease, the handover report (if any), the deposit bank documents, proof of when the tenancy ended, and all messages with the landlord or property manager.",
+      "client_text": "Collect your lease, the handover report (if any), the bank papers for the deposit, proof of when your tenancy ended, and all messages with the landlord or property manager.",
+      "who": "client",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257e Abs. 3",
+        "OR Art. 267a Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "dr_written_request",
+      "text": "Help the client write to the landlord (and the property manager) by registered post: ask him to sign the bank's release form by a date the client sets, or to state in writing what he claims and why. Keep a copy. The date is the client's own request, not a legal deadline.",
+      "client_text": "Write to the landlord and the property manager by registered post. Ask them to sign the bank's release form by a date you choose, or to say in writing what they claim and why. Keep a copy. The date is your own request, not a legal deadline.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": [
+        "E13!=B"
+      ]
+    },
+    {
+      "id": "dr_conciliation",
+      "text": "If the landlord does not answer or refuses, contact the conciliation authority for tenancy matters in the district where the flat is. It can give legal information on tenancy matters and can hold a conciliation hearing about releasing the deposit.",
+      "client_text": "If the landlord does not answer or refuses, contact the conciliation authority for tenancy matters in the district where the flat is.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "ZPO Art. 197",
+        "ZPO Art. 201 Abs. 1",
+        "ZPO Art. 201 Abs. 2",
+        "ZPO Art. 33"
+      ],
+      "show_if": [
+        "E13!=B"
+      ]
+    },
+    {
+      "id": "dr_one_year_check",
+      "text": "Note when one year after the end of the tenancy will have passed. If the landlord has not taken legal steps by then, the client can ask the bank directly to pay back the deposit, with proof of the end of the tenancy.",
+      "client_text": "Note when one year after the end of your tenancy will have passed. If the landlord has not taken legal steps by then, you can ask the bank directly to pay back the deposit. Bring proof of when your tenancy ended.",
+      "who": "social_worker",
+      "group": "needs_clarification",
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": [
+        "E13!=B",
+        "E7!=B"
+      ]
+    },
+    {
+      "id": "dr_legal_steps_referral",
+      "text": "If the client has received a payment order or a letter from the conciliation authority or a court, refer to a tenancy advice service or lawyer the same week and do not let the document wait.",
+      "client_text": "If you have received a payment order or a letter from the conciliation authority or a court, get advice this week. Do not let the letter wait.",
+      "who": "professional",
+      "group": "referral",
+      "basis": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "show_if": [
+        "q:dr_legal_steps=yes"
+      ]
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "When exactly did the tenancy end, and has the landlord legally asserted a claim within the meaning of Art. 257e Abs. 3?",
+      "show_if": []
+    },
+    {
+      "text": "Did the landlord check the flat and report defects at the handover as Art. 267a requires, and are any claimed defects ones that a normal inspection could not reveal?",
+      "show_if": [
+        "E6!=B"
+      ]
+    },
+    {
+      "text": "What is the best way to obtain the landlord's consent or a decision on the release before the one-year period ends?",
+      "show_if": [
+        "E13!=B"
+      ]
+    }
+  ],
+  "deadlines": [],
+  "review": [
+    {
+      "item": "dr_end_date",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Year counts 'nach Beendigung des Mietverhältnisses'; question asks for both end date and handover date because they can differ."
+    },
+    {
+      "item": "dr_legal_steps",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Second pass: 'why' reworded so it does not suggest that a legal step alone lets the bank pay out; release needs a 'rechtskräftigen' payment order or judgment."
+    },
+    {
+      "item": "dr_handover_report",
+      "checked_against": [
+        "OR Art. 267a Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "dr_defects_reported",
+      "checked_against": [
+        "OR Art. 267a Abs. 1",
+        "OR Art. 267a Abs. 2",
+        "OR Art. 267a Abs. 3"
+      ],
+      "note": "'sofort melden'; no time span in days is stated because the text gives none."
+    },
+    {
+      "item": "dr_open_amounts",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "'why' states a practical reason only, no rule."
+    },
+    {
+      "item": "dr_deposit_account",
+      "checked_against": [
+        "OR Art. 257e Abs. 1",
+        "OR Art. 257e Abs. 2"
+      ],
+      "note": "Abs. 1 covers deposits 'in Geld oder in Wertpapieren'; 'why' limited to cash deposits."
+    },
+    {
+      "item": "dr_bank_release",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Three release grounds as in sentence 1: 'Zustimmung beider Parteien', 'rechtskräftigen Zahlungsbefehl', 'rechtskräftiges Gerichtsurteil'."
+    },
+    {
+      "item": "dr_one_year",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Examples of 'rechtlich geltend gemacht' (debt enforcement, conciliation or court) are the usual reading, not words of the text; no claim made that a letter is insufficient. Shown only if deposit not denied and tenancy end not denied."
+    },
+    {
+      "item": "dr_inspection_notice",
+      "checked_against": [
+        "OR Art. 267a Abs. 1",
+        "OR Art. 267a Abs. 2",
+        "OR Art. 267a Abs. 3"
+      ],
+      "note": "Loss of claims 'soweit es sich nicht um Mängel handelt, die bei übungsgemässer Untersuchung nicht erkennbar waren'. Timeliness left to the facts; no case law cited."
+    },
+    {
+      "item": "dr_return_condition",
+      "checked_against": [
+        "OR Art. 267 Abs. 1",
+        "OR Art. 267 Abs. 2"
+      ],
+      "note": "Second pass: example changed from 'a flat-rate fee' to 'a fixed fee due whether or not there is damage', because Abs. 2 voids only compensation that 'anderes als die Deckung des allfälligen Schadens einschliesst'; 'im Voraus' added."
+    },
+    {
+      "item": "dr_before_one_year",
+      "checked_against": [
+        "OR Art. 257e Abs. 3",
+        "ZPO Art. 197",
+        "ZPO Art. 201 Abs. 1",
+        "ZPO Art. 201 Abs. 2",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "note": "Second pass: 'The options are' changed to 'The main options are' (list is not exhaustive). 113 Abs. 2 lit. c: no court costs in conciliation for residential tenancy disputes; party costs not mentioned (113 Abs. 1)."
+    },
+    {
+      "item": "dr_collect_documents",
+      "checked_against": [
+        "OR Art. 257e Abs. 3",
+        "OR Art. 267a Abs. 1"
+      ],
+      "note": "Practical step."
+    },
+    {
+      "item": "dr_written_request",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "Date set by client is flagged as not a legal deadline."
+    },
+    {
+      "item": "dr_conciliation",
+      "checked_against": [
+        "ZPO Art. 197",
+        "ZPO Art. 201 Abs. 1",
+        "ZPO Art. 201 Abs. 2",
+        "ZPO Art. 33"
+      ],
+      "note": "Second pass: ZPO 33 added for the place (it names the court at the property's location; the conciliation authority of that place is the usual reading). 'Legal information' used rather than 'free advice': the text says 'Rechtsberatungsstelle' but not that it is free."
+    },
+    {
+      "item": "dr_one_year_check",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "No date written; date from code or social worker."
+    },
+    {
+      "item": "dr_legal_steps_referral",
+      "checked_against": [
+        "OR Art. 257e Abs. 3"
+      ],
+      "note": "No objection period stated because SchKG is not in the corpus."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

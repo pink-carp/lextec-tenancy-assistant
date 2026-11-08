@@ -1,0 +1,401 @@
+{
+  "id": "defects",
+  "title": "Defects in the flat (mould, heating, hot water, damp)",
+  "triggers": [
+    "situation:defect_in_flat",
+    "situation:no_heating_water_or_power",
+    "E4=A"
+  ],
+  "summary_for_sw": "Something in the flat is broken or unhealthy (for example mould, damp, no heating or no hot water) and the landlord has not fixed it. The tenant can demand repair and, in some cases, a rent reduction or damages, but must not simply cut the rent.",
+  "questions": [
+    {
+      "id": "df_defect_description",
+      "text": "What is the problem in the flat, since when has it existed, and which rooms are affected?",
+      "why": "The landlord must keep the flat fit for normal living, so we need to know exactly what is wrong.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "df_urgent",
+      "text": "Is the heating or hot water not working during the cold months, or do children (or people with health problems) live in the flat?",
+      "why": "In these situations the problem should be pushed with the landlord at once, because the flat may not be fit to live in.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "prefill": true,
+      "urgent": true,
+      "raises": [
+        "urgency",
+        "severity"
+      ]
+    },
+    {
+      "id": "df_landlord_told",
+      "text": "When and how did you first tell the landlord or the property management about the problem (phone, e-mail, letter)?",
+      "why": "A rent reduction can be claimed from the day the landlord learned of the problem.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 259d",
+        "OR Art. 257g Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "df_paying_less",
+      "text": "Are you thinking of paying less rent, or no rent, until the problem is fixed, or have you already done so?",
+      "why": "Paying less on your own can put your lease at risk, and there is a safer legal way.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "df_landlord_blames",
+      "text": "Does the landlord say that you caused the problem (for example mould because you do not air the flat enough)?",
+      "why": "Your rights depend on whether you caused the problem, so this point needs evidence.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 259a Abs. 1",
+        "OR Art. 259"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "df_written_evidence",
+      "text": "Have you reported the problem in writing (letter or e-mail), and do you have photos with dates?",
+      "why": "A written report and dated photos make it easier to prove when the landlord knew and how bad the problem is.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "prefill": true
+    }
+  ],
+  "points": [
+    {
+      "id": "df_landlord_must_repair",
+      "text": "The landlord must keep the flat fit for the agreed use. If a defect appears that the tenant did not cause and does not have to fix at their own cost, the tenant can demand that the landlord repairs it, and can also claim a proportionate rent reduction and damages. The tenant only has to fix small things at their own cost (minor cleaning or small repairs that are part of normal upkeep, according to local custom). Lease clauses that weaken the landlord's duty to keep a flat fit for use, to the tenant's disadvantage, are void. If the landlord says the tenant caused the defect (for example mould from too little airing), that is a disputed fact: it is not decided here, and evidence on both sides matters.",
+      "client_text": "Your landlord must keep the flat in a fit state to live in. If something breaks or goes wrong that you did not cause, you can ask the landlord to fix it. You only have to fix small things yourself, such as minor cleaning or small repairs. If the landlord says you caused the problem, that is a question of evidence and is not decided by the landlord alone.",
+      "basis": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 256 Abs. 2",
+        "OR Art. 259",
+        "OR Art. 259a Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_reduction_and_damages",
+      "text": "If the defect reduces the use of the flat, the tenant can ask the landlord for a rent reduction that matches the impairment. It runs from the day the landlord learned of the defect until the defect is fixed. A phone call can count, but a letter or e-mail is easier to prove. If the defect has caused the tenant damage (for example damaged belongings or extra costs), the landlord must pay for it unless the landlord proves it was not their fault. The tenant must report defects that they do not have to fix themselves; if they do not, they can be liable for the resulting damage.",
+      "client_text": "If the problem makes the flat less usable, you can ask for lower rent from the day the landlord learned of the problem until it is fixed. If the problem damaged your things or caused you extra costs, the landlord may have to pay for that. Keep receipts. Always report problems to the landlord.",
+      "basis": [
+        "OR Art. 259a Abs. 1",
+        "OR Art. 259d",
+        "OR Art. 259e",
+        "OR Art. 257g Abs. 1",
+        "OR Art. 257g Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_no_rent_cut",
+      "text": "Warning: the tenant should not simply pay less rent, or stop paying, because of a defect. The law does not provide for the tenant to cut or hold back rent on their own. If rent is not paid in full, the landlord can treat the missing amount as arrears: set a written payment deadline (at least 30 days for a flat) and, if it is not paid in time, terminate the lease with at least 30 days' notice to the end of a month. Whether a reduction is justified, and by how much, is settled by agreement with the landlord or, failing that, through the conciliation authority (Schlichtungsbehörde, the local tenancy dispute office) and, if needed, a court. The lawful alternative to paying the landlord is the deposit procedure.",
+      "client_text": "Do not pay less rent or stop paying on your own, even if you are angry. If you do, the landlord can set you a payment deadline and then end your lease. Keep paying the full rent and ask for a reduction in writing, or use the official deposit procedure described here.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_deposit_procedure",
+      "text": "Rent deposit (Hinterlegung), the legal way to put pressure on the landlord: (1) the tenant asks the landlord in writing to fix the defect within a reasonable deadline and, to be able to deposit rent, warns in the same letter that, if it is not fixed in time, future rent will be paid to the office designated by the canton; (2) if the deadline passes, the tenant announces the deposit to the landlord in writing; (3) rent that falls due after that is paid to the designated office instead of the landlord, and counts as paid. (4) Within 30 days of the due date of the first deposited rent, the tenant must bring their claims (for example repair, rent reduction) to the conciliation authority; otherwise the deposited rent goes to the landlord. The landlord can also ask the conciliation authority to release rent that was deposited wrongly. Only rent that falls due in the future can be deposited. Every step must be followed exactly, so get advice before starting.",
+      "client_text": "There is a legal way to put pressure on the landlord without risking your lease: you set a written deadline for the repair, warn that you will pay future rent to an official office instead, announce this in writing, and then pay the rent to that office. You must then go to the conciliation authority within 30 days of the first rent you paid there. Every step must be done correctly, so get advice before you start.",
+      "basis": [
+        "OR Art. 259a Abs. 2",
+        "OR Art. 259g Abs. 1",
+        "OR Art. 259g Abs. 2",
+        "OR Art. 259h Abs. 1",
+        "OR Art. 259h Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_serious_defect",
+      "text": "If the landlord knows about a defect and does not fix it within a reasonable time: (a) if the defect makes the flat unfit for its use or seriously impairs its use, the tenant may terminate the lease without notice; (b) if the defect reduces the use but does not seriously impair it, the tenant may have it repaired at the landlord's cost. Whether a defect is serious enough, and what time is reasonable, depends on the case. Setting a clear written repair deadline first makes the situation easier to prove. A tenant's termination must be in writing and signed; if the flat is the family home of a married couple or registered partners, the other spouse or partner must expressly agree. Get advice before terminating or ordering repairs, because these steps can be costly if the conditions are not met.",
+      "client_text": "If the landlord knows about a serious problem and does not fix it in reasonable time, you may in some cases end the lease straight away, or have a smaller problem fixed at the landlord's cost. These are big steps with risks. Get advice before you do either.",
+      "basis": [
+        "OR Art. 259b",
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_termination_after_report",
+      "text": "If the landlord has given notice after the tenant reported a defect or asked for a repair: a termination given because the tenant asserts claims from the lease in good faith can be challenged. A challenge must be submitted to the conciliation authority within 30 days of receiving the termination. A challenge is not automatically successful; it depends on the facts.",
+      "client_text": "If your landlord ended your lease after you reported the problem, you can challenge the termination. You must do this within 30 days of receiving it, at the conciliation authority.",
+      "basis": [
+        "OR Art. 271a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "E1=A"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "df_urgent_contact",
+      "text": "Contact the landlord or property management today (and the building's emergency number or caretaker if they cannot be reached). Ask in writing for an immediate interim solution (for example temporary heaters) and a date for the full repair. If nothing happens quickly, contact the tenant association or the conciliation authority the same week.",
+      "client_text": "Contact the landlord or property management today, also by e-mail or letter. Ask for a quick temporary solution (for example heaters) and a date for the repair. If nothing happens, get help from the tenant association straight away.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "show_if": [
+        "q:df_urgent=yes"
+      ]
+    },
+    {
+      "id": "df_keep_paying",
+      "text": "Advise the client to keep paying the full rent on time until there is an agreement on a reduction or the deposit procedure has been started correctly. If rent has already been held back, or a payment demand has arrived, get advice from the tenant association at once: a payment demand has a strict deadline.",
+      "client_text": "Keep paying your full rent on time for now. If you have already paid less, or you have received a letter demanding payment, get advice straight away, because there is a strict deadline.",
+      "who": "client",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1"
+      ],
+      "show_if": [
+        "q:df_paying_less!=no"
+      ]
+    },
+    {
+      "id": "df_written_notice",
+      "text": "Help the client send the landlord a dated letter (ideally registered) or e-mail: describe the defect and when it started, say when the landlord was first told (including phone calls), ask for repair by a reasonable deadline, and state that a rent reduction is claimed from the date the landlord learned of the defect. If the client may want to deposit rent later, the letter must also warn that future rent will be deposited if the deadline passes. Keep a copy.",
+      "client_text": "Write to the landlord (letter, ideally registered, or e-mail). Describe the problem and when it started, say when you first told them, ask for repair by a clear deadline, and say that you claim a rent reduction. Keep a copy.",
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 257g Abs. 1",
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_keep_evidence",
+      "text": "Ask the client to keep evidence: dated photos and videos, a log of every contact with the landlord (date, person, what was said), notes on the extent of the problem over time (for example room temperatures, size of mould patches), and receipts for any extra costs. Where the landlord blames the tenant, also note airing and heating habits.",
+      "client_text": "Keep evidence: dated photos, a list of every contact with the landlord (date, name, what was said), notes on how the problem develops (for example room temperature), and receipts for extra costs.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 259d",
+        "OR Art. 259e"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "df_referral",
+      "text": "Refer the client to the tenant association (Mieterinnen- und Mieterverband) or the conciliation authority for advice before depositing rent, terminating the lease or ordering repairs. Conciliation authorities must also advise tenants outside a procedure.",
+      "client_text": "Get advice from the tenant association or the conciliation authority before you deposit rent, end your lease or order repairs yourself.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "VMWG Art. 21 Abs. 2"
+      ],
+      "show_if": []
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Does the defect exclude or seriously impair the use of the flat (Art. 259b lit. a), and what repair period would be reasonable here?",
+      "show_if": []
+    },
+    {
+      "text": "What rent reduction (rate and period) would be proportionate, and from which date did the landlord know of the defect?",
+      "show_if": []
+    },
+    {
+      "text": "The landlord attributes the defect to the tenant: what evidence would clarify the cause?",
+      "show_if": [
+        "q:df_landlord_blames=yes"
+      ]
+    }
+  ],
+  "deadlines": [
+    "termination_challenge"
+  ],
+  "review": [
+    {
+      "item": "df_defect_description",
+      "checked_against": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_urgent",
+      "checked_against": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "note": "Urgency is practical triage, not a statutory category; 'why' says 'may not be fit', hedged."
+    },
+    {
+      "item": "df_landlord_told",
+      "checked_against": [
+        "OR Art. 259d",
+        "OR Art. 257g Abs. 1"
+      ],
+      "note": "259d: reduction runs from when the landlord ('er' = Vermieter) learned of the defect."
+    },
+    {
+      "item": "df_paying_less",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_landlord_blames",
+      "checked_against": [
+        "OR Art. 259a Abs. 1",
+        "OR Art. 259"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_written_evidence",
+      "checked_against": [
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_landlord_must_repair",
+      "checked_against": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 256 Abs. 2",
+        "OR Art. 259",
+        "OR Art. 259a Abs. 1"
+      ],
+      "note": "Fixed: first draft said 256 Abs. 2 voids clauses removing all 259a rights; 256 Abs. 2 only covers deviations from the 256 maintenance duty. Tenant causation (259a 'zu verantworten') left as disputed fact."
+    },
+    {
+      "item": "df_reduction_and_damages",
+      "checked_against": [
+        "OR Art. 259a Abs. 1",
+        "OR Art. 259d",
+        "OR Art. 259e",
+        "OR Art. 257g Abs. 1",
+        "OR Art. 257g Abs. 2"
+      ],
+      "note": "259d 'erfahren hat' sets no form, so a phone call can count; proof is the practical issue. 259e: fault presumed, landlord must prove no fault. No percentages given."
+    },
+    {
+      "item": "df_no_rent_cut",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2",
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "note": "257d periods correct for flats (30 days / 30 days to month end, never immediate). Fixed: the conciliation authority does not always decide; added 'and, if needed, a court'."
+    },
+    {
+      "item": "df_deposit_procedure",
+      "checked_against": [
+        "OR Art. 259a Abs. 2",
+        "OR Art. 259g Abs. 1",
+        "OR Art. 259g Abs. 2",
+        "OR Art. 259h Abs. 1",
+        "OR Art. 259h Abs. 2"
+      ],
+      "note": "Fixed: 259g says 'kann androhen'; reworded so that the warning is given whenever the tenant wants to deposit (conservative, matches practice). Only future rent; 30 days from due date of first deposited rent (259h Abs. 1). Designated office not named (not in corpus)."
+    },
+    {
+      "item": "df_serious_defect",
+      "checked_against": [
+        "OR Art. 259b",
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3"
+      ],
+      "note": "259b text: landlord knows + no repair within reasonable time; lit. a without notice for serious defects, lit. b self-repair only for non-serious ones. 266l Abs. 1 written form; 266m spouse consent."
+    },
+    {
+      "item": "df_termination_after_report",
+      "checked_against": [
+        "OR Art. 271a Abs. 1",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "Fixed: 273 Abs. 1 says 'einreichen' (submit), not 'reach'. 271a Abs. 1 lit. a: challengeable, not void."
+    },
+    {
+      "item": "df_urgent_contact",
+      "checked_against": [
+        "OR Art. 256 Abs. 1",
+        "OR Art. 259a Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_keep_paying",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 259g Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_written_notice",
+      "checked_against": [
+        "OR Art. 257g Abs. 1",
+        "OR Art. 259d",
+        "OR Art. 259g Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_keep_evidence",
+      "checked_against": [
+        "OR Art. 259d",
+        "OR Art. 259e"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "df_referral",
+      "checked_against": [
+        "VMWG Art. 21 Abs. 2"
+      ],
+      "note": "Fixed client_text: removed unsupported 'free or low-cost'."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

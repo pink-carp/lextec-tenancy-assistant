@@ -1,0 +1,391 @@
+{
+  "id": "family_home_protection",
+  "title": "Protecting the family home when the lease is in the other spouse's name",
+  "triggers": [
+    "E8=A & vuln:violence_threats_or_coercion",
+    "E8=A & situation:termination & E1!=A & E2!=A"
+  ],
+  "summary_for_sw": "A married couple (or registered partners) live in a flat rented in only one spouse's name, and they are separating or there is domestic violence. Safety comes first. This module covers only the tenancy rules that protect the spouse who is not on the lease.",
+  "questions": [
+    {
+      "id": "fh_safe_now",
+      "text": "Are you, and any children with you, safe right now?",
+      "why": "If you are in danger, getting you safe comes before anything else.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [],
+      "prefill": true,
+      "urgent": true
+    },
+    {
+      "id": "fh_police_order_dates",
+      "text": "If the police have issued an order (for example that your spouse must stay away from the home), what start and end dates does it give?",
+      "why": "The dates help victim support and the lawyer act in time.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [],
+      "prefill": true,
+      "urgent": true
+    },
+    {
+      "id": "fh_married",
+      "text": "Are you legally married to, or in a registered partnership with, the person whose name is on the lease, and is this flat your family's home?",
+      "why": "The tenancy protections for the family home apply only to married couples and registered partners.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n"
+      ],
+      "prefill": true,
+      "sets_event": "E8"
+    },
+    {
+      "id": "fh_landlord_letter",
+      "text": "Has the landlord or the property manager sent you or your spouse any letter about the rent or about ending the lease?",
+      "why": "If you are married and the flat is your family's home, the landlord must send a termination or a payment warning separately to both spouses.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 266n"
+      ],
+      "prefill": true,
+      "urgent": true
+    },
+    {
+      "id": "fh_termination_receipt",
+      "text": "If the landlord has sent a termination, on what date did it arrive?",
+      "why": "A termination can be challenged only within 30 days after it was received.",
+      "input": "date",
+      "show_if": [
+        "q:fh_landlord_letter=yes"
+      ],
+      "basis": [
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273a Abs. 1"
+      ],
+      "prefill": true,
+      "urgent": true,
+      "fact": "receipt_date:termination_by_landlord"
+    },
+    {
+      "id": "fh_demand_receipt",
+      "text": "If the landlord has sent a letter setting a payment deadline and warning that the lease will be ended, on what date did it arrive?",
+      "why": "The arrival date is needed to check the time to pay, which must be at least 30 days for a flat.",
+      "input": "date",
+      "show_if": [
+        "q:fh_landlord_letter=yes"
+      ],
+      "basis": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "prefill": true,
+      "urgent": true,
+      "fact": "receipt_date:payment_demand_with_termination_warning"
+    }
+  ],
+  "points": [
+    {
+      "id": "fh_tenant_spouse_consent",
+      "text": "If the couple is married (or in a registered partnership) and the flat is the family home, the spouse whose name is on the lease can terminate it only with the other spouse's express consent. If the tenant spouse cannot obtain that consent, or it is refused without good reason, the tenant spouse can ask a court to decide.",
+      "client_text": "If you are married (or in a registered partnership) and the flat is your family's home, your spouse can end the lease only with your express agreement, even if only your spouse signed it. If you refuse without good reason, your spouse can ask a court to decide.",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 2",
+        "OR Art. 266m Abs. 3"
+      ],
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "id": "fh_landlord_separate_delivery",
+      "text": "If the flat is the family home of a married couple (or registered partners), the landlord must send any termination, and any payment deadline with a termination warning for unpaid rent, separately to the tenant and to the tenant's spouse or registered partner.",
+      "client_text": "If you are married (or in a registered partnership) and the flat is your family's home, the landlord must send you your own copy of any termination or any payment warning that threatens to end the lease.",
+      "basis": [
+        "OR Art. 266n"
+      ],
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "id": "fh_void",
+      "text": "A termination that does not comply with these rules (written form, the landlord's official form, the spouse's consent, separate delivery to both spouses) is void, which means it has no legal effect. Whether a payment demand sent to only one spouse also makes a later termination void is a question for the lawyer.",
+      "client_text": "A termination that breaks these rules has no legal effect. A lawyer should check any letter you or your spouse receive.",
+      "basis": [
+        "OR Art. 266o",
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266n"
+      ],
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "id": "fh_spouse_own_rights",
+      "text": "If the landlord terminates the lease of the family home, the spouse who is not on the lease can also, in their own name, challenge the termination, ask for an extension of the tenancy, or use the other rights a tenant has after a termination. A challenge must reach the conciliation authority within 30 days of receiving the termination; for an open-ended lease, so must a request for an extension. An extension is not possible after a termination for unpaid rent. An agreement on an extension is valid only if made with both spouses. The same applies to registered partners.",
+      "client_text": "If the landlord ends the lease of your family home, you can challenge it yourself, or ask for more time (not possible after a termination for unpaid rent), even though the lease is in your spouse's name. A challenge must reach the conciliation authority within 30 days of receiving the termination.",
+      "basis": [
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 2",
+        "OR Art. 273a Abs. 3",
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "OR Art. 272a Abs. 1"
+      ],
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "id": "fh_rent_arrears_risk",
+      "text": "Unpaid rent is a main risk to the home. If rent is not paid, the landlord can set a written payment deadline of at least 30 days with a termination warning, and if it is not paid in time, terminate with at least 30 days' notice to the end of a month.",
+      "client_text": "Unpaid rent can put the home at risk. If rent is not paid, the landlord can give a written deadline of at least 30 days to pay, and then end the lease with at least 30 days' notice to the end of a month.",
+      "basis": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "id": "fh_not_unmarried",
+      "text": "These family-home rules apply only to married couples and registered partners, and only where the flat is the family home. They do not protect unmarried partners.",
+      "client_text": "These protections apply only if you are married or in a registered partnership and the flat is your family's home.",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "show_if": [
+        "E8!=A"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "fh_safety_first",
+      "text": "Safety first. If there is immediate danger, call the police (117). If there is violence or threats, refer the client today to victim support (Opferhilfe). Do not contact the other spouse, and ask the client whether it is safe to take a printed handout home.",
+      "client_text": "Your safety comes first. If you are in danger, call the police on 117. Victim support (Opferhilfe) can help you today.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [],
+      "show_if": []
+    },
+    {
+      "id": "fh_lawyer_urgent",
+      "text": "Refer the client urgently to a lawyer for family and tenancy law, with the expert brief. The client should bring any police order and any letter from the landlord.",
+      "client_text": "Talk to a lawyer for family and tenancy law as soon as possible. Bring any police paper and any letter from the landlord.",
+      "who": "professional",
+      "group": "referral",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "fh_no_self_help",
+      "text": "Advise the client not to take tenancy steps alone before speaking to the lawyer: not to sign a termination, a consent to a termination or an agreement with the landlord, and not to stop or cut any rent payments the household has been making. Any letter from the landlord should be brought in at once.",
+      "client_text": "Before you talk to the lawyer, do not sign anything about the lease (no termination, no agreement to a termination, no agreement with the landlord), and do not stop or cut rent payments. Bring any letter from the landlord at once.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "fh_landlord_letter_check",
+      "text": "If a letter from the landlord has arrived, note the date it arrived and whether it was also sent separately to the client, and pass it to the lawyer the same day.",
+      "client_text": null,
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 266n",
+        "OR Art. 273 Abs. 1"
+      ],
+      "show_if": [
+        "q:fh_landlord_letter=yes"
+      ],
+      "deadline": "termination_challenge"
+    },
+    {
+      "id": "fh_migration_referral",
+      "text": "Do not answer questions about the residence permit with this tool. They need a migration specialist; refer the client to one.",
+      "client_text": "Questions about your residence permit need a migration specialist. Your social worker can help you find one.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [],
+      "show_if": []
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Does the flat remain the family home under Art. 266m–266o and Art. 273a after a police removal order or a separation?",
+      "show_if": [
+        "E8!=B"
+      ]
+    },
+    {
+      "text": "Was any termination or payment demand delivered separately to both spouses as Art. 266n requires, and what follows if a payment demand reached only one spouse?",
+      "show_if": [
+        "q:fh_landlord_letter=yes"
+      ]
+    },
+    {
+      "text": "Which steps can secure the client's continued use of the home and the payment of the rent?",
+      "show_if": []
+    }
+  ],
+  "deadlines": [
+    "termination_challenge",
+    "payment_demand"
+  ],
+  "review": [
+    {
+      "item": "fh_safe_now",
+      "checked_against": [],
+      "note": "Safety question; no legal rule stated."
+    },
+    {
+      "item": "fh_police_order_dates",
+      "checked_against": [],
+      "note": "Cantonal violence-protection law is outside the corpus, so 'why' states no rule or deadline."
+    },
+    {
+      "item": "fh_married",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n"
+      ],
+      "note": "Asks both marriage/registered partnership and family home, so it can set E8."
+    },
+    {
+      "item": "fh_landlord_letter",
+      "checked_against": [
+        "OR Art. 266n"
+      ],
+      "note": "Second pass: 'why' made conditional on marriage and family home (heading '2. Wohnung der Familie')."
+    },
+    {
+      "item": "fh_termination_receipt",
+      "checked_against": [
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273a Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "fh_demand_receipt",
+      "checked_against": [
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Second pass: 'why' no longer says the period runs from receipt (not in the text)."
+    },
+    {
+      "item": "fh_tenant_spouse_consent",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 2",
+        "OR Art. 266m Abs. 3"
+      ],
+      "note": "Text says 'ausdrücklichen Zustimmung' (express), not 'written'; SPEC's 'written' not used. Abs. 2: it is the spouse who wants to terminate who may go to court."
+    },
+    {
+      "item": "fh_landlord_separate_delivery",
+      "checked_against": [
+        "OR Art. 266n"
+      ],
+      "note": "Covers both the landlord's termination and the 257d payment deadline."
+    },
+    {
+      "item": "fh_void",
+      "checked_against": [
+        "OR Art. 266o",
+        "OR Art. 266l Abs. 1",
+        "OR Art. 266l Abs. 2",
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266n"
+      ],
+      "note": "266o voids only 'die Kündigung'; whether a payment demand sent to one spouse makes a later termination void is left to the lawyer."
+    },
+    {
+      "item": "fh_spouse_own_rights",
+      "checked_against": [
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 2",
+        "OR Art. 273a Abs. 3",
+        "OR Art. 273 Abs. 1",
+        "OR Art. 273 Abs. 2",
+        "OR Art. 272a Abs. 1"
+      ],
+      "note": "Second pass: client text now says that more time is not possible after a termination for unpaid rent (272a Abs. 1 lit. a), and the 30 days are tied to a challenge (extension of a fixed-term lease has a different period, 273 Abs. 2 lit. b)."
+    },
+    {
+      "item": "fh_rent_arrears_risk",
+      "checked_against": [
+        "OR Art. 257d Abs. 1",
+        "OR Art. 257d Abs. 2"
+      ],
+      "note": "Not in the requested list; added because 266n refers to the 257d demand and the threatened non-payment is the main tenancy risk. Whether a payment by the non-tenant spouse or social services counts was not checked and is not stated."
+    },
+    {
+      "item": "fh_not_unmarried",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266m Abs. 3",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1",
+        "OR Art. 273a Abs. 3"
+      ],
+      "note": "Second pass: 'and only where the flat is the family home' added, since E8=B can also mean married but not the family home."
+    },
+    {
+      "item": "fh_safety_first",
+      "checked_against": [],
+      "note": "117 is the Swiss police number; no victim-support phone number given because it was not verified here."
+    },
+    {
+      "item": "fh_lawyer_urgent",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 266n",
+        "OR Art. 273a Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "fh_no_self_help",
+      "checked_against": [
+        "OR Art. 266m Abs. 1",
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Second pass: 'rent payments' changed to 'any rent payments the household has been making', because the client is not the tenant and may not be the payer."
+    },
+    {
+      "item": "fh_landlord_letter_check",
+      "checked_against": [
+        "OR Art. 266n",
+        "OR Art. 273 Abs. 1"
+      ],
+      "note": "OK."
+    },
+    {
+      "item": "fh_migration_referral",
+      "checked_against": [],
+      "note": "No migration content; referral only. Second pass: client text no longer promises 'we will help'."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

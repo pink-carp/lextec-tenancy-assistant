@@ -1,0 +1,417 @@
+{
+  "id": "rent_increase",
+  "title": "A rent-increase notice",
+  "triggers": [
+    "situation:rent_increase",
+    "doc:rent_increase_notice",
+    "E5=A"
+  ],
+  "summary_for_sw": "The landlord has announced a higher rent (or another one-sided change at the tenant's expense). Strict form and timing rules apply, and the tenant can challenge the increase at the conciliation authority within 30 days of receiving it.",
+  "questions": [
+    {
+      "id": "ri_receipt_date",
+      "text": "On what date did you receive the rent-increase notice? If it came by registered mail, when did you collect it, and when was the collection slip left in your letterbox?",
+      "why": "The 30 days to challenge the increase start when it was communicated to you.",
+      "input": "date",
+      "show_if": [],
+      "basis": [
+        "OR Art. 270b Abs. 1"
+      ],
+      "prefill": true,
+      "fact": "receipt_date:rent_increase_notice",
+      "urgent": true
+    },
+    {
+      "id": "ri_upload_notice",
+      "text": "Please upload every page of the notice, including any covering letter and attachments.",
+      "why": "The form, the reasons and the dates in the notice decide whether the increase is valid.",
+      "input": "upload",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "prefill": false
+    },
+    {
+      "id": "ri_official_form",
+      "text": "Was the increase sent on an official form approved by the canton, or only in an ordinary letter?",
+      "why": "An increase that is not sent on the official form is void.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2"
+      ],
+      "prefill": false
+    },
+    {
+      "id": "ri_reasons",
+      "text": "What reason does the notice give for the increase (for example the reference interest rate, inflation, higher costs, renovation, or local rents), and with what figures?",
+      "why": "An increase must give reasons, and whether it is too high is judged against them.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269a",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "ri_effective_date",
+      "text": "From what date should the new rent apply, and what notice period and termination dates does your lease give?",
+      "why": "In most leases, an increase can only take effect at the next date on which the lease could be terminated.",
+      "input": "short_text",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 266c"
+      ],
+      "prefill": true
+    },
+    {
+      "id": "ri_index_or_steps",
+      "text": "Does your lease say that the rent follows an index or rises in fixed steps on set dates?",
+      "why": "For indexed or stepped rents, different rules apply to increases and challenges.",
+      "input": "yes_no_unknown",
+      "show_if": [],
+      "basis": [
+        "OR Art. 269b",
+        "OR Art. 269c",
+        "OR Art. 270c",
+        "OR Art. 270d"
+      ],
+      "prefill": false
+    }
+  ],
+  "points": [
+    {
+      "id": "ri_form_and_reasons",
+      "text": "A rent increase must be sent on a form approved by the canton and must give reasons. The increase is void if it is not on that form, if it gives no reasons, or if the landlord threatens or gives a termination together with it. The form must show the old and new rent and ancillary costs, the date from which the increase applies, a clear reason (with a separate amount for each reason if there are several), and how to challenge it. If the reasons are in a covering letter, the form must say so. A printed signature is enough. The same rules apply to other one-sided changes at the tenant's expense, such as new ancillary costs or reduced services. Exception: for rent steps fixed in the lease, a written notice is enough.",
+      "client_text": "A rent increase must come on an official form approved by the canton and must give reasons. If it does not, or if the landlord threatens to end your lease in the same notice, the increase is void.",
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2",
+        "OR Art. 269d Abs. 3",
+        "OR Art. 269d Abs. 4",
+        "OR Art. 269d Abs. 5",
+        "VMWG Art. 19 Abs. 1",
+        "VMWG Art. 19 Abs. 1bis"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_timing",
+      "text": "The landlord can raise the rent only to the next date on which the lease could be terminated (under the notice period and termination dates that apply to the lease). The notice must reach the tenant at least 10 days before that notice period begins. If it arrived later, the increase cannot take effect on the date stated; the tenant association can say from when it could apply.",
+      "client_text": "The higher rent can start at the earliest on the next date on which your lease could be ended, and the notice must reach you at least 10 days before the notice period starts. If it came too late, the new rent cannot start on the date in the letter.",
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "show_if": [
+        "q:ri_index_or_steps!=yes"
+      ]
+    },
+    {
+      "id": "ri_challenge_30_days",
+      "text": "The tenant can challenge the increase as abusive at the conciliation authority (Schlichtungsbehörde, the local tenancy dispute office) within 30 days after it was communicated. The 30 days count from receipt, not from the date the new rent starts. Asking the landlord to explain the figures does not stop the 30 days. Once the 30 days have passed, the increase can no longer be challenged as abusive (whether it is void for a form defect is a separate question). Valid rent steps fixed in advance in the lease cannot be challenged in this way. The conciliation procedure in disputes about flats has no court costs.",
+      "client_text": "You can challenge the increase at the conciliation authority within 30 days of receiving the notice, not 30 days before the new rent starts. After that, you can no longer challenge it as too high. The procedure has no court costs.",
+      "basis": [
+        "OR Art. 270b Abs. 1",
+        "OR Art. 270b Abs. 2",
+        "OR Art. 270d",
+        "VMWG Art. 20 Abs. 1",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_abusive_grounds",
+      "text": "In general terms, a rent is abusive if it gives the landlord an excessive return from the flat or is based on a clearly excessive purchase price. A rent is usually not abusive if, for example, it is within the usual rents for the area, is justified by higher costs or extra services or improvements from the landlord, or only offsets inflation on the landlord's risk capital. Whether a given increase is justified depends on the figures. In the conciliation procedure the tenant can ask for the supporting documents for every reason given.",
+      "client_text": "Whether the increase is too high depends on the reasons and figures. The conciliation authority checks this, and in that procedure you can ask the landlord to show documents for each reason.",
+      "basis": [
+        "OR Art. 269",
+        "OR Art. 269a",
+        "VMWG Art. 20 Abs. 2"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_protection_while_challenging",
+      "text": "If the increase is challenged and no agreement is reached at the conciliation authority, the existing lease continues unchanged during the conciliation procedure (and during a court procedure, subject to interim orders of the court). A termination given because the landlord wants to push through a rent increase, or given during a conciliation or court procedure about the tenancy, can be challenged; the protection during a procedure has exceptions, for example a termination for rent arrears.",
+      "client_text": "If you challenge the increase and no agreement is reached, your current lease continues unchanged while the procedure runs. Challenging is your right; a termination given to push through a rent increase can be challenged. Keep paying your current rent on time.",
+      "basis": [
+        "OR Art. 270e",
+        "OR Art. 271a Abs. 1",
+        "OR Art. 271a Abs. 3"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_index_steps_rules",
+      "text": "If the lease has an indexed rent, the increase must still be sent on the official form, may not exceed the rise in the Swiss consumer price index, can be announced with at least 30 days' notice to the end of a month, and can only be challenged on the ground that the index change does not justify it. If the lease has rent steps fixed in advance, a written notice is enough (at the earliest four months before each step), and the tenant cannot challenge the steps themselves. Whether such a clause is valid depends on conditions (for example a minimum lease term), which a professional should check.",
+      "client_text": "Your lease may have special rent rules (an index or fixed steps). Then other rules apply, and a professional should check them.",
+      "basis": [
+        "OR Art. 269b",
+        "OR Art. 269c",
+        "OR Art. 269d Abs. 5",
+        "OR Art. 270c",
+        "OR Art. 270d",
+        "VMWG Art. 17 Abs. 1",
+        "VMWG Art. 17 Abs. 3",
+        "VMWG Art. 19 Abs. 2",
+        "VMWG Art. 19a"
+      ],
+      "show_if": [
+        "q:ri_index_or_steps=yes"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "ri_challenge",
+      "text": "If the client wants to contest the increase, or it is unclear whether it is valid, file a challenge with the conciliation authority listed on the form (normally the one for the area where the flat is), before the deadline. A written request naming the landlord, stating that the increase is challenged, and enclosing a copy of the notice is enough to start; it can also be made orally at the authority. Do not wait for the landlord's answer or for full documents.",
+      "client_text": "If you want to contest the increase, send a short written challenge to the conciliation authority before the deadline, with a copy of the notice. Do not wait for the landlord's reply.",
+      "who": "social_worker",
+      "group": "immediate",
+      "basis": [
+        "OR Art. 270b Abs. 1",
+        "ZPO Art. 202 Abs. 1",
+        "ZPO Art. 202 Abs. 2",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "show_if": [],
+      "deadline": "rent_increase_challenge"
+    },
+    {
+      "id": "ri_check_notice",
+      "text": "Check the notice: official cantonal form; reasons given (with amounts per reason); old and new rent; start date compared with the next termination date in the lease; whether it arrived at least 10 days before the notice period; whether it threatens or gives a termination.",
+      "client_text": null,
+      "who": "social_worker",
+      "group": "now",
+      "basis": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_collect_documents",
+      "text": "Ask the client to gather every page of the notice, the envelope or collection slip, the lease and any amendments, and earlier rent-increase or reduction notices.",
+      "client_text": "Gather every page of the notice, the envelope or post-office slip, your lease and any earlier letters about the rent.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 270b Abs. 1",
+        "OR Art. 269d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_keep_paying",
+      "text": "Advise the client to keep paying at least the current rent on time. Falling behind can lead to a payment demand and termination, regardless of the dispute about the increase.",
+      "client_text": "Keep paying at least your current rent on time. Falling behind can put your lease at risk.",
+      "who": "client",
+      "group": "now",
+      "basis": [
+        "OR Art. 270e",
+        "OR Art. 257d Abs. 1"
+      ],
+      "show_if": []
+    },
+    {
+      "id": "ri_referral",
+      "text": "Refer the client to the tenant association or the conciliation authority's advice service, which can help judge whether the increase is abusive. Conciliation authorities must advise tenants outside a procedure.",
+      "client_text": "Get advice from the tenant association or the conciliation authority on whether the increase is justified.",
+      "who": "social_worker",
+      "group": "referral",
+      "basis": [
+        "VMWG Art. 21 Abs. 2"
+      ],
+      "show_if": []
+    }
+  ],
+  "lawyer_questions": [
+    {
+      "text": "Was the increase validly notified under Art. 269d (approved form, reasons, timing relative to the next termination date), and when was it legally received?",
+      "show_if": []
+    },
+    {
+      "text": "Are the stated grounds for the increase justified under Art. 269 and 269a OR and the VMWG?",
+      "show_if": []
+    },
+    {
+      "text": "Is the indexed or stepped rent clause valid, and what can still be challenged?",
+      "show_if": [
+        "q:ri_index_or_steps=yes"
+      ]
+    }
+  ],
+  "deadlines": [
+    "rent_increase_challenge"
+  ],
+  "review": [
+    {
+      "item": "ri_receipt_date",
+      "checked_against": [
+        "OR Art. 270b Abs. 1"
+      ],
+      "note": "270b Abs. 1: 30 days from 'mitgeteilt'. Legal receipt of registered mail left to lawyer question."
+    },
+    {
+      "item": "ri_upload_notice",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_official_form",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_reasons",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269a",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "note": "Fixed 'why': reasons do not decide whether a challenge is possible, only the merits."
+    },
+    {
+      "item": "ri_effective_date",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "Fixed 'why': hedged with 'in most leases' because indexed and stepped rents follow other timing."
+    },
+    {
+      "item": "ri_index_or_steps",
+      "checked_against": [
+        "OR Art. 269b",
+        "OR Art. 269c",
+        "OR Art. 270c",
+        "OR Art. 270d"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_form_and_reasons",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2",
+        "OR Art. 269d Abs. 3",
+        "OR Art. 269d Abs. 4",
+        "OR Art. 269d Abs. 5",
+        "VMWG Art. 19 Abs. 1",
+        "VMWG Art. 19 Abs. 1bis"
+      ],
+      "note": "269d Abs. 1-5 and VMWG 19 Abs. 1/1bis checked item by item; stepped-rent exception per 269d Abs. 5."
+    },
+    {
+      "item": "ri_timing",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 266a Abs. 1",
+        "OR Art. 266c"
+      ],
+      "note": "Fixed: gated to q:ri_index_or_steps!=yes, since VMWG 17 Abs. 3 (index) and 19a (steps) set other timing. Consequence of late notice left open (not in text)."
+    },
+    {
+      "item": "ri_challenge_30_days",
+      "checked_against": [
+        "OR Art. 270b Abs. 1",
+        "OR Art. 270b Abs. 2",
+        "OR Art. 270d",
+        "VMWG Art. 20 Abs. 1",
+        "ZPO Art. 113 Abs. 2"
+      ],
+      "note": "Fixed: 'no longer possible' narrowed to the abuse challenge (nullity is separate); added that valid steps cannot be challenged (270d). Not mixed with 270a. ZPO 113 Abs. 2 lit. c: no court costs in conciliation."
+    },
+    {
+      "item": "ri_abusive_grounds",
+      "checked_against": [
+        "OR Art. 269",
+        "OR Art. 269a",
+        "VMWG Art. 20 Abs. 2"
+      ],
+      "note": "269/269a kept general (lit. a, b, e only). Fixed client_text: documents can be demanded in the conciliation procedure (VMWG 20 Abs. 2)."
+    },
+    {
+      "item": "ri_protection_while_challenging",
+      "checked_against": [
+        "OR Art. 270e",
+        "OR Art. 271a Abs. 1",
+        "OR Art. 271a Abs. 3"
+      ],
+      "note": "Fixed client_text: 270e lit. a applies only if no agreement is reached. 271a Abs. 3 exceptions apply to lit. d/e only; wording limited accordingly."
+    },
+    {
+      "item": "ri_index_steps_rules",
+      "checked_against": [
+        "OR Art. 269b",
+        "OR Art. 269c",
+        "OR Art. 269d Abs. 5",
+        "OR Art. 270c",
+        "OR Art. 270d",
+        "VMWG Art. 17 Abs. 1",
+        "VMWG Art. 17 Abs. 3",
+        "VMWG Art. 19 Abs. 2",
+        "VMWG Art. 19a"
+      ],
+      "note": "Added VMWG 17 Abs. 3 timing for indexed rents. 270c/270d checked."
+    },
+    {
+      "item": "ri_challenge",
+      "checked_against": [
+        "OR Art. 270b Abs. 1",
+        "ZPO Art. 202 Abs. 1",
+        "ZPO Art. 202 Abs. 2",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "note": "ZPO 202 Abs. 1-2: request can be written or oral, naming opposing party, claim and subject. Fixed: authority is the one listed on the form (VMWG 19 Abs. 1 lit. c) rather than a jurisdiction rule not in the corpus."
+    },
+    {
+      "item": "ri_check_notice",
+      "checked_against": [
+        "OR Art. 269d Abs. 1",
+        "OR Art. 269d Abs. 2",
+        "VMWG Art. 19 Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_collect_documents",
+      "checked_against": [
+        "OR Art. 270b Abs. 1",
+        "OR Art. 269d Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_keep_paying",
+      "checked_against": [
+        "OR Art. 270e",
+        "OR Art. 257d Abs. 1"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    },
+    {
+      "item": "ri_referral",
+      "checked_against": [
+        "VMWG Art. 21 Abs. 2"
+      ],
+      "note": "Re-read against the German text; no change needed."
+    }
+  ],
+  "status": "drafted by Claude from the German text, checked by a second Claude pass; not reviewed by a lawyer"
+}

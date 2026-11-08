@@ -57,11 +57,14 @@
 <main>
 
 <section id="s1">
-  <div class="note"><strong>What this tool does:</strong> it reads your description of a tenancy problem, asks the follow-up
-  questions that matter, finds the relevant articles and court decisions, calculates deadlines, and suggests a lane:
-  information (1), information with open questions (2) or referral to a specialist (3). <strong>What it does not do:</strong>
-  give legal advice, decide disputes, or replace your professional judgement. You stay responsible for what you pass on.
-  Please do not type names or ID numbers; give the municipality instead of the street address.</div>
+  <div class="note"><strong>What this tool does:</strong> it reads your description of a tenancy problem, lets you confirm
+  the facts that decide the case, asks the follow-up questions that matter, calculates deadlines and suggests a lane:
+  information (1), information with open questions (2) or referral to a specialist (3).
+  <strong>Checked guidance is available for:</strong> unpaid rent and payment demands, termination by the landlord, giving
+  notice as a tenant, rent increases, defects (mould, heating), getting the deposit back, a co-tenant leaving, pets and house
+  rules, and protecting a spouse's home. For other situations the tool gives no legal guidance and suggests a referral.
+  <strong>What it does not do:</strong> give legal advice, decide disputes, or replace your professional judgement. You stay
+  responsible for what you pass on. Please do not type names or ID numbers; give the municipality instead of the street address.</div>
   <p class="muted noprint">Try an example from the legal team: <select id="ex" style="width:auto"><option value="">—</option></select>
      · <a href="/benchmark">Benchmark results</a></p>
   <label for="desc">Describe your client's situation in your own words</label>
@@ -83,6 +86,8 @@
   <div id="facts"></div>
   <div id="disputesWrap"></div>
   <h3>Dates that may start a deadline</h3><div id="events"></div>
+  <h3>Situation</h3><p class="muted">The tool has checked guidance for these situations. The AI's suggestion is ticked; correct it if needed. If none fits, untick all: the tool will then not give legal guidance and will suggest a referral.</p>
+  <div id="modsel"></div>
   <h3>Deciding facts</h3><p class="muted">These facts decide which rules can apply. The AI's reading is pre-filled with the client's sentence it relied on. Please check each one: a wrong answer here changes everything that follows.</p>
   <div id="evtable"></div>
   <h3>Legal issues identified</h3><div id="issues"></div>
@@ -204,6 +209,8 @@ function renderUnderstanding() {
   $("#issues").innerHTML = u.issues.map(i => `<div class="card">${esc(i.issue)} <span class="muted">(${i.source === "safety net" ? "added by the checklist of rules for this situation" : "found by the AI"})</span>
      <details><summary>${i.articles.map(a => `<span class="tag">${esc(a)}</span>`).join("")}</summary>
      ${i.articles.map(a => `<p><strong>Art. ${esc(a.replace("OR ", ""))} OR</strong> (plain-language summary, reviewed against the official text): ${esc((i.summaries || {})[a] || "")}</p>`).join("")}</details></div>`).join("");
+  const SUG = C.modules_suggested || [], TITLES = C.module_titles || {};
+  $("#modsel").innerHTML = Object.keys(TITLES).map(k => `<label class="chk"><input type="checkbox" data-mod="${esc(k)}" ${SUG.includes(k) ? "checked" : ""}> ${esc(TITLES[k])}${SUG.includes(k) ? ' <span class="muted">(suggested)</span>' : ""}</label>`).join("");
   const EV = C.event_status || {}, NAMES = C.event_names || {};
   $("#evtable").innerHTML = `<table><tr><th>Fact</th><th>Answer</th><th>Based on</th></tr>${Object.keys(EV).filter(k => EV[k].source !== "code").map(k =>
     `<tr><td>${esc(NAMES[k] || k)}</td><td><select data-ev="${esc(k)}">${[["A","yes"],["B","no / only threatened or planned"],["C","not said / unknown"]].map(([v,l]) =>
@@ -227,7 +234,8 @@ $("#toQ").onclick = async () => {
   $("#toQ").disabled = true; const stop = timed($("#s2msg"), "Preparing questions (usually 5–20 seconds)…");
   try {
     const evs = {}; document.querySelectorAll("[data-ev]").forEach(x => evs[x.dataset.ev] = x.value);
-    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null, events: evs});
+    const mods = [...document.querySelectorAll("[data-mod]")].filter(x => x.checked).map(x => x.dataset.mod);
+    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null, events: evs, modules: mods});
     stop(); $("#s2msg").textContent = "";
     QS = r.questions; SOURCES = r.sources; C.provisional_lane = r.provisional_lane; renderQuestions(r.dropped_questions);
     $("#s3").classList.remove("hidden"); $("#s3").scrollIntoView({behavior:"smooth"});
@@ -236,20 +244,21 @@ $("#toQ").onclick = async () => {
 };
 
 function inputFor(q) {
-  const n = `a_${q.id}`;
-  if (q.input_type === "date") return `<input type="date" id="${n}">`;
-  if (q.input_type === "number") return `<input type="number" id="${n}">`;
-  if (q.input_type === "yes_no_unknown") return `<select id="${n}"><option value="">—</option><option>yes</option><option>no</option></select>`;
+  const n = `a_${q.id}`, v = esc(q.prefilled || "");
+  if (q.input_type === "date") return `<input type="date" id="${n}" value="${v}">`;
+  if (q.input_type === "number") return `<input type="number" id="${n}" value="${v}">`;
+  if (q.input_type === "yes_no_unknown") return `<select id="${n}"><option value="">—</option><option ${v === "yes" ? "selected" : ""}>yes</option><option ${v === "no" ? "selected" : ""}>no</option></select>`;
   if (q.input_type === "choice") return `<select id="${n}"><option value="">—</option>${(q.options||[]).map(o => `<option>${esc(o)}</option>`).join("")}</select>`;
   if (q.input_type === "upload") return `<input type="file" id="f_${q.id}" accept=".pdf,image/*"> <button class="secondary" onclick="uploadDoc('${q.id}')">Read document</button>
      <div id="up_${q.id}"></div>
      <details><summary>Answer instead</summary>${(q.answer_instead||[]).map((t,i) => `<label>${esc(t)}</label><input type="text" id="${n}_${i}">`).join("") || `<input type="text" id="${n}">`}
      <p class="muted">Answers given instead of a document are recorded as the client's statement, not documented.</p></details>`;
-  return `<input type="text" id="${n}">`;
+  return `<input type="text" id="${n}" value="${v}">`;
 }
 function renderQuestions(dropped) {
   $("#questions").innerHTML = provBanner(C.provisional_lane) + QS.map((q, i) => `<div class="card ${i >= SHOW ? "hidden more" : ""}"><span class="tag">${esc(q.priority)}</span> <strong>${esc(q.question)}</strong>
      <div style="margin:6px 0">${inputFor(q)}</div>
+     ${q.prefilled ? `<div class="src">Pre-filled from the description: ${quoted(q.prefill_quote)} — please confirm with the client.</div>` : ""}${q.prefill_note ? `<div class="src">${esc(q.prefill_note)}</div>` : ""}
      <label class="chk"><input type="radio" name="st_${q.id}" value="answered" checked> answer above</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="dont_know"> I don't know</label>
      <label class="chk"><input type="radio" name="st_${q.id}" value="cant_get"> Can't get this</label>
@@ -342,9 +351,12 @@ function renderResult() {
    <p>${esc(s.situation)}</p>
    <p><strong>Facts</strong></p><ul>${facts}</ul>
    ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
-   <h3>What this means for the client</h3>
-   <p class="muted">Written by the AI for this case and checked sentence by sentence against the official text; sentences that failed a check were removed (see "Verification" below). Click a reference to read the official text.</p>
-   ${s.issues.map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`
+   ${s.out_of_scope ? `<div class="warn">${esc(s.out_of_scope)}</div>` : ""}
+   ${(s.modules || []).map(b => `<h3>${esc(b.title)}</h3><p class="muted">${esc(b.summary)}</p><ul>${b.points.map(p => `<li>${esc(p.text)} ${(p.basis || []).map(chip).join("")}</li>`).join("")}</ul>`).join("")}
+   ${(s.modules || []).length ? `<p class="muted">Legal points: written from the official German text and checked against it in a second pass (not reviewed by a lawyer). They are shown only when the confirmed facts meet their conditions.</p>` : ""}
+   <h3 class="${(s.issues || []).length ? "" : "hidden"}">What this means for the client</h3>
+
+   ${(s.issues || []).map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`
       : `<p class="muted">No statement passed the checks for this issue. ${i.articles.map(a => chip(a.replace("OR ", "OR Art. "))).join("")}</p>`}
       <details class="muted"><summary>The rules in general (plain-language summary of the official text)</summary><ul>${i.rules.map(r => `<li>${esc(r.statement)} ${r.sources.map(chip).join("")}</li>`).join("")}</ul></details>`).join("")}
    ${s.open_points.length ? `<p><strong>Open points</strong></p><ul>${s.open_points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
@@ -364,7 +376,7 @@ $("#hout").onclick = async () => {
     const en = r.English, lang = Object.keys(r).find(k => k !== "English"), tr = lang ? r[lang] : null;
     const block = (h, title, isTr) => `<div><h3>${esc(title)}</h3>
       ${h.act_now ? `<div class="bad"><strong>${isTr ? "" : "Act now: "}</strong>${esc(h.act_now)}</div>` : ""}
-      <p>${esc(h.summary)}</p><p><strong>${isTr ? "" : "What to do"}</strong></p><ul>${(isTr ? h.actions : h.actions.map(a => a.text)).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+      <p>${esc(h.summary)}</p>${(h.points || []).length ? `<p><strong>${isTr ? "" : "Good to know"}</strong></p><ul>${h.points.map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}<p><strong>${isTr ? "" : "What to do"}</strong></p><ul>${(isTr ? h.actions : h.actions.map(a => a.text)).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
       ${h.questions.length ? `<p><strong>${isTr ? "" : "Please find out"}</strong></p><ol>${h.questions.map(q => `<li>${esc(q.text)}<br><span class="muted">${esc(q.why)} ${esc(q.helpful_document)}</span><br>Answer: ______________________ ☐ I don't know ☐ I cannot obtain this</li>`).join("")}</ol>` : ""}
       ${h.uncertain ? `<p class="muted">${esc(h.uncertain)}</p>` : ""}</div>`;
     $("#extra").innerHTML = `<h2>Client handout</h2><p class="muted noprint">Legal information, not legal advice. The left column is for you, so you know exactly what the client receives.</p>
@@ -385,6 +397,7 @@ $("#brf").onclick = async () => {
       <h3>2. Client's objective and context</h3><p>${esc(b.objective_and_context)}</p>
       <h3>3. Key facts and chronology</h3><ul>${b.chronology.map(c => `<li>${esc(c.date)} — ${esc(c.event)} (${esc(c.source)})</li>`).join("")}</ul>
       <ul>${b.facts.map(f => `<li>${esc(f.statement)} — <em>${esc(f.status)}</em></li>`).join("")}${b.disputed.map(d => `<li>${esc(d)} — <em>disputed</em></li>`).join("")}</ul>
+      <h3>Deciding facts (confirmed by the social worker)</h3><ul>${(b.deciding_facts || []).map(f => `<li>${esc(f.fact)}: <strong>${esc(f.answer)}</strong> <span class="muted">(${esc(f.source)})</span></li>`).join("")}</ul>
       <h3>4. Preliminary legal assessment</h3><p class="muted">Rules identified by the tool (reviewed summaries); applicability to be assessed by the lawyer.</p>
       ${(b.preliminary_assessment || []).map(i => `<p><strong>${esc(i.issue)}</strong></p><ul>${i.rules.map(r => `<li>${esc(r)}</li>`).join("")}</ul>`).join("")}
       <h3>5. Evidence and outstanding questions</h3><p><strong>Available:</strong> ${b.evidence_available.map(esc).join(", ")}</p><p><strong>Missing:</strong></p><ul>${b.missing.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
