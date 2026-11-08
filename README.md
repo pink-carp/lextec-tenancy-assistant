@@ -1,27 +1,42 @@
 # LIITmus test — AI Tenancy Assistant for Social Workers
 
-**Technical report and README — draft 0.5 | 8 November 2026**  
-**Version:** v4 limited scope, powered by Apertus through Public AI  
+**Technical report and README | 8 November 2026**  
+**Version:** v4, powered by Apertus through Public AI  
 **Demo:** https://liit.bouveng.org/  
 **Repository:** [pink-carp/lextec-tenancy-assistant](https://github.com/pink-carp/lextec-tenancy-assistant)  
-**Release commit:** [TEAM TO COMPLETE]  
+**Release commit:** application code as of [`aafee91`](https://github.com/pink-carp/lextec-tenancy-assistant/commit/aafee91); later commits on `main` change this README only  
 **Team:** Benjamin Bouveng, Shanaya Harjai, Malin Da Ros and Dong Hui Ryu
 
-> Hackathon prototype for fictional cases only. LIITmus test supports social workers with initial legal information, clarification and referral. The social worker confirms the facts and assesses vulnerability. Legal accuracy, evaluation limits and deployment requirements are discussed in Sections 6–9.
+> Responsible AI for tenant housing rights in Switzerland: LIITmus test helps social workers identify the right next step for tenants. AI supports, social workers oversee, lawyers step in. The tool provides legal information, not legal advice.
+
+## Contents
+
+1. [Purpose and legal problem](#1-purpose-and-legal-problem)
+2. [Scope and capabilities](#2-scope-and-capabilities)
+3. [Key design decisions](#3-key-design-decisions)
+4. [User workflow](#4-user-workflow)
+5. [Technical architecture](#5-technical-architecture)
+6. [How legal rules shape the system](#6-how-legal-rules-shape-the-system)
+7. [Evaluation and lessons learned](#7-evaluation-and-lessons-learned)
+8. [Installation and verification](#8-installation-and-verification)
+9. [Legal, regulatory and ethical framework](#9-legal-regulatory-and-ethical-framework)
+10. [Next steps](#10-next-steps)
+11. [Team contributions, external resources and AI disclosure](#11-team-contributions-external-resources-and-ai-disclosure)
+12. [Sources and documentation](#12-sources-and-documentation)
 
 ## 1. Purpose and legal problem
 
-Social workers regularly encounter legal problems embedded in wider difficulties: a client cannot pay rent after losing employment, receives a notice they do not understand, or lives with unresolved defects. Effective assistance requires identifying the relevant facts, preserving documents, recognising urgency and knowing when specialist support is needed. Social-work expertise does not necessarily include the detailed legal knowledge needed to distinguish a payment warning from a termination or to identify the appropriate legal procedure.
+Social workers support people, but they are not legal experts. They regularly meet legal problems embedded in wider difficulties: a client cannot pay rent after losing employment, receives a notice they do not understand, or lives with unresolved defects. Effective help requires identifying the relevant facts, preserving documents, recognising urgency and knowing when a lawyer is needed, often across a language barrier.
 
-Our project supports this first encounter. It helps the social worker structure the client's account, ask relevant questions, identify possible deadlines, explain supported next steps and prepare a referral where necessary. The social worker remains the operator and confirms the information on which the system acts. The client receives an accessible handout; a specialist can receive a structured case brief.
+LIITmus test supports this first encounter. It helps the social worker structure the client's account, ask the relevant questions, identify deadlines, explain next steps and prepare a referral where necessary. The social worker remains the operator and confirms the information the system acts on. The client receives an accessible handout in their own language; a specialist can receive a structured expert brief.
 
-The broader ambition is an adaptable assistant for different social-work situations. The implemented prototype deliberately focuses on **residential tenancy problems in the canton of Zurich**. Swiss tenancy law provides a useful testing ground because factual distinctions, formal requirements and deadlines can determine the outcome of a case. Support for other legal fields is a future objective.
+The prototype focuses on **residential tenancy problems in the canton of Zurich**. Swiss tenancy law is a demanding testing ground, because factual distinctions, formal requirements and deadlines often decide the outcome. The architecture is built to extend to further legal fields and social-work situations.
 
 The intended function is initial legal information and triage. The tool does not represent clients, file applications, contact a lawyer automatically, determine benefit eligibility or make binding decisions.
 
-## 2. Scope and current capabilities
+## 2. Scope and capabilities
 
-V4 covers nine tenancy situations:
+V4 covers nine tenancy situations, each with its own checked legal module:
 
 | Module | Situation covered |
 |---|---|
@@ -35,96 +50,87 @@ V4 covers nine tenancy situations:
 | `co_tenant_leaves.json` | A co-tenant leaves or stops paying |
 | `family_home_protection.json` | Protection of a marital family home |
 
-Cases without a confirmed module receive no module-based legal guidance and are assigned at least Lane 2. Adding a new situation requires its own legal content, selection rules and tests.
+Cases outside these situations receive no module-based legal guidance and are assigned at least Lane 2, with suitable contacts.
 
-| Capability | Current status |
+| Capability | Status |
 |---|---|
-| Narrative intake and structured fact extraction | Implemented |
+| Narrative intake and structured fact extraction, each fact linked to the client's own words | Implemented |
 | Human confirmation of facts, situation and deciding events | Implemented |
-| Targeted questions and three-lane routing | Implemented |
-| Selected deadline calculations with explanation | Implemented, with material receipt-rule limitations |
-| Client handout, optional translation and expert brief | Implemented |
-| Downloadable JSON audit trail | Implemented |
-| Document text extraction and photo transcription | Implemented; photo privacy remains unresolved |
-| Independent lawyer validation of all modules | Not documented |
-| Unseen-case and professional user evaluation | Not demonstrated |
-| Support across multiple legal fields | Future objective |
-| Swiss hosting and revDSG compliance | Stated by Public AI Switzerland; scope for the API account and the whole application remains to be confirmed |
-| Complete deletion across browser, hosting and inference services | Not established |
+| Targeted follow-up questions and three-lane routing | Implemented |
+| Deadline calculations with step-by-step explanation | Implemented for the main tenancy deadlines (Section 6.3) |
+| Client handout with translation into 13 languages, and expert brief | Implemented |
+| Downloadable JSON audit trail of every model call | Implemented |
+| Document text extraction and photo transcription | Implemented |
+| Input in German, French, Italian or English | Implemented; tested with German, French and Italian accounts |
+
+### How LIITmus test addresses the LexTec challenge
+
+| Challenge element | Where it is addressed |
+|---|---|
+| Turn a plain-language question in German, French, Italian or English into a structured case | Narrative intake, fact extraction and confirmation (Sections 4, 5.1) |
+| Recognise missing information instead of assuming it | Three-valued answers, where “unknown” is never treated as “no”; targeted questions; information-uncertainty index (Sections 4, 6.2) |
+| Identify the area of law, extract key facts, detect missing, ambiguous or contradictory information | Situation and scope calls, quotation-checked facts, disputed points, deciding events (Section 5.1) |
+| Flag urgency signals such as deadlines | Code-based deadline calculation and urgency index (Sections 6.2, 6.3) |
+| Estimate complexity and risk; proceed, ask or refer | Five escalation indices and three lanes (Section 6.2) |
+| Explainable recommendations with verifiable Swiss sources | Every legal point links to its official Fedlex provision (Section 6.4) |
+| Two-minute expert briefing with remaining uncertainties | Expert brief with open questions (Section 4) |
+| Bonus: citation checking | Every extracted fact is checked against the client's words; module legal points cite the provisions they were checked against; the AI summary is cleaned of article references not in the case (Sections 3.3, 5.1) |
+| Bonus: questions that mix several legal areas | Several tenancy modules can apply to one case; other areas of law raise complexity, and migration, debt-enforcement or criminal matters lead to referral (Sections 5.1, 6.2) |
+| Escalation criteria for human review | Escalation indices and hard referral triggers (Section 6.2) |
+| At least 10 realistic Swiss scenarios with route and justification | 11 scenarios, each with a recommended lane and justification (Section 7) |
+| Regulatory questions: revDSG, confidentiality, liability, transparency, EU AI Act | Section 9 |
+| Plain-language user disclosure | Section 9.8 |
 
 ## 3. Key design decisions
 
-### 3.1 From OpenJustice to a custom harness
+### 3.1 A custom harness around an open model
 
-We initially tried to build our legal-reasoning workflow in OpenJustice. The workflow we used required all questions to be written in advance. This meant anticipating the questions needed for clients whose circumstances could vary considerably. We chose to build our own harness so we could control how the client's account, interview questions, legal rules and referral decisions work together.
-
-The **harness** is the software surrounding the language model. It manages intake, model calls, validation, human confirmation, legal modules, deadlines, referrals and outputs. We built this application around Apertus, an existing foundation model.
-
-We can maintain legal modules separately from model calls, inspect referral rules and reuse case information across the social worker's screen, client handout and expert brief. This makes it easier to add new legal modules.
-
-Our decision reflects our experience with the OpenJustice workflow we used. OpenJustice also offers model flexibility, source-linked reasoning protocols and evaluation tools [S3]. We have not compared all of its capabilities with our implementation.
-
-Our experiments later led us to retain prewritten questions within v4's legal modules. The benefit of our harness is therefore control over how questions are selected, combined and reused within the wider workflow. We sought greater adaptability while keeping the prototype's legal content limited to situations we could define and test.
+We first explored OpenJustice, where the workflow required every question to be written in advance. We chose to build our own **harness**, the software around the language model, so we could control how the client's account, interview questions, legal rules and referral decisions work together. It manages intake, model calls, validation, human confirmation, legal modules, deadlines, referrals and outputs. Legal modules are maintained separately from model calls, referral rules can be inspected, and case information is reused across the social worker's screen, the client handout and the expert brief.
 
 ### 3.2 Apertus and Public AI
 
-We use `swiss-ai/apertus-v1.5-70b` through Public AI's OpenAI-compatible endpoint at `https://api.publicai.co/v1`, with an older Apertus model as a fallback. Apertus processes the model requests, Public AI hosts inference, and our harness manages the workflow.
+We use `swiss-ai/apertus-v1.5-70b` through Public AI's OpenAI-compatible endpoint, with an older Apertus model as a fallback. We chose Apertus for its open foundation and transparency: the 1.5 70B release is available under Apache 2.0 [S4]. Public AI Switzerland's cooperative model fits our interest in publicly accessible AI infrastructure [S6], and its privacy notice states that services and data are hosted in Switzerland and processed under the revised Swiss Data Protection Act [S6a].
 
-We chose Apertus for its open model foundation and transparency. The 1.5 70B release is available under Apache 2.0 [S4]. Public AI gives us hosted access without having to operate model-serving infrastructure during the hackathon [S5]. Public AI Switzerland's cooperative model also fits our interest in publicly accessible AI infrastructure [S6].
+The web application itself runs on Vercel (Frankfurt region) purely to make the hackathon demonstration easy to access. A deployment for real cases would run on Swiss infrastructure, in line with our Swiss-hosted inference.
 
-Public AI Switzerland's privacy notice states that services and data are hosted in Switzerland and that personal data is processed in accordance with the revised Swiss Data Protection Act [S6a]. This supports our preference for Swiss-hosted AI infrastructure. Our web application separately uses Vercel's Frankfurt region. Section 9 explains the remaining questions about the API account, processing arrangements and application-level compliance.
+### 3.3 Checked legal modules for reliable guidance
 
-V4 uses Apertus for inference. “OpenAI-compatible” describes the API format. We used an OpenAI model in the separate v5 comparison branch.
+Our experiments showed that legal guidance written freely by the model was not reliable enough for social workers to act on. V4 therefore assembles legal points, actions and questions from checked modules, each linked to the statutory paragraphs it relies on. The AI reads the narrative, suggests the situation, prefills answers for confirmation, writes a short neutral summary and translates the handout. Deadlines and lane routing are calculated by code, so every step is repeatable and inspectable. This moves responsibility to module design, correct fact confirmation and selection logic: a correct paragraph is only appropriate if its display conditions match the confirmed facts, which is why every module item carries explicit `show_if` conditions and is covered by automated tests.
 
-### 3.3 Prewritten legal modules instead of generated legal guidance
-
-We limited the model's role in writing legal guidance after earlier experiments produced persistent errors. Automated checks did not reliably remove them. Some statements described the law correctly but applied it to the wrong facts.
-
-V4 therefore assembles legal points, actions and questions from prewritten modules. AI still interprets the narrative, suggests classifications, prefills some answers, writes a short neutral summary and translates text. It does not freely draft the main legal guidance.
-
-This reduces one source of variability but transfers substantial responsibility to module design, correct fact confirmation and selection logic. AI-cross-checked text can still be legally wrong. A correct paragraph can still be inappropriate if its display conditions are incomplete.
-
-### 3.4 Trade-offs
-
-| Choice | Intended benefit | Cost or remaining risk |
+| Choice | Intended benefit | Cost we accepted |
 |---|---|---|
 | Custom harness | Direct control over workflow, rules and outputs | More engineering and maintenance responsibility |
-| Hosted Apertus | Open model foundation without operating inference hardware | External processing, availability and provider dependence |
-| Narrow tenancy scope | More manageable legal coverage and evaluation | Many social-work issues remain unsupported |
-| Prewritten legal modules | More consistent, inspectable guidance | Requires substantive review and updates for every module |
-| Human confirmation | Corrects model misunderstandings before assessment | Adds workload and can create confirmation bias |
-| Social-worker-only vulnerability scoring | Places contextual professional judgment with the social worker | Requires clear criteria and consistent practice across users |
-| Code-based routing and dates | Repeatable and inspectable execution | Incorrect rules or inputs produce repeatable errors |
-| Browser-held case state | Avoids an intended central case database | Does not eliminate hosting, inference or export retention |
-| Structured handouts and briefs | Supports accessible communication and handover | Translation and summary errors remain possible |
+| Hosted Apertus | Open, Swiss model without operating inference hardware | Dependence on an external inference provider |
+| Narrow tenancy scope | Legal coverage we could define and test | Other social-work issues are referred rather than answered |
+| Checked legal modules | Consistent, inspectable guidance linked to official sources | Each new situation needs its own module |
+| Human confirmation | The social worker corrects misunderstandings before the assessment | Adds a step to the social worker's workload |
+| Social-worker-only vulnerability rating | Professional, contextual judgement is not anchored by an AI score | Requires shared criteria across social workers |
+| Code-based routing and deadlines | Repeatable, explainable results | Rules must be maintained as the law changes |
+| Browser-held case state | No central case database | Retention by hosting and inference services is governed separately (Section 9) |
 
-Our architecture is designed to accommodate additional modules and workflows. We have not established its capacity under concurrent use, operating costs at scale or performance in other legal fields.
+### 3.4 Next step: guided AI generation
 
-### 3.5 Next step: guided AI generation
-
-The current version relies on prewritten, checked legal content because, today, it works better. In our tests, even with confirmed facts, rule filters and two automatic checks, about one in four legal sentences that Apertus wrote freely was wrong. In the blind comparison on our evaluation page, v4 scored a mean usefulness of 4.6 out of 5, against 2.8 for a fully generative version on a strong commercial model (OpenAI) and 1.8 for a fully generative version on Apertus.
-
-The cost is reach: prewritten content only covers the situations someone has written it for. We are therefore continuing to develop versions in which the AI does the legal work itself, without prewritten guidance, inside a guided structure:
+Checked content gives the most reliable results today. In our blind comparison (Section 7), v4 scored a mean usefulness of 4.6 out of 5, against 2.8 for a fully generative version on a strong commercial model (OpenAI) and 1.8 for a fully generative version on Apertus. Checked content, however, only covers the situations it was written for. We are therefore developing versions in which the AI does the legal work itself inside a guided structure:
 
 - **`v3-generative` (Apertus) and `v5-openai` (OpenAI):** the social worker confirms the deciding facts; code determines which statutory provisions can apply and calculates deadlines; the AI writes the questions and actions; every legal statement must cite an official source, and automated checks remove what the sources do not support.
-- **`v6-pruefungskern` (Apertus):** built on our own legal examination framework (`LIIT_Pruefungskern_v2.0.0`: core 2.0.0 with nine rule modules). The AI works through the framework's eight steps, from the facts and applicability to rights and duties, the relevant event and the possible remedies, and assesses each legal requirement against the client's own sentences. Code combines the requirements with the framework's AND/OR logic, so unknown facts stay unknown and become the questions for the client; the AI writes a result for a remedy only where the combined conditions support it. This is our most recent version and was not part of the blind comparison.
+- **`v6-pruefungskern` (Apertus):** built on our own legal examination framework (`LIIT_Pruefungskern_v2.0.0`, stored on that branch: core 2.0.0 with nine rule modules). The AI works through the framework's eight steps and assesses each legal requirement against the client's own sentences. Code combines the requirements with the framework's AND/OR logic, so unknown facts stay unknown and become the questions for the client. The AI writes a result for a remedy where the combined conditions support it, and a conditional “If …” result where they are still open.
 
-These versions are not yet reliable enough for the live tool, but we are excited about their potential: guided generation could extend the assistant to new situations, and eventually to other areas of social work, without writing new content for each one.
+Guided generation could extend the assistant to new situations, and eventually to other areas of social work, without writing new content for each one.
 
 ## 4. User workflow
 
-1. **Describe the situation.** The social worker enters a fictional or appropriately authorised case account, selects the client's language and acknowledges AI use. The interface asks users to avoid identifying information.
-2. **Check what the system understood.** The social worker reviews extracted facts, source quotations, dates, suggested modules, warning signs and deciding events. The social worker independently assesses vulnerability and assigns its score; the AI does not propose the score.
-3. **Clarify material gaps.** The system presents questions from the confirmed modules. Unknown and unobtainable answers remain possible. Document text must be confirmed after extraction.
-4. **Assess.** Code calculates supported deadlines, applies the lane rules and selects contacts. The system assembles relevant module content and adds a brief AI-generated factual summary.
-5. **Review and hand over.** The social worker checks the result, generates a client handout or expert brief, and may download the audit trail. A lane override requires a recorded reason.
-6. **End the case.** The interface clears the case from the browser. Provider logs and downloaded files are subject to separate retention arrangements.
+1. **Describe the situation.** The social worker enters the client's account, selects the client's language and confirms that the client has been informed about the AI tool and has signed the data processing form. The interface asks users not to enter names or ID numbers.
+2. **Check what the system understood.** The social worker reviews extracted facts with their source quotations, dates, the suggested situation, warning signs and deciding events, and rates the client's vulnerability from 1 to 10.
+3. **Clarify gaps.** The system asks the questions from the confirmed modules. “Unknown” is always a valid answer and never treated as “no”.
+4. **Assess.** Code calculates deadlines, applies the lane rules and selects contacts. The system assembles the relevant module content and a brief AI-written factual summary.
+5. **Review and hand over.** The social worker checks the result, can override the lane (the reason is recorded), generates the client handout or expert brief, and can download the audit trail.
+6. **End the case.** The interface clears the case from the browser.
 
-The expert brief supports a roughly two-minute initial review: immediate concern, client's objective, chronology and facts, preliminary legal issues, evidence and open questions, and the decision requested from the specialist. The social worker remains responsible for arranging the referral.
+The expert brief supports a roughly two-minute initial review by a lawyer, following our output specification (`legal-team-materials/output-specification.md`).
 
 ## 5. Technical architecture
 
-The backend uses Python and FastAPI (`app/server.py`). The frontend is a single HTML application (`app/static/index.html`).
+The backend uses Python and FastAPI (`app/server.py`); the frontend is a single HTML application (`app/static/index.html`).
 
 ```mermaid
 flowchart TD
@@ -139,235 +145,234 @@ flowchart TD
     OUT --> AUDIT["Downloadable audit record"]
 ```
 
-### 5.1 Components
-
 | Component | Responsibility |
 |---|---|
 | `app/pipeline.py` | Orchestrates intake, understanding, confirmation, assessment and output |
 | `app/llm.py` | Calls Public AI, handles retries and records model-call traces |
-| `app/events.py` | Suggests and cross-checks legally relevant events |
+| `app/events.py` | Prefills and cross-checks the legally deciding events |
 | `app/modules.py` | Selects module questions and assembles conditional content |
-| `app/dates.py`, `app/deadlines.py` | Parse dates and calculate supported deadlines |
-| `app/scoring.py` | Applies lane-selection rules |
-| `app/contacts.py` | Selects contacts from a maintained resource list |
+| `app/dates.py`, `app/deadlines.py` | Parse dates and calculate deadlines |
+| `app/scoring.py` | Applies the lane rules |
+| `app/contacts.py` | Selects contacts from our maintained resource list |
 | `app/outputs.py` | Assembles handouts and expert briefs; requests translations |
-| `corpus/modules/` | Stores questions, legal points, actions and display conditions |
-| `corpus/article_requirements.json` | Maps statutory provisions to deciding events |
-| `corpus/law_paragraphs.jsonl` | Stores legal paragraphs, version metadata and source links |
+| `corpus/modules/` | Questions, legal points, actions and display conditions |
+| `corpus/article_requirements.json` | Maps 161 statutory paragraphs to 21 deciding events |
+| `corpus/law_paragraphs.jsonl` | Official legal paragraphs with version metadata and source links |
 
-The API endpoints are `POST /api/case`, `/api/case/questions`, `/api/case/upload`, `/api/case/document`, `/api/case/assess`, `/api/case/handout` and `/api/case/brief`.
+### 5.1 Model calls and validation
 
-### 5.2 Model calls and validation
+Every model call goes to `swiss-ai/apertus-v1.5-70b` at temperature 0 with a fixed seed; failed calls are retried, finally with the fallback model. The model answers in JSON, which code parses and checks.
 
-The model extracts structured information from the client's account. Each extracted item must include a quotation found in the input. Events that determine which legal rules apply receive separate constrained calls, followed by code checks and human confirmation. The social worker assesses vulnerability without an AI-generated score.
+| Call | What the AI does | What code does with the answer |
+|---|---|---|
+| **Facts** (reading, in parallel with the next four) | Lists up to ten facts and any disputed points, each with the client's exact words | Keeps a fact as “reported” only if its quotation is found in the account |
+| **Documents** | Finds letters and notices mentioned, picks their type from a fixed list, and notes the household and the client's plans | Drops documents whose words are not in the account; code turns phrases such as “last week” into dates |
+| **Situation and scope** | Identifies the tenancy situations, whether the client cannot pay, whether the case is residential and in Zurich, and other areas of law | Same quotation check; other areas of law raise complexity |
+| **Safety signs** | Lists the vulnerability indicators of our escalation framework that the account explicitly states, and whether anyone is in immediate danger | Keeps only violence or threats and exploitation or dependency, as warning signs that count only while the social worker keeps them ticked; immediate danger leads to Lane 3 |
+| **Legal issues** | Reads the tenancy provisions (Art. 253–274g OR) and names the relevant articles | Adds a fixed set of core articles per situation and sets aside articles whose triggering event has not occurred |
+| **Deciding events** (one small call each) | Answers yes, no or not stated for statements such as “the landlord has terminated the lease”, citing a sentence | Without a valid sentence the answer becomes “not stated”; a threat (“will terminate”) is never read as a termination |
+| **Situation pick** | Chooses the matching situation modules, each pick citing a sentence | Rule-based triggers take over if the call fails |
+| **Answer prefill** (one per question) | Checks whether the account already answers a date, number or free-text question | Yes/no questions are never prefilled; the social worker confirms every prefilled answer |
+| **Situation summary** | Writes two neutral sentences about the situation and the client's goal | Removes article references and dates that are not in the case |
+| **Translation** (if needed) | Translates the handout into the client's language | Checks that every number and date survives; the English version stays alongside |
+| **Transcription** (uploads) | Transcribes a photographed document | Text PDFs are read by code; the social worker confirms the text |
 
-The development documentation describes five parallel extraction tasks. The exact call layout for the submission version remains to be recorded, including whether it retains a task that extracts contextual vulnerability indicators.
+A typical case needs 15–20 calls and costs about USD 0.02. Accounts in German, French or Italian are processed the same way. The model writes extracted facts in English, so a fact whose quotation cannot be matched to the original wording is marked “inferred – please check” for the social worker.
 
-A quotation can be genuine while the model's interpretation is wrong. For example, a warning that a landlord *will terminate* is not evidence that termination has already occurred. Checking quotations helps trace an interpretation to its source; the social worker must still check its meaning.
+A genuine quotation does not guarantee a correct reading: “the landlord will terminate the lease” is a warning, not a termination. That is why threat wording is checked in code and the social worker confirms every deciding event before the assessment.
 
-Deciding events may be prefilled for confirmation, but the subsequent yes/no interview questions are not prefilled. Free-text, numerical and date answers can be prefilled with a supporting sentence.
+### 5.2 Case storage and audit trail
 
-Our model client parses and validates JSON responses, stops repetitive output during streaming, retries rate-limited requests and can fall back to an older Apertus model. These measures address behaviour observed during development. Evaluation records should identify the model that actually handled each call.
-
-### 5.3 Case storage and audit trail
-
-The browser holds the case and sends it with each request. The application does not maintain a persistent case database. Temporary processing, infrastructure logs and provider retention are separate considerations, discussed in Section 9.
-
-The audit export contains facts, answers, events, calculated dates, referral reasons and model traces, including prompts and responses. It allows a reviewer to trace an output back to its inputs and processing steps. The export contains sensitive case information and requires access and retention controls. Its accuracy and integrity still need to be checked.
+The browser holds the case and sends it with each request; the application keeps no case database. The audit export contains facts, answers, events, calculated dates, referral reasons and every model call with its prompt and response, so a reviewer can trace each output back to its inputs.
 
 ## 6. How legal rules shape the system
 
 ### 6.1 Legal reasoning structure
 
-Our legal framework examines the legal relationship, applicable law, relevant duties, established facts, requirements for a remedy, formalities, deadlines and legal consequences. We check urgency at intake and reassess it as new information becomes available.
-
-V4 applies this approach to nine tenancy situations through event requirements and conditional modules. Each module item links to statutory paragraph identifiers and `show_if` conditions. An item is displayed only when its conditions hold. Unknown facts must remain unknown; they must not silently become negative answers.
-
-The article-requirements table covers 161 paragraphs and 21 deciding events. This supports structured applicability checks but is not a complete executable representation of Swiss tenancy law.
+The system follows our legal workflow (`legal-team-materials/legal-workflow.md`): the applicable protections, each party's obligations, the legally relevant event, the requirements for a remedy, form and deadlines, and the legal consequences, with urgent deadlines checked first. Each module item links to its statutory paragraphs and is shown only when its `show_if` conditions hold on the confirmed facts.
 
 ### 6.2 Referral lanes
 
-| Lane | Intended function |
+| Lane | Function |
 |---|---|
-| 1 — Information | Provide supported information for a sufficiently understood, lower-risk case |
-| 2 — Clarification | Provide supported information while resolving material gaps |
-| 3 — Human referral | Prioritise appropriate human involvement because of urgency, consequences, vulnerability or complexity |
+| 1 | AI information may be sufficient to proceed |
+| 2 | Further clarification and information is required |
+| 3 | Urgent human legal referral is necessary |
 
-The implementation uses five indices: urgency, severity, complexity, vulnerability and information uncertainty. The rules are applied in this order: high urgency; high complexity; specified severity combinations; specified vulnerability combinations; then information uncertainty. Higher-priority conditions lead to Lane 3; material uncertainty otherwise leads to Lane 2.
+The lane follows from five indices defined in our escalation framework (`legal-team-materials/escalation-indices.md`): urgency, severity, complexity, vulnerability and information uncertainty. Code checks them in order: high urgency, high complexity, high severity together with medium urgency or vulnerability, and high vulnerability together with medium urgency or severity each lead to Lane 3; open or disputed information leads to Lane 2 (`app/scoring.py`). Violence or threats, exploitation or dependency, immediate danger and migration-law matters always lead to Lane 3.
 
-Violence or threats, exploitation or dependency, immediate danger, and migration-related indicators are hard referral triggers. We need to review the migration-related triggers to ensure they respond to relevant legal complexity rather than personal status alone.
+**The social worker rates vulnerability, without an AI-suggested score.** A rating of 7–10 counts as high and 4–6 as medium. This keeps a contextual, professional judgement with the professional. These thresholds are project policy choices, not statutory standards.
 
-**The social worker assesses vulnerability without an AI-generated score.** The routing rules use that professional assessment alongside the other four dimensions. The current scale and thresholds remain to be recorded for the submission version. These thresholds are project policy choices, not statutory standards or validated clinical measures.
-
-Some example cases use a separate urgency scale that includes “Level 4.” The application has three referral lanes; the relationship between the two scales needs to be clarified.
+The framework's assessment rules also shape the code: a statement is attributed to the person it concerns, current events are distinguished from threatened or past ones, missing information is never treated as proof that no risk exists, and vulnerability lowers the threshold for support without determining legal rights.
 
 ### 6.3 Deadline calculations
 
-The deadline calculator covers payment demands, termination challenges, certain extension requests, rent-increase challenges and the tenant's notice cut-off. Court and conciliation documents are flagged for professional verification.
-
-For every calculation, a reviewer needs the triggering event, legally effective receipt date, applicable rule, intermediate steps and final action required. A date taken from a client's narrative is not automatically a legally established receipt date.
-
-**Material limitation:** v4 does not fully model the different receipt rules for registered private notices. It also does not cover every tenancy deadline, procedural holiday regime or local holiday. A general “add 30 days and shift the weekend” formula is not an adequate substitute for legal classification. Backwards-calculated notice cut-offs particularly require separate treatment.
-
-Our legal framework covers more deadline rules than v4 implements. Extending the calculator requires implementing and testing those rules separately.
+The calculator covers the payment period after a payment demand (Art. 257d OR), challenging a termination and requesting an extension (Art. 273 OR), challenging a rent increase (Art. 270b OR) and the tenant's own notice cut-off, counted backwards from the chosen end date. Final days are moved past weekends and Zurich public holidays. A date from the client's account is not automatically the legally effective receipt date, so vague dates produce a labelled estimate and a question about when and how the document arrived. Every deadline shows the triggering event, the rule and each calculation step. Court and conciliation documents are flagged for same-day professional review. Our full deadline rules are in `legal-team-materials/deadline-calculation-rules.md`.
 
 ### 6.4 Legal sources
 
-Our local legal corpus contains official German-language texts from Fedlex: OR, ZPO, ZGB, VMWG and the federal Saturday legislation. It includes 6,951 paragraphs with version metadata and official links, 235 plain-English summaries and 332 court decisions obtained through OpenCaseLaw.
+Our local corpus contains official German-language texts from Fedlex: OR, ZPO, ZGB, VMWG and the federal Saturday legislation, with 6,951 paragraphs, version metadata and official links, plus 235 plain-English paragraph summaries. Every legal point on the result screen opens its official source.
 
-V4's result screen cites statutory paragraphs. We used the case-law corpus in earlier versions and evaluation work. OpenCaseLaw supplies legal data; OpenJustice was the platform we initially explored.
+## 7. Evaluation and lessons learned
 
-We used AI to draft and cross-check the modules and summaries. That process is not independent legal validation. Source versions, module revisions and review records need to remain traceable. Third-party commentary used during development is excluded from the repository; any further use requires checking access and reuse rights.
+We compared three versions on 11 cases: our nine example cases (`legal-team-materials/example-cases/`) and two further scenarios (`docs/scenarios.md`), each with a recommended lane and justification. The outputs were anonymised and shuffled per case and assessed by a blind AI reviewer (Claude Opus 5.5) against the official law texts, using a fixed rubric (`bench/results/evaluation_2026-11-08/three_way_review_instructions.md`). An AI reviewer allowed a consistent, repeatable comparison within the hackathon; review by tenancy-law experts is the next step (Section 10). The v4 runs used the code on branch `v4-scoped` (commit `eedebb1`); since then, vulnerability rating has moved fully to the social worker.
 
-## 7. Evaluation results and limitations
+| Measure | v4 (checked modules, Apertus) | Generative, OpenAI | Generative, Apertus |
+|---|---|---|---|
+| Mean usefulness (1–5) | **4.6** | 2.8 | 1.8 |
+| Cases with a clear error | **4 / 11** | 10 / 11 | 11 / 11 |
+| Legal statements wrong or inapplicable | **0 of 55** | 3 of 65 | not shown |
+| Actions wrong or inapplicable | **0 of 49** | 0 of 26 | 5 of 49 |
+| Appropriate lane | **11 / 11** | 10 / 11 | 9 / 11 |
+| Model cost per case | **~USD 0.02** | ~USD 0.30 | ~USD 0.03 |
 
-We compared three versions across 11 cases: v4's module-based Apertus workflow, a generative Apertus version and an OpenAI version. We anonymised and shuffled the outputs for each case. A single Claude reviewer applied the evaluation rubric. No independent lawyer review of that comparison is documented.
+The results support our use of checked legal modules. Because these cases were developed alongside the tool, the next stage is testing on new cases with social workers and tenancy-law experts (Section 10). The evaluation artefacts (rubric, blinded outputs, mapping key and reviews) are in `bench/results/evaluation_2026-11-08/`, and the results page is at `/benchmark`. In addition, 400 automated tests check dates, deadlines, module structure, references and conditions without model calls; all pass.
 
-Selected v4 results:
+### 7.1 What we learned about the risks of legal automation
 
-| Measure | Outcome |
+| Finding | Our response |
 |---|---|
-| Mean usefulness | 4.6 / 5 |
-| Main legal statements | 54 acceptable; 0 wrong law; 0 inapplicable; 1 noise item |
-| Actions | 49 acceptable; 0 wrong or inapplicable |
-| Lane agreement with expected labels | 11 / 11 |
-| Cases judged to contain a clear error | 4 / 11 |
-| Wrong statements in summary, handout or brief | 3 |
-| Questions judged already answered | 11 |
+| **Freely generated legal text is unreliable.** Even with confirmed facts, rule filters and two automatic checks, about one in four legal sentences that Apertus wrote freely was wrong. | Legal guidance comes from checked modules; guided generation continues on separate branches (Section 3.4). |
+| **Automatic verification cuts both ways.** On 174 AI-written legal sentences, our two automatic checks removed about two thirds of the harmful sentences, but also about half of the correct ones (`writer_levels_after_checks.json`). | We do not rely on AI checking AI for the legal content shown to social workers. |
+| **A genuine quotation can still be misread.** “The landlord will terminate the lease” is a warning, not a termination. | Code flags threat wording, and the social worker confirms every deciding event. |
+| **Missing facts tempt a system to assume.** An unanswered question can silently become a “no”. | Answers are three-valued; “unknown” keeps conditions open and raises information uncertainty. |
+| **AI scores can anchor professional judgement** (automation bias). | Vulnerability is rated only by the social worker; AI warning signs count only while the social worker keeps them ticked. |
+| **Reliability and reach pull in opposite directions.** Checked content covers only the situations it was written for. | Cases outside the modules go to at least Lane 2 with suitable contacts; guided generation aims to extend reach. |
+| **Translation can shift meaning.** | Code checks that numbers and dates survive, the English version stays alongside, and consequential communications call for human language review. |
 
-The results supported our choice to use prewritten legal modules. However, errors remained in the complete outputs: four of the eleven cases contained an error identified by the reviewer, even though none of the main legal statements was classified as wrong law or inapplicable.
+## 8. Installation and verification
 
-The evaluation has important limits. We knew the cases during development, set the expected referral lanes ourselves and used one AI reviewer. The comparison therefore does not establish performance on unseen cases or general legal reliability. The figures above come from the original evaluation recorded in [S2].
+### 8.1 Setup
 
-The test suite contains 400 automated tests that run without model calls: 76 date tests, 14 deadline tests and 310 tests covering modules, references, conditions and known error patterns. These tests check specific implementation properties; they cannot establish that the legal framework is complete or correct.
-
-In the evaluation, model cost was approximately USD 0.02 per case. Initial analysis took roughly 10 seconds; later steps ranged from under one second to 25 seconds. These measurements describe the evaluation runs and may vary with model availability, input size and provider pricing.
-
-### Proposed future validation
-
-Freeze a release commit, corpus version, model identifiers and prompts. Run unseen synthetic cases, including ambiguous notices, contradictory dates, out-of-scope problems, failed model calls and unsupported languages. Have a qualified tenancy-law reviewer assess legal content and deadlines, and social workers assess interview usability and handover quality. Report severe missed referrals and incorrect actionable deadlines separately from average usefulness.
-
-## 8. Installation and testing
-
-### 8.1 Prerequisites
-
-You will need Git, Python 3.12, the repository's `requirements.txt`, and a Public AI API key with available credit. Clone the repository and enter its directory:
+You need Git, Python 3.12 and a Public AI API key.
 
 ```bash
 git clone https://github.com/pink-carp/lextec-tenancy-assistant.git
 cd lextec-tenancy-assistant
-```
-
-Record the submission commit with `git rev-parse HEAD`; for a reproducible rerun, check out the recorded commit rather than relying on a changing branch. The exact submission commit and dependency versions remain to be recorded.
-
-From the repository root, run the following on Unix/macOS:
-
-```bash
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-# Create .env and add PUBLICAI_API_KEY=<your key>
+# Create .env containing PUBLICAI_API_KEY=<your key>
 .venv/bin/python -m uvicorn app.server:app --port 8000
 ```
 
-Equivalent Windows PowerShell commands:
+On Windows, use `py -3.12 -m venv .venv` and `.\.venv\Scripts\python.exe` in place of `.venv/bin/python`. Open `http://localhost:8000`; the evaluation page is `http://localhost:8000/benchmark`. The key is read from the environment or from `.env` and stays server-side. The release was tested with Python 3.12.2, FastAPI 0.162.2, Uvicorn 0.54.0, Pydantic 2.14.3, httpx 0.27.0, pdfplumber 0.11.10 and Pillow 11.3.0.
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-# Create .env and add PUBLICAI_API_KEY=<your key>
-.\.venv\Scripts\python.exe -m uvicorn app.server:app --port 8000
-```
-
-Open `http://localhost:8000`; the evaluation page is `http://localhost:8000/benchmark`. Keep the API key server-side and out of commits, client-side code, screenshots and audit exports. Confirm the actual environment-loading behaviour against the release code.
-
-`APP_ACCESS_CODE` provides an optional access restriction using the `X-Access-Code` header. It is not enabled on the public prototype and is not a substitute for production identity and access management.
-
-### 8.2 Automated and end-to-end checks
-
-Unix/macOS:
+### 8.2 Automated tests
 
 ```bash
 .venv/bin/python -m pip install pytest
 .venv/bin/python -m pytest tests
-.venv/bin/python bench/dev_run.py 1
 ```
 
-Windows:
+The tests make no AI calls. The comparison versions are on the branches `v3-generative`, `v5-openai` (set `LLM_PROVIDER=openai` and `OPENAI_API_KEY`) and `v6-pruefungskern`.
 
-```powershell
-.\.venv\Scripts\python.exe -m pip install pytest
-.\.venv\Scripts\python.exe -m pytest tests
-.\.venv\Scripts\python.exe bench/dev_run.py 1
-```
+### 8.3 Verifying a result step by step
 
-The automated tests make no AI calls. The end-to-end case run uses the inference service and may incur charges. These setup instructions come from the development README [S2]; they have not been independently rerun while preparing this report.
+Load example case 1 from the drop-down on the start page (mould in a Zurich flat; the property manager blames ventilation; the client is considering paying 30% less rent) and check:
 
-The comparison branches are `main` for v4, `v2-baseline`, `v3-generative` and `v5-openai`. Preserve each branch's model and configuration. Do not assume an old benchmark command still reproduces an old version: the harness runs the checked-out pipeline.
+1. Each extracted fact shows the client's own words, and the disputed cause of the mould is recorded as disputed, not as fact.
+2. The social worker can correct the facts and confirm the defects module.
+3. The questions address the open points, and “unknown” remains a valid answer.
+4. The result does not recommend a unilateral rent deduction.
+5. Every legal point opens its official source.
+6. The handout and expert brief show the same facts.
+7. Adding a termination notice to the account raises urgency and leads to a referral.
+8. The downloaded audit trail shows the model calls and rules behind the result.
 
-Evaluation artefacts are stored under `bench/results/evaluation_2026-11-08/`, with case data in `bench/cases.json` and additional scenarios in `docs/scenarios.md`. Include the rubric, blinded outputs, mapping key and review files in the reproducible release.
+### 8.4 Auditing a result
 
-### 8.3 Manual demonstration
+| To check | Where to look |
+|---|---|
+| A legal point | Click its provision: the official German text opens, with its version date and a link to Fedlex |
+| A deadline | “How this was calculated” under the deadline: triggering event, rule and each step |
+| The lane | The index table on the result screen: the level of each of the five indices and the reasons behind it, plus the lane rule that applied |
+| The whole case | “Download audit trail”: a JSON file with the facts and their quotations, the confirmed events and answers, the deadlines with their steps, the lane rule and any override reason, and every model call with its prompt, reply, model, tokens and cost |
+| The evaluation | `bench/results/evaluation_2026-11-08/`: reviewer instructions, blinded inputs, mapping key and review |
 
-Use our fictional mould case:
+## 9. Legal, regulatory and ethical framework
 
-> A tenant in Zurich reports spreading mould, has notified the property manager by telephone, and is considering deducting 30% from the next rent payment. The manager attributes the problem to ventilation. No written notice, medical information or procedural document has been supplied.
+Our regulatory analysis takes the perspective of a Zurich state social service using the tool supplied by LexTec, a private start-up. It distinguishes the authority's responsibilities from the supplier's obligations, and treats the proposed safeguards as internal operating rules rather than implying that every safeguard is expressly required by statute. The full guideline is in `legal-team-materials/regulatory-questions-and-user-disclosure.md`.
 
-Verify step by step:
+### 9.1 Purpose and permitted use
 
-1. The extraction preserves the disputed cause and does not treat either party's account as proven.
-2. The social worker can correct facts and confirm the defects module.
-3. Questions address material gaps; unknown health circumstances are not treated as absent.
-4. The result does not present a universal 30% reduction or instruct an unsupported unilateral deduction.
-5. Every legal point opens the relevant official source and version.
-6. The handout and expert brief preserve the same facts and uncertainty.
-7. Adding a termination notice or urgent safety concern causes reassessment and appropriate referral.
-8. The audit record explains which inputs, rules and model calls produced the result.
+The tool is a **decision-support system, not a decision-maker**. It supports social workers in collecting relevant facts, identifying questions and recommending a referral lane. It must not determine entitlement to social assistance, deny access to services, close a case or issue a legally binding decision. Cases that require legal interpretation are referred to a qualified person. A disclaimer does not replace lawful data processing, effective human oversight or quality assurance.
 
-This walkthrough defines checks to perform during a demonstration; a completed run should record the outcome of each check.
+### 9.2 Data protection and confidentiality
 
-## 9. Responsible and ethical design
+- **Legal basis.** The social service's processing is governed principally by Zurich's Information and Data Protection Act (IDG): § 8 on lawful processing, § 6 on outsourcing, § 7 on information security and § 10 on impact assessment and prior review. The authority remains responsible even where the supplier processes data on its behalf. Federal data protection law (revDSG) applies to the supplier's processing where relevant, particularly for any processing for its own purposes. Official guidance stresses transparency and the assessment of AI-related risks [S7–S8].
+- **Special personal data.** Information about health, mental health and social-assistance measures is special personal data. Its processing requires a sufficiently specific basis in a formal statute; a signed consent form is not a substitute. Where consent is relied on for an optional activity, it must be informed, specific and genuinely voluntary, taking the person's dependence on the social service into account, and refusal must not disadvantage them.
+- **Official secrecy.** Disclosure to the supplier must be legally permissible and limited to the approved purpose; confidentiality clauses alone do not make an otherwise prohibited disclosure lawful. Ordinary chatbot use does not attract lawyer–client privilege, and the tool does not promise it.
+- **Supplier role.** Whether LexTec is a processor depends on the actual deployment: supplying software without access to case data differs from hosting the tool or accessing data through support and logs, which the authority must regulate as outsourcing. Case data must not be used for the supplier's product development or model training.
+- **Data minimisation.** Social workers use a case reference rather than a name, omit addresses, identification numbers and other identifiers unless necessary, and avoid unnecessary intimate or medical detail. Pseudonymised information remains personal data while the person can still be identified.
+- **Records and retention.** The official case record, temporary AI inputs and outputs, access logs, diagnostic records, caches and backups are distinguished. The final referral decision and its reasons belong in the official record; AI output is labelled as such and is not stored as established fact. Temporary AI data is deleted on an approved schedule that also covers the supplier's logs, caches and backups.
 
-### 9.1 Privacy and confidentiality
+**How the prototype applies this.** Code masks e-mail addresses, phone numbers, IBANs and AHV numbers in the typed account before it is sent to the model. The interface asks users not to enter names or ID numbers and to give the municipality instead of the street address. The case lives in the browser, with no case database, and is cleared when the case ends. Inference runs through Public AI, whose privacy notice states Swiss hosting and processing under the revDSG [S6a]; Vercel is used only for the hackathon demonstration (Section 3.2).
 
-The masking function removes selected e-mail addresses, phone numbers, IBANs and AHV numbers. It does not comprehensively remove names, addresses or identifying context. Document photographs are sent unmasked for model transcription. This is partial masking, not reliable anonymisation.
+### 9.3 Conditions before use with real cases
 
-Public AI Switzerland explicitly states Swiss hosting and processing in accordance with the revDSG in its privacy notice [S6a]. The notice is labelled a draft pending formal incorporation. Separately, the publicai.co API portal links to terms identifying Metagov and allowing external-provider routing [S7]. We need to confirm which terms govern our API account and how they relate to the Swiss hosting assurance. Before real-client use, we must verify the contracting entity, inference provider, processing locations, subprocessors, retention, training use and deletion arrangements.
+1. The intended purpose, permitted functions and prohibited uses are documented.
+2. The statutory basis for processing, including any special personal data, is identified.
+3. A data protection impact assessment is completed, with any required prior review by the supervisory authority.
+4. Hosting, data flows, external interfaces, remote access, logs and subprocessors are documented and approved, in an environment with access controls, secure authentication and protection of data in storage and transmission.
+5. The authority and the supplier agree contractual safeguards: processing instructions, a ban on unauthorised training or reuse, subprocessor approval, security controls, incident notification, audit rights, change control, and retention, deletion and exit arrangements.
+6. Triage rules and legally relevant outputs are tested and approved by qualified reviewers.
+7. Users are trained and have an escalation route.
+8. Information notices, record-keeping rules and incident procedures are ready.
 
-A browser deletion button cannot promise erasure from inference services, hosting logs or downloaded case files. A future photo-deletion feature likewise would not undo an upload already sent externally.
+### 9.4 Human oversight and escalation
 
-The applicable privacy regime depends on the deploying organisation. Federal data-protection requirements apply within their scope; Zurich cantonal and municipal public bodies require assessment under the relevant cantonal framework. Official guidance stresses transparency and assessment of AI-related processing risks [S8–S9]. A checkbox acknowledging AI use is not, by itself, a sufficient legal basis for all processing.
+Every referral recommendation receives **substantive human review before it affects a person's access to support**. The social worker checks the factual summary, assesses whether the suggested lane matches the person's circumstances, checks for urgency, vulnerability and missing facts, overrides an unsuitable recommendation and records the final decision. A final confirmation click is not meaningful review.
 
-Before deployment, assign responsibility for lawful processing, outsourcing, access control, retention, incident response and a data-protection impact assessment where required. Determine applicable professional or official confidentiality duties; do not promise lawyer-client privilege for ordinary chatbot use.
+Because social workers may lack legal training, escalation to a qualified reviewer is mandatory where the recommendation depends on a disputed legal interpretation, a deadline or eviction risk is involved, the recommendation would restrict or delay support, the facts are incomplete or outside the validated scope, or the social worker cannot assess the recommendation independently. Urgent protective action is never delayed while waiting for the tool. The tool does not infer emotions from voice, facial expressions or similar signals.
 
-### 9.2 Security and operational controls
+In the prototype, the social worker confirms the facts, situation and deciding events, rates vulnerability, reviews the result and can override the lane with a recorded reason. A provisional lane is shown before the follow-up questions, so an urgent referral does not have to wait for them.
 
-The public prototype has no login. Before operational use, assess authentication, authorisation, rate limits, cost controls, transport security, secret management and logging. Validate browser-submitted case state server-side. Test malicious document instructions, forged quotations, invalid JSON, oversized uploads and provider outages.
+### 9.5 Quality assurance and fairness
 
-These are deployment requirements and proposed checks, rather than a list of completed security measures. Fixed module output reduces some risks but does not prevent prompt injection from corrupting extraction, summaries or translation.
+The tool is tested before launch and after any material change to the model, prompts, legal sources or triage rules. Testing covers typical and borderline cases, urgent and incomplete cases, incorrect or fabricated legal references, inappropriate reassurance, missed deadlines, discriminatory or inconsistent outcomes, and the risk of a person being placed in a lower-support lane. Staff training covers the tool's scope, hallucinations, automation bias, confidentiality, data minimisation, verification and escalation, and how to continue the service without the tool. Serious confidentiality risks or repeated harmful triage errors lead to suspension of the affected function, with a manual pathway always available.
 
-### 9.3 Fairness and human oversight
+Vulnerability is rated by the social worker, not inferred by the AI, and guides support rather than legal rights. Warning signs require the client's explicit words; the model is instructed never to infer them from a name, nationality or tone. The handout is offered in 13 languages. Code checks that numbers and dates survive translation; because meaning, negation and urgency can still shift, consequential communications call for human language review.
 
-Vulnerability assessment is reserved to the social worker, without an AI-suggested score. This design avoids anchoring the professional's assessment to a model-generated rating and recognises the importance of contextual judgment. The assessment should guide support, not define legal rights or infer incapacity from identity. Clear criteria, training and review of consistency across users remain important.
+### 9.6 Liability and transparency
 
-Test equivalent cases across languages and personal circumstances. Review contact-selection rules for exclusion risks. Checking that numbers survive translation is useful but does not verify that obligations, negation or urgency retain their meaning. Human language review remains necessary for consequential communications.
+Describing the output as legal information does not remove responsibility for errors or settle the legal classification of the service. Outsourcing does not transfer the authority's statutory responsibility to the supplier; the supplier agreement allocates service continuity, liability and responsibility for defects.
 
-The application allows a social worker to override a lane and records the reason. Before operational use, we need to define who may lower a referral level and whether hard referral triggers can be overridden.
+Before personal information is entered, the social worker explains, in language adapted to the person: the use and purpose of AI-assisted triage, the categories of information processed, the responsible authority, which providers can access the information and where it is hosted, the limits of the tool and the human review process, retention, and how to request access, correction or review. A general legal disclaimer is not a substitute for a privacy notice, and the interface identifies AI-generated content to staff.
 
-### 9.4 Accountability and regulatory boundaries
+### 9.7 EU AI Act
 
-Assign named owners for legal modules, technical maintenance, referral information and incident handling. Identify coverage gaps and complete the legal and operational review required for the intended real-client deployment. Describing the output as legal information does not remove responsibility for errors or settle the legal classification of the service.
+For a tool used solely by a Zurich social service, with no relevant EU market or output-use connection, the EU AI Act will generally not be the directly applicable framework; the territorial assessment is documented and reassessed if deployment changes. A legal-information assistant is not high-risk merely because it concerns law. For an EU deployment, the assessment examines whether the tool evaluates eligibility for, or materially affects access to, essential public assistance benefits or services (Annex III) [S9]; describing the tool as “triage” or adding human approval does not by itself exclude high-risk classification. Prohibited practices, including exploitation of vulnerability, are assessed separately, and model openness alone does not establish application-level compliance. Regardless of direct applicability, transparency, staff competence, human oversight and documented risk management are mandatory internal safeguards.
 
-An EU AI Act assessment must consider territorial scope and intended use. A legal-information assistant is not automatically a high-risk system merely because it concerns law. Expansion into public-benefit eligibility assessment or specified judicial/ADR uses could materially change the analysis under Annex III [S10]. Model openness alone does not establish application-level compliance.
+### 9.8 User-facing disclosure
 
-### 9.5 Proposed user disclosure
+Our plain-language disclosure for clients:
 
-> This prototype uses AI to help your social worker organise information, identify questions and prepare next steps. It can misunderstand facts or make mistakes and does not replace professional legal advice. Your social worker checks the information, assesses vulnerability themselves and can involve a specialist. For this demonstration, use fictional cases only. Information entered into the tool is sent to external services for processing; uploaded photographs are not automatically anonymised. Ending the case clears it from this browser but does not guarantee deletion from external services or downloaded files.
+> **What does the AI do?** We have created an AI-supported tenancy information tool designed to help social workers assist people experiencing residential housing problems in Switzerland. It can help to understand and organise the information you provide about your housing situation; identify possible tenancy-law issues and relevant Swiss legal rules; ask questions to clarify important facts; identify possible deadlines and explain why they may matter; prepare a summary of your situation and suggest possible next steps; identify when legal advice or other specialist support may be needed; and find relevant legal, social and support services. The tool is designed primarily for private residential tenancy matters in the Canton of Zurich.
+>
+> It places your case into one of three lanes:
+> - **Lane 1 — AI information may be sufficient to proceed:** if your situation is relatively straightforward and there is enough information, the tool provides relevant tenancy information and potential next steps.
+> - **Lane 2 — Further clarification and information is required:** if important details are missing or unclear, the tool identifies what further information is needed, and the social worker relays it.
+> - **Lane 3 — Urgent human legal referral is necessary:** if your situation is urgent, particularly serious, or requires specialist legal judgement, the tool highlights that referral to a qualified lawyer or specialist service may be appropriate.
+>
+> The social worker oversees the process, reviews the tool's assessment and helps determine the next steps. If your situation requires urgent human support, the referral is not delayed while the tool gathers more information.
+>
+> **Disclaimer:** AI-generated information can contain inaccurate or outdated content, omit relevant legal requirements, or fail to identify important deadlines. LIITmus test is not a lawyer, law firm, court or public authority. It cannot provide legal representation or advice, and it cannot make binding legal decisions.
+>
+> **When does a human become involved?** A social worker uses the tool, reviews what it produces and gives their own vulnerability assessment (a score from 1 to 10). If your case involves a serious legal risk, an important deadline, a possible loss of your home or a complicated legal issue, the tool may recommend a qualified legal professional or specialist service. In an emergency, you should not wait for an AI-generated response. You can ask for human assistance at any time, even if the tool has not recommended it.
 
-This is proposed disclosure text for the demonstration. Its implementation in the live interface remains to be confirmed.
+In the prototype, the social worker confirms before analysis that the client knows an AI tool is used and has signed the data processing form. Every client handout carries a short notice: the sheet was made with a computer tool and checked by the social worker, its legal texts were checked in advance and AI wrote the summary, it is general legal information rather than legal advice, and the information was sent to an AI service (Public AI).
 
-## 10. Team contributions, external resources and AI disclosure
+## 10. Next steps
 
-All four team members contributed to the legal work. Their additional responsibilities are listed below.
+- **Test lane selection with social workers.**
+- **Benchmark accuracy** on new cases, with review by tenancy-law experts.
+- **Develop a secure social-worker app**, hosted in Switzerland, with login and access control.
+- **Connect the prototype to legal platforms** for referral and handover.
+- **Guided AI generation** (Section 3.4), to extend the assistant to further situations and legal fields.
+
+## 11. Team contributions, external resources and AI disclosure
+
+All four team members contributed to the legal work.
 
 | Team member | Shared contribution | Additional area of focus |
 |---|---|---|
@@ -376,52 +381,32 @@ All four team members contributed to the legal work. Their additional responsibi
 | Malin Da Ros | Legal work | Swiss legal expertise and case development |
 | Dong Hui Ryu | Legal work | Swiss legal expertise and legal-reasoning framework |
 
-Our legal materials are in `legal-team-materials/` [S1a]; together with the implementation commits and review records, they provide the basis for documenting contributions. Responsibilities for maintaining the project after the hackathon remain to be assigned.
+Our legal materials are in `legal-team-materials/` [S1a].
 
 **External resources and AI use:**
 
-- **Apertus / Swiss AI Initiative:** inference model used in v4; Apache 2.0 model licensing is identified by its publisher.
-- **Public AI:** external hosted inference API; contractual terms and charges are separate from the model licence.
-- **Fedlex:** official statutory sources used to construct the local legal corpus.
-- **OpenCaseLaw:** court-decision data used in development and evaluation; verify applicable data and service terms before redistribution.
-- **OpenJustice:** initial platform exploration; confirm whether any code, protocol or content was reused.
-- **FastAPI, Uvicorn, pdfplumber and other packages:** implementation components; use the actual dependency manifest for exact versions and licences.
-- **Claude:** used to draft and cross-check legal modules and review evaluation outputs. Exact model versions and review arrangements remain to be recorded.
-- **OpenAI:** used in the separate v5 comparison branch. The exact API model identifier remains to be recorded; v4 uses Apertus.
-- **ChatGPT/Codex:** assisted with drafting and editing this report using our project documents and public sources. We remain responsible for checking the final submission.
-
-A project licence remains to be selected. Apertus's model licence does not determine the licence for our application.
-
-## 11. Questions to resolve before submission
-
-1. **Release:** Which commit in the linked repository is the submission version of LIITmus test?
-2. **OpenJustice version:** Which product/version did the team use, and was any code, protocol or content reused?
-3. **Contribution evidence:** Which legal documents, commits and review records should accompany team contributions?
-4. **Evaluation release:** Which commit and model settings produced the evaluation results presented in Section 7?
-5. **Vulnerability implementation:** What scale and routing thresholds does the current social-worker-only assessment use?
-6. **Routing:** How should the three lanes relate to the urgency levels in the examples, and when may a worker override a hard referral?
-7. **Deadline gaps:** Which receipt and deadline limitations remain in the submitted commit?
-8. **Privacy:** What are the actual inference and hosting arrangements, and is the submitted demonstration restricted to fictional cases?
-9. **Evidence:** Where are the raw evaluation artefacts, dependency versions, model settings and test records?
-10. **Ownership and next steps:** Which licence will you choose, who maintains legal content and referral contacts, and which additional social-work domain would be evaluated first?
+- **Apertus / Swiss AI Initiative:** inference model used in v4, under Apache 2.0.
+- **Public AI:** hosted inference API.
+- **Fedlex:** official statutory sources for our legal corpus.
+- **OpenCaseLaw:** court-decision data used during development and evaluation.
+- **OpenJustice:** platform explored at the start of the project; no OpenJustice code or content is used.
+- **FastAPI, Uvicorn, pdfplumber and other packages:** see `requirements.txt`.
+- **Claude (Anthropic), through Claude Code:** wrote the application code under the technical lead's direction; drafted the legal modules and the article-requirements table from the official German texts and cross-checked them in a separate pass; reviewed the paragraph summaries; and acted as the blind reviewer in the evaluation. These tasks used Claude Opus 5.5; bounded tasks such as source research and the first versions of the date and deadline code with their tests used Claude Sonnet 5.5.
+- **OpenAI:** `gpt-5.6-sol`, used only in the `v5-openai` comparison branch.
+- **ChatGPT/Codex:** assisted with drafting and editing this report using our project documents and public sources. We remain responsible for the final submission.
 
 ## 12. Sources and documentation
 
-This report draws on our legal working materials [S1], development README and evaluation records [S2], and the project details set out by the team. External sources explain the models, services and regulatory context. Evaluation figures refer to the comparison recorded in [S2].
-
-- **[S1] Team working document:** [hack the law](https://docs.google.com/document/d/1CPMh81fa_T7U3ELXTHhUgR0i6awTPp4umefUFyrn3Cg/edit). Includes examples, legal workflow, output specifications, escalation, regulatory notes and pitch notes.
-- **[S1a] Team legal materials in this repository:** [`legal-team-materials/`](legal-team-materials/). `legal-workflow.md`, `escalation-indices.md`, `output-specification.md` and `deadline-calculation-rules.md` are loaded into the AI prompts; `social-service-contacts.md` is the source of the contact list (`app/data/resources.json`); `regulatory-questions-and-user-disclosure.md` contains the user-facing disclosure, liability waiver and data-protection guideline; `example-cases/case-1.md` to `case-9.md` are the team's example cases (source of `bench/cases.json`).
-- **[S2] Development documentation:** [README.md — v4 limited scope](https://drive.google.com/file/d/1Fqru4TuR5_rnl2cYjV5pbPTxLEW8JCN4/view). Main source for implementation, code paths and reported evaluation.
-- **Project repository:** [pink-carp/lextec-tenancy-assistant](https://github.com/pink-carp/lextec-tenancy-assistant). Source code and reproduction materials.
-- **[S3] OpenJustice:** [Product description](https://openjustice.ai/). Description of the platform's current capabilities.
+- **[S1] Team working document:** [hack the law](https://docs.google.com/document/d/1CPMh81fa_T7U3ELXTHhUgR0i6awTPp4umefUFyrn3Cg/edit): examples, legal workflow, output specifications, escalation, regulatory notes and pitch notes.
+- **[S1a] Team legal materials in this repository:** [`legal-team-materials/`](legal-team-materials/). `legal-workflow.md`, `escalation-indices.md`, `output-specification.md` and `deadline-calculation-rules.md` are loaded into the AI prompts; `social-service-contacts.md` is the source of the contact list (`app/data/resources.json`); `regulatory-questions-and-user-disclosure.md` contains the user-facing disclosure, liability waiver and data-protection guideline; `example-cases/case-1.md` to `case-9.md` are our example cases (source of `bench/cases.json`).
+- **[S2] Development documentation:** [README.md — v4 limited scope](https://drive.google.com/file/d/1Fqru4TuR5_rnl2cYjV5pbPTxLEW8JCN4/view).
+- **[S3] OpenJustice:** [Product description](https://openjustice.ai/).
 - **[S4] Apertus:** [Official documentation and model releases](https://www.apertus-ai.org/pages/documentation/).
 - **[S5] Public AI:** [Developer documentation](https://platform.publicai.co/docs).
 - **[S6] Public AI Switzerland:** [Organisation and service information](https://publicai.ch/).
-- **[S6a] Public AI Switzerland:** [Privacy notice](https://publicai.ch/privacy.html), especially sections 2 and 6 on revDSG and Swiss hosting; notice labelled draft when consulted.
-- **[S7] Public AI Inference Utility:** [Terms and Privacy](https://publicai.co/tc).
-- **[S8] Federal Data Protection and Information Commissioner:** [AI and data protection](https://www.edoeb.admin.ch/de/ki-und-datenschutz).
-- **[S9] Zurich Data Protection Commissioner:** [Guidance on AI use by public bodies](https://www.datenschutz.ch/mitteilungen/2025/neues-merkblatt-vorgehen-beim-einsatz-von-ki-bei-oeffentlichen-organen).
-- **[S10] European Commission:** [AI Act, Annex III](https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3).
+- **[S6a] Public AI Switzerland:** [Privacy notice](https://publicai.ch/privacy.html), sections 2 and 6 on revDSG and Swiss hosting.
+- **[S7] Federal Data Protection and Information Commissioner:** [AI and data protection](https://www.edoeb.admin.ch/de/ki-und-datenschutz).
+- **[S8] Zurich Data Protection Commissioner:** [Guidance on AI use by public bodies](https://www.datenschutz.ch/mitteilungen/2025/neues-merkblatt-vorgehen-beim-einsatz-von-ki-bei-oeffentlichen-organen).
+- **[S9] European Commission:** [AI Act, Annex III](https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3).
 
-Sources consulted on 8 November 2026. This report was prepared from project documentation and team input. It does not constitute an independent code audit or a fresh execution of the benchmark. Section 11 lists the release details and outstanding decisions needed to complete the submission.
-
+Sources consulted on 8 November 2026.
