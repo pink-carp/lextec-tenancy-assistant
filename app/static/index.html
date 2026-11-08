@@ -406,7 +406,7 @@ function renderResult() {
    ${(C.disputes||[]).length ? `<p><strong>Disputed</strong></p><ul>${C.disputes.map(d => `<li>${esc(d.topic)}: client says ${esc(d.client_position)}; ${esc(d.other_party)} says ${esc(d.other_position)}</li>`).join("")}</ul>` : ""}
    ${s.out_of_scope ? `<div class="warn">${esc(s.out_of_scope)}</div>` : ""}
    ${(s.modules || []).map(b => kernBlock(b)).join("")}
-   ${(s.modules || []).length ? `<p class="muted">Examination (Prüfungskern 2.0.0): the AI chose the remedies to examine and judged each element with the client's sentences; code combined the elements (AND/OR logic). A statement by the client is not proof, so most results hold "on the client's account". The module's rule text (German) is the team's research release, not reviewed by a lawyer. AI-written results are shown only where the combined conditions are met.</p>` : ""}
+   ${(s.modules || []).length ? `<p class="muted">Examination (Prüfungskern 2.0.0): the AI chose the remedies to examine and judged each element with the client's sentences; code combined the elements (AND/OR logic). A statement by the client is not proof, so most results hold "on the client's account". The module's rule text (German) is the team's research release, not reviewed by a lawyer. Where points are still open, the AI-written result is conditional ("If ..."), as the method requires.</p>` : ""}
    <h3 class="${(s.issues || []).length ? "" : "hidden"}">What this means for the client</h3>
 
    ${(s.issues || []).map(i => `<p><strong>${esc(i.issue)}</strong></p>${i.sentences.length ? `<ul>${i.sentences.map(x => `<li>${esc(x.text)} ${chip(x.para)}</li>`).join("")}</ul>`

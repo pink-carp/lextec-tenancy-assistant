@@ -249,11 +249,12 @@ Answer JSON only: {{"questions": [{{"point": "<id>", "question": "...", "why": "
 _WRITE = _METHOD + """
 STEP K08 for the module "{title}". For each outcome below, the code has combined the element results; the status is
 fixed and you must not change it. Write in plain English for a social worker:
-- "result": 1-2 sentences: who can demand what from whom, from when and for how long, as far as the facts show;
-  name every open condition with "if ..."; say "not yet known" for missing amounts or dates. Do not add rules that are
-  not in the outcome text.
+- "result": 1-3 sentences. First what is already established (elements met). Then who could demand what from whom,
+  from when and for how long, as far as the facts show. If the status is "Open", the result is conditional: name the
+  open points with "If ..., then ..."; never state the outcome as certain. Say "not yet known" for missing amounts or
+  dates. Do not add rules that are not in the outcome text.
 - "steps": up to 2 next steps (form, recipient, prior steps such as a written notice first) that this outcome supports.
-  A step that depends on an open condition starts with "If".
+  If the status is "Open", each step must start with "If" or be a step to clarify an open point.
 OUTCOMES:
 {outcomes}
 Answer JSON only: {{"O01": {{"result": "...", "steps": [{{"text": "...", "who": "client|social_worker"}}]}}, ...}}
@@ -289,7 +290,7 @@ def select(case, m):
     facts, nmax, _ = _numbered(case)
     outs = "\n".join(f"- {o['id']}: {o['legal_effect']} [{', '.join(o.get('legal_basis', []))}]" for o in m["outcomes"])
     r = ask_json(_SELECT.format(title=m["title"], legal_question=m["legal_question"], scope=m["scope"], outcomes=outs,
-                                facts=facts), trace=case["trace"], step=f"K02-K05 {m['module_id']}", max_tokens=700)
+                                facts=facts), trace=case["trace"], step=f"K02-K05 {m['module_id']}", max_tokens=1400)
     sc = r.get("scope") if isinstance(r.get("scope"), dict) else {}
     st = sc.get("status") if sc.get("status") in ("satisfied", "not_satisfied", "unknown") else "unknown"
     sn = _sent_list(sc.get("sentences"), nmax)
@@ -406,7 +407,8 @@ def write(case):
     def one(item):
         mid, res = item
         m = load()[mid]
-        pos = [o for o in res if o["expression_status"] == "satisfied" and o["status"] != "not_applicable"]
+        # framework K08: partial results stay visible; only outcomes whose conditions are clearly not met get no text
+        pos = [o for o in res if o["expression_status"] != "not_satisfied" and o["status"] != "not_applicable"]
         if not pos:
             return mid, {}
         lines = "\n".join(f"- {o['id']} [{o['status_en']}]: {o['legal_effect']} [{', '.join(o['legal_basis'])}]. Elements: "
@@ -423,7 +425,7 @@ def write(case):
         outs = []
         for o in res:
             t = texts.get(mid, {}).get(o["id"]) if isinstance(texts.get(mid, {}).get(o["id"]), dict) else {}
-            ok = o["expression_status"] == "satisfied" and o["status"] != "not_applicable"
+            ok = o["expression_status"] != "not_satisfied" and o["status"] != "not_applicable"
             open_labels = [x["label"] for x in o["elements"] if x["status"] not in DEFINITIVE]
             outs.append({**o, "result": str(t.get("result", "")).strip() if ok else "", "open_labels": open_labels,
                          "basis": _pids(o["legal_basis"])})
@@ -431,8 +433,9 @@ def write(case):
                 for s in (t.get("steps") or [])[:2]:
                     if isinstance(s, dict) and str(s.get("text", "")).strip():
                         conditional = o["status"] != "rule_conditions_supported"
+                        is_open = o["status"] == "unresolved"
                         actions.append({"what": str(s["text"]).strip(), "who": s.get("who") if s.get("who") in ("client", "social_worker") else "client",
-                                        "group": "needs_clarification" if str(s["text"]).lower().startswith("if") else "now",
+                                        "group": "needs_clarification" if is_open or str(s["text"]).lower().startswith("if") else "now",
                                         "sources": _pids(o["legal_basis"]), "module": mid, "outcome": o["id"],
                                         "depends_on": "; ".join(x for x in [
                                             "rests on the client's account" if conditional else "",
