@@ -96,12 +96,12 @@ def add_document(case, name, text):
 
 # docs/disclosure.md section A (draft for the legal team). The data sentence uses the cautious variant because
 # the AI provider's and the host's data retention have not been verified.
-CLIENT_DISCLOSURE = (
-    "About this sheet: Your social worker made this sheet with a computer tool that uses artificial intelligence (AI). "
-    "Your social worker checked it, but it may contain mistakes. This sheet gives general legal information. It is not "
-    "legal advice and does not replace a lawyer. Our tool does not save your case. To make this sheet, your information "
-    "was sent to an AI service, which may keep data for a short time. For advice on your own case, contact a service "
-    "listed on this sheet. If a deadline is mentioned, act in time.")
+CLIENT_DISCLOSURE = (  # docs/versions/v5-openai/disclosure.md, section A (on main)
+    "About this sheet: Test version: for invented cases only. This sheet was made with a computer tool that uses "
+    "artificial intelligence (AI) from OpenAI, a US company. The AI wrote it. It may contain mistakes. This is general "
+    "legal information, not legal advice. It does not replace a lawyer. Our tool does not save your case. Your information "
+    "was sent to OpenAI in the USA, which may keep data. For advice on your own case, contact a service listed on this "
+    "sheet. If a deadline is mentioned, act in time.")
 
 
 def _ids(items, key, allowed):
