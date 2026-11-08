@@ -113,13 +113,17 @@ def create(body: NewCase):
     case["module_titles"] = {k: v["title"] for k, v in modules.load().items()}
     return _out(case, ["sentences", "masking", "understanding", "facts", "disputes", "signals", "events",
                        "documents", "intents", "situations", "deadlines", "provisional_lane", "event_status", "event_names", "modules_suggested", "module_titles",
-                       "vulnerability_score", "vulnerability_source", "vulnerability_indicators",
+                       "vulnerability_score", "vulnerability_source",
                        "municipality", "articles_expanded"])
 
 
 @app.post("/api/case/questions")
 def ask(body: Confirm):
     case = _load(body.state)
+    if body.vulnerability_score is not None and not 1 <= body.vulnerability_score <= 10:
+        raise HTTPException(400, "The vulnerability rating must be between 1 and 10.")
+    if body.vulnerability_score is None and case.get("vulnerability_score") is None:
+        raise HTTPException(400, "Please set your vulnerability rating (1-10).")
     pipeline.confirm(case, body.facts, body.signals, body.vulnerability_score, body.events, body.modules)
     pipeline.questions(case)
     case["provisional_lane"] = pipeline.provisional_lane(case)

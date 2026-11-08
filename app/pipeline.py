@@ -131,16 +131,9 @@ SITUATION_LABEL = {"defect_in_flat": "Defect in the flat", "no_heating_water_or_
                    "termination": "Termination of the lease", "moving_out_or_early_departure": "Moving out early",
                    "subletting": "Subletting", "ancillary_costs": "Ancillary costs"}
 AREAS = ["migration", "family", "debt_enforcement", "social_assistance", "criminal", "employment", "other"]
-VULN = ["children_or_minors", "pregnancy", "single_parent_household", "violence_threats_or_coercion",
-        "disability_or_access_difficulty", "exploitation_or_dependency",
-        "severe_financial_hardship_unemployment_or_debt", "language_or_literacy_barrier"]
-VULN_LABEL = {"children_or_minors": "children or minors in the household", "pregnancy": "pregnancy",
-              "single_parent_household": "single-parent household",
-              "violence_threats_or_coercion": "violence, threats or coercion",
-              "disability_or_access_difficulty": "disability or difficulty accessing services",
-              "exploitation_or_dependency": "exploitation or dependency",
-              "severe_financial_hardship_unemployment_or_debt": "severe financial hardship, unemployment or debt",
-              "language_or_literacy_barrier": "language or literacy barrier"}
+FRAMEWORK_INDICATORS = ["children_or_minors", "pregnancy", "single_parent_household", "violence_threats_or_coercion",
+                        "disability_or_access_difficulty", "exploitation_or_dependency",
+                        "severe_financial_hardship_unemployment_or_debt", "language_or_literacy_barrier"]
 
 
 def _prompt_facts(text):
@@ -183,11 +176,13 @@ def _prompt_situation(text):
             "from a name. Zurich, Winterthur, Uster, Schlieren etc. are in the canton of Zurich.\n\nDESCRIPTION:\n" + text)
 
 
-def _prompt_vulnerability(text):
+def _prompt_safety(text):
+    # The prompt keeps the framework's full indicator list (as tested in the blind review): with only two options the
+    # model filed money worries under "dependency". Code keeps only violence and exploitation; the rest is discarded.
     return ("Read the client's description. Using the personal-vulnerability indicators of the escalation framework, "
             "list ONLY those the words explicitly state for the client or their household, each with the client's exact "
             "words. Never infer from a name, nationality, tone or worry. Also say if anyone is in immediate physical danger.\n"
-            'Answer JSON only: {"vulnerability": [{"indicator": "' + " | ".join(VULN) + '", "quote": "..."}], '
+            'Answer JSON only: {"vulnerability": [{"indicator": "' + " | ".join(FRAMEWORK_INDICATORS) + '", "quote": "..."}], '
             '"immediate_danger": {"stated": "yes|no", "quote": ""}}\n\n'
             "ESCALATION FRAMEWORK:\n" + guidance.escalation() + "\n\nDESCRIPTION:\n" + text)
 
@@ -232,7 +227,7 @@ SPOUSE_ARTICLES = {"OR 266m", "OR 266n", "OR 266o"}
 def understand(case):
     text = "\n".join(case["sentences"])
     jobs = {"facts": _prompt_facts, "documents": _prompt_documents, "situation": _prompt_situation,
-            "vulnerability": _prompt_vulnerability, "issues": _prompt_issues}
+            "safety": _prompt_safety, "issues": _prompt_issues}
     with ThreadPoolExecutor(5) as ex:
         futs = {k: ex.submit(ask_json, f(text), trace=case["trace"], step=f"2 understand: {k}",
                              max_tokens=1200 if k in ("facts", "issues") else 700) for k, f in jobs.items()}
@@ -297,13 +292,14 @@ def understand(case):
     scope["other_areas_of_law"] = sorted({a["area"].replace("_", " ") for a in areas})
     gender = _enum(sit.get("client_gender"), ["female", "male", "unknown"], "unknown")
 
-    # vulnerability indicators: only those backed by the client's words
-    vv = out["vulnerability"]
-    vind = []
+    # safety warning signs (violence, exploitation): only those backed by the client's words.
+    # The AI does not assess vulnerability in general: the social worker rates it.
+    vv = out["safety"]
+    signs = []
     for v in (vv.get("vulnerability") or []):
-        if isinstance(v, dict) and v.get("indicator") in VULN and grounded(v.get("quote", ""), text) \
-                and v["indicator"] not in [x["indicator"] for x in vind]:
-            vind.append({"indicator": v["indicator"], "quote": v.get("quote", "")})
+        if isinstance(v, dict) and v.get("indicator") in scoring.SAFETY and grounded(v.get("quote", ""), text) \
+                and v["indicator"] not in [x["sign"] for x in signs]:
+            signs.append({"sign": v["indicator"], "quote": v.get("quote", "")})
     dg = vv.get("immediate_danger") or {}
     danger = dg.get("stated") == "yes" and grounded(dg.get("quote", ""), text)
 
@@ -329,9 +325,9 @@ def understand(case):
             signals.append({"id": f"W{len(signals) + 1}", "index": "urgency", "kind": kind_of[d["doc_type"]],
                             "description": DOC_LABEL[d["doc_type"]].capitalize(), "quote": d["client_words"],
                             "tense": "current", "concerns": "client", "confirmed": True})
-    for v in vind:
-        signals.append({"id": f"W{len(signals) + 1}", "index": "vulnerability", "kind": v["indicator"],
-                        "description": VULN_LABEL[v["indicator"]].capitalize(), "quote": v["quote"],
+    for v in signs:
+        signals.append({"id": f"W{len(signals) + 1}", "index": "severity", "kind": v["sign"],
+                        "description": scoring.SAFETY[v["sign"]].capitalize(), "quote": v["quote"],
                         "tense": "current", "concerns": "client", "confirmed": True})
     if danger:
         signals.append({"id": f"W{len(signals) + 1}", "index": "severity", "kind": "violence", "description": "Immediate danger",
@@ -350,21 +346,15 @@ def understand(case):
                             "description": "No heating, water or power", "quote": s.get("quote", ""),
                             "tense": "current", "concerns": "client", "confirmed": True})
 
-    n_v = len(vind)
-    score = {0: 2, 1: 4, 2: 7}.get(n_v, 8)  # two indicators already count as high: lean towards the higher lane
-    if {"violence_threats_or_coercion", "exploitation_or_dependency"} & {v["indicator"] for v in vind}:
-        score = 9
     case.update({
         "ai_issues": ai_issues,
-        "understanding": {"issues": [], "scope": scope, "topics": _topics(vind, areas, cannot_pay),
+        "understanding": {"issues": [], "scope": scope, "topics": _topics(areas, cannot_pay),
                           "immediate_danger": danger, "client_gender": gender, "household": household,
                           "documents_mentioned": [{"document": d["client_words"]} for d in docs]},
         "facts": facts, "disputes": disputes, "events": timeline, "documents": docs, "intents": intents,
-        "situations": situations, "signals": signals, "vulnerability_indicators": [v["indicator"] for v in vind],
-        "vulnerability_score": score,
-        "vulnerability_source": (f"suggested from {n_v} indicator(s) stated in the description"
-                                 + (": " + ", ".join(VULN_LABEL[v["indicator"]] for v in vind) if vind else "")
-                                 + "; please confirm or change"),
+        "situations": situations, "signals": signals,
+        "vulnerability_score": None,  # only the social worker rates vulnerability; the tool never suggests a score
+        "vulnerability_source": "not yet rated by the social worker",
         "municipality": (sit.get("scope") or {}).get("municipality", ""),
     })
     assemble_issues(case)  # first pass: the articles in question decide which events need asking
@@ -429,18 +419,10 @@ def assemble_issues(case):
     return case
 
 
-def _topics(vind, areas, cannot_pay):
+def _topics(areas, cannot_pay):
+    """Contact topics from the reading; violence and exploitation are added in score() while their sign is ticked."""
     t = []
-    ind = {v["indicator"] for v in vind}
-    if "violence_threats_or_coercion" in ind:
-        t.append("domestic_violence")
-    if "disability_or_access_difficulty" in ind:
-        t.append("disability")
-    if "exploitation_or_dependency" in ind:
-        t.append("trafficking_exploitation")
-    if "language_or_literacy_barrier" in ind:
-        t.append("language_barrier")
-    if cannot_pay or "severe_financial_hardship_unemployment_or_debt" in ind:
+    if cannot_pay:
         t.append("debt")
     if any(a["area"] == "migration" for a in areas):
         t.append("asylum_migration")
@@ -647,12 +629,14 @@ def score(case, override=None):
                                 case.get("deadlines", []))
     s, sr = severity_level(case)
     c, cr = complexity_level(case)
-    v = scoring.vulnerability_level(case["vulnerability_score"])
+    vs = case.get("vulnerability_score")
+    v = scoring.vulnerability_level(vs) if vs is not None else "low"
     ind = {"urgency": u, "severity": s, "complexity": c, "vulnerability": v, "information": i}
     reasons = {"urgency": ur, "severity": sr, "complexity": cr,
-               "vulnerability": [f"Rated {case['vulnerability_score']}/10 ({case['vulnerability_source']})"],
+               "vulnerability": [f"Rated {vs}/10 ({case['vulnerability_source']})" if vs is not None
+                                 else "Not yet rated by the social worker (counted as low until rated)"],
                "information": ir}
-    ind_v = set(case.get("vulnerability_indicators", []))
+    ind_v = scoring.safety_signs(case)
     if "essential_needs" in {x["kind"] for x in sig} and ind["urgency"] == "low":
         ind["urgency"] = "medium"
         reasons["urgency"].append("No heating, water or power right now.")
@@ -679,7 +663,9 @@ def score(case, override=None):
         lane, rule = int(override["lane"]), f"Lane {override['lane']}: set by the social worker ({override['reason']})."
     case["indices"], case["index_reasons"], case["lane"], case["lane_rule"] = ind, reasons, lane, rule
     sc = case["understanding"]["scope"]
-    case["contacts"] = contacts.select(lane, ind, case["understanding"]["topics"], case.get("municipality", ""),
+    topics = list(case["understanding"]["topics"]) + [t for k, t in [("violence_threats_or_coercion", "domestic_violence"),
+                                                                      ("exploitation_or_dependency", "trafficking_exploitation")] if k in ind_v]
+    case["contacts"] = contacts.select(lane, ind, topics, case.get("municipality", ""),
                                        case["understanding"]["immediate_danger"], case["understanding"].get("client_gender", "unknown"))
     case["scope_note"] = None
     if sc.get("canton_zurich") == "no":

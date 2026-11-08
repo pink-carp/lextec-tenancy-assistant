@@ -5,6 +5,15 @@ from datetime import date
 
 LEVELS = ["low", "medium", "high"]
 
+# The only warning signs the AI may raise about the person (hard lane-3 triggers). Vulnerability itself is rated
+# by the social worker only; these signs count only while the social worker keeps them ticked in step 2.
+SAFETY = {"violence_threats_or_coercion": "violence, threats or coercion",
+          "exploitation_or_dependency": "exploitation or dependency"}
+
+
+def safety_signs(case) -> set:
+    return {s["kind"] for s in case.get("signals", []) if s.get("kind") in SAFETY and s.get("confirmed", True)}
+
 
 def _lvl(x):
     return LEVELS.index(x)

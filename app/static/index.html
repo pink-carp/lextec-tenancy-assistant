@@ -5,48 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tenancy Information Assistant</title>
 <style>
-  :root { --ink:#1b1b1b; --muted:#5a5a5a; --line:#c9c9c9; --bg:#ffffff; --panel:#f4f4f2; --accent:#1d4f91;
-          --warn:#8a5a00; --warnbg:#fff4dc; --bad:#9b1c1c; --badbg:#fdeaea; --ok:#1f6b33; --okbg:#e7f4ea; }
+  :root { --ink:#18212f; --muted:#5b6575; --line:#dde2ea; --line-strong:#b9c1cd; --bg:#f2f4f8; --surface:#ffffff; --panel:#f6f8fb;
+          --accent:#1d4f91; --accent-dark:#163d70; --accent-soft:#e7eef8; --navy:#132c4f;
+          --warn:#8a5a00; --warnbg:#fff5e0; --bad:#a3231f; --badbg:#fdeceb; --ok:#1f6b33; --okbg:#e8f5eb;
+          --radius:12px; --radius-sm:8px; --shadow:0 1px 2px rgba(19,44,79,.06), 0 4px 16px rgba(19,44,79,.06); }
   * { box-sizing: border-box; }
-  body { margin:0; font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); }
-  header { border-bottom:3px solid var(--accent); padding:14px 16px; }
-  header h1 { margin:0; font-size:22px; }
-  header p { margin:2px 0 0; color:var(--muted); font-size:15px; }
-  main { max-width: 980px; margin: 0 auto; padding: 16px; }
-  h2 { font-size:20px; margin:28px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
-  h3 { font-size:17px; margin:18px 0 6px; }
-  .note { background:var(--panel); border-left:4px solid var(--accent); padding:10px 12px; margin:10px 0; font-size:15px; }
-  .warn { background:var(--warnbg); border-left:4px solid var(--warn); padding:10px 12px; margin:10px 0; }
-  .bad { background:var(--badbg); border-left:4px solid var(--bad); padding:10px 12px; margin:10px 0; }
-  .ok { background:var(--okbg); border-left:4px solid var(--ok); padding:10px 12px; margin:10px 0; }
-  textarea, input[type=text], input[type=date], input[type=number], select { font:inherit; width:100%; padding:8px; border:1px solid #8a8a8a; border-radius:3px; background:#fff; }
-  textarea { min-height:150px; }
-  label { display:block; font-weight:600; margin:10px 0 4px; }
+  body { margin:0; font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); }
+  header { background:var(--navy); color:#fff; padding:22px 16px 20px; }
+  header h1, header p { max-width:980px; margin-left:auto; margin-right:auto; }
+  header h1 { margin-top:0; margin-bottom:0; font-size:24px; font-weight:700; letter-spacing:-.01em; }
+  header p { margin-top:4px; margin-bottom:0; color:#c3d0e3; font-size:15px; }
+  header p strong { color:#fff; font-weight:600; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; }
+  main > section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px 28px; margin:0 0 20px; }
+  h2 { font-size:21px; margin:0 0 14px; letter-spacing:-.01em; color:var(--navy); }
+  h3 { font-size:17px; margin:26px 0 6px; color:var(--navy); }
+  #extra h2 { margin-top:28px; padding-top:20px; border-top:1px solid var(--line); }
+  .note, .warn, .bad, .ok { border-radius:var(--radius-sm); padding:12px 14px; margin:12px 0; border:1px solid transparent; border-left-width:4px; }
+  .note { background:var(--accent-soft); border-color:#cfdcef; border-left-color:var(--accent); font-size:15px; }
+  .warn { background:var(--warnbg); border-color:#f1dfb5; border-left-color:var(--warn); }
+  .bad { background:var(--badbg); border-color:#f3c9c6; border-left-color:var(--bad); }
+  .ok { background:var(--okbg); border-color:#c6e4cd; border-left-color:var(--ok); }
+  textarea, input[type=text], input[type=date], input[type=number], select { font:inherit; width:100%; padding:9px 11px; border:1px solid var(--line-strong); border-radius:var(--radius-sm); background:#fff; color:var(--ink); transition:border-color .15s, box-shadow .15s; }
+  textarea:focus, input:focus, select:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(29,79,145,.18); }
+  textarea { min-height:150px; resize:vertical; }
+  input[type=checkbox], input[type=radio] { accent-color:var(--accent); width:17px; height:17px; flex:none; }
+  label { display:block; font-weight:600; margin:14px 0 6px; }
   .row { display:flex; gap:12px; flex-wrap:wrap; } .row > * { flex:1 1 240px; }
-  button { font:inherit; padding:9px 16px; border-radius:3px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
-  button.secondary { background:#fff; color:var(--accent); }
+  button { font:inherit; font-weight:600; padding:10px 18px; border-radius:var(--radius-sm); border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; margin:2px 4px 2px 0; transition:background .15s, box-shadow .15s; }
+  button:hover:not(:disabled) { background:var(--accent-dark); border-color:var(--accent-dark); }
+  button:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(29,79,145,.3); }
+  button.secondary { background:#fff; color:var(--accent); border-color:#b7c8e2; }
+  button.secondary:hover:not(:disabled) { background:var(--accent-soft); border-color:var(--accent); }
   button:disabled { opacity:.5; cursor:default; }
-  .card { border:1px solid var(--line); border-radius:4px; padding:10px 12px; margin:8px 0; background:#fff; }
-  .card .src { color:var(--muted); font-size:14px; margin-top:4px; }
-  .tag { display:inline-block; font-size:13px; padding:1px 7px; border:1px solid var(--line); border-radius:10px; margin-right:4px; background:var(--panel); }
-  .tag.disputed { border-color:var(--warn); background:var(--warnbg); }
-  .tag.inferred { border-color:#888; }
-  .chip { display:inline-block; font-size:13px; padding:1px 7px; margin:2px 4px 2px 0; border:1px solid var(--accent); color:var(--accent); border-radius:3px; cursor:pointer; background:#fff; }
-  table { border-collapse:collapse; width:100%; font-size:15px; }
-  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
-  th { background:var(--panel); }
-  .lane { font-size:22px; font-weight:700; padding:12px; border:2px solid var(--accent); border-radius:4px; margin:10px 0; }
-  .lane3 { border-color:var(--bad); } .lane2 { border-color:var(--warn); } .lane1 { border-color:var(--ok); }
+  .card { border:1px solid var(--line); border-radius:var(--radius-sm); padding:14px 16px; margin:10px 0; background:var(--surface); }
+  .card textarea { margin-top:8px; }
+  .card .src { color:var(--muted); font-size:14px; margin-top:6px; }
+  .card strong { font-weight:600; }
+  @media (min-width:700px) { #evtable select { min-width:13.5em; } }
+  .card > .chk { display:inline-flex; margin:8px 20px 2px 0; }
+  .tag { display:inline-block; font-size:13px; font-weight:500; line-height:1.4; padding:2px 9px; border:1px solid transparent; border-radius:999px; margin-right:4px; background:#eaeef4; color:#3a4658; }
+  .tag.disputed { border-color:#efd7a3; background:var(--warnbg); color:var(--warn); }
+  .tag.inferred { border:1px dashed #9aa4b2; background:#fff; }
+  .chip { display:inline-block; font-size:13px; font-weight:500; padding:2px 9px; margin:3px 4px 3px 0; border:1px solid #c9d7ec; color:var(--accent); border-radius:999px; cursor:pointer; background:var(--accent-soft); transition:background .15s; }
+  .chip:hover { background:#d6e3f5; border-color:var(--accent); }
+  table { border-collapse:separate; border-spacing:0; width:100%; font-size:15px; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden; margin:8px 0; }
+  th, td { border-bottom:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  th { background:var(--panel); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  .lane { font-size:22px; font-weight:700; padding:16px 18px; border:1px solid var(--line); border-left:6px solid var(--accent); border-radius:var(--radius-sm); margin:4px 0 12px; }
+  .lane3 { border-left-color:var(--bad); background:var(--badbg); color:#7a1915; }
+  .lane2 { border-left-color:var(--warn); background:var(--warnbg); color:#6b4600; }
+  .lane1 { border-left-color:var(--ok); background:var(--okbg); color:#18552a; }
   .muted { color:var(--muted); font-size:14px; }
-  .hidden { display:none; }
-  .steps li { margin:4px 0; } .steps li.done { color:var(--ok); } .steps li.now { font-weight:700; }
-  dialog { max-width:760px; width:92vw; border:1px solid var(--line); border-radius:4px; }
+  .hidden { display:none !important; }
+  .steps { padding-left:22px; } .steps li { margin:6px 0; color:var(--muted); } .steps li.done { color:var(--ok); } .steps li.now { font-weight:700; color:var(--ink); }
+  details > summary { cursor:pointer; color:var(--accent); }
+  details > summary:hover { text-decoration:underline; }
+  dialog { max-width:760px; width:92vw; border:none; border-radius:var(--radius); padding:24px 28px; box-shadow:0 20px 60px rgba(19,44,79,.3); }
+  dialog::backdrop { background:rgba(19,44,79,.45); }
   .cols { display:grid; grid-template-columns: 1fr 1fr; gap:16px; } @media (max-width:760px){ .cols { grid-template-columns: 1fr; } }
-  .chk { font-weight:400; display:flex; gap:8px; align-items:flex-start; margin:4px 0; }
-  .chk input { margin-top:5px; }
-  @media print { header, .noprint, button { display:none !important; } body { font-size:13px; }
+  .chk { font-weight:400; display:flex; gap:10px; align-items:flex-start; margin:6px 0; cursor:pointer; }
+  .chk input { margin-top:4px; }
+  .rating { display:flex; gap:6px; flex-wrap:wrap; margin:10px 0 4px; }
+  .rating label { margin:0; font-weight:600; cursor:pointer; }
+  .rating input { position:absolute; opacity:0; width:1px; height:1px; }
+  .rating span { display:flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--line-strong); border-radius:var(--radius-sm); background:#fff; color:var(--ink); transition:background .15s, border-color .15s; }
+  .rating label:hover span { border-color:var(--accent); background:var(--accent-soft); }
+  .rating input:checked + span { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .rating input:focus-visible + span { box-shadow:0 0 0 3px rgba(29,79,145,.3); }
+  .prov { border:1.5px dashed var(--line-strong); border-radius:var(--radius-sm); padding:10px 14px; margin:12px 0; background:var(--panel); }
+  .prov.lane1 { border-color:#8fc39c; background:#f4faf5; } .prov.lane2 { border-color:#dcb867; background:#fffaf0; } .prov.lane3 { border-color:#e0928e; background:#fef6f5; }
+  @media (max-width:600px) { main > section { padding:18px 16px; } th, td { padding:8px; } td { overflow-wrap:anywhere; } header h1 { font-size:21px; } .rating span { width:38px; height:38px; } }
+  @media print { header, .noprint, button { display:none !important; } body { font-size:13px; background:#fff; }
+                 main > section { box-shadow:none; border:none; padding:0; margin:0 0 12px; }
                  body.print-extra main > section:not(#s5), body.print-extra #result { display:none !important; } }
-  .prov { border:2px dashed var(--line); border-radius:4px; padding:8px 12px; margin:10px 0; }
 </style>
 </head>
 <body>
@@ -76,6 +110,7 @@
         <option>Tigrinya</option><option>Turkish</option><option>Ukrainian</option><option>Somali</option><option>Russian</option></select></div>
   </div>
   <label class="chk"><input type="checkbox" id="consent"> The client knows that an AI tool is used, and that the case data is deleted when the case ends.</label>
+  <label class="chk"><input type="checkbox" id="dpform"> The client has signed the data processing form.</label>
   <p><button id="go">Analyse</button> <span id="s1msg" class="muted"></span></p>
 </section>
 
@@ -96,7 +131,7 @@
   <p class="muted">Your rating, 1 (none) to 10 (extreme). Indicators to consider: children or minors, pregnancy or single parent,
   violence or coercion, disability or access difficulties, exploitation or dependency, severe financial hardship, language or
   literacy barriers. It changes the support offered, never the legal analysis.</p>
-  <div class="row"><div><input type="range" id="vuln" min="1" max="10" value="5"> <strong id="vulnv">5</strong> <span id="vulnsrc" class="muted"></span></div></div>
+  <div class="rating" id="vuln" role="radiogroup" aria-label="Personal vulnerability, 1 to 10"></div>
   <div id="scope"></div>
   <p><button id="toQ">Confirm and show questions</button> <span id="s2msg" class="muted"></span></p>
 </section>
@@ -133,7 +168,7 @@
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let C = null, STATE = null, SOURCES = {}, QS = [], SHOW = 5, VULN_TOUCHED = false;
+let C = null, STATE = null, SOURCES = {}, QS = [], SHOW = 5;
 
 // The browser holds the case (STATE) and sends it back with each step; the server stores nothing.
 function code() { try { return sessionStorage.getItem("accessCode") || ""; } catch (e) { return ""; } }
@@ -183,7 +218,7 @@ send("/api/examples", {method: "GET"}).then(xs => {
   $("#ex").onchange = () => { const x = xs.find(y => y.case_no == $("#ex").value); if (x) $("#desc").value = x.prompt; };
 });
 $("#go").onclick = async () => {
-  if (!$("#consent").checked) { $("#s1msg").textContent = "Please confirm the client has been informed."; return; }
+  if (!$("#consent").checked || !$("#dpform").checked) { $("#s1msg").textContent = "Please confirm the client has been informed and has signed the data processing form."; return; }
   $("#go").disabled = true; const stop = timed($("#s1msg"), "Reading the description (usually 5–15 seconds)…");
   try {
     C = await api("/api/case", {description: $("#desc").value, client_language: $("#lang").value});
@@ -218,9 +253,7 @@ function renderUnderstanding() {
      <td class="muted">${EV[k].quote ? quoted(EV[k].quote) : "—"}${EV[k].note ? `<br><span class="tag disputed">${esc(EV[k].note)}</span>` : ""}</td></tr>`).join("")}</table>`;
   $("#signals").innerHTML = C.signals.map((s, i) => `<label class="chk"><input type="checkbox" data-sig="${i}" ${s.confirmed !== false ? "checked" : ""}>
      <span><strong>${esc({urgency:"Urgency",severity:"Severity",complexity:"Complexity",vulnerability:"Vulnerability"}[s.index] || s.index)}</strong>: ${esc(s.description)} <span class="muted">${quoted(s.quote)}</span></span></label>`).join("");
-  $("#vuln").value = C.vulnerability_score; $("#vulnv").textContent = C.vulnerability_score;
-  $("#vulnsrc").textContent = "Suggested: " + C.vulnerability_source + ". Please set your own rating.";
-  $("#vuln").oninput = () => { VULN_TOUCHED = true; $("#vulnv").textContent = $("#vuln").value; $("#vulnsrc").textContent = "your rating"; };
+  $("#vuln").innerHTML = Array.from({length: 10}, (_, i) => `<label><input type="radio" name="vuln" value="${i + 1}"><span>${i + 1}</span></label>`).join("");
   const sc = u.scope;
   $("#scope").innerHTML = sc.tenancy_related === "no" ? `<div class="bad">This does not appear to be a tenancy problem. The service covers residential tenancy in the canton of Zurich only.</div>`
     : sc.canton_zurich === "no" ? `<div class="warn">This service covers the canton of Zurich only. Federal tenancy law applies everywhere, but contacts and court details here are for Zurich.</div>`
@@ -231,11 +264,13 @@ function renderUnderstanding() {
 $("#toQ").onclick = async () => {
   document.querySelectorAll("[data-fact]").forEach(t => C.facts[+t.dataset.fact].statement = t.value);
   document.querySelectorAll("[data-sig]").forEach(c => C.signals[+c.dataset.sig].confirmed = c.checked);
+  const vr = document.querySelector("input[name=vuln]:checked");
+  if (!vr) { $("#s2msg").textContent = "Please set your vulnerability rating (1–10)."; return; }
   $("#toQ").disabled = true; const stop = timed($("#s2msg"), "Preparing questions (usually 5–20 seconds)…");
   try {
     const evs = {}; document.querySelectorAll("[data-ev]").forEach(x => evs[x.dataset.ev] = x.value);
     const mods = [...document.querySelectorAll("[data-mod]")].filter(x => x.checked).map(x => x.dataset.mod);
-    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: VULN_TOUCHED ? +$("#vuln").value : null, events: evs, modules: mods});
+    const r = await api(`/api/case/questions`, {state: STATE, facts: C.facts, signals: C.signals, vulnerability_score: +vr.value, events: evs, modules: mods});
     stop(); $("#s2msg").textContent = "";
     QS = r.questions; SOURCES = r.sources; C.provisional_lane = r.provisional_lane; renderQuestions(r.dropped_questions);
     $("#s3").classList.remove("hidden"); $("#s3").scrollIntoView({behavior:"smooth"});

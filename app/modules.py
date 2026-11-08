@@ -14,6 +14,7 @@ from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
+from . import scoring
 from .dates import parse_when
 from .deadlines import DeadlineSpec, compute_deadline
 from .llm import ask_json
@@ -43,7 +44,7 @@ def _ctx(case):
             "answers": ans, "deadlines": {d.get("kind") for d in case.get("deadlines", []) if d.get("earliest")},
             "situations": {s["situation"] for s in case.get("situations", [])},
             "docs": {d["doc_type"] for d in case.get("documents", [])},
-            "vuln": set(case.get("vulnerability_indicators", []))}
+            "vuln": scoring.safety_signs(case)}
 
 
 def holds(atom, ctx):

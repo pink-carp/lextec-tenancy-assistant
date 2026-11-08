@@ -7,7 +7,7 @@ import re
 import io
 from datetime import date  # noqa: F401
 
-from . import checks
+from . import checks, scoring
 from .llm import ask_json, chat
 from .pipeline import SYSTEM_ROLE, _d, allowed_dates, facts_block, mask
 
@@ -120,7 +120,7 @@ def handout(case):
         elif d.get("who_must_act") == "client" and d.get("not_determinable_reason") == "missing_fact":
             act_now.append(f"{d['action']}: a time limit may be running. Find out the exact date the letter arrived.")
     act_now += [a["client_text"] for a in scr["actions"] if a.get("group") == "immediate" and a.get("client_text")][:2]
-    if "violence_threats_or_coercion" in case.get("vulnerability_indicators", []) or case["understanding"].get("immediate_danger"):
+    if "violence_threats_or_coercion" in scoring.safety_signs(case) or case["understanding"].get("immediate_danger"):
         act_now.insert(0, "If you are in danger, call the police on 117. Victim support is available day and night on 142.")
     points = [p["client_text"] for b in scr.get("modules", []) for p in b["points"] if p.get("client_text")]
     out = {"act_now": " ".join(act_now), "summary": scr.get("situation", ""),
