@@ -7,3 +7,4 @@ case 1 - legal commentary
 *.docx
 *.pdf
 tests
+.env.local
