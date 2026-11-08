@@ -664,7 +664,7 @@ def score(case, override=None):
         for k in r["indices"]:
             if k in ind:
                 ind[k] = "high"
-                reasons[k] = [f"Confirmed: {r['by']}"]
+                reasons[k] = [f"Confirmed in the follow-up questions. {r['by']}"]
     lane, rule = scoring.decide_lane(ind)
     # hard triggers (docs/framework.md): violence, exploitation or migration status always go to a human
     hard = [t for t, hit in [("violence, threats or coercion", "violence_threats_or_coercion" in ind_v),

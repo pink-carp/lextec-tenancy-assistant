@@ -250,7 +250,7 @@ def apply_answers(case):
             ev[q["sets_event"]] = {**ev.get(q["sets_event"], {}), "answer": "A" if v.lower() == "yes" else "B",
                                    "source": "answer to a question"}
         if q.get("raises") and v.lower() == "yes":
-            case.setdefault("raised", []).append({"by": q["text"], "indices": q["raises"]})
+            case.setdefault("raised", []).append({"by": q.get("why") or q["text"], "indices": q["raises"]})
         if q.get("fact"):
             facts[q["fact"]] = v
             m = re.fullmatch(r"receipt_date:(\w+)", q["fact"])
