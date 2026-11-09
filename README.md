@@ -384,10 +384,10 @@ All four team members contributed to the legal work.
 
 | Team member | Shared contribution | Additional area of focus |
 |---|---|---|
-| Benjamin Bouveng | Legal work | Technical lead, coding and implementation |
-| Shanaya Harjai | Legal work | Pitch development and presentation |
-| Malin Da Ros | Legal work | Swiss legal expertise and case development |
-| Dong Hui Ryu | Legal work | Swiss legal expertise and legal-reasoning framework |
+| Benjamin Bouveng | Solution conceptualisation, design, and strategic development. | Technical lead, coding and implementation |
+| Shanaya Harjai | Solution conceptualisation, design, and strategic development. | Legal expertise, Pitch development and presentation |
+| Malin Da Ros | Solution conceptualisation, design, and strategic development. | Swiss legal expertise and case development |
+| Dong Hui Ryu | Solution conceptualisation, design, and strategic development. | Swiss legal expertise and legal-reasoning framework |
 
 Our legal materials are in `legal-team-materials/` [S1a].
 
